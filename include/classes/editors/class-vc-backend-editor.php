@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WPBakery Visual Composer admin editor
+ * WPBakery WPBakery Page Builder admin editor
  *
- * @package WPBakeryVisualComposer
+ * @package WPBakeryPageBuilder
  *
  */
 
@@ -78,7 +78,7 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 			visual_composer()->registerAdminJavascript();
 
 			// meta box to render
-			add_meta_box( 'wpb_visual_composer', __( 'Visual Composer', 'js_composer' ), array(
+			add_meta_box( 'wpb_visual_composer', __( 'WPBakery Page Builder', 'js_composer' ), array(
 				$this,
 				'renderEditor',
 			), $post_type, 'normal', 'high' );
@@ -212,6 +212,7 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 			 /* nectar addition */ 
  			//wp_register_style( 'font-awesome', vc_asset_url( 'lib/bower/font-awesome/css/font-awesome.min.css' ), array(), WPB_VC_VERSION, false );
  			/* nectar addition end */ 
+
 			/**
 			 * @todo check for usages
 			 * definetelly used in edit form param: css_animation, but curreny vc_add_shortcode_param doesn't accept css [ @todo refactor that ]

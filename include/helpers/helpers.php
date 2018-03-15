@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WPBakery Visual Composer helpers functions
+ * WPBakery WPBakery Page Builder helpers functions
  *
- * @package WPBakeryVisualComposer
+ * @package WPBakeryPageBuilder
  *
  */
 
@@ -350,6 +350,7 @@ function fjarrett_get_attachment_id_by_url( $url ) {
 }
 /* nectar addition end */ 
 
+
 /**
  * @param $param_value
  *
@@ -511,7 +512,7 @@ if ( ! function_exists( 'wpb_resize' ) ) {
 
 if ( ! function_exists( 'wpb_debug' ) ) {
 	/**
-	 * Returns bool if wpb_debug is provided in url - set visual composer debug mode.
+	 * Returns bool if wpb_debug is provided in url - set WPBakery Page Builder debug mode.
 	 * Used for example in shortcodes (end block comment for example)
 	 * @since 4.2
 	 * @return bool
@@ -555,76 +556,77 @@ function js_composer_body_class( $classes ) {
  * @since 4.2
  * @return string
  */
+ 
  /* nectar addition */  
  function vc_convert_shortcode( $m ) {
- 	list($output, $m_one, $tag, $attr_string, $m_four, $content) = $m;
-     $result = $width = $el_position = '';
-     $shortcode_attr = shortcode_parse_atts( $attr_string );
-     extract(shortcode_atts(array(
-         'width' => '1/1',
-         'el_class' => '',
-         'el_position' => ''
-     ), $shortcode_attr));
-     if($tag == 'vc_row' || $tag == 'full_width_section') return $output;
+  list($output, $m_one, $tag, $attr_string, $m_four, $content) = $m;
+ 		$result = $width = $el_position = '';
+ 		$shortcode_attr = shortcode_parse_atts( $attr_string );
+ 		extract(shortcode_atts(array(
+ 				'width' => '1/1',
+ 				'el_class' => '',
+ 				'el_position' => ''
+ 		), $shortcode_attr));
+ 		if($tag == 'vc_row' || $tag == 'full_width_section') return $output;
 
-     // Start
-     if(preg_match('/first/', $el_position) || empty($shortcode_attr['width']) || $shortcode_attr['width']==='1/1')  {
- 	    if(!empty($output)) $result = '[vc_row]';
- 	}
- 	
- 	/*if($tag == 'one_half' || $tag == 'one_third' || $tag == 'one_fourth' 
- 	   || $tag == 'one_sixth' || $tag == 'two_thirds' || $tag == 'three_fourths' || $tag == 'fixth_sixths' || $tag == 'one_whole') {
- 	  
- 	   
- 	   if($rowStart == 0) {
- 	  	   $rowStart = 1;
-       	   $result = '[vc_row]';
- 	   }
- 	   
- 	 }*/
- 	   
-     if($tag!='vc_column' && $tag != 'one_half' && $tag != 'one_half_last' && $tag != 'one_third' && $tag != 'one_third_last' && $tag != 'one_fourth' && $tag != 'one_fourth_last' && $tag != 'one_sixth' && $tag != 'one_sixth_last' && $tag != 'two_thirds' && $tag != 'two_thirds_last' && $tag != 'three_fourths' && $tag != 'three_fourtsh_last' && $tag != 'fixth_sixths' && $tag != 'five_sixths_last' && $tag != 'one_whole') $result .= "\n".'[vc_column width="'.$width.'"]';
- 	
- 	
- 	
-     // Tag
-     $pattern = get_shortcode_regex();
-     if($tag == 'vc_column' || $tag == 'one_half' || $tag == 'one_half_last' || $tag == 'one_third' || $tag == 'one_third_last' || $tag == 'one_fourth' || $tag == 'one_fourth_last' 
- 	   || $tag == 'one_sixth' || $tag == 'one_sixth_last' || $tag == 'two_thirds' || $tag == 'two_thirds_last' || $tag == 'three_fourths' || $tag == 'three_fourtsh_last' || $tag == 'fixth_sixths'
- 	   || $tag == 'five_sixths_last' || $tag == 'one_whole') {
-         $result .= "[{$m_one}{$tag} {$attr_string}]".preg_replace_callback( "/{$pattern}/s", 'vc_convert_inner_shortcode', $content)."[/{$tag}{$m_four}]";
-     } elseif( $tag == 'vc_tabs' || $tag == 'vc_accordion' || $tag == 'vc_tour' || $tag == 'toggle' || $tag == 'tabbed_section' ||  $tag == 'testimonial_slider' ||  $tag == 'clients' ||  $tag == 'pricing_table' ) {
-     	
-         $result .= "[{$m_one}{$tag} {$attr_string}]".preg_replace_callback( "/{$pattern}/s", 'vc_convert_tab_inner_shortcode', $content)."[/{$tag}{$m_four}]";
-     } else {
-         $result .= preg_replace('/(\"\d\/\d\")/', '"1/1"', $output);
-     }
+ 		// Start
+ 		if(preg_match('/first/', $el_position) || empty($shortcode_attr['width']) || $shortcode_attr['width']==='1/1')  {
+ 		 if(!empty($output)) $result = '[vc_row]';
+  }
+  
+  /*if($tag == 'one_half' || $tag == 'one_third' || $tag == 'one_fourth' 
+ 		|| $tag == 'one_sixth' || $tag == 'two_thirds' || $tag == 'three_fourths' || $tag == 'fixth_sixths' || $tag == 'one_whole') {
+ 	 
+ 		
+ 		if($rowStart == 0) {
+ 				$rowStart = 1;
+ 					$result = '[vc_row]';
+ 		}
+ 		
+ 	}*/
+ 		
+ 		if($tag!='vc_column' && $tag != 'one_half' && $tag != 'one_half_last' && $tag != 'one_third' && $tag != 'one_third_last' && $tag != 'one_fourth' && $tag != 'one_fourth_last' && $tag != 'one_sixth' && $tag != 'one_sixth_last' && $tag != 'two_thirds' && $tag != 'two_thirds_last' && $tag != 'three_fourths' && $tag != 'three_fourtsh_last' && $tag != 'fixth_sixths' && $tag != 'five_sixths_last' && $tag != 'one_whole') $result .= "\n".'[vc_column width="'.$width.'"]';
+  
+  
+  
+ 		// Tag
+ 		$pattern = get_shortcode_regex();
+ 		if($tag == 'vc_column' || $tag == 'one_half' || $tag == 'one_half_last' || $tag == 'one_third' || $tag == 'one_third_last' || $tag == 'one_fourth' || $tag == 'one_fourth_last' 
+ 		|| $tag == 'one_sixth' || $tag == 'one_sixth_last' || $tag == 'two_thirds' || $tag == 'two_thirds_last' || $tag == 'three_fourths' || $tag == 'three_fourtsh_last' || $tag == 'fixth_sixths'
+ 		|| $tag == 'five_sixths_last' || $tag == 'one_whole') {
+ 				$result .= "[{$m_one}{$tag} {$attr_string}]".preg_replace_callback( "/{$pattern}/s", 'vc_convert_inner_shortcode', $content)."[/{$tag}{$m_four}]";
+ 		} elseif( $tag == 'vc_tabs' || $tag == 'vc_accordion' || $tag == 'vc_tour' || $tag == 'toggle' || $tag == 'tabbed_section' ||  $tag == 'testimonial_slider' ||  $tag == 'clients' ||  $tag == 'pricing_table' ) {
+ 		 
+ 				$result .= "[{$m_one}{$tag} {$attr_string}]".preg_replace_callback( "/{$pattern}/s", 'vc_convert_tab_inner_shortcode', $content)."[/{$tag}{$m_four}]";
+ 		} else {
+ 				$result .= preg_replace('/(\"\d\/\d\")/', '"1/1"', $output);
+ 		}
 
-     // $content = preg_replace_callback( "/{$pattern}/s", 'vc_convert_inner_shortcode', $content );
+ 		// $content = preg_replace_callback( "/{$pattern}/s", 'vc_convert_inner_shortcode', $content );
 
-     // End
-     if($tag!='vc_column' && $tag != 'one_half' && $tag != 'one_half_last' && $tag != 'one_third' && $tag != 'one_third_last' && $tag != 'one_fourth' && $tag != 'one_fourth_last' && $tag != 'one_sixth' && $tag != 'one_sixth_last' && $tag != 'two_thirds' && $tag != 'two_thirds_last' && $tag != 'three_fourths' && $tag != 'three_fourtsh_last' && $tag != 'fixth_sixths' && $tag != 'five_sixths_last' && $tag != 'one_whole') $result .= '[/vc_column]';
- 	   
-     if(preg_match('/last/', $el_position) || empty($shortcode_attr['width']) || $shortcode_attr['width']==='1/1') {
-     	/*if($tag != 'one_half' && $tag != 'one_half_last' && $tag != 'one_third' && $tag != 'one_third_last' && $tag != 'one_fourth' && $tag != 'one_fourth_last' 
- 		   && $tag != 'one_sixth' && $tag != 'one_sixth_last' && $tag != 'two_thirds' && $tag != 'two_thirds_last' && $tag != 'three_fourths' && $tag != 'three_fourtsh_last' && $tag != 'fixth_sixths'
- 		   && $tag != 'five_sixths_last' && $tag != 'one_whole') {*/
- 	    	if(!empty($output)) $result .= '[/vc_row]'."\n";
- 	   /*}*/
-     }
- 	
- 	
- 	/*if($tag == 'one_half_last' || $tag == 'one_third_last'  || $tag == 'one_fourth_last' 
- 	   || $tag == 'one_sixth_last' || $tag == 'two_thirds_last' || $tag == 'three_fourtsh_last' || $tag !== 'five_sixths_last') {
-         $result .= '[/vc_row]'."\n";
- 	    $rowStart = 0;
- 	 }*/
- 	
-     return $result;
+ 		// End
+ 		if($tag!='vc_column' && $tag != 'one_half' && $tag != 'one_half_last' && $tag != 'one_third' && $tag != 'one_third_last' && $tag != 'one_fourth' && $tag != 'one_fourth_last' && $tag != 'one_sixth' && $tag != 'one_sixth_last' && $tag != 'two_thirds' && $tag != 'two_thirds_last' && $tag != 'three_fourths' && $tag != 'three_fourtsh_last' && $tag != 'fixth_sixths' && $tag != 'five_sixths_last' && $tag != 'one_whole') $result .= '[/vc_column]';
+ 		
+ 		if(preg_match('/last/', $el_position) || empty($shortcode_attr['width']) || $shortcode_attr['width']==='1/1') {
+ 		 /*if($tag != 'one_half' && $tag != 'one_half_last' && $tag != 'one_third' && $tag != 'one_third_last' && $tag != 'one_fourth' && $tag != 'one_fourth_last' 
+ 			&& $tag != 'one_sixth' && $tag != 'one_sixth_last' && $tag != 'two_thirds' && $tag != 'two_thirds_last' && $tag != 'three_fourths' && $tag != 'three_fourtsh_last' && $tag != 'fixth_sixths'
+ 			&& $tag != 'five_sixths_last' && $tag != 'one_whole') {*/
+ 			 if(!empty($output)) $result .= '[/vc_row]'."\n";
+ 		/*}*/
+ 		}
+  
+  
+  /*if($tag == 'one_half_last' || $tag == 'one_third_last'  || $tag == 'one_fourth_last' 
+ 		|| $tag == 'one_sixth_last' || $tag == 'two_thirds_last' || $tag == 'three_fourtsh_last' || $tag !== 'five_sixths_last') {
+ 				$result .= '[/vc_row]'."\n";
+ 		 $rowStart = 0;
+ 	}*/
+  
+ 		return $result;
  }
 
  /* nectar addition end */ 
-
+ 
 /**
  * @param $m
  *
@@ -865,6 +867,7 @@ function vc_colorCreator( $colour, $per = 10 ) {
 }
 
 
+
 /* nectar addition */ 
 function hex2rgba($color, $opacity = false) {
 
@@ -905,6 +908,7 @@ function hex2rgba($color, $opacity = false) {
 }
 
 /* nectar addition end */ 
+
 
 /* HEX to RGB converter
 ---------------------------------------------------------- */

@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string
  */
 function vc_colorpicker_form_field( $settings, $value ) {
-	
 	/* nectar addition */
 	$nectar_accent_color = '#dd3333';
 	$nectar_extra_color_1 = '#dd9933';
@@ -30,8 +29,8 @@ function vc_colorpicker_form_field( $settings, $value ) {
 	}
 		
 	return '<div class="color-group">'
-	       . '<input name="' . $settings['param_name'] . '" data-color-1="'.$nectar_accent_color.'" data-color-2="'.$nectar_extra_color_1.'" data-color-3="'.$nectar_extra_color_2.'" data-color-4="'.$nectar_extra_color_3.'" class="wpb_vc_param_value wpb-textinput ' . $settings['param_name'] . ' ' . $settings['type'] . '_field vc_color-control" type="text" value="' . $value . '"/>'
-	       . '</div>';
-		   
+				 . '<input name="' . $settings['param_name'] . '" data-color-1="'.$nectar_accent_color.'" data-color-2="'.$nectar_extra_color_1.'" data-color-3="'.$nectar_extra_color_2.'" data-color-4="'.$nectar_extra_color_3.'" class="wpb_vc_param_value wpb-textinput ' . $settings['param_name'] . ' ' . $settings['type'] . '_field vc_color-control" type="text" value="' . $value . '"/>'
+				 . '</div>';
+			 
 	/* nectar addition end */
 }

@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WPBakery Visual Composer row
+ * WPBakery WPBakery Page Builder row
  *
- * @package WPBakeryVisualComposer
+ * @package WPBakeryPageBuilder
  *
  */
 class WPBakeryShortCode_VC_Row extends WPBakeryShortCode {
@@ -109,45 +109,42 @@ class WPBakeryShortCode_VC_Row extends WPBakeryShortCode {
 	}
 
 	public function contentAdmin( $atts, $content = null ) {
-		$width = $el_class = '';
 		$atts = shortcode_atts( $this->predefined_atts, $atts );
 
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
 
-		for ( $i = 0; $i < count( $width ); $i ++ ) {
-			$output .= '<div data-element_type="' . $this->settings['base'] . '" class="' . $this->cssAdminClass() . '">';
-			$output .= str_replace( '%column_size%', 1, $column_controls );
-			$output .= '<div class="wpb_element_wrapper">';
-			$output .= '<div class="vc_row vc_row-fluid wpb_row_container vc_container_for_children">';
-			if ( '' === $content && ! empty( $this->settings['default_content_in_template'] ) ) {
-				$output .= do_shortcode( shortcode_unautop( $this->settings['default_content_in_template'] ) );
-			} else {
-				$output .= do_shortcode( shortcode_unautop( $content ) );
+		$output .= '<div data-element_type="' . $this->settings['base'] . '" class="' . $this->cssAdminClass() . '">';
+		$output .= str_replace( '%column_size%', 1, $column_controls );
+		$output .= '<div class="wpb_element_wrapper">';
+		$output .= '<div class="vc_row vc_row-fluid wpb_row_container vc_container_for_children">';
+		if ( '' === $content && ! empty( $this->settings['default_content_in_template'] ) ) {
+			$output .= do_shortcode( shortcode_unautop( $this->settings['default_content_in_template'] ) );
+		} else {
+			$output .= do_shortcode( shortcode_unautop( $content ) );
 
-			}
-			$output .= '</div>';
-			if ( isset( $this->settings['params'] ) ) {
-				$inner = '';
-				foreach ( $this->settings['params'] as $param ) {
-					if ( ! isset( $param['param_name'] ) ) {
-						continue;
-					}
-					$param_value = isset( $atts[ $param['param_name'] ] ) ? $atts[ $param['param_name'] ] : '';
-					if ( is_array( $param_value ) ) {
-						// Get first element from the array
-						reset( $param_value );
-						$first_key = key( $param_value );
-						$param_value = $param_value[ $first_key ];
-					}
-					$inner .= $this->singleParamHtmlHolder( $param, $param_value );
-				}
-				$output .= $inner;
-			}
-			$output .= '</div>';
-			$output .= '</div>';
 		}
+		$output .= '</div>';
+		if ( isset( $this->settings['params'] ) ) {
+			$inner = '';
+			foreach ( $this->settings['params'] as $param ) {
+				if ( ! isset( $param['param_name'] ) ) {
+					continue;
+				}
+				$param_value = isset( $atts[ $param['param_name'] ] ) ? $atts[ $param['param_name'] ] : '';
+				if ( is_array( $param_value ) ) {
+					// Get first element from the array
+					reset( $param_value );
+					$first_key = key( $param_value );
+					$param_value = $param_value[ $first_key ];
+				}
+				$inner .= $this->singleParamHtmlHolder( $param, $param_value );
+			}
+			$output .= $inner;
+		}
+		$output .= '</div>';
+		$output .= '</div>';
 
 		return $output;
 	}
@@ -186,7 +183,7 @@ class WPBakeryShortCode_VC_Row extends WPBakeryShortCode {
 
 		$has_image = false;
 		$style = '';
-		if ( (int) $bg_image > 0 && false !== ( $image_url = wp_get_attachment_url( $bg_image, 'large' ) ) ) {
+		if ( (int) $bg_image > 0 && false !== ( $image_url = wp_get_attachment_url( $bg_image ) ) ) {
 			$has_image = true;
 			$style .= 'background-image: url(' . $image_url . ');';
 		}

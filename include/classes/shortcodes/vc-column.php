@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WPBakery Visual Composer shortcodes
+ * WPBakery WPBakery Page Builder shortcodes
  *
- * @package WPBakeryVisualComposer
+ * @package WPBakeryPageBuilder
  *
  */
 class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
@@ -285,6 +285,7 @@ class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 		return empty( $style ) ? $style : ' style="' . esc_attr( $style ) . '"';
 	}
 }
+
 
 
 /* nectar addition */ 

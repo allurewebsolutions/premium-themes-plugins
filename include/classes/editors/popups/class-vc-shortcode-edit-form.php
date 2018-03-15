@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WPBakery Visual Composer main class.
+ * WPBakery WPBakery Page Builder main class.
  *
- * @package WPBakeryVisualComposer
+ * @package WPBakeryPageBuilder
  * @since   4.2
  */
 
@@ -56,42 +56,42 @@ class Vc_Shortcode_Edit_Form implements Vc_Render {
 	 *
 	 * @since 4.4
 	 */
-	public function renderFields() {
-		/* nectar addition */ 
-		$tag = vc_post_param( 'tag' );
-		vc_user_access()
-			->checkAdminNonce()
-			->validateDie( __( 'Access denied', 'js_composer' ) )
-			->wpAny(
-				array( 'edit_post', (int) vc_request_param( 'post_id' ) )
-			)
-			->validateDie( __( 'Access denied', 'js_composer' ) )
-			->check( 'vc_user_access_check_shortcode_edit', $tag )
-			->validateDie( __( 'Access denied', 'js_composer' ) );
+	 public function renderFields() {
+ 		/* nectar addition */ 
+ 		$tag = vc_post_param( 'tag' );
+ 		vc_user_access()
+ 			->checkAdminNonce()
+ 			->validateDie( __( 'Access denied', 'js_composer' ) )
+ 			->wpAny(
+ 				array( 'edit_post', (int) vc_request_param( 'post_id' ) )
+ 			)
+ 			->validateDie( __( 'Access denied', 'js_composer' ) )
+ 			->check( 'vc_user_access_check_shortcode_edit', $tag )
+ 			->validateDie( __( 'Access denied', 'js_composer' ) );
 
-		
-		function array_htmlspecialchars_decode(&$input) {
-		    if (is_array($input))
-		    {
-		        foreach ($input as $key => $value)
-		        {
-		            if (is_array($value)) $input[$key] = array_htmlspecialchars_decode($value);
-		            else $input[$key] = htmlspecialchars_decode($value);
-		        }
-		        return $input;
-		    }
-		    return htmlspecialchars_decode($input);
-		}
+ 		
+ 		function array_htmlspecialchars_decode(&$input) {
+ 		    if (is_array($input))
+ 		    {
+ 		        foreach ($input as $key => $value)
+ 		        {
+ 		            if (is_array($value)) $input[$key] = array_htmlspecialchars_decode($value);
+ 		            else $input[$key] = htmlspecialchars_decode($value);
+ 		        }
+ 		        return $input;
+ 		    }
+ 		    return htmlspecialchars_decode($input);
+ 		}
 
-		$params = array_map( 'array_htmlspecialchars_decode', (array) stripslashes_deep( vc_post_param( 'params' ) ) );
+ 		$params = array_map( 'array_htmlspecialchars_decode', (array) stripslashes_deep( vc_post_param( 'params' ) ) );
 
 
-		require_once vc_path_dir( 'EDITORS_DIR', 'class-vc-edit-form-fields.php' );
-		$fields = new Vc_Edit_Form_Fields( $tag, $params );
-		$fields->render();
-		die();
-		/* nectar addition end */ 
-	}
+ 		require_once vc_path_dir( 'EDITORS_DIR', 'class-vc-edit-form-fields.php' );
+ 		$fields = new Vc_Edit_Form_Fields( $tag, $params );
+ 		$fields->render();
+ 		die();
+ 		/* nectar addition end */ 
+ 	}
 
 	/**
 	 * @param $param

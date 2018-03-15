@@ -7,6 +7,13 @@ jQuery( window ).on( 'YoastSEO:ready', function () {
 		'update'
 	];
 	var contentModification = function ( data ) {
+		
+		if($('#nectar-metabox-portfolio-extra').length > 0 && $('textarea#_nectar_portfolio_extra_content').length > 0){ 
+			var contentPortfolioTinyMce = window.vc_wpnop($('textarea#_nectar_portfolio_extra_content').val());
+		  var contentPortfolio = vc_wpautop(contentPortfolioTinyMce);
+			data += contentPortfolio;
+		}
+	
 		data = _.reduce( relevantData, function ( memo, value, key ) {
 			if ( value.html ) {
 				memo = memo.replace( '"' + value.text + '"', value.html );

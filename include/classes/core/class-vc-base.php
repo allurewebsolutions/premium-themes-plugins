@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Visual Composer basic class.
+ * WPBakery Page Builder basic class.
  * @since 4.2
  */
 class Vc_Base {
@@ -373,7 +373,6 @@ class Vc_Base {
 		 * vc_filter: vc_base_build_shortcodes_custom_css
 		 * @since 4.4
 		 */
-		
 		 /* nectar addition */ 
  		$portfolio_extra_content = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_portfolio_extra_content', true) : '';
  		
@@ -383,7 +382,6 @@ class Vc_Base {
  			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $post->post_content ) );
  		}
  		/* nectar addition end */ 
-		
 		if ( empty( $css ) ) {
 			delete_post_meta( $post_id, '_wpb_shortcodes_custom_css' );
 		} else {
@@ -585,7 +583,6 @@ class Vc_Base {
 		/*
 		wp_register_script( 'isotope', vc_asset_url( 'lib/bower/isotope/dist/isotope.pkgd.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		*/
-		
 		wp_register_script( 'twbs-pagination', vc_asset_url( 'lib/bower/twbs-pagination/jquery.twbsPagination.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		wp_register_script( 'nivo-slider', vc_asset_url( 'lib/bower/nivoslider/jquery.nivo.slider.pack.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		wp_register_script( 'flexslider', vc_asset_url( 'lib/bower/flexslider/jquery.flexslider-min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
@@ -640,10 +637,10 @@ class Vc_Base {
 	 */
 	public function pluginActionLinks( $links, $file ) {
 		if ( plugin_basename( vc_path_dir( 'APP_DIR', '/js_composer.php' ) ) == $file ) {
-			$title = __( 'Visual Composer Settings', 'js_composer' );
+			$title = __( 'WPBakery Page Builder Settings', 'js_composer' );
 			$html = esc_html__( 'Settings', 'js_composer' );
 			if ( ! vc_user_access()->part( 'settings' )->can( 'vc-general-tab' )->get() ) {
-				$title = __( 'About Visual Composer', 'js_composer' );
+				$title = __( 'About WPBakery Page Builder', 'js_composer' );
 				$html = esc_html__( 'About', 'js_composer' );
 			}
 			$link = '<a title="' . esc_attr( $title ) . '" href="' . esc_url( $this->getSettingsPageLink() ) . '">' . $html . '</a>';
@@ -673,7 +670,7 @@ class Vc_Base {
 	 * @access public
 	 */
 	public function addMetaData() {
-		echo '<meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress."/>' . "\n";
+		echo '<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>' . "\n";
 	}
 
 	/**
@@ -778,12 +775,12 @@ class Vc_Base {
 			'add_image' => __( 'Add Image', 'js_composer' ),
 			'add_images' => __( 'Add Images', 'js_composer' ),
 			'settings' => __( 'Settings', 'js_composer' ),
-			'main_button_title' => __( 'Visual Composer', 'js_composer' ),
+			'main_button_title' => __( 'WPBakery Page Builder', 'js_composer' ),
 			/* nectar addition */ 
-			'main_button_title_backend_editor' => __( 'PAGE BUILDER', 'js_composer' ),
+			'main_button_title_backend_editor' => __( 'Page Builder', 'js_composer' ),
 			/* nectar addition end */ 
-			'main_button_title_frontend_editor' => __( 'FRONTEND EDITOR', 'js_composer' ),
-			'main_button_title_revert' => __( 'CLASSIC MODE', 'js_composer' ),
+			'main_button_title_frontend_editor' => __( 'Frontend Editor', 'js_composer' ),
+			'main_button_title_revert' => __( 'Classic Mode', 'js_composer' ),
 			'please_enter_templates_name' => __( 'Enter template name you want to save.', 'js_composer' ),
 			'confirm_deleting_template' => __( 'Confirm deleting "{template_name}" template, press Cancel to leave. This action cannot be undone.', 'js_composer' ),
 			'press_ok_to_delete_section' => __( 'Press OK to delete section, Cancel to leave', 'js_composer' ),
