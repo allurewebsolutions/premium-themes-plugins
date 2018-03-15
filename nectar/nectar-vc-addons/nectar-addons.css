@@ -415,6 +415,7 @@ body .vc_panel-tabs > ul, body .vc_panel-footer {
 
 .composer-switch .logo-icon {
     background-image: url('img/logo.png')!important;
+		border-right: 1px solid rgba(0,0,0,0.04);
 }
 
 .gallery_widget_attached_images .icon-remove:before, .wpb_el_type_attach_images .icon-remove:before, .wpb_el_type_attach_image .icon-remove:before, .vc_css-editor .vc_settings .vc_background-image .vc_image .added .icon-remove:before {
@@ -1574,3 +1575,26 @@ body [data-vc-template-search=true] .vc_edit-form-tab.vc-search-result-empty.vc_
 
 .vc_edit-form-tab .chosen-container { margin-bottom: 0;}
 
+#post-body #wpb_visual_composer .vc_navbar {
+	background-color: #FCFCFC;
+	border-bottom: 1px solid #F5F5F5;
+}
+#post-body #wpb_visual_composer .vc_navbar .vc_icon-btn:hover {
+    background-color: #F5F5F5;
+}
+#post-body #wpb_visual_composer .vc_navbar .vc_icon-btn .vc-composer-icon {
+    color: #4F5C64;
+}
+#post-body #wpb_visual_composer .vc_templates-button {
+    border-right: 1px solid #F2f2f2;
+}
+#post-body #wpb_visual_composer .vc_navbar .vc_navbar-nav>li {
+    border-left: 1px solid #F2f2f2;
+}
+#wpb_visual_composer .vc_element-icon[data-is-container=true] {
+    background-image: none;
+}
+/*when editor gets disabled by vc, the width doesnt stretch across the screen
+which makes the editor height calcs much higher than they are, 
+creating excess space at the bottom*/
+#postdivrich.vc-disable-editor { width: 100%; }

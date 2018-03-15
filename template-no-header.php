@@ -135,46 +135,7 @@ $page_full_screen_rows = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_
 
 <div id="header-outer" data-has-menu="<?php echo $has_main_menu; ?>" <?php echo $transparency_markup; ?> data-using-pr-menu="<?php echo $using_pr_menu; ?>" data-mobile-fixed="<?php echo $mobile_fixed; ?>" data-ptnm="<?php echo $prependTopNavMobile;?>" data-lhe="<?php echo $headerLinkHoverEffect; ?>" data-user-set-bg="<?php echo $userSetBG; ?>" data-format="<?php echo $headerFormat; ?>" data-permanent-transparent="<?php echo $perm_trans; ?>" data-megamenu-rt="<?php echo $megamenuRemoveTransparent; ?>" data-remove-fixed="<?php echo $headerRemoveStickiness; ?>" data-cart="<?php echo ($woocommerce && !empty($options['enable-cart']) && $options['enable-cart'] == '1') ? 'true': 'false';?>" data-transparency-option="<?php if($disable_effect == 'on') { echo '0'; } else { echo $using_fw_slider; } ?>" data-box-shadow="<?php echo $header_box_shadow; ?>" data-shrink-num="<?php echo (!empty($options['header-resize-on-scroll-shrink-num'])) ? $options['header-resize-on-scroll-shrink-num'] : 6; ?>" data-full-width="<?php echo $fullWidthHeader; ?>" data-using-secondary="<?php echo ($using_secondary == 'header_with_secondary') ? '1' : '0'; ?>" data-using-logo="<?php if(!empty($options['use-logo'])) echo $options['use-logo']; ?>" data-logo-height="<?php if(!empty($options['logo-height'])) echo $options['logo-height']; ?>" data-m-logo-height="<?php if(!empty($options['mobile-logo-height'])) { echo $options['mobile-logo-height']; } else { echo '24'; } ?>" data-padding="<?php echo (!empty($options['header-padding'])) ? $options['header-padding'] : "28"; ?>" data-header-resize="<?php echo $headerResize; ?>"></div>
 	
-
-<div id="ajax-loading-screen" data-disable-fade-on-click="<?php echo (!empty($options['disable-transition-fade-on-click'])) ? $options['disable-transition-fade-on-click'] : '0' ; ?>" data-effect="<?php echo $page_transition_effect; ?>" data-method="<?php echo (!empty($options['transition-method'])) ? $options['transition-method'] : 'ajax' ; ?>">
-	
-	<?php if($page_transition_effect == 'horizontal_swipe') { ?>
-		<div class="reveal-1"></div>
-		<div class="reveal-2"></div>
-	<?php } else if($page_transition_effect == 'center_mask_reveal') { ?>
-		<span class="mask-top"></span>
-		<span class="mask-right"></span>
-		<span class="mask-bottom"></span>
-		<span class="mask-left"></span>
-	<?php } else { ?>
-		<div class="loading-icon <?php echo (!empty($options['loading-image-animation']) && !empty($options['loading-image'])) ? $options['loading-image-animation'] : null; ?>"> 
-			<?php 
-			$loading_icon = (isset($options['loading-icon'])) ? $options['loading-icon'] : 'default';
-			$loading_img = (isset($options['loading-image'])) ? nectar_options_img($options['loading-image']) : null;
-			if(empty($loading_img)) { 
-				if($loading_icon == 'material') {
-					echo '<div class="material-icon">
-							<div class="spinner">
-								<div class="right-side"><div class="bar"></div></div>
-								<div class="left-side"><div class="bar"></div></div>
-							</div>
-							<div class="spinner color-2">
-								<div class="right-side"><div class="bar"></div></div>
-								<div class="left-side"><div class="bar"></div></div>
-							</div>
-						</div>';
-				} else {
-					if(!empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') { 
-						echo '<span class="default-loading-icon spin"></span>'; 
-					} else { 
-						echo '<span class="default-skin-loading-icon"></span>'; 
-					} 
-				}
-			} 
-			 ?> 
-		</div>
-	<?php } ?>
-</div>
+<?php nectar_page_trans_markup(); ?>
 
 <div id="ajax-content-wrap">
 

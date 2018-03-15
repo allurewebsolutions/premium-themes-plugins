@@ -13,6 +13,10 @@ get_header(); ?>
 			<div class="post-area col span_9">
 				<?php 
 				
+				//breadcrumbs
+				if ( function_exists( 'yoast_breadcrumb' ) && !is_home() && !is_front_page() ){ yoast_breadcrumb('<p id="breadcrumbs">','</p>'); } 
+
+				
 				if(have_posts()) : while(have_posts()) : the_post(); ?>
 					
 					<?php the_content(); ?>

@@ -4,7 +4,7 @@
 	Author: ThemeNectar
 	Author URI: http://themenectar.com
 	Description: An Ultra Responsive Multi-Purpose Theme.
-	Version: 8.5.4
+	Version: 8.5.5
 	License: GNU General Public License version 3.0
 	License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -5089,7 +5089,7 @@ ul li.meta-share-count span.singular{opacity:1}
 @media only screen and (max-width:1000px){.nectar-social-sharing-fixed >a{transition:all 0.35s cubic-bezier(.15,0.2,.1,1); -webkit-transition:all 0.35s cubic-bezier(.15,0.2,.1,1); -webkit-transform:scale(0); transform:scale(0)}
 .nectar-social-sharing-fixed{height:50px; pointer-events:none}
 .nectar-social-sharing-fixed.visible >a{-webkit-transform:scale(1); transform:scale(1)}
-.nectar-social-sharing-fixed.visible{height:340px; pointer-events:auto}
+.nectar-social-sharing-fixed.visible{pointer-events:auto}
 }
 
 .nectar-social-sharing-fixed{position:fixed; right:34px; bottom:34px; height:50px; width:50px; line-height:50px; z-index:1000}
@@ -5156,22 +5156,24 @@ ul li.meta-share-count span.singular{opacity:1}
 .overlaid-content svg{display:none}
 }
 
-.pagination-current{ position:absolute!important;  left:1px;  top:0;  z-index:100}
+.nectar-particles .pagination-current, .overlaid-content .pagination-current{ position:absolute!important;  left:1px;  top:0;  z-index:100; display: none;}
 
-.pagination-dot, .pagination-current{ position:relative;  display:inline-block;  width:17px;  height:17px;  padding:0;  line-height:17px;  background:#fff;  border-radius:50%;  margin:12px 7px;  border:none;  outline:none;  font-size:14px;  font-weight:bold;  color:#fff;  cursor:pointer;  transform:translateY(20px);  -webkit-transform:translateY(20px);  -moz-transform:translateY(20px);  opacity:0}
+.pagination-dot, 
+.pagination-current{ transition: transform 0.3s cubic-bezier(.21, .6, .35, 1); position:relative;  display:inline-block;  width:10px;  height:10px;  padding:0;  line-height:17px;  background:#fff;  border-radius:50%;  margin:12px 7px;  border:none;  outline:none;  font-size:14px;  font-weight:bold;  color:#fff;  cursor:pointer;  transform:translateY(20px);  -webkit-transform:translateY(20px);  -moz-transform:translateY(20px);  opacity:0}
 
 
+.pagination-dot.active {
+  -webkit-transform: scale(1.7)!important;
+  transform: scale(1.7)!important;
+}
 
 	
-_::-webkit-full-page-media, _:future, :root .pagination-navigation {
+.pagination-navigation {
   -webkit-filter: none!important;
  filter: none!important;
 }
 
-_::-webkit-full-page-media, _:future, :root .pagination-dot {
-	width: 12px;
-	height: 12px;
-}
+
 
 
 /*header text effects*/
@@ -5387,7 +5389,7 @@ body.single-post .heading-title[data-header-style="default_minimal"] .entry-titl
 
 .sharing-default-minimal{text-align:left}
 
-.single-post .bottom-meta .sharing-default-minimal .nectar-love{margin-top:0!important; font-size:14px!important; line-height:1px; vertical-align: bottom;}
+.single-post .bottom-meta .sharing-default-minimal .nectar-love{margin-top:0!important; font-size:14px!important; line-height:1px; }
 
 .single-post .bottom-meta .sharing-default-minimal{padding-top:0px}
 
@@ -5513,6 +5515,17 @@ body[data-button-style^="rounded"] .section-down-arrow i.fa-angle-down.top, body
 .blog_next_prev_buttons[data-style*="next_prev"] .previous-post h3 span { text-align: right; }
 
 .blog_next_prev_buttons .col{height:250px; border-left:1px solid #ddd}
+
+.blog_next_prev_buttons[data-style="fullwidth_next_only"] img {
+  -ms-transition: transform 0.4s cubic-bezier(0.05, 0.2, 0.1, 1) 0s;
+    -webkit-transition: transform 0.4s cubic-bezier(0.05, 0.2, 0.1, 1) 0s;
+    transition: transform 0.4s cubic-bezier(0.05, 0.2, 0.1, 1) 0s;
+}
+
+.blog_next_prev_buttons[data-style="fullwidth_next_only"]:hover img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
 
 .blog_next_prev_buttons[data-post-header-style="default_minimal"] .col{height:350px}
 @media only screen and (max-width:1000px){.blog_next_prev_buttons[data-post-header-style="default_minimal"] .col{height:200px}
@@ -8659,8 +8672,8 @@ body .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tab{padding:0px; backgroun
   font-size: 32px;
 }
 .tabbed[data-style*="material"] .wpb_tabs_nav { margin-bottom: 65px!important; }
-.tabbed[data-style*="material"] ul li { float: none; display: inline-block; }
-.tabbed[data-style*="material"] ul:after,
+.tabbed[data-style*="material"] ul.wpb_tabs_nav li { float: none; display: inline-block; }
+.tabbed[data-style*="material"] ul.wpb_tabs_nav:after,
 .tabbed[data-style*="material"][data-color-scheme="extra-color-gradient-1"] ul li a:before,
 .tabbed[data-style*="material"][data-color-scheme="extra-color-gradient-2"] ul li a:before,
 .tabbed[data-style*="default"][data-color-scheme="extra-color-gradient-1"] ul li a:before,

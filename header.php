@@ -149,6 +149,8 @@ if($n_boxed_style) {
 	echo '<div id="boxed">'; 
 } 
 
+nectar_page_trans_markup();
+
 $using_secondary = (!empty($options['header_layout']) && $headerFormat != 'left-header') ? $options['header_layout'] : ' '; 
 
 if($using_secondary == 'header_with_secondary') { ?>
@@ -443,46 +445,6 @@ if($perm_trans != 1 || $perm_trans == 1 && $bg_header == 'false' || $page_full_s
 	</div>
 
 <?php } ?>
-
-<div id="ajax-loading-screen" data-disable-fade-on-click="<?php echo (!empty($options['disable-transition-fade-on-click'])) ? $options['disable-transition-fade-on-click'] : '0' ; ?>" data-effect="<?php echo $page_transition_effect; ?>" data-method="<?php echo (!empty($options['transition-method'])) ? $options['transition-method'] : 'ajax' ; ?>">
-	
-	<?php if($page_transition_effect == 'horizontal_swipe' || $page_transition_effect == 'horizontal_swipe_basic') { ?>
-		<div class="reveal-1"></div>
-		<div class="reveal-2"></div>
-	<?php } else if($page_transition_effect == 'center_mask_reveal') { ?>
-		<span class="mask-top"></span>
-		<span class="mask-right"></span>
-		<span class="mask-bottom"></span>
-		<span class="mask-left"></span>
-	<?php } else { ?>
-		<div class="loading-icon <?php echo (!empty($options['loading-image-animation']) && !empty($options['loading-image'])) ? $options['loading-image-animation'] : null; ?>"> 
-			<?php 
-			$loading_icon = (isset($options['loading-icon'])) ? $options['loading-icon'] : 'default';
-			$loading_img = (isset($options['loading-image'])) ? nectar_options_img($options['loading-image']) : null;
-			if(empty($loading_img)) { 
-				if($loading_icon == 'material') {
-					echo '<div class="material-icon">
-							<div class="spinner">
-								<div class="right-side"><div class="bar"></div></div>
-								<div class="left-side"><div class="bar"></div></div>
-							</div>
-							<div class="spinner color-2">
-								<div class="right-side"><div class="bar"></div></div>
-								<div class="left-side"><div class="bar"></div></div>
-							</div>
-						</div>';
-				} else {
-					if(!empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') { 
-						echo '<span class="default-loading-icon spin"></span>'; 
-					} else { 
-						echo '<span class="default-skin-loading-icon"></span>'; 
-					} 
-				}
-			} 
-			 ?> 
-		</div>
-	<?php } ?>
-</div>
 
 <div id="ajax-content-wrap">
 

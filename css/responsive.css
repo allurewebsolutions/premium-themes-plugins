@@ -2364,9 +2364,6 @@
 		padding: 10px 0px;
 	}
 	
-	.woocommerce .shop_table .product-thumbnail {
-		display: none;
-	}
 	
 	.woocommerce .shop_table .coupon {
 		margin-bottom: 10px;
@@ -4015,6 +4012,10 @@
 	 body.woocommerce-page ul.products[data-product-style="material"] li:nth-child(2n+1) {
 		margin-right: 2%!important;
 	}
+  
+  body .woocommerce .carousel-wrap.products-carousel ul.products[data-product-style="material"] li:nth-child(2n+1) {
+    margin-right: 0!important;
+  }
 
 	html .woocommerce .products.related .product, html .woocommerce .products.upsells .product {
 		width: 48%!important;

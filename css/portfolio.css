@@ -5,6 +5,19 @@
 	will-change: opacity;
 }
 
+.portfolio-items .col .work-item.style-3 img,
+.portfolio-items .col .work-item.style-3-alt img {
+	-ms-transition: transform 0.38s cubic-bezier(0.05, 0.2, 0.1, 1) 0s;
+	-webkit-transition: transform 0.38s cubic-bezier(0.05, 0.2, 0.1, 1) 0s;
+	transition: transform 0.38s cubic-bezier(0.05, 0.2, 0.1, 1) 0s;
+}
+
+.portfolio-items .col .work-item.style-3:hover img,
+.portfolio-items .col .work-item.style-3-alt:hover img {
+	-webkit-transform: scale(1.12);
+	transform: scale(1.12);
+}
+
 
 .portfolio-items .col .work-item.style-3 h3,
 .portfolio-items .col .work-item.style-3-alt h3 {

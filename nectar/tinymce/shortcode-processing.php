@@ -3075,8 +3075,10 @@ function nectar_blog_processing($atts, $content = null) {
 				      
 				      $permalink_structure = get_option('permalink_structure');
 				      $query_type = (count($_GET)) ? '&' : '?';	
-			      	  $format = empty( $permalink_structure ) ? $query_type.'paged=%#%' : 'page/%#%/';  
-					
+			      	$format = empty( $permalink_structure ) ? $query_type.'paged=%#%' : 'page/%#%/';  
+					  
+            if(defined('ICL_SITEPRESS_VERSION')) { $format = $query_type.'paged=%#%'; }
+            
 					  echo '<div id="pagination" data-is-text="'.__("All items loaded", NECTAR_THEME_NAME).'">';
 					   
 				      echo paginate_links(array(  

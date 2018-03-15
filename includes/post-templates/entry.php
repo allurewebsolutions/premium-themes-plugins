@@ -390,7 +390,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 						 	echo '<span class="post-featured-img">'.get_the_post_thumbnail($post->ID, 'full', array('title' => '')) .'</span>';
 						 }	
 						  
-					} elseif($meta_overlaid_style == true) {
+					} elseif($meta_overlaid_style == true && !is_single() ) {
 
 						//no image added
 						$img_size = (!empty($masonry_item_sizing)) ? $masonry_item_sizing : 'portfolio-thumb';

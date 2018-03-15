@@ -25,6 +25,9 @@ body[data-smooth-scrolling="0"] #header-outer .widget_shopping_cart {
 html .woocommerce #payment, html .woocommerce-page #payment {
 	background-color: transparent!important;
 }
+.woocommerce #order_review #payment #place_order {
+	float: none;
+}
 
 #header-outer .cart-menu-wrap.has_products {
 	right: 0px;
@@ -3625,10 +3628,15 @@ body #slide-out-widget-area .widget_shopping_cart .cart_list li a {
 }
 
 #slide-out-widget-area .widget_shopping_cart .total strong { font-weight: inherit!important;}
-
+@media only screen and (max-width: 768px) {
+	body .woocommerce table.cart .product-thumbnail:before { display: none; }
+body .woocommerce table.cart .product-thumbnail { display: block;}
+}
 /*account*/
 @media only screen and (min-width: 768px) {
+	
 .woocommerce-account .woocommerce-MyAccount-navigation { padding-right: 30px;}
+
 }
 .woocommerce-MyAccount-navigation ul{margin-left:0;border-top:1px solid rgba(0,0,0,.05)}
 .woocommerce-MyAccount-navigation ul li{list-style:none;border-bottom:1px solid rgba(0,0,0,.05);position:relative}

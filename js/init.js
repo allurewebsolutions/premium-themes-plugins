@@ -1689,14 +1689,7 @@ if($('#nectar_fullscreen_rows').length > 0 && $disableFPonMobile != 'on' || $().
 			    $that.addClass('finished-loading');
 
 			    carouselHeightCalcs();
-			    
-			    //reinit panr
-			    if(!$('body').hasClass('mobile') && !navigator.userAgent.match(/(Android|iPod|iPhone|iPad|IEMobile|Opera Mini)/)) {
-					$(".portfolio-items.carousel .work-item.style-3 img").panr({
-						scaleDuration: .28
-					}); 
-					$(".portfolio-items:not(.carousel) .work-item.style-3-alt img").panr({ scaleDuration: .28, sensitivity: 12.6, scaleTo: 1.08, panDuration: 3 }); 
-				}
+
 				
 			    
 		     });//images loaded
@@ -3552,7 +3545,7 @@ function svgAnimations() {
 
 	if($svg_icons.length == 0) {
 
-		$('.svg-icon-holder:not(.animated-in)').each(function(i){
+		$('.svg-icon-holder:not(.animated-in)').has('svg').each(function(i){
 			var $that = $(this);
 
 			if(navigator.userAgent.match(/(Android|iPod|iPhone|iPad|IEMobile|BlackBerry|Opera Mini)/)) $that.attr('data-animation','false');
@@ -3610,7 +3603,7 @@ function svgAnimations() {
 			function svgInit() {
 
 				//set size
-				//$that.find('span').css({'height': parseInt($that.attr('data-size')) +'px', 'width': parseInt($that.attr('data-size')) +'px'});
+				$that.css({'height': parseInt($that.attr('data-size')) +'px', 'width': parseInt($that.attr('data-size')) +'px'});
 
 				//var $iconID = $that.find('svg').attr('id');
 				//$iconID = $iconID.replace(/[^0-9]/g,'');
@@ -3635,7 +3628,7 @@ function svgAnimations() {
 	}
 	
 	//full vc row support
-	$('#nectar_fullscreen_rows .svg-icon-holder.animated-in').each(function(i){
+	$('#nectar_fullscreen_rows .svg-icon-holder.animated-in').has('svg').each(function(i){
 		
 		var $animationDelay = ($(this).is('[data-animation-delay]') && $(this).attr('data-animation-delay').length > 0 && $(this).attr('data-animation') != 'false') ? $(this).attr('data-animation-delay') : 0;
 		var $that = $(this);
@@ -10601,14 +10594,6 @@ $('body').on('click','#sidebar .widget.woocommerce:not(.widget_price_filter) h4'
 			
 			$('.blog_next_prev_buttons img').css('opacity','1');
 
-			if(!$('body').hasClass('mobile') && !navigator.userAgent.match(/(Android|iPod|iPhone|iPad|BlackBerry|IEMobile|Opera Mini)/)) {
-				$('.blog_next_prev_buttons img').panr({
-					scaleDuration: .28,
-					sensitivity: 22,
-					scaleTo: 1.06
-				}); 
-			}
-
 		});
 	}
 
@@ -11728,6 +11713,11 @@ $('body').on('click','#sidebar .widget.woocommerce:not(.widget_price_filter) h4'
 		$(this).parents('.portfolio-filters').find('#sort-portfolio span').html($(this).html());
 	});
 	
+	//portfolio prevent jump on parent dropdown click
+	$('body').on('click','.portfolio-filters > a#sort-portfolio', function(){
+		return false;
+	});
+	
 	//inline portfolio selected category
 	$('body').on('click','.portfolio-filters-inline ul li a',function(){
 
@@ -12438,15 +12428,6 @@ $('body').on('click','#sidebar .widget.woocommerce:not(.widget_price_filter) h4'
 				if( $smoothCache == true && $(window).width() > 690 && $('body').outerHeight(true) > $(window).height() && Modernizr.csstransforms3d && !navigator.userAgent.match(/(Android|iPod|iPhone|iPad|IEMobile|Opera Mini)/)){ niceScrollInit(); $(window).trigger('resize') } 
 				
 				
-				//Panr 
-				if(!$('body').hasClass('mobile') && !navigator.userAgent.match(/(Android|iPod|iPhone|iPad|IEMobile|Opera Mini)/)) {
-					
-					$(".portfolio-items:not(.carousel) .work-item.style-3 img").panr({
-						scaleDuration: .28
-					}); 
-					$(".portfolio-items:not(.carousel) .work-item.style-3-alt img").panr({ scaleDuration: .28, sensitivity: 12.6, scaleTo: 1.08, panDuration: 3 }); 
-					
-				}
 				
 				//prettyphoto
 				$('.portfolio-items').each(function(){
@@ -12778,7 +12759,7 @@ function toTopBind() {
 if($('.nectar-social-sharing-fixed').length == 0) {
 	toTopBind();
 } else {
-	if($(window).width() < 1000) {
+	if($(window).width() < 1000 && $('body.single').length > 0) {
 		if($scrollTop > 150){
 			$(window).on('scroll',hideFixedSharing);
 		}
@@ -12804,6 +12785,7 @@ if($('.nectar-social-sharing-fixed').length == 0) {
 
 function showFixedSharing(){
 	
+  $scrollTop = $(window).scrollTop();
 	if( $scrollTop > 150){
 
 		$('.nectar-social-sharing-fixed').addClass('visible');	
@@ -12815,7 +12797,8 @@ function showFixedSharing(){
 }
 
 function hideFixedSharing(){
-	
+  
+	$scrollTop = $(window).scrollTop();
 	if( $scrollTop < 150){
 
 		$('.nectar-social-sharing-fixed').removeClass('visible');	
@@ -13275,9 +13258,6 @@ if($('#nectar_fullscreen_rows[data-mobile-disable="on"]').length > 0 && $('.nect
 					
 					//Panr 
 					if(!$('body').hasClass('mobile') && !navigator.userAgent.match(/(Android|iPod|iPhone|iPad|BlackBerry|IEMobile|Opera Mini)/)) {
-						
-						$(".portfolio-items:not(.carousel) .work-item.style-3 img").panr({ scaleDuration: .28 }); 
-						$(".portfolio-items:not(.carousel) .work-item.style-3-alt img").panr({ scaleDuration: .28, sensitivity: 20, scaleTo: 1.12, panDuration: 1 }); 
 
 						$isoUseTransforms = true;
 						
@@ -14858,7 +14838,7 @@ if($('body[data-form-style="minimal"]').length > 0) {
 		$(selector).each(function(){
 			if($(this).parent().find('input:not([type="checkbox"]):not([type="hidden"]):not(#search-outer input):not(.adminbar-input):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="date"]):not([type="color"]):not([type="range"]):not([role="button"]):not([role="combobox"]):not(.select2-focusser):not([name="min_price"]):not([name="max_price"]):not([class="input-text qty text"])').length == 1 || $(this).parent().find('textarea').length == 1) {
 				
-				if($(this).parents('.minimal-form-input').length == 0) {
+				if($(this).parents('.minimal-form-input').length == 0 && $(this).parents('#wc-stripe-cc-form').length == 0) {
 
 					//if there's a direct input next to label
 					
@@ -15778,125 +15758,6 @@ function resizeIframe() {
 	document.getElementsByClassName("pp_content_container")[0].style.height = height+40+ 'px';
 	document.getElementsByClassName("pp_content")[0].style.height = height+40+ 'px';
 	
-}
-
-
-//don't load if mobile
-if(!navigator.userAgent.match(/(Android|iPod|iPhone|iPad|BlackBerry|IEMobile|Opera Mini)/) ){
-
-	
-	/*
-	panr - v0.0.1 by Robert Bue (@robert_bue)
-	*/
-	;(function ( $, window, document, undefined ) {
-	// Create the defaults once
-				
-	var pluginName = "panr",
-		defaults = {
-		sensitivity: 22,
-		moveTarget: "parent",
-		scale: false,
-		scaleOnHover: false,
-		scaleTo: 1.1,
-		scaleDuration: .28,
-		panY: true,
-		panX: true,
-		panDuration: 0.7,
-		resetPanOnMouseLeave: true,
-		onEnter: function(){},
-		onLeave: function(){}
-	};
-	// The actual plugin constructor
-	function Plugin ( element, options ) {
-		this.element = element;
-		//console.log(element);
-		this.settings = $.extend( {}, defaults, options );
-		this._defaults = defaults;
-		this._name = pluginName;
-		this.init();
-	}
-	Plugin.prototype = {
-		init: function () {
-		if ( Modernizr.touch ) {
-			return;
-		}
-		// call them like so: this.yourOtherFunction(this.element, this.settings).
-		//console.log(this.settings);
-		var settings = this.settings,
-		target = $(this.element),
-		w = target.width(),
-		targetWidth = target.width() - settings.sensitivity,
-		cx = (w-targetWidth)/targetWidth,
-		x,
-		y,
-		panVars,
-		xPanVars,
-		yPanVars,
-		mouseleaveVars;
-		//console.log(cx);
-		if ( settings.scale || (!settings.scaleOnHover && settings.scale) ) {
-			TweenMax.set(target, { scale: settings.scaleTo });
-		}
-		// If no target provided we'll use the hovered element
-		if ( !settings.moveTarget ) {
-			settings.moveTarget = $(this.element);
-		}
-		if ( settings.moveTarget == "parent" ) {
-			settings.moveTarget = $(this.element).parent();
-		}
-		if ( settings.moveTarget == "parent parent" ) {
-			settings.moveTarget = $(this.element).parent().parent();
-		}
-		if ( settings.moveTarget == "parent parent parent" ) {
-			settings.moveTarget = $(this.element).parent().parent().parent();
-		}
-	
-		settings.moveTarget.on('mousemove', function(e){
-			x = e.pageX - target.offset().left - target.width()/2; // mouse x coordinate relative to the container
-			y = e.pageY - target.offset().top - target.height()/2; // mouse x coordinate relative to the container
-			if ( settings.panX ) {
-				xPanVars = { x: -cx*x };
-			}
-			if ( settings.panY ) {
-				yPanVars = { y: -cx*y };
-			}
-			panVars = $.extend({}, xPanVars, yPanVars);
-	
-			// Pan element
-			TweenMax.to(target, settings.panDuration, panVars);
-		});
-		// On mouseover
-		settings.moveTarget.on('mouseenter', function(e){
-			// Scale up element
-			TweenMax.to(target, settings.scaleDuration, { scale: settings.scaleTo });
-			settings.onEnter(target);
-		});
-		if ( !settings.scale || (!settings.scaleOnHover && !settings.scale) ) {
-			mouseleaveVars = { scale: 1.005, x: 0, y: 0 };
-		} else {
-		
-		if ( settings.resetPanOnMouseLeave ) {
-			mouseleaveVars = { x: 0, y: 0 };
-		}
-		}
-		settings.moveTarget.on('mouseleave', function(e){
-		// Reset element
-		TweenMax.to(target, .35, mouseleaveVars );
-		settings.onLeave(target);
-		});
-		}
-	};
-	// A really lightweight plugin wrapper around the constructor,
-	// preventing against multiple instantiations
-	$.fn[ pluginName ] = function ( options ) {
-		return this.each(function() {
-			if ( !$.data( this, "plugin_" + pluginName ) ) {
-			$.data( this, "plugin_" + pluginName, new Plugin( this, options ) );
-		}
-	  });
-	};
-	})( jQuery, window, document ); 
-
 }
 
 

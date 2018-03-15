@@ -55,11 +55,11 @@ function nectar_register_required_plugins() {
 			'required' 	=> false,
 		),
 		array(
-            'name'          => 'Salient Visual Composer', // The plugin name
+            'name'          => 'Salient WPBakery Page Builder', // The plugin name
             'slug'          => 'js_composer_salient', // The plugin slug (typically the folder name)
             'source'            => get_template_directory() . '/plugins/js_composer_salient.zip', // The plugin source
             'required'          => true, // If false, the plugin is only 'recommended' instead of required
-            'version'           => '5.2.4', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+            'version'           => '5.4.7', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
             'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
             'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
         )

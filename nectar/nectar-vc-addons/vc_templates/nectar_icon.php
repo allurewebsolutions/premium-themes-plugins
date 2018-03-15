@@ -36,6 +36,7 @@ switch($icon_family) {
 		break;
 	case 'linecons':
 		$icon = $icon_linecons;
+		wp_enqueue_style( 'vc_linecons' );
 		break;
 	case 'iconsmind':
 		$icon = $icon_iconsmind;

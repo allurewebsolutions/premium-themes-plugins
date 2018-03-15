@@ -1276,12 +1276,7 @@ function initTextEffect(canvasID){
 			
 
 			var dest=($cur.index())*spacing;
-			TweenMax.to($current.data("pos"),0.7,{
-				y:startPos+dest,
-				onUpdate:updatePos,
-				onComplete:updatePos,
-				ease:Quint.easeOut
-			});
+
 
 			//switch shape
 			if(event.originalEvent !== undefined && !$cur.hasClass('active')) Nodes.particleRotateLogic($(this).index());
@@ -1299,24 +1294,7 @@ function initTextEffect(canvasID){
 		var startDrag={x:0,y:0};
 	}
 
-	function updatePos(){
-		var pos=$current.data("pos").y-startPos;
-		var scale=pos%spacing;
-	    if(scale>halfSpacing){
-	      scale=halfSpacing-(scale-halfSpacing);
-	    }
-	    scale=1-((scale/halfSpacing)*0.35);
-	    TweenMax.set($current,{
-	    	y:pos+startPos,
-	    	scale:scale*1.15,
-	    	force3D:true
-	    });	
-
-	    var curItem=pos/spacing,
-	    	curItemR=Math.round(curItem)
-	    ;
-
-	}
+	
 
 
 

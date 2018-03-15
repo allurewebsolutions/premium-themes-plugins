@@ -3479,7 +3479,12 @@ jQuery(document).ready(function($){
         if( slider.parents('.parallax_slider_outer').length > 0 && slider.find('.swiper-slide-active[data-color-scheme="dark"]').length > 0 ) {
             $('#header-outer').addClass('dark-slide');
         } else if(slider.parents('.parallax_slider_outer').length > 0 || slider.parents('.first-section').length > 0 ) {
-            $('#header-outer').removeClass('dark-slide');
+    
+            if( slider.find('.swiper-slide-active[data-color-scheme="dark"]').length > 0 && slider.parents('.first-section').length > 0 && slider.is('[data-full-width="true"]') ) {
+              //dont remove if needed
+            } else {
+                $('#header-outer').removeClass('dark-slide');
+            }
         }
     }
 

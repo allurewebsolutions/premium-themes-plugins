@@ -12,9 +12,30 @@
   <custom-fields>
     <custom-field action="translate">_nectar_header_title</custom-field>
     <custom-field action="translate">_nectar_header_subtitle</custom-field>
-    <custom-field action="translate">_nectar_portfolio_extra_content</custom-field>
+    <custom-field action="copy">_nectar_portfolio_extra_content</custom-field>
     <custom-field action="translate">_nectar_external_project_url</custom-field>
     <custom-field action="translate">_nectar_project_excerpt</custom-field>
+    <custom-field action="copy">_nectar_slider_bg_type</custom-field>
+    <custom-field action="copy">_nectar_slider_preview_image</custom-field>
+    <custom-field action="copy">_nectar_slider_image</custom-field>
+    <custom-field action="copy">_nectar_slider_video_texture</custom-field>
+    <custom-field action="copy">_nectar_slider_slide_bg_alignment</custom-field>
+    <custom-field action="copy">_nectar_slider_slide_font_color</custom-field>
+    <custom-field action="translate">_nectar_slider_heading</custom-field>
+    <custom-field action="translate">_nectar_slider_caption</custom-field>
+    <custom-field action="copy">_nectar_slider_caption_background</custom-field>
+    <custom-field action="copy">_nectar_slider_down_arrow</custom-field>
+    <custom-field action="copy">_nectar_slider_link_type</custom-field>
+    <custom-field action="translate">_nectar_slider_button</custom-field>
+    <custom-field action="translate">_nectar_slider_button_url</custom-field>
+    <custom-field action="copy">_nectar_slider_button_style</custom-field>
+    <custom-field action="copy">_nectar_slider_button_color</custom-field>
+    <custom-field action="translate">_nectar_slider_button_2</custom-field>
+    <custom-field action="translate">_nectar_slider_button_url_2</custom-field>
+    <custom-field action="copy">_nectar_slider_button_style_2</custom-field>
+    <custom-field action="copy">_nectar_slider_button_color_2</custom-field>
+    <custom-field action="translate">_nectar_slider_entire_link</custom-field>
+    <custom-field action="copy">_nectar_slider_video_popup</custom-field>
   </custom-fields>
   <admin-texts>
     <key name="salient_redux">
