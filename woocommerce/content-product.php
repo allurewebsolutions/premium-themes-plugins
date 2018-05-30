@@ -11,14 +11,11 @@
  * the readme will list any important changes.
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
- * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 3.0.0
+ * @version 3.4.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 global $product, $woocommerce;
 
@@ -63,7 +60,13 @@ $product_style = (!empty($options['product_style'])) ? $options['product_style']
 $classes[] = $product_style;
 
 ?>
-<li <?php post_class( $classes ); ?>>
+
+<?php if( function_exists('wc_product_class') ) { ?>
+	<li <?php wc_product_class( $classes ); ?> >
+<?php } else { ?>
+	<li <?php post_class( $classes ); ?> >
+<?php } ?>
+
 
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 

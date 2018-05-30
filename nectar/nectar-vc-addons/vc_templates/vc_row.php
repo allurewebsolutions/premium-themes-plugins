@@ -167,29 +167,41 @@
       /*transforms*/
       if(!empty($translate_y) || !empty($translate_x)) {
           
-          $style .= 'transform: ';
-          if(!empty($translate_y)) {
-          
-              if(strpos($translate_y,'%') !== false){
-                  $style .= ' translateY('. intval($translate_y) .'%)';
-              } else {    
-                  $style .= ' translateY('. intval($translate_y) .'px)';
-              }
+          /* twice one for regular and -webkit- for older devices */
+          for($i=0;$i<2;$i++) {
             
-          }  
-          
-          if(!empty($translate_x)) {
-          
-              if(strpos($translate_x,'%') !== false){
-                  $style .= ' translateX('. intval($translate_x) .'%)';
-              } else {    
-                  $style .= ' translateX('. intval($translate_x) .'px)';
-              }
+            if($i == 0) {
+              $style .= '-webkit-transform: ';
+            } else {
+              $style .= ' transform: ';
+            } 
             
-          }  
-          $style .= ';';
+            
+            if(!empty($translate_y)) {
+            
+                if(strpos($translate_y,'%') !== false){
+                    $style .= ' translateY('. intval($translate_y) .'%)';
+                } else {    
+                    $style .= ' translateY('. intval($translate_y) .'px)';
+                }
+              
+            }  
+            
+            if(!empty($translate_x)) {
+            
+                if(strpos($translate_x,'%') !== false){
+                    $style .= ' translateX('. intval($translate_x) .'%)';
+                } else {    
+                    $style .= ' translateX('. intval($translate_x) .'px)';
+                }
+              
+            }  
+            $style .= ';';
+            
+          } //loop
           
       }
+      
       
       /*zindex*/
       if(!empty($zindex)) {

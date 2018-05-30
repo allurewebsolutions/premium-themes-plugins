@@ -12,7 +12,7 @@
   <custom-fields>
     <custom-field action="translate">_nectar_header_title</custom-field>
     <custom-field action="translate">_nectar_header_subtitle</custom-field>
-    <custom-field action="copy">_nectar_portfolio_extra_content</custom-field>
+    <custom-field action="copy-once">_nectar_portfolio_extra_content</custom-field>
     <custom-field action="translate">_nectar_external_project_url</custom-field>
     <custom-field action="translate">_nectar_project_excerpt</custom-field>
     <custom-field action="copy">_nectar_slider_bg_type</custom-field>

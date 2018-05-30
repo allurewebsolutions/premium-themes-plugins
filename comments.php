@@ -51,6 +51,7 @@ $fw_class = (!empty($options['theme-skin']) && $options['theme-skin'] == 'ascend
 $required_text = null;
 $form_style = (!empty($options['form-style'])) ? $options['form-style'] : 'default'; 
 $comment_label = ($form_style == 'minimal') ? '<label for="comment">' . __('My comment is..', NECTAR_THEME_NAME) . '</label>' : null;
+$consent  = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
 $args = array(
   'id_form'           => 'commentform',
   'id_submit'         => 'submit',
@@ -98,7 +99,10 @@ $args = array(
       '<div class="col span_4 col_last"><label for="url">' .
       __( 'Website', NECTAR_THEME_NAME ) . '</label>' .
       '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
-      '" size="30" /></div></div>'
+      '" size="30" /></div></div>',
+			
+			'cookies' => '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' />' .
+						 '<label for="wp-comment-cookies-consent">' . __( 'Save my name, email, and website in this browser for the next time I comment.' ) . '</label></p>'
     )
   ),
 );

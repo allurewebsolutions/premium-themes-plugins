@@ -63,7 +63,7 @@ function nectar_register_js() {
 		if ( floatval(get_bloginfo('version')) < "3.6" ) {
 			wp_register_script('jplayer', $nectar_get_template_directory_uri . '/js/jplayer.min.js', 'jquery', '2.1', TRUE);
 		}
-		wp_register_script('nectarFrontend', $nectar_get_template_directory_uri . '/js/init.js', array('jquery', 'superfish'), '8.5.5', TRUE);
+		wp_register_script('nectarFrontend', $nectar_get_template_directory_uri . '/js/init.js', array('jquery', 'superfish'), '8.5.6', TRUE);
 		
 		// Dequeue
 		$lightbox_script = (!empty($options['lightbox_script'])) ? $options['lightbox_script'] : 'magnific';
@@ -305,7 +305,7 @@ function nectar_main_styles() {
 		 wp_register_style('nectarslider', $nectar_get_template_directory_uri . '/css/nectar-slider.css', '', '8.5.0');
 		 wp_register_style("main-styles", get_stylesheet_directory_uri() . "/style.css", '', '8.5.5');
 		 wp_register_style("nectar-portfolio", $nectar_get_template_directory_uri . "/css/portfolio.css", '', '8.5.5');
-		 wp_register_style("magnific", $nectar_get_template_directory_uri . "/css/magnific.css", '', '6.2');
+		 wp_register_style("magnific", $nectar_get_template_directory_uri . "/css/magnific.css", '', '6.3');
 		 wp_register_style("fancyBox", $nectar_get_template_directory_uri . "/css/jquery.fancybox.css", '', '9.0');
 		 wp_register_style("responsive", $nectar_get_template_directory_uri . "/css/responsive.css", '', '8.5.5');
 		 wp_register_style("select2", $nectar_get_template_directory_uri . "/css/select2.css", '', '6.2');
@@ -3360,7 +3360,7 @@ if (!function_exists('nectar_slider_display')) {
 									<div class="video-wrap">
 										
 										
-										<video class="slider-video" width="1800" height="700" preload="auto" loop>';
+										<video class="slider-video" width="1800" height="700" preload="auto" loop muted>';
 	
 										    if(!empty($video_webm)) { $slider .= '<source type="video/webm" src="'.$video_webm.'">'; }
 										    if(!empty($video_mp4)) { $slider .= '<source type="video/mp4" src="'.$video_mp4.'">'; }
@@ -4925,7 +4925,7 @@ if ( !function_exists( 'nectar_page_header' ) ) {
 			<div class="nectar-video-wrap" data-bg-alignment="'.$bg_position.'">
 				
 				
-				<video class="nectar-video-bg" width="1800" height="700" '.$poster_markup.'  preload="auto" loop autoplay>';
+				<video class="nectar-video-bg" width="1800" height="700" '.$poster_markup.'  preload="auto" loop autoplay muted>';
 				    if(!empty($video_webm)) { $video_markup .= '<source type="video/webm" src="'.$video_webm.'">'; }
 				    if(!empty($video_mp4)) { $video_markup .= '<source type="video/mp4" src="'.$video_mp4.'">'; }
 				    if(!empty($video_ogv)) { $video_markup .= '<source type="video/ogg" src="'. $video_ogv.'">'; }

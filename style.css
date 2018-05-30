@@ -4,7 +4,7 @@
 	Author: ThemeNectar
 	Author URI: http://themenectar.com
 	Description: An Ultra Responsive Multi-Purpose Theme.
-	Version: 8.5.5
+	Version: 8.5.6
 	License: GNU General Public License version 3.0
 	License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11037,6 +11037,18 @@ body[data-form-style="minimal"] .minimal-form-input label span.text .text-inner{
 body[data-form-style="minimal"] .minimal-form-input.textarea label span.text{top:40px; transform:none; -webkit-transform:none}
 
 body[data-form-style="minimal"] .minimal-form-input br{display:none}
+
+body[data-form-style="minimal"] .woocommerce-billing-fields #billing_country_field,
+body[data-form-style="minimal"] .woocommerce-billing-fields #billing_state_field,
+body[data-form-style="minimal"] .woocommerce-shipping-fields #shipping_country_field,
+body[data-form-style="minimal"] .woocommerce-shipping-fields #shipping_state_field {
+	margin-top: 30px;
+}
+
+body[data-form-style="minimal"] .woocommerce label[for="billing_address_2"] > .optional,
+body[data-form-style="minimal"] .woocommerce label[for="shipping_address_2"] > .optional {
+  display: none;
+}
 
 body[data-form-style="minimal"] .widget_search .search-form .search-submit{top:30px}
 

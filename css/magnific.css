@@ -271,7 +271,6 @@ button::-moz-focus-inner {
     left: 0;
     width: 100%;
     height: 100%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     background: #000; }
 .mfp-iframe-scaler > div.video .mejs-container { width: 100%!important; height: 100%!important;}
 
