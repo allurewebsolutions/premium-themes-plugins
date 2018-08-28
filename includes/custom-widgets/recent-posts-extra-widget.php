@@ -13,8 +13,8 @@ add_action('widgets_init', 'Recent_Posts_Extra_init');
 class Recent_Posts_Extra_Widget extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array('classname' => 'recent_posts_extra_widget', 'description' => __( "The most recent posts on your site, including post thumbnails & dates.",NECTAR_THEME_NAME));
-		parent::__construct('recent-posts-extra', __('Nectar Recent Posts Extra',NECTAR_THEME_NAME), $widget_ops);
+		$widget_ops = array('classname' => 'recent_posts_extra_widget', 'description' => __( "The most recent posts on your site, including post thumbnails & dates.",'salient'));
+		parent::__construct('recent-posts-extra', __('Nectar Recent Posts Extra','salient'), $widget_ops);
 		$this->alt_option_name = 'recent_posts_extra_widget';
 
 		add_action( 'save_post', array(&$this, 'flush_widget_cache') );
@@ -36,7 +36,7 @@ class Recent_Posts_Extra_Widget extends WP_Widget {
 		ob_start();
 		extract($args);
 
-		$title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts Extra',NECTAR_THEME_NAME) : $instance['title']);
+		$title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts Extra','salient') : $instance['title']);
 		$post_style = isset($instance['style']) ? $instance['style'] : 'Featured Image Left';
 		if(!empty($post_style)) $post_style = strtolower(preg_replace('/[\s-]+/', '-',$post_style));
 
@@ -127,23 +127,23 @@ class Recent_Posts_Extra_Widget extends WP_Widget {
 			$number = 15;
 
 ?>	
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', NECTAR_THEME_NAME); ?></label>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'salient'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php esc_attr_e( 'Style:', NECTAR_THEME_NAME ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php esc_attr_e( 'Style:', 'salient' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>" class="widefat" style="width:100%;">	
-				<option <?php if ( esc_attr__( 'Hover Featured Image', NECTAR_THEME_NAME ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Hover Featured Image', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Minimal Counter', NECTAR_THEME_NAME ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Minimal Counter', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Featured Image Left', NECTAR_THEME_NAME ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Featured Image Left', NECTAR_THEME_NAME ); ?></option>
+				<option <?php if ( esc_attr__( 'Hover Featured Image', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Hover Featured Image', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Minimal Counter', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Minimal Counter', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Featured Image Left', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Featured Image Left', 'salient' ); ?></option>
 			</select>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php esc_attr_e( 'Category:', NECTAR_THEME_NAME ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php esc_attr_e( 'Category:', 'salient' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'category' ); ?>" name="<?php echo $this->get_field_name( 'category' ); ?>" class="widefat" style="width:100%;">	
 
-				<option <?php if ( esc_attr__( 'All', NECTAR_THEME_NAME ) == $instance['category'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'All', NECTAR_THEME_NAME ); ?></option>
+				<option <?php if ( esc_attr__( 'All', 'salient' ) == $instance['category'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'All', 'salient' ); ?></option>
 
 				<?php 
 
@@ -164,9 +164,9 @@ class Recent_Posts_Extra_Widget extends WP_Widget {
 			</select>
 		</p>
 
-		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of posts to show:', NECTAR_THEME_NAME); ?></label>
+		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of posts to show:', 'salient'); ?></label>
 		<input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="2" /><br />
-		<small><?php _e('(at most 15)', NECTAR_THEME_NAME); ?></small></p>
+		<small><?php _e('(at most 15)', 'salient'); ?></small></p>
 <?php
 	}
 }

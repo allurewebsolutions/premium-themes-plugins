@@ -29,11 +29,18 @@ $layout == 'masonry-blog-sidebar' || $layout == 'masonry-blog-fullwidth' || $lay
 	$using_masonry = true;
 }
 
+if($using_masonry == true && !is_single()) {
+	$nectar_post_class_additions = $masonry_item_sizing . ' masonry-blog-item';
+} else {
+	$nectar_post_class_additions = $masonry_item_sizing;
+}
+
+
 $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_excerpt'] == '1') ? 'true' : 'false'; 
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class($masonry_item_sizing.' video'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class($nectar_post_class_additions.' video'); ?>>
 	
 	<div class="inner-wrap animated">
 
@@ -233,7 +240,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 					
 				 } // not empty video embed
 				 
-				 the_content('<span class="continue-reading">'. __("Read More", NECTAR_THEME_NAME) . '</span>'); 
+				 the_content('<span class="continue-reading">'. __("Read More", 'salient') . '</span>'); 
 					
 				}//single
 				
@@ -257,7 +264,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 						$categories = get_the_category();
 						if ( ! empty( $categories ) ) {
 
-							echo '<span class="in">'. __('In', NECTAR_THEME_NAME) . ' </span>';
+							echo '<span class="in">'. __('In', 'salient') . ' </span>';
 
 							$output = null;
 							$cat_count = 0;
@@ -348,7 +355,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 								global $post;
 
 								if(empty( $post->post_excerpt ) && $use_excerpt != 'true') {
-									the_content('<span class="continue-reading">'. __("Continue Reading", NECTAR_THEME_NAME) . '</span>'); 
+									the_content('<span class="continue-reading">'. __("Continue Reading", 'salient') . '</span>'); 
 								}
 								
 								//excerpt
@@ -359,7 +366,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 									the_excerpt();
 
 									echo '</div>';
-									echo '<a class="more-link" href="' . get_permalink() . '"><span class="continue-reading">'. __("Continue Reading", NECTAR_THEME_NAME) .'</span></a>';
+									echo '<a class="more-link" href="' . get_permalink() . '"><span class="continue-reading">'. __("Continue Reading", 'salient') .'</span></a>';
 								}
 
 								?>
@@ -373,7 +380,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 						<?php 
 						if(is_single()){
 							//on the single post page display the content
-							the_content('<span class="continue-reading">'. __("Read More", NECTAR_THEME_NAME) . '</span>'); 
+							the_content('<span class="continue-reading">'. __("Read More", 'salient') . '</span>'); 
 						} ?>
 						
 						<?php global $options;
@@ -381,7 +388,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 								 
 								if( is_single() && has_tag() ) {
 								
-									echo '<div class="post-tags"><h4>'.__('Tags:').'</h4>'; 
+									echo '<div class="post-tags"><h4>'.__('Tags:','salient').'</h4>'; 
 									the_tags('','','');
 									echo '<div class="clear"></div></div> ';
 									
@@ -435,8 +442,10 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 									$no_image_size = 'no-portfolio-item-tiny.jpg';
 									break;
 							}
-							 echo '<a href="' . get_permalink() . '"><span class="post-featured-img"><img src="'.get_template_directory_uri().'/img/'.$no_image_size.'" alt="no image added yet." /></span></a>';
-					
+							if(!is_single()) {
+							   echo '<a href="' . get_permalink() . '"><span class="post-featured-img"><img src="'.get_template_directory_uri().'/img/'.$no_image_size.'" alt="no image added yet." /></span></a>';
+						  }
+							
 						}
 					} else if(!($using_masonry == true && $masonry_type == 'classic_enhanced') && !($using_masonry == true && $masonry_type == 'material') && !is_single() ) {
 
@@ -518,7 +527,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 							<?php 
 							$h_num = '2';
 							if($using_masonry == true && $masonry_type == 'classic_enhanced') {
-								echo get_the_date(); 
+								echo '<span>' . get_the_date() . '</span>'; 
 								$h_num = '3';
 							} else if($using_masonry == true && $masonry_type == 'material' || $using_masonry == true && $masonry_type == 'auto_meta_overlaid_spaced') {
 								$h_num = '3';
@@ -532,8 +541,8 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 							</h<?php echo $h_num; ?>>
 
 							<?php if(!($masonry_type == 'classic_enhanced' && $using_masonry == true) &&  !($using_masonry == true && $masonry_type == 'material') ) { ?> 
-								<span class="meta-author"><span><?php echo __('By', NECTAR_THEME_NAME); ?></span> <?php the_author_posts_link(); ?></span> <span class="meta-category">| <?php the_category(', '); ?></span> <span class="meta-comment-count">| <a href="<?php comments_link(); ?>">
-								<?php comments_number( __('No Comments', NECTAR_THEME_NAME), __('One Comment ', NECTAR_THEME_NAME), __('% Comments', NECTAR_THEME_NAME) ); ?></a></span>
+								<span class="meta-author"><span><?php echo __('By', 'salient'); ?></span> <?php the_author_posts_link(); ?></span> <span class="meta-category">| <?php the_category(', '); ?></span> <span class="meta-comment-count">| <a href="<?php comments_link(); ?>">
+								<?php comments_number( __('No Comments', 'salient'), __('One Comment ', 'salient'), __('% Comments', 'salient') ); ?></a></span>
 							<?php } ?>
 						</div><!--/post-header-->
 
@@ -542,7 +551,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 							//if no excerpt is set
 							global $post;
 							if(empty( $post->post_excerpt ) && $use_excerpt != 'true' && !($using_masonry == true && $masonry_type == 'classic_enhanced') && !($using_masonry == true && $masonry_type == 'material') ) {
-								the_content('<span class="continue-reading">'. __("Read More", NECTAR_THEME_NAME) . '</span>'); 
+								the_content('<span class="continue-reading">'. __("Read More", 'salient') . '</span>'); 
 							}
 							
 							//excerpt
@@ -577,7 +586,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 								 
 								 
 								if(!($using_masonry == true && $masonry_type == 'material')) {  
-									echo '<a class="more-link" href="' . get_permalink() . '"><span class="continue-reading">'. __("Read More", NECTAR_THEME_NAME) .'</span></a>';
+									echo '<a class="more-link" href="' . get_permalink() . '"><span class="continue-reading">'. __("Read More", 'salient') .'</span></a>';
 								}
 								
 							}
@@ -643,7 +652,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 					
 					
 					//on the single post page display the content
-					the_content('<span class="continue-reading">'. __("Read More", NECTAR_THEME_NAME) . '</span>');
+					the_content('<span class="continue-reading">'. __("Read More", 'salient') . '</span>');
 				} ?>
 				
 				<?php global $options;
@@ -651,7 +660,7 @@ $use_excerpt = (!empty($options['blog_auto_excerpt']) && $options['blog_auto_exc
 						 
 						if( is_single() && has_tag() ) {
 						
-							echo '<div class="post-tags"><h4>'.__('Tags:').'</h4>'; 
+							echo '<div class="post-tags"><h4>'.__('Tags:','salient').'</h4>'; 
 							the_tags('','','');
 							echo '<div class="clear"></div></div> ';
 							

@@ -47,7 +47,7 @@ return array(
 					"Extra Color 2" => "Extra-Color-2",	
 					"Extra Color 3" => "Extra-Color-3"
 				),
-				'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+				'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 			),
 			array(
 				"type" => "colorpicker",

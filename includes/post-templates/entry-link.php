@@ -30,9 +30,15 @@ $layout == 'masonry-blog-sidebar' || $layout == 'masonry-blog-fullwidth' || $lay
 	
 }
 
+if($using_masonry == true && !is_single()) {
+	$nectar_post_class_additions = $masonry_item_sizing . ' masonry-blog-item';
+} else {
+	$nectar_post_class_additions = $masonry_item_sizing;
+}
+
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class($masonry_item_sizing.' link'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class($nectar_post_class_additions.' link'); ?>>
 	
 	<div class="inner-wrap animated">
 
@@ -103,7 +109,7 @@ $layout == 'masonry-blog-sidebar' || $layout == 'masonry-blog-fullwidth' || $lay
 						$categories = get_the_category();
 						if ( ! empty( $categories ) ) {
 
-							echo '<span class="in">'. __('In', NECTAR_THEME_NAME) . ' </span>';
+							echo '<span class="in">'. __('In', 'salient') . ' </span>';
 
 							$output = null;
 							$cat_count = 0;
@@ -159,7 +165,9 @@ $layout == 'masonry-blog-sidebar' || $layout == 'masonry-blog-fullwidth' || $lay
 			      has_post_thumbnail() && $using_masonry == true && $masonry_type == 'auto_meta_overlaid_spaced') {
 					$link_bg_img_src = wp_get_attachment_url(get_post_thumbnail_id());
 					$link_bg = '<div class="n-post-bg" style=" background-image: url('.$link_bg_img_src.'); "></div>';
-				} else {
+				} else if(!has_post_thumbnail() && $using_masonry == true && $masonry_type == 'auto_meta_overlaid_spaced') {
+          $link_bg = '<div class="n-post-bg"></div>';
+        } else {
 					$link_bg = null;
 				} 
 				

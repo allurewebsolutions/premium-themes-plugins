@@ -92,7 +92,7 @@ $masonry_type = (!empty($options['blog_masonry_type'])) ? $options['blog_masonry
 				<?php if( !is_single() ) { ?> <a href="<?php the_permalink(); ?>"> <?php } ?>
 					
 					<div class="status-inner">
-						<h2 class="title"><?php the_content('<span class="continue-reading">'. __("Read More", NECTAR_THEME_NAME) . '</span>'); ?></h2>
+						<h2 class="title"><?php the_content('<span class="continue-reading">'. __("Read More", 'salient') . '</span>'); ?></h2>
 				    	<span class="destination"> Status posted by <?php the_author(); ?></span>
 				    	<span title="Status" class="icon"></span>
 					</div><!--/link-inner-->

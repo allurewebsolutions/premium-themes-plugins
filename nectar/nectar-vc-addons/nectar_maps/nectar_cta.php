@@ -16,6 +16,7 @@ return array(
 			"value" => array(
 				"See Through Button " => "see-through",
 				"Material Button" => "material",
+				"Underline" => "underline"
 			)),
 			array(
 			"type" => "dropdown",

@@ -58,9 +58,13 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 
 	
 	//stop regular grad class for material skin 
-	if($options['theme-skin'] == 'material' && $color == 'extra-color-gradient-1') {
+	$theme_skin = ( !empty($options['theme-skin']) ) ? $options['theme-skin'] : 'original';
+	$headerFormat = (!empty($options['header_format'])) ? $options['header_format'] : 'default';
+	if($headerFormat == 'centered-menu-bottom-bar') $theme_skin = 'material';
+	
+	if($theme_skin == 'material' && $color == 'extra-color-gradient-1') {
 		$color = 'm-extra-color-gradient-1';
-	} else if( $options['theme-skin'] == 'material' && $color == 'extra-color-gradient-2') {
+	} else if( $theme_skin == 'material' && $color == 'extra-color-gradient-2') {
 		$color = 'm-extra-color-gradient-2';
 	} 
 	
@@ -71,35 +75,55 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 
 	//margins
 	$margins = '';
-	if(!empty($margin_top))
+	if(!empty($margin_top)) {
 		$margins .= 'margin-top: '.intval($margin_top).'px; ';
-	if(!empty($margin_right))
+	}
+	if(!empty($margin_right)) {
 		$margins .= 'margin-right: '.intval($margin_right).'px; ';
-	if(!empty($margin_bottom))
+	}
+	if(!empty($margin_bottom)) {
 		$margins .= 'margin-bottom: '.intval($margin_bottom).'px; ';
-	if(!empty($margin_left))
+	}
+	if(!empty($margin_left)) {
 		$margins .= 'margin-left: '.intval($margin_left).'px;';
+	}
+	
+	if(!empty($color_override)) {
+		$color_or = 'data-color-override="'. $color_override.'" ';	
+		
+		if($button_style == 'see-through' || $button_style == 'see-through-2') {
+			$starting_custom_color = 'border-color: '.$color_override.'; color: '.$color_override.';';
+		} 
+		else if($button_style == 'see-through-3') {
+			$starting_custom_color = 'border-color: '.$color_override.';';
+		} else {
+			$starting_custom_color = 'background-color: '.$color_override.';';
+		}
 
+	} else {
+		$color_or = 'data-color-override="false" ';	
+		$starting_custom_color = '';
+	}
+		
 	switch ($size) {
 
 		case 'small' :
-			$button_open_tag .= '<a class="nectar-button small '. $style_color . $has_icon . $stnd_button.'" style="'.$margins.'" '. $target;
+			$button_open_tag .= '<a class="nectar-button small '. $style_color . $has_icon . $stnd_button.'" style="'. $margins . $starting_custom_color.'" '. $target;
 			break;
 		case 'medium' :
-			$button_open_tag .= '<a class="nectar-button medium ' . $style_color . $has_icon . $stnd_button.'" style="'.$margins.'" '. $target;
+			$button_open_tag .= '<a class="nectar-button medium ' . $style_color . $has_icon . $stnd_button.'" style="'. $margins . $starting_custom_color.'" '. $target;
 			break;
 		case 'large' :
-			$button_open_tag .= '<a class="nectar-button large '. $style_color . $has_icon . $stnd_button.'" style="'.$margins.'" '. $target;
+			$button_open_tag .= '<a class="nectar-button large '. $style_color . $has_icon . $stnd_button.'" style="'.$margins . $starting_custom_color.'" '. $target;
 			break;	
 		case 'jumbo' :
-			$button_open_tag .= '<a class="nectar-button jumbo '. $style_color . $has_icon . $stnd_button.'" style="'.$margins.'" '. $target;
+			$button_open_tag .= '<a class="nectar-button jumbo '. $style_color . $has_icon . $stnd_button.'" style="' . $margins . $starting_custom_color.'" '. $target;
 			break;	
 		case 'extra_jumbo' :
-			$button_open_tag .= '<a class="nectar-button extra_jumbo '. $style_color . $has_icon . $stnd_button.'" style="'.$margins.'" '. $target;
+			$button_open_tag .= '<a class="nectar-button extra_jumbo '. $style_color . $has_icon . $stnd_button.'" style="' . $margins . $starting_custom_color.'" '. $target;
 			break;	
 	}
 	
-	$color_or = (!empty($color_override)) ? 'data-color-override="'. $color_override.'" ' : 'data-color-override="false" ';	
 	$hover_color_override = (!empty($hover_color_override)) ? ' data-hover-color-override="'. $hover_color_override.'"' : 'data-hover-color-override="false"';
 	$hover_text_color_override = (!empty($hover_text_color_override)) ? ' data-hover-text-color-override="'. $hover_text_color_override.'"' :  null;	
 	$button_close_tag = null;
@@ -107,12 +131,13 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 	if(strtolower($color) == 'accent-color tilt' || strtolower($color) == 'extra-color-1 tilt' || strtolower($color) == 'extra-color-2 tilt' || strtolower($color) == 'extra-color-3 tilt') $button_close_tag = '</div></div>';
 
 	if($button_style != 'see-through-3d') {
-		if($color == 'extra-color-gradient-1' || $color == 'extra-color-gradient-2')
+		
+		if($color == 'extra-color-gradient-1' || $color == 'extra-color-gradient-2') {
 			echo $button_open_tag . ' href="' . $url . '" '.$color_or.$hover_color_override.$hover_text_color_override.'><span class="start loading">' . $text . $button_icon. '</span><span class="hover">' . $text . $button_icon. '</span></a>'. $button_close_tag;
-		else
+		}
+		else {
 			echo $button_open_tag . ' href="' . $url . '" '.$color_or.$hover_color_override.$hover_text_color_override.'><span>' . $text . '</span>'. $button_icon . '</a>'. $button_close_tag;
-	
-
+		}
     	
 	}
 	else {

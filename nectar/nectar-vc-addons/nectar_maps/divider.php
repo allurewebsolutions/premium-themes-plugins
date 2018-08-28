@@ -30,6 +30,21 @@ return array(
 					)
 				),
 				array(
+					"type" => "dropdown",
+					"holder" => "div",
+					"class" => "",
+					"heading" => "Line Alignment",
+					'save_always' => true,
+					"admin_label" => false,
+					"param_name" => "line_alignment",
+					"dependency" => Array('element' => "line_type", 'value' => array('Small Line')),
+					"value" => array(
+						"Default" => "default",
+						"Center" => "center",
+						"Right" => "right"
+					)
+				),
+				array(
 				  "type" => "dropdown",
 				  "heading" => __("Line Thickness", "js_composer"),
 				  "admin_label" => false,
@@ -76,7 +91,7 @@ return array(
 				   ),
 				  'save_always' => true,
 				  "dependency" => Array('element' => "line_type", 'value' => array('Full Width Line','Small Line')),
-				  'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+				  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 				),
 				 array(
 			      "type" => 'checkbox',

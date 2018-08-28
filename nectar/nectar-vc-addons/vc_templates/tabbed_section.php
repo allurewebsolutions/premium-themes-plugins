@@ -41,7 +41,7 @@ $tabs_nav .= '<ul class="wpb_tabs_nav ui-tabs-nav clearfix">';
 foreach ( $tab_titles as $tab ) {
     preg_match('/title="([^\"]+)"(\sid\=\"([^\"]+)\"){0,1}/i', $tab[0], $tab_matches, PREG_OFFSET_CAPTURE );
     if(isset($tab_matches[1][0])) {
-        $tabs_nav .= '<li><a href="#tab-'. (isset($tab_matches[3][0]) ? $tab_matches[3][0] : sanitize_title( $tab_matches[1][0] ) ) .'">' . $tab_matches[1][0] . '</a></li>';
+        $tabs_nav .= '<li><a href="#tab-'. (isset($tab_matches[3][0]) ? $tab_matches[3][0] : sanitize_title( $tab_matches[1][0] ) ) .'"><span>' . $tab_matches[1][0] . '</span></a></li>';
 
     }
 }

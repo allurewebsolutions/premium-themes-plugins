@@ -70,7 +70,7 @@
 
         </div>
 
-        <div class="secondary-header"><h4><?php echo __('Options Panel',NECTAR_THEME_NAME); ?></h4></div>
+        <div class="secondary-header"><h4><?php echo __('Options Panel','salient'); ?></h4></div>
     <?php } ?>
 
     <div class="clear"></div>

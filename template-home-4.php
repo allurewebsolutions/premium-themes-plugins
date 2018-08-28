@@ -70,7 +70,7 @@ if($nectar_disable_home_slider != true) { ?>
 								
 								 <?php 
 								 //mobile more info button for video
-								 if( !empty($video_embed) || !empty($video_m4v)) { echo '<div><a href="#" class="more-info"><span class="mi">'.__("More Info",NECTAR_THEME_NAME).'</span><span class="btv">'.__("Back to Video",NECTAR_THEME_NAME).'</span></a></div>'; } ?>
+								 if( !empty($video_embed) || !empty($video_m4v)) { echo '<div><a href="#" class="more-info"><span class="mi">'.__("More Info",'salient').'</span><span class="btv">'.__("Back to Video",'salient').'</span></a></div>'; } ?>
 								 
 								 <?php $caption = get_post_meta($post->ID, '_nectar_slider_caption', true); ?>
 								<h2 data-has-caption="<?php echo (!empty($caption)) ? '1' : '0'; ?>"><span>

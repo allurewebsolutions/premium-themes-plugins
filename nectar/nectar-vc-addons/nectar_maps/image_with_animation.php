@@ -101,16 +101,48 @@ return array(
 	      "param_name" => "max_width",
 	      "value" => array(
 		      	__("100%", "js_composer") => "100%",
+						__("110%", "js_composer") => "110%", 
 		      	__("125%", "js_composer") => "125%", 
 		      	__("150%", "js_composer") => "150%",
 		      	__("165%", "js_composer") => "165%",  
 		      	__("175%", "js_composer") => "175%", 
 		      	__("200%", "js_composer") => "200%", 
 		      	__("225%", "js_composer") => "225%", 
-		      	__("250%", "js_composer") => "250%"
+		      	__("250%", "js_composer") => "250%",
+						__("75%", "js_composer") => "75%",
+						__("50%", "js_composer") => "50%"
 	      ),
 	      "description" => __("Select your desired max width here - by default images are not allowed to display larger than the column they're contained in. Changing this to a higher value will allow you to create designs where your image overflows out of the column partially off screen.", "js_composer")
+	    ),
+			array(
+	      "type" => "textfield",
+	      "heading" => __("Margin <span>Top</span>", "js_composer"),
+	      "param_name" => "margin_top",
+	      "edit_field_class" => "col-md-2",
+	      "description" => __("" , "js_composer")
+	    ),
+		 array(
+	      "type" => "textfield",
+	      "heading" => __("<span>Right</span>", "js_composer"),
+	      "param_name" => "margin_right",
+	      "edit_field_class" => "col-md-2",
+	      "description" => __("" , "js_composer")
+	    ),
+		array(
+	      "type" => "textfield",
+	      "heading" => __("<span>Bottom</span>", "js_composer"),
+	      "param_name" => "margin_bottom",
+	      "edit_field_class" => "col-md-2",
+	      "description" => __("" , "js_composer")
+	    ),
+	    array(
+	      "type" => "textfield",
+	      "heading" => __("<span>Left</span>", "js_composer"),
+	      "param_name" => "margin_left",
+	      "edit_field_class" => "col-md-2",
+	      "description" => __("" , "js_composer")
 	    )
+			
 	  )
 	);
 

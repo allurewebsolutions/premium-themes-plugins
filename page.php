@@ -10,9 +10,7 @@ extract($fp_options);
 ?>
 
 <div class="container-wrap">
-	
 	<div class="<?php if($page_full_screen_rows != 'on') echo 'container'; ?> main-content">
-		
 		<div class="row">
 			
 			<?php 
@@ -30,15 +28,13 @@ extract($fp_options);
 				 if(have_posts()) : while(have_posts()) : the_post(); 
 					
 					 the_content(); 
-		
+					 
 				 endwhile; endif; 
 				
 			if($page_full_screen_rows == 'on') echo '</div>'; ?>
 
 		</div><!--/row-->
-		
 	</div><!--/container-->
-	
 </div><!--/container-wrap-->
 
 <?php get_footer(); ?>

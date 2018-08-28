@@ -50,7 +50,7 @@
 	  'enable_gradient' => 'false',
 	  'color_overlay' => '',
 	  'color_overlay_2' => '',
-	  'gradient_direction' => '',
+	  'gradient_direction' => 'left_to_right',
 	  'overlay_strength' => '0.3',
 	  'equal_height' => '',
 	  'content_placement' => '',
@@ -72,6 +72,25 @@
 
 	  ), 
 	$atts));
+  
+  global $post;
+  
+  if(!isset($GLOBALS['nectar_vc_row_count'])) {
+    $GLOBALS['nectar_vc_row_count'] = 0;
+  }
+  $GLOBALS['nectar_vc_row_count']++;
+
+  
+  //first row class
+  $top_level_class = '';
+  if(!is_single() && $GLOBALS['nectar_vc_row_count'] == 1 && isset($post->ID)) {
+      $nectar_page_header_bool = nectar_header_section_check($post->ID);
+      if($nectar_page_header_bool == false) {
+        $top_level_class = 'top-level ';
+      }
+      
+  }
+
 	
 	wp_enqueue_style( 'js_composer_front' );
 	wp_enqueue_script( 'wpb_composer_front_js' );
@@ -81,8 +100,8 @@
 		wp_enqueue_script('nectar_parallax');
 	}
 	
-    $style = null;
-    $bg_props = null;
+  $style = null;
+  $bg_props = null;
 	$etxra_class = null;
 	$using_image_class = null;
 	$using_bg_color_class = null;
@@ -131,7 +150,6 @@
 			if($exclude_row_header_color_inherit != 'true') $using_bg_color_class = 'using-bg-color';
 		}
 		
-		global $post;
 		$page_full_screen_rows = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_full_screen_rows', true) : '';
 		
 		if(strtolower($parallax_bg) == 'true' && $page_full_screen_rows != 'on'){
@@ -149,17 +167,26 @@
 		}
 		
 
-		
+		$row_percent_padding_attr = '';
+    
 		if($page_full_screen_rows != 'on') {
       
 			if(strpos($top_padding,'%') !== false) {
-				$style .= 'padding-top: '. $top_padding .'; ';
+        $leading_zero = (intval($top_padding) < 10) ? '0' : '';
+        
+        $row_percent_padding_attr .= 'data-top-percent="'.$top_padding.'" ';
+        
+				$style .= 'padding-top: calc(100vw * 0.'. $leading_zero . intval($top_padding) .'); ';
 			} else {
 				$style .= 'padding-top: '. $top_padding .'px; ';
 			}
 
 			if(strpos($bottom_padding,'%') !== false){
-				$style .= 'padding-bottom: '. $bottom_padding .'; ';
+        $leading_zero = (intval($bottom_padding) < 10) ? '0' : '';
+        
+        $row_percent_padding_attr .= 'data-bottom-percent="'.$bottom_padding.'" ';
+        
+				$style .= 'padding-bottom: calc(100vw * 0.'. $leading_zero . intval($bottom_padding) .'); ';
 			} else {	
 				$style .= 'padding-bottom: '. $bottom_padding .'px; ';
 			}
@@ -201,6 +228,8 @@
           } //loop
           
       }
+      
+
       
       
       /*zindex*/
@@ -276,12 +305,108 @@
 		}
 
 	    echo'
-		<div id="'.$row_id.'" '.$fullscreen_anchor_id.' data-midnight="'.strtolower($midnight_color).'" data-bg-mobile-hidden="'.$background_image_mobile_hidden.'" class="wpb_row vc_row-fluid vc_row '. $main_class . $disable_class . $equal_height_class . $parallax_class . ' ' . $vertically_center_class . ' '. $class . ' " '.$using_custom_text_color.' style="'.$style.'">';
+		<div id="'.$row_id.'" '.$fullscreen_anchor_id.' data-midnight="'.strtolower($midnight_color).'" '.$row_percent_padding_attr.' data-bg-mobile-hidden="'.$background_image_mobile_hidden.'" class="wpb_row vc_row-fluid vc_row '. $top_level_class . $main_class . $disable_class . $equal_height_class . $parallax_class . ' ' . $vertically_center_class . ' '. $class . ' " '.$using_custom_text_color.' style="'.$style.'">';
 		
 		if($page_full_screen_rows == 'on') echo '<div class="full-page-inner-wrap-outer"><div class="full-page-inner-wrap" data-name="'.$row_name.'" data-content-pos="'.$full_screen_row_position.'"><div class="full-page-inner">';
 
 		//row bg 
-		echo '<div class="row-bg-wrap"><div class="inner-wrap"> <div class="row-bg '.$using_image_class . ' ' . $using_bg_color_class . ' '. $disable_ken_burns_class . ' '. $etxra_class.'" '.$parallax_speed.' style="'.$bg_props.'" data-color_overlay="'.$color_overlay.'" data-color_overlay_2="'.$color_overlay_2.'" data-gradient_direction="'.$gradient_direction.'" data-overlay_strength="'.$overlay_strength.'" data-enable_gradient="'.$enable_gradient.'"></div></div> </div>';
+		echo '<div class="row-bg-wrap"><div class="inner-wrap">';
+    echo '<div class="row-bg '.$using_image_class . ' ' . $using_bg_color_class . ' '. $disable_ken_burns_class . ' '. $etxra_class.'" '.$parallax_speed.' style="'.$bg_props.'"></div>';
+    echo '</div>';
+    
+    //row color overlay
+    $row_overlay_style = null;
+    
+    if(!empty($color_overlay) || !empty($color_overlay_2)) {
+      $row_overlay_style = 'style="';
+      
+      $gradient_direction_deg = '90deg';
+      
+      if(empty($color_overlay)) { $color_overlay = 'transparent'; }
+      if(empty($color_overlay_2)) { $color_overlay_2 = 'transparent'; }
+      //legacy option conversion
+      if($overlay_strength == 'image_trans') { 
+  			$overlay_strength = '1';
+      }
+          
+      switch($gradient_direction) {
+        case 'left_to_right' : 
+          $gradient_direction_deg = '90deg';
+          break;
+        case 'left_t_to_right_b' : 
+          $gradient_direction_deg = '135deg';
+          break;
+        case 'left_b_to_right_t' : 
+          $gradient_direction_deg = '45deg';
+          break;
+        case 'top_to_bottom' : 
+          $gradient_direction_deg = 'to bottom';
+          break;
+      } 
+      
+      if($enable_gradient == 'true') {
+  			
+    			if($color_overlay != 'transparent' && $color_overlay_2 == 'transparent') { $color_overlay_2 = 'rgba(255,255,255,0.001)'; }
+    			if($color_overlay == 'transparent' && $color_overlay_2 != 'transparent') { $color_overlay = 'rgba(255,255,255,0.001)'; }
+    			
+    			if($gradient_direction == 'top_to_bottom') {
+    			
+    				if($color_overlay_2 == 'transparent' || $color_overlay_2 == 'rgba(255,255,255,0.001)') {
+    					$row_overlay_style .= 'background: linear-gradient('. $gradient_direction_deg .',' . $color_overlay . ' 0%,' . $color_overlay_2 . ' 75%);  opacity: '. $overlay_strength. '; ';
+    				}
+    
+    				if($color_overlay == 'transparent' || $color_overlay== 'rgba(255,255,255,0.001)') { 
+    					$row_overlay_style .= 'background: linear-gradient('. $gradient_direction_deg .',' . $color_overlay . ' 25%,' . $color_overlay_2 . ' 100%);  opacity: '. $overlay_strength .'; ';
+    				}
+    				
+    				if( $color_overlay != 'transparent' && $color_overlay_2 != 'transparent') { 
+    				  $row_overlay_style .= 'background: '. $color_overlay .'; background: linear-gradient('. $gradient_direction_deg . ',' . $color_overlay . ' 0%,' . $color_overlay_2 . ' 100%);  opacity: '. $overlay_strength .'; ';
+    				}
+    			
+    			} 
+    			else if($gradient_direction == 'left_to_right') {
+    
+    				if($color_overlay == 'transparent' || $color_overlay == 'rgba(255,255,255,0.001)') { 
+    					$row_overlay_style .= 'background: '. $color_overlay .'; background: linear-gradient('.$gradient_direction_deg .',' . $color_overlay . ' 25%,' . $color_overlay_2 . ' 100%);  opacity: '. $overlay_strength .'; ';
+    				}
+            
+            if($color_overlay_2 == 'transparent' || $color_overlay_2 == 'rgba(255,255,255,0.001)') { 
+              if($overlay_strength == '1') {
+                $row_overlay_style .= 'background: '. $color_overlay .'; background: linear-gradient('.$gradient_direction_deg .',' . $color_overlay . ' 25%,' . $color_overlay_2 . ' 100%);  opacity: '. $overlay_strength .'; ';
+              } else {
+                $row_overlay_style .= 'background: '. $color_overlay .'; background: linear-gradient('.$gradient_direction_deg .',' . $color_overlay . ' 10%,' . $color_overlay_2 . ' 75%);  opacity: '. $overlay_strength .'; ';
+              }
+    					
+    				}
+    
+    				if( $color_overlay != 'transparent' && $color_overlay_2 != 'transparent') { 
+    					$row_overlay_style .= 'background: '. $color_overlay .'; background: linear-gradient('.$gradient_direction_deg.',' . $color_overlay . ' 0%,' . $color_overlay_2 . ' 100%);  opacity: '.$overlay_strength.'; ';
+    				}
+    			}
+    
+    			else {
+    				$row_overlay_style .= 'background: '. $color_overlay .'; background: linear-gradient('.$gradient_direction_deg.',' . $color_overlay . ' 0%,' . $color_overlay_2 . ' 100%);  opacity: '.$overlay_strength.'; ';
+    			}
+  
+  
+  		} 
+      
+      //no grad
+      else {
+  
+    			if(!empty($color_overlay)) {
+    				$row_overlay_style .= 'background-color:' . $color_overlay . ';  opacity: '.$overlay_strength.'; ';
+    			}
+  
+  		}
+      
+        
+      $row_overlay_style .= '"';
+    } 
+    
+    echo '<div class="row-bg-overlay" '. $row_overlay_style .'></div>';
+    
+    echo '</div>';
 
 		//mouse based parallax
 		if($mouse_based_parallax_bg == 'true') {
@@ -351,15 +476,15 @@
 			$default_loader = (empty($options['loading-image']) && !empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') ? '<span class="default-loading-icon spin"></span>' : null;
 			$default_loader_class = (empty($options['loading-image']) && !empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') ? 'default-loader' : null;
 
-	        echo '<div class="nectar-slider-loading '.$default_loader_class.'"> <span class="loading-icon '.$loading_animation.'"> '.$default_loader.'  </span> </div>';
+	        //echo '<div class="nectar-slider-loading '.$default_loader_class.'"> <span class="loading-icon '.$loading_animation.'"> '.$default_loader.'  </span> </div>';
 		}
 
 		//video bg
 		if($video_bg) {
 			
 			if ( floatval(get_bloginfo('version')) >= "3.6" ) {
-				wp_enqueue_script('wp-mediaelement');
-				wp_enqueue_style('wp-mediaelement');
+				//wp_enqueue_script('wp-mediaelement');
+				//wp_enqueue_style('wp-mediaelement');
 			} else {
 				//register media element for WordPress 3.5
 				wp_register_script('wp-mediaelement', get_template_directory_uri() . '/js/mediaelement-and-player.min.js', array('jquery'), '1.0', TRUE);
@@ -384,7 +509,8 @@
 			if($enable_video_color_overlay != 'true') $video_overlay_color = null;
 			$video_markup .=  '<div class="video-color-overlay" data-color="'.$video_overlay_color.'"></div>';
 			
-			$muted_video = ($video_mute == 'true') ? 'muted' : '';
+      //forced
+			$muted_video = 'muted playsinline';
 				 
 			$video_markup .= '
 			
@@ -441,8 +567,16 @@
       for($i=0; $i<$shape_divider_length;$i++) {
         
    			$shape_divider_height_val = (!empty($shape_divider_height) ) ? 'style=" height:'.intval($shape_divider_height) . 'px;"' : 'style=" height: 50px;"'; 
+        
+        /* percent height */
+        $using_percent_shape_divider_attr = '';
+        if(strpos($shape_divider_height,'%') !== false) {
+          $using_percent_shape_divider_attr = 'data-using-percent-val="true"';
+          $shape_divider_height_val = 'style=" height:'.intval($shape_divider_height) . '%;"';
+        }
+        
         $no_bg_color_class = (empty($shape_divider_color)) ? 'no-color ': '';
-   			$shape_divider_markup .= '<div class="nectar-shape-divider-wrap '.$no_bg_color_class.'" '. $shape_divider_height_val .' data-front="'.$shape_divider_bring_to_front.'" data-style="'.$shape_type.'" data-position="'. $shape_divider_pos[$i] .'" >';
+   			$shape_divider_markup .= '<div class="nectar-shape-divider-wrap '.$no_bg_color_class.'" '. $shape_divider_height_val .' '.$using_percent_shape_divider_attr.' data-front="'.$shape_divider_bring_to_front.'" data-style="'.$shape_type.'" data-position="'. $shape_divider_pos[$i] .'" >';
         
   			switch($shape_type) {
   				case 'curve' : 
@@ -472,6 +606,9 @@
   					break;
           case 'speech' :
   					$shape_divider_markup .= '<svg class="nectar-shape-divider" fill="'.$shape_divider_color.'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"> <path d="M 0 45.86 h 458 c 29 0 42 19.27 42 19.27 s 13 -19.27 42.74 -19.27 h 457.26 v 54.14 h -1000 z"></path>  </svg>';
+  					break;
+          case 'straight_section' :
+  					$shape_divider_markup .= '<svg class="nectar-shape-divider" fill="'.$shape_divider_color.'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"> <polygon points="104 10, 104 0, 0 0, 0 10"> </svg>';
   					break;
           case 'clouds' :
   					$shape_divider_markup .= '<svg class="nectar-shape-divider" fill="'.$shape_divider_color.'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"> <path d="M 983.71 4.47 a 56.19 56.19 0 0 0 -37.61 14.38 a 15.24 15.24 0 0 0 -25.55 -0.55 a 40.65 40.65 0 0 0 -55.45 13 a 15.63 15.63 0 0 0 -22.69 1.52 a 73.82 73.82 0 0 0 -98.57 27.91 a 14.72 14.72 0 0 0 -9.31 0.55 a 26.13 26.13 0 0 0 -42.63 1.92 a 39.08 39.08 0 0 0 -47 10.08 a 18.45 18.45 0 0 0 -34.18 -0.45 a 12.21 12.21 0 0 0 -14.23 0.9 a 11.47 11.47 0 0 0 -16.59 -6 a 47.2 47.2 0 0 0 -66.12 -4.07 a 21.32 21.32 0 0 0 -26.48 -4.91 a 15 15 0 0 0 -29 -7.79 a 10.47 10.47 0 0 0 -14 5.13 a 31.55 31.55 0 0 0 -50.68 12.32 a 23 23 0 0 0 -28.69 -5.34 a 54.54 54.54 0 0 0 -89.93 5.71 a 16.3 16.3 0 0 0 -22.71 2.3 a 33.41 33.41 0 0 0 -44.93 9.65 a 17.72 17.72 0 0 0 -9.79 -2.94 h -0.22 a 29 29 0 0 0 -39.66 -12.26 a 75.24 75.24 0 0 0 -94 -12.19 a 22.91 22.91 0 0 0 -14.78 -5.34 h -0.69 a 33 33 0 1 0 -52.53 31.55 h -29.69 v 143.45 h 79.5 v -57.21 a 75.26 75.26 0 0 0 132.93 -46.7 a 28.88 28.88 0 0 0 12.78 -6.86 a 17.61 17.61 0 0 0 12.79 0 a 33.41 33.41 0 0 0 63.93 -7.44 a 54.56 54.56 0 0 0 101.57 18.56 v 7.65 h 140.21 a 47.23 47.23 0 0 0 79.55 -15.88 l 51.25 1.95 a 39.07 39.07 0 0 0 67.12 2.55 l 29.76 1.13 a 73.8 73.8 0 0 0 143.76 -16.75 h 66.17 a 56.4 56.4 0 1 0 36.39 -99.53 z"></path>  </svg>';

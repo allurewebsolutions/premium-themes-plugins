@@ -134,6 +134,8 @@ $bg = get_post_meta($post->ID, '_nectar_header_bg', true);
 					$custom_project_link = get_post_meta($post->ID, '_nectar_external_project_url', true);
 					$the_project_link = (!empty($custom_project_link)) ? $custom_project_link : get_permalink();
 					
+					$project_excerpt = get_post_meta($post->ID, '_nectar_project_excerpt', true);
+					
 				?>
 				
 				<div class="col <?php echo $span_num . ' '. $masonry_item_sizing; ?> element" data-project-cat="<?php echo $project_cats; ?>" <?php if(!empty($project_accent_color)) { echo 'data-project-color="' . $project_accent_color .'"'; } else { echo 'data-default-color="true"';} ?> data-title-color="<?php echo $project_title_color; ?>" data-subtitle-color="<?php echo $project_subtitle_color; ?>">
@@ -219,10 +221,10 @@ $bg = get_post_meta($post->ID, '_nectar_header_bg', true);
 										
 										//image
 									    else {
-									       echo '<a href="'. $featured_image[0].'" class="pretty_photo default-link" >'.__("View Larger", NECTAR_THEME_NAME).'</a> ';
+									       echo '<a href="'. $featured_image[0].'" class="pretty_photo default-link" >'.__("View Larger", 'salient').'</a> ';
 									    }
 										
-									    echo '<a class="default-link" href="' . $the_project_link . '">'.__("More Details", NECTAR_THEME_NAME).'</a>'; ?>
+									    echo '<a class="default-link" href="' . $the_project_link . '">'.__("More Details", 'salient').'</a>'; ?>
 									    
 									</div><!--/vert-center-->
 								</div>
@@ -304,9 +306,7 @@ $bg = get_post_meta($post->ID, '_nectar_header_bg', true);
 				
 								<div class="work-info-bg"></div>
 								<div class="work-info">
-									
-									<i class="icon-salient-plus"></i> 
-									
+
 									<a href="<?php echo $the_project_link; ?>"></a>
 		
 									<div class="vert-center"><h3><?php echo get_the_title(); ?></h3> <p><?php if(!empty($options['portfolio_date']) && $options['portfolio_date'] == 1) echo get_the_date(); ?></p></div><!--/vert-center-->
@@ -858,7 +858,7 @@ $bg = get_post_meta($post->ID, '_nectar_header_bg', true);
 				    $format = empty( $permalink_structure ) ? '&paged=%#%' : 'page/%#%/';  
 				    if ($total_pages > 1){  
 				      
-					  echo '<div id="pagination" class="'.$fw_pagination.' '.$masonry_padding. $infinite_scroll_class.'" data-is-text="'.__("All items loaded", NECTAR_THEME_NAME).'">';
+					  echo '<div id="pagination" class="'.$fw_pagination.' '.$masonry_padding. $infinite_scroll_class.'" data-is-text="'.__("All items loaded", 'salient').'">';
 					   
 				      echo paginate_links(array(  
 				          'base' => get_pagenum_link(1) .'%_%', 
@@ -879,7 +879,7 @@ $bg = get_post_meta($post->ID, '_nectar_header_bg', true);
 					$fw_pagination = ($span_num == 'elastic-portfolio-item') ? 'fw-pagination': null;
 					$masonry_padding = ($project_style != '1') ? 'alt-style-padding' : null;
 					 
-					echo '<div id="pagination" class="'.$fw_pagination.' '.$masonry_padding. $infinite_scroll_class.'" data-is-text="'.__("All items loaded", NECTAR_THEME_NAME).'">
+					echo '<div id="pagination" class="'.$fw_pagination.' '.$masonry_padding. $infinite_scroll_class.'" data-is-text="'.__("All items loaded", 'salient').'">
 					      <div class="prev">'.get_previous_posts_link('&laquo; Previous Entries').'</div>
 					      <div class="next">'.get_next_posts_link('Next Entries &raquo;','').'</div>
 				          </div>';

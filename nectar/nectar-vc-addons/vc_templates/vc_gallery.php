@@ -16,6 +16,7 @@ extract(shortcode_atts(array(
     'gallery_style' => '',
     'constrain_max_cols' => '',
     'flexible_slider_height' => '',
+    'disable_auto_rotate' => '',
     'hide_arrow_navigation' => '',
     'bullet_navigation' => '',
     'masonry_style' => '',
@@ -111,10 +112,12 @@ if ( $type == 'flexslider_style' ) {
 	}
 
 	
-	if($images == '') $bullet_navigation = false;
+	if($images == '') { $bullet_navigation = false; }
 	$arrow_markup = ($hide_arrow_navigation == true) ? 'data-arrows="false"': 'data-arrows="true"';
 
-	$slides_wrap_start .= '<div class="nectar-slider-wrap" style="height: '.$slide_height.'px" data-flexible-height="'.$flexible_slider_height.'" data-fullscreen="false"  data-full-width="false" data-parallax="false" data-autorotate="5500" id="ns-id-'.uniqid().'">';
+  $autorotation_attr = ($disable_auto_rotate != 'true') ? 'data-autorotate="5500"' : '';
+  
+	$slides_wrap_start .= '<div class="nectar-slider-wrap" style="height: '.$slide_height.'px" data-flexible-height="'.$flexible_slider_height.'" data-fullscreen="false"  data-full-width="false" data-parallax="false" '.$autorotation_attr.' id="ns-id-'.uniqid().'">';
 	$slides_wrap_start .=	'<div class="swiper-container" style="height: '.$slide_height.'px"  data-loop="'.$bulk_param.'" data-height="'.$slide_height.'" data-bullets="'.$bullet_navigation.'" data-bullet_style="'.$bullet_navigation_style.'" '.$arrow_markup.' data-bullets="false" data-desktop-swipe="'.$bulk_param.'" data-settings="">';
 	$slides_wrap_start .=	'<div class="swiper-wrapper">';
 	
@@ -129,7 +132,7 @@ if ( $type == 'flexslider_style' ) {
 	if($images != '') {
 		$image_count = explode( ',', $images); 
 		if($bullet_navigation == true && sizeof($image_count) > 1) { 
-				$slides_wrap_end .= '<div class="slider-pagination"></div>';
+				$slides_wrap_end .= '<div class="container normal-container slider-pagination-wrap"><div class="slider-pagination"></div></div>';
 		}	
 	}
 	$slides_wrap_end .= '<div class="nectar-slider-loading"></div>';
@@ -265,7 +268,7 @@ foreach ( $images as $attach_id ) {
     switch ( $source ) {
 		case 'media_library':
 			 if ($attach_id > 0) {
-		        $post_thumbnail = wpb_getImageBySize(array( 'attach_id' => $attach_id, 'thumb_size' => $img_size ));
+		        $post_thumbnail = wpb_getImageBySize(array( 'attach_id' => $attach_id, 'thumb_size' => $img_size, 'class' => 'skip-lazy' ));
 		        $fullsize_image = wp_get_attachment_image_src($attach_id, 'full');
 		        $post_thumbnail['p_img_fullsize'] = $fullsize_image[0];
 		    }
@@ -323,7 +326,7 @@ foreach ( $images as $attach_id ) {
 				break;
 		}
 		
-		$thumbnail = '<div class="swiper-slide" data-bg-alignment="center" data-color-scheme="light" data-x-pos="centered" data-y-pos="middle"><div class="image-bg" style="background-image: url('. $img[0].');"></div>';
+		$thumbnail = '<div class="swiper-slide" data-bg-alignment="center" data-color-scheme="light" data-x-pos="centered" data-y-pos="middle"><div class="image-bg" style="background-image: url('. $img[0].');">  &nbsp; </div>';
 		
 		if ( $onclick == 'link_image' ) {
 	        $slide_link = '<a class="entire-slide-link" href="'.$p_img_large[0].'"'.$pretty_rel_random.'></a>';
@@ -349,7 +352,7 @@ foreach ( $images as $attach_id ) {
 		switch ( $source ) {
 			case 'media_library':
 				if ($attach_id > 0) {
-			        $post_thumbnail = wpb_getImageBySize(array( 'attach_id' => (int) $attach_id, 'thumb_size' => $img_size ));
+			        $post_thumbnail = wpb_getImageBySize(array( 'attach_id' => (int) $attach_id, 'thumb_size' => $img_size, 'class' => 'skip-lazy' ));
 			    }
 			    else {
 			        $post_thumbnail = array();
@@ -381,7 +384,17 @@ foreach ( $images as $attach_id ) {
 		$thumbnail = '<div class="cell">' . $post_thumbnail['thumbnail'];
 		
 		if ( $onclick == 'link_image' ) {
-	        $slide_link = '<a class="entire-slide-link" href="'.$p_img_large[0].'"'.$pretty_rel_random.'></a>';
+      
+      $flickity_image_title = '';
+      if($attach_id > 0) {
+          $attachment_meta = wp_get_attachment($attach_id);
+
+          if(!empty($attachment_meta['description'])) { 
+            $flickity_image_title = 'title="'.$attachment_meta['description'].'"';
+          }
+      }
+
+	        $slide_link = '<a class="entire-slide-link" '.$flickity_image_title.' href="'.$p_img_large[0].'"'.$pretty_rel_random.'></a>';
 	    }
 	    else if ( $onclick == 'custom_link' && isset( $custom_links[$i] ) && $custom_links[$i] != '' ) {
 	        $slide_link = '<a class="entire-slide-link ext-url-link" href="'.$custom_links[$i].'"' . (!empty($custom_links_target) ? ' target="'.$custom_links_target.'"' : '') . '></a>';
@@ -405,7 +418,7 @@ foreach ( $images as $attach_id ) {
 		switch ( $source ) {
 			case 'media_library':
 				if ($attach_id > 0) {
-			        $post_thumbnail = wpb_getImageBySize(array( 'attach_id' => (int) $attach_id, 'thumb_size' => $img_size ));
+			        $post_thumbnail = wpb_getImageBySize(array( 'attach_id' => (int) $attach_id, 'thumb_size' => $img_size, 'class' => 'skip-lazy' ));
 			    }
 			    else {
 			        $post_thumbnail = array();
@@ -685,7 +698,7 @@ foreach ( $images as $attach_id ) {
 								        	$post_thumbnail['p_img_large'][0] = '';
 								        }
 										else {
-											$post_thumbnail = wpb_getImageBySize(array( 'attach_id' => (int) $attach_id, 'thumb_size' => $img_size ));
+											$post_thumbnail = wpb_getImageBySize(array( 'attach_id' => (int) $attach_id, 'thumb_size' => $img_size, 'class' => 'skip-lazy' ));
 
 										}
 								        	
@@ -724,11 +737,11 @@ foreach ( $images as $attach_id ) {
 											$attachment_meta = wp_get_attachment($attach_id);
 
 											if(!empty($attachment_meta['image_url'])) {
-												echo '<div class="vert-center no-text"><a class="no-text" href="'.$attachment_meta['image_url'].'">'.__("View Larger", NECTAR_THEME_NAME).'</a> ';
+												echo '<div class="vert-center no-text"><a class="no-text" href="'.$attachment_meta['image_url'].'">'.__("View Larger", 'salient').'</a> ';
 											} else {
 												echo '<div class="vert-center"><a ';
 												 if(!empty($attachment_meta['description'])) echo 'title="'.$attachment_meta['description'].'"';
-												echo ' href="'.$p_img_large[0].'" class="default-link pretty_photo">'.__("View Larger", NECTAR_THEME_NAME).'</a> ';
+												echo ' href="'.$p_img_large[0].'" class="default-link pretty_photo">'.__("View Larger", 'salient').'</a> ';
 											} ?>
 											</div><!--/vert-center-->
 										<?php } ?>

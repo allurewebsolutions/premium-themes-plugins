@@ -32,13 +32,15 @@ defined( 'ABSPATH' ) || exit;
 
 $options = get_nectar_theme_options(); 
 $product_style = (!empty($options['product_style'])) ? $options['product_style'] : 'classic';
+$product_gallery_style = (!empty($options['single_product_gallery_type'])) ? $options['single_product_gallery_type'] : 'default';
+$product_hide_sku = (!empty($options['woo_hide_product_sku'])) ? $options['woo_hide_product_sku'] : 'false';
 
 ?>
 
 <?php if( function_exists('wc_product_class') ) { ?>
-	<div itemscope data-project-style="<?php echo $product_style; ?>"  data-tab-pos="<?php echo (!empty($options['product_tab_position'])) ? $options['product_tab_position'] : 'default'; ?>" id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
+	<div itemscope data-project-style="<?php echo $product_style; ?>" data-hide-product-sku="<?php echo $product_hide_sku; ?>" data-gallery-style="<?php echo $product_gallery_style; ?>" data-tab-pos="<?php echo (!empty($options['product_tab_position'])) ? $options['product_tab_position'] : 'default'; ?>" id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
 <?php } else { ?>
-	<div itemscope data-project-style="<?php echo $product_style; ?>"  data-tab-pos="<?php echo (!empty($options['product_tab_position'])) ? $options['product_tab_position'] : 'default'; ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<div itemscope data-project-style="<?php echo $product_style; ?>" data-hide-product-sku="<?php echo $product_hide_sku; ?>" data-gallery-style="<?php echo $product_gallery_style; ?>" data-tab-pos="<?php echo (!empty($options['product_tab_position'])) ? $options['product_tab_position'] : 'default'; ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php } ?>
 
 	<?php

@@ -101,6 +101,22 @@ return array(
 			),
 			array(
 		      "type" => "textfield",
+		      "heading" => __("Custom Link Text", "js_composer"),
+		      "param_name" => "custom_link_text",
+		      "value" => '',
+		      "dependency" => Array('element' => "project_style", 'value' => array('fullscreen_zoom_slider')),
+		      "description" => __("The default text is \"View Project\". If you would like to use alternate text, enter it here.", "js_composer")
+		  ),
+			array(
+		      "type" => 'checkbox',
+		      "heading" => __("Display Project Excerpt", "js_composer"),
+		      "param_name" => "display_project_excerpt",
+		      "description" => __("This will add the project excerpt below the project title on your slider", "js_composer"),
+		      "value" => Array(__("Yes, please", "js_composer") => 'true'),
+		      "dependency" => Array('element' => "project_style", 'value' => array('fullscreen_zoom_slider')),
+		    ),
+			array(
+		      "type" => "textfield",
 		      "heading" => __("Auto rotate", "js_composer"),
 		      "param_name" => "autorotate",
 		      "value" => '',
@@ -161,6 +177,12 @@ return array(
 		      "heading" => __("Number of Projects To Show", "js_composer"),
 		      "param_name" => "number_to_display",
 		      "description" => __("Enter as a number example \"6\"", "js_composer")
+		    ),
+				array(
+		      "type" => "textfield",
+		      "heading" => __("Project Offset", "js_composer"),
+		      "param_name" => "project_offset",
+		      "description" => __("Optioinally enter a number e.g. \"2\" to offset your projects by", "js_composer")
 		    ),
 		    array(
 		      "type" => 'checkbox',

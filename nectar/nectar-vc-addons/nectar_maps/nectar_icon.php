@@ -103,7 +103,8 @@ return array(
 			'value' => array(
 				__('Icon Only', 'js_composer' ) => "default",
 				__('Border Basic', 'js_composer' ) => "border-basic",
-				__('Border W/ Hover Animation', 'js_composer' ) => "border-animation"
+				__('Border W/ Hover Animation', 'js_composer' ) => "border-animation",
+				__('Soft Color Background', 'js_composer' ) => "soft-bg"
 			),
 			'save_always' => true,
 			'param_name' => 'icon_style',
@@ -140,7 +141,7 @@ return array(
 			),
 			'save_always' => true,
 			'param_name' => 'icon_color',
-			'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 		),
 		 array(
 	      "type" => "textfield",

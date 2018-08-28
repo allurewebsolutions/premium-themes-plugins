@@ -28,8 +28,9 @@ if(!empty($image_url)) {
 		$image_url = $image_src[0];
 	}
 	
-} else 
+} else {
 	$image_url = vc_asset_url( 'images/before.jpg' );
+}
 
 if(!empty($image_2_url)) {
 		
@@ -46,12 +47,13 @@ if(!empty($image_2_url)) {
 		$image_2_url = $image_src[0];
 	}
 	
-} else 
+} else {
 	$image_2_url = vc_asset_url( 'images/after.jpg' );
+}
 
 echo "<div class='twentytwenty-container'>
-  <img src='".$image_url."' alt='".$alt_tag."'>
-  <img src='".$image_2_url."' alt='".$alt_tag_2."'>
+  <img class='skip-lazy' src='".$image_url."' alt='".$alt_tag."'>
+  <img class='skip-lazy' src='".$image_2_url."' alt='".$alt_tag_2."'>
 </div>";
 
 ?>

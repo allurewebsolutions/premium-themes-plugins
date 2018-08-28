@@ -29,11 +29,11 @@ jQuery(document).ready(function($){
 
 
 			//map margin if page header
-			if( $('#page-header-bg:not("[data-parallax=1]")').length > 0 ) { $('#contact-map').css('margin-top', 0);  $('.container-wrap').css('padding-top', 0);} 
+			if( $('#page-header-bg:not("[data-parallax=1]")').length > 0 && $('#contact-map').length > 0 ) { $('#contact-map').css('margin-top', 0);  $('.container-wrap').css('padding-top', 0);} 
 			if( $('#page-header-bg[data-parallax=1]').length > 0 ) $('#contact-map').css('margin-top', '-30px');
 			
-		    zoomLevel = parseFloat($(this).attr('data-zoom-level'));
-		    centerlat = parseFloat($(this).attr('data-center-lat'));
+		  zoomLevel = parseFloat($(this).attr('data-zoom-level'));
+		  centerlat = parseFloat($(this).attr('data-center-lat'));
 			centerlng = parseFloat($(this).attr('data-center-lng'));
 			markerImg = $(this).attr('data-marker-img');
 			enableZoom = $(this).attr('data-enable-zoom');
@@ -624,9 +624,9 @@ jQuery(document).ready(function($){
  	} else {
 
  		if(nectarLove.mapApiKey.length > 0) {
- 			$.getScript('https://maps.google.com/maps/api/js?sensor=false&key='+nectarLove.mapApiKey+'&callback=mapAPI_Loaded');
+ 			$.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&key='+nectarLove.mapApiKey+'&callback=mapAPI_Loaded');
  		} else {
- 			$.getScript('https://maps.google.com/maps/api/js?sensor=false&callback=mapAPI_Loaded');
+ 			$.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&callback=mapAPI_Loaded');
  		}
  		
 

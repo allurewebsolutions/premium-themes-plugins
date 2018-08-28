@@ -51,7 +51,7 @@ return array(
 			"heading" => "Color",
 			"admin_label" => true,
 			"param_name" => "color_1",
-			'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 			/*"dependency" => array('element' => "style", 'value' => 'color_pulse'),*/
 			"value" => array(
 				"Accent Color" => "Accent-Color",

@@ -9,7 +9,7 @@
 	font-weight:normal;
 	font-style:normal;
 }
-[class^="icon-"],[class*=" icon-"], [class*="fa-"]{font-family:FontAwesome;font-weight:normal;font-style:normal;text-decoration:inherit;-webkit-font-smoothing:antialiased;*margin-right:.3em;}
+[class^="icon-"],[class*=" icon-"], i[class*="fa-"], span[class*="fa-"]{font-family:FontAwesome;font-weight:normal;font-style:normal;text-decoration:inherit;-webkit-font-smoothing:antialiased;*margin-right:.3em;}
 [class^="icon-"]:before,[class*=" icon-"]:before{text-decoration:inherit;speak:none;}
 .icon-large:before{vertical-align:-10%;font-size:1.3333333333333333em;}
 /*a [class^="icon-"],a [class*=" icon-"]{display:inline;}*/

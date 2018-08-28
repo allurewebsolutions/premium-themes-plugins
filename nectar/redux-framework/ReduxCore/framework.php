@@ -348,12 +348,9 @@
                     }
 
                     // Admin Bar menu
-                    /* nectar addition */ 
-                    /* add_action( 'admin_bar_menu', array(
-                        $this,
-                        '_admin_bar_menu'
-                    ), $this->args['admin_bar_priority'] ); */
-                    /* nectar addition end */ 
+                    /* nectar addition 
+                      remove
+                     nectar addition end */ 
 
                     // Register setting
                     add_action( 'admin_init', array( $this, '_register_settings' ) );
@@ -1692,17 +1689,25 @@
                         foreach ( $this->typography as $key => $value ) {
                             $families[] = $key;
                         }
+                        
+                        /*nectar addition - local load*/
+                        global $nectar_get_template_directory_uri;
+                        /*nectar addition end */
+                        
                         ?>
                         <script>
                             /* You can add more configuration options to webfontloader by previously defining the WebFontConfig with your options */
                             if ( typeof WebFontConfig === "undefined" ) {
                                 WebFontConfig = new Object();
                             }
+                          
                             WebFontConfig['google'] = {families: [<?php echo $typography->makeGoogleWebfontString ( $this->typography ) ?>]};
 
                             (function() {
                                 var wf = document.createElement( 'script' );
-                                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js';
+                                /*nectar addition - local load*/
+                                wf.src = <?php echo $nectar_get_template_directory_uri . '/nectar/assets/js/webfont.js'; ?>;
+                                /*nectar addition end */
                                 wf.type = 'text/javascript';
                                 wf.async = 'true';
                                 var s = document.getElementsByTagName( 'script' )[0];

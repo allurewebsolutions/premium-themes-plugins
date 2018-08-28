@@ -38,7 +38,7 @@
 	            $video_embed = get_post_meta($post->ID, '_nectar_video_embed', true);
 				
 	            if( !empty( $video_embed ) ) {
-	                echo '<div class="video-wrap">' . stripslashes(htmlspecialchars_decode($video_embed)) . '</div>';
+	                echo '<div class="video-wrap">' . stripslashes(wp_specialchars_decode($video_embed)) . '</div>';
 	            } else { 
 	               //nectar_video($post->ID); 
 	            }
@@ -47,15 +47,15 @@
 	        <?php if( !is_single() ) { ?>
 				<div class="post-header">
 					<h2 class="title"><?php if( !is_single() ) { ?> <a href="<?php the_permalink(); ?>"><?php } ?><?php the_title(); ?><?php if( !is_single() ) {?> </a> <?php } ?></h2>	
-					<?php echo __('Posted by', NECTAR_THEME_NAME); ?> <?php the_author_posts_link(); ?> | <?php the_category(', '); ?> | <a href="<?php comments_link(); ?>">
-					<?php comments_number( __('No Comments', NECTAR_THEME_NAME), __('One Comment ', NECTAR_THEME_NAME), __('% Comments', NECTAR_THEME_NAME) ); ?></a>
+					<?php echo __('Posted by', 'salient'); ?> <?php the_author_posts_link(); ?> | <?php the_category(', '); ?> | <a href="<?php comments_link(); ?>">
+					<?php comments_number( __('No Comments', 'salient'), __('One Comment ', 'salient'), __('% Comments', 'salient') ); ?></a>
 				</div><!--/post-header-->
 			<?php 
 			
 				//if no excerpt is set
 				global $post;
 				if(empty( $post->post_excerpt )) {
-					the_content('<span class="continue-reading">'. __("Read More", NECTAR_THEME_NAME) . '</span>'); 
+					the_content('<span class="continue-reading">'. __("Read More", 'salient') . '</span>'); 
 				}
 				
 				//excerpt
@@ -74,7 +74,7 @@
 			<?php 
 			if(is_single()){
 				//on the single post page display the content
-				the_content('<span class="continue-reading">'. __("Read More", NECTAR_THEME_NAME) . '</span>'); 
+				the_content('<span class="continue-reading">'. __("Read More", 'salient') . '</span>'); 
 			} ?>
 			
 			<?php global $options;

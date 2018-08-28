@@ -8,10 +8,12 @@ $portfolio_types = ($is_admin) ? get_terms('project-type') : array('All' => 'all
 	$types_options_2 = array("Default" => "default");
 
 	if($is_admin) {
+	
 		foreach ($portfolio_types as $type) {
-			$types_options[$type->name] = $type->slug;
-			$types_options_2[$type->name] = $type->slug;
+			$types_options[$type->slug] = $type->slug;
+			$types_options_2[$type->slug] = $type->slug;
 		}
+		
 
 	} else {
 		$types_options['All'] = 'all';
@@ -208,6 +210,12 @@ $portfolio_types = ($is_admin) ? get_terms('project-type') : array('All' => 'all
 	      "param_name" => "projects_per_page",
 	      "description" => __("How many projects would you like to display per page? <br/> If pagination is not enabled, will simply show this number of projects <br/> Enter as a number example \"20\"", "js_composer")
 	    ),
+			array(
+				"type" => "textfield",
+				"heading" => __("Project Offset", "js_composer"),
+				"param_name" => "project_offset",
+				"description" => __("<b>Will not be used when \"Enable Pagination\" is on.</b> <br/> Optioinally enter a number e.g. \"2\" to offset your project by.", "js_composer")
+			),
 	    array(
 	      "type" => 'checkbox',
 	      "heading" => __("Lightbox Only", "js_composer"),

@@ -39,14 +39,16 @@
   </custom-fields>
   <admin-texts>
     <key name="salient_redux">
+      <key name="secondary-header-text"/>
       <key name="footer-copyright-text"/>
       <key name="cta-text"/>
       <key name="cta-btn"/>
       <key name="cta-btn-link"/>
-	  <key name="carousel-title"/>
+	    <key name="carousel-title"/>
       <key name="carousel-link"/>
       <key name="portfolio-sortable-text"/>
       <key name="main-portfolio-link"/>
+      <key name="header-account-button-url"/>
       <key name="recent-posts-title"/>
       <key name="recent-posts-link"/>
     </key>

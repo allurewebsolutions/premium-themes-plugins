@@ -141,7 +141,7 @@ return array(
 			   ),
 			  'save_always' => true,
 				"dependency" => array('element' => "box_style", 'value' => array('default','color_box_hover')),
-			  'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+			  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 			),
 			array(
 			 "type" => "colorpicker",
@@ -194,11 +194,22 @@ return array(
 			 "dependency" => array('element' => "box_style", 'value' => array('color_box_basic','color_box_hover')),
 			'save_always' => true,
 			),
+			
+			array(
+				"type" => "checkbox",
+				"class" => "",
+				"dependency" => array('element' => "box_style", 'value' => array('color_box_hover')),
+				"heading" => "Add Border",
+				"value" => array("Enable Fancy Box Border?" => "true" ),
+				"param_name" => "enable_border",
+				"description" => "This will add a minimal border to show the fancy box area before hovering"
+			),
+			
 			array(
 				"type" => "checkbox",
 				"class" => "",
 				"heading" => "Enable Animation",
-				"value" => array("Enable Column Animation?" => "true" ),
+				"value" => array("Enable Box Animation?" => "true" ),
 				"param_name" => "enable_animation",
 				"description" => ""
 			),

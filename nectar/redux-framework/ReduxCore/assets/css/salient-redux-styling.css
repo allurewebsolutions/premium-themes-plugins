@@ -6,7 +6,7 @@
 		top: 3px;
 	}
 	#redux-header {
-		background-color: #19a1f7!important;
+		background-color: #3555ff!important;
 	}
 	.redux-container #redux-intro-text, .redux-main #redux-sticky #info_bar .expand_options { display: none;}
 	.redux-container #redux-header {
@@ -15,7 +15,7 @@
 		text-align: left;
 	}
 	.redux-container .display_header {
-		background-color: #1898e9;
+		background-color: #3d5cff;
 		margin: 0!important;
 		padding: 20px 25px;
 		float: none;
@@ -53,7 +53,7 @@
 		border-color: #198ad1!important;
 	}
 	.admin-color-fresh .redux-container-image_select .redux-image-select-selected img, .wp-customizer .redux-container-image_select .redux-image-select-selected img {
-		border-color: #19a1f7!important;
+		border-color: #3555ff!important;
 	}
 	.admin-color-fresh .redux-container .redux-main .button:not(.wp-picker-default):not(.wp-color-result) {
 		text-shadow: none!important;
@@ -115,7 +115,7 @@
 		border: none;
 	}
 	.admin-color-fresh .noUi-connect {
-		background-color: #19a1f7!important;
+		background-color: #3555ff!important;
 		background-image: none!Important;
 	}
 	.redux-container #redux-header .display_header h2 {
@@ -257,7 +257,7 @@
 	}
 
 	html .redux-container .redux-sidebar .redux-group-tab-link-li.activeChild i, html .redux-container  .redux-sidebar .redux-group-tab-link-li.active i {
-		color: #19a1f7!important;
+		color: #3555ff!important;
 	}
 
 
@@ -293,4 +293,165 @@
 .masonry_table td {
 	padding-left: 0;
 }
+
+.redux-qtip.qtip {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+
+.toplevel_page_Salient .redux_field_th span:first-child {
+	position: relative;
+}
+
+
+html body.wp-admin .redux-container-switch .cb-disable, 
+html body.wp-admin .redux-container-switch .cb-enable, 
+html body.wp-admin .ui-state-default, 
+html body.wp-admin .ui-widget-content .ui-state-default, 
+html body.wp-admin .ui-widget-header .ui-state-default,
+html body.wp-admin .redux-container-switch .cb-disable.selected,
+html body.wp-admin .redux-container-switch .cb-enable.selected, 
+html body.wp-admin .redux-field-container .ui-buttonset .ui-state-active,
+html body.wp-admin.admin-color-fresh .redux-main .redux-container-switch .cb-enable.selected {
+	background: none!important;
+	border: none!important;
+	background-color: transparent!important;
+}
+
+
+
+
+
+
+.switch-options.salient {
+	  width: 67px;
+    height: 28px;
+	  position: relative;
+		box-shadow: inset 0px 0px 0px 2px #999;
+    border-radius: 20px;
+		-webkit-transition: box-shadow .45s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: box-shadow .45s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+.switch-options.activated.salient {
+    border-color: rgba(119, 204, 109, 1);
+		background-color: rgba(119, 204, 109, 1);
+		box-shadow: inset 0px 0px 0px 15px rgba(119, 204, 109, 1);
+    -webkit-transition: box-shadow .45s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.25s 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: box-shadow .45s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.25s 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.redux-container-switch .cb-enable span, 
+.redux-container-switch .cb-disable span {
+	line-height: 23px;
+	font-weight: 600;
+}
+
+.switch-options.salient:before{
+    position: absolute;
+    top: 5px;
+    width: 20px;
+    bottom: 5px;
+    right: 41px;
+		display: block;
+		content: '';
+    background-color: #999;
+    border-radius: 19px; 
+    cursor: pointer;
+    -webkit-transition: all .35s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: all .35s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.switch-options.salient.activated:before {
+    right: 5px;
+    background-color: #fff;
+}
+
+
+.switch-options.salient .cb-enable {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    line-height: 36px;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-user-select: none; /* Chrome/Safari */    
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+		-webkit-transition: color .3s;
+		transition: color .3s;
+    color: rgba(0,0,0,0);
+}
+
+.switch-options.salient.activated .cb-enable {
+    color: #fff;
+    -webkit-transition: color .2s .05s;
+    transition: color .2s .05s ;
+}
+.redux-container-switch .cb-enable span,
+.redux-container-switch .cb-disable span { float: none; }
+
+.redux-container-switch  .salient .cb-disable.selected {
+	color: #999;
+}
+
+.switch-options.salient .cb-disable {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+		width: 100%;
+    right: 2px;
+    line-height: 36px;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+		text-align: right;
+    cursor: pointer;
+    color: #282d33;
+		-webkit-transition: color .2s .05s;
+		transition: color .2s .05s;
+}
+
+.switch-options.salient.activated .cb-disable {
+    color: rgba(0,0,0,0);
+		-webkit-transition: color .2s;
+    transition: color .2s;
+}
+
+.switch-options.salient.activated .cb-enable,
+.switch-options.salient .cb-disable {
+	pointer-events: none;
+}
+
+.switch-options.salient.activated .cb-disable,
+.switch-options.salient .cb-enable {
+	pointer-events: all;
+}
+
+.toplevel_page_Salient .redux-hint-qtip {
+	display: inline-block;
+	margin-left: 5px;
+	float: none!important;
+}
+
+.toplevel_page_Salient .qtip-red, .toplevel_page_Salient .qtip-tipsy {
+    background-color: #fff;
+    color: #000;
+		text-shadow: none;
+    border: none;
+		font-size: 14px;
+		font-weight: normal;
+    line-height: 18px;
+    box-shadow: 0px 13px 39px rgba(0,0,0,0.2)!important;
+    border-radius: 6px;
+		padding: 15px;
+}
+.toplevel_page_Salient .qtip .qtip-tip { display: none!important; }
 

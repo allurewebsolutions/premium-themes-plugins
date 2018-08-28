@@ -104,8 +104,8 @@ var Nodes = {
     this.canvas = $(canvasID)[0];
     this.context = canvas.getContext( '2d' );
     this.context.globalCompositeOperation = "lighter";
-    this.canvas.width = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerWidth : $(canvasID).parents('.nectar-particles').width();
-    this.canvas.height = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerHeight : $(canvasID).parents('.nectar-particles').height();
+    this.canvas.width = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerWidth : $(canvasID).parents('#page-header-bg').outerWidth(true);
+    this.canvas.height = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerHeight : $(canvasID).parents('#page-header-bg').outerHeight(true);
     this.canvas.style.display = 'block'
 
     this.canvasID = canvasID;
@@ -157,8 +157,8 @@ var Nodes = {
        $(window).load(function(){
         setTimeout(function(){
 
-          Nodes.canvas.width = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerWidth : $(canvasID).parents('.nectar-particles').width();
-          Nodes.canvas.height = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerHeight : $(canvasID).parents('.nectar-particles').height();
+          Nodes.canvas.width = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerWidth : $(canvasID).parents('#page-header-bg').outerWidth(true);
+          Nodes.canvas.height = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerHeight : $(canvasID).parents('#page-header-bg').outerHeight(true);
           Nodes.onWindowResize();    
           
           },50);
@@ -170,8 +170,8 @@ var Nodes = {
     window.onresize = function(event) {
       if(typeof(event.isTrigger) !== 'undefined') return false;
 
-      Nodes.canvas.width = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerWidth : $(canvasID).parents('.nectar-particles').width();
-      Nodes.canvas.height = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerHeight : $(canvasID).parents('.nectar-particles').height();
+      Nodes.canvas.width = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerWidth : $(canvasID).parents('#page-header-bg').outerWidth(true);
+      Nodes.canvas.height = ($(canvasID).parents('.nectar-box-roll').length > 0 ) ? window.innerHeight : $(canvasID).parents('#page-header-bg').outerHeight(true);
       Nodes.onWindowResize();    
     }
 

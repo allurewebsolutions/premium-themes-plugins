@@ -2,28 +2,30 @@
 
 global $options;
 
-function nectar_set_vc_as_theme() {
+if(!function_exists('nectar_set_vc_as_theme')) {
+	function nectar_set_vc_as_theme() {
 
-	vc_set_as_theme($disable_updater = true);
-	$template_directory = get_template_directory();
+		vc_set_as_theme($disable_updater = true);
+		$template_directory = get_template_directory();
 
-	if(defined( 'SALIENT_VC_ACTIVE')) {
-	    $child_dir = $template_directory . '/nectar/nectar-vc-addons/vc_templates';
-	    $parent_dir = $template_directory . '/nectar/nectar-vc-addons/vc_templates';
+		if(defined( 'SALIENT_VC_ACTIVE')) {
+		    $child_dir = $template_directory . '/nectar/nectar-vc-addons/vc_templates';
+		    $parent_dir = $template_directory . '/nectar/nectar-vc-addons/vc_templates';
 
-	    vc_set_shortcodes_templates_dir($parent_dir);
-	    vc_set_shortcodes_templates_dir($child_dir);
-	} else {
+		    vc_set_shortcodes_templates_dir($parent_dir);
+		    vc_set_shortcodes_templates_dir($child_dir);
+		} else {
 
-	    $child_dir = $template_directory . '/nectar/nectar-vc-addons/vc_templates';
-	    $parent_dir = $template_directory . '/nectar/nectar-vc-addons/vc_templates';
-	    vc_set_shortcodes_templates_dir($parent_dir);
-	    vc_set_shortcodes_templates_dir($child_dir);
+		    $child_dir = $template_directory . '/nectar/nectar-vc-addons/vc_templates';
+		    $parent_dir = $template_directory . '/nectar/nectar-vc-addons/vc_templates';
+		    vc_set_shortcodes_templates_dir($parent_dir);
+		    vc_set_shortcodes_templates_dir($child_dir);
+		}
+
+
+		vc_disable_frontend();
+
 	}
-
-
-	vc_disable_frontend();
-
 }
 
 add_action('vc_before_init', 'nectar_set_vc_as_theme');
@@ -97,8 +99,8 @@ vc_remove_element("vc_wp_text");
 
 //remove WC elements
 function salient_vc_remove_woocommerce() {
-    if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-        //vc_remove_element("woocommerce_cart");
+    if ( class_exists( 'woocommerce' ) ) {
+    //vc_remove_element("woocommerce_cart");
 		//vc_remove_element("woocommerce_checkout");
 		//vc_remove_element("woocommerce_order_tracking");
 		//vc_remove_element("woocommerce_my_account");
@@ -119,6 +121,54 @@ function salient_vc_remove_woocommerce() {
 }
 // Hook for admin editor.
 add_action( 'vc_build_admin_page', 'salient_vc_remove_woocommerce', 11 );
+
+
+
+
+if ( !function_exists( 'nectar_vc_navbar_mod' ) ) {
+	
+	function nectar_vc_navbar_mod($list) {
+
+			if ( is_array( $list ) ) {
+				
+				//remove default template button
+				foreach($list as $key => $button) {
+						if(isset($button[0]) && $button[0] == 'templates') {
+							 unset($list[$key]);
+						}
+						
+				}
+				
+				//add new template buttons
+				$list[] = array( 'salient_studio', nectar_generate_salient_studio_button() );
+				$list[] = array( 'user_templates', nectar_generate_user_template_button() );
+			}
+				
+			return $list;
+	}
+	
+}
+
+if ( !function_exists( 'nectar_generate_salient_studio_button' ) ) {
+	function nectar_generate_salient_studio_button() {
+		return '<li><a href="javascript:;" class="vc_icon-btn vc_templates-button salient-studio-templates"  id="vc_templates-editor-button" title="'
+					 . __( 'Salient studio template library', 'salient' ) . '"><i class="vc-composer-icon vc-c-icon-add_template"></i> <span>'. __('Salient Templates','salient'). '</span></a></li>';
+	}
+}
+
+if ( !function_exists( 'nectar_generate_user_template_button' ) ) {
+	function nectar_generate_user_template_button() {
+		return '<li><a href="javascript:;" class="vc_icon-btn vc_templates-button user-templates"  id="vc_templates-editor-button" title="'
+					 . __( 'My templates', 'salient' ) . '"><i class="vc-composer-icon vc-c-icon-add_template"></i> <span>'. __('My Templates','salient'). '</span></a></li>';
+	}
+}
+
+add_filter('vc_nav_controls','nectar_vc_navbar_mod');
+
+
+
+
+
 
 //only load shortcode logic on front when needed
 $is_admin = is_admin();
@@ -619,16 +669,6 @@ function nectar_custom_maps() {
 			),
 
 			array(
-				"type" => "checkbox",
-				"class" => "",
-				"heading" => "Mute Video",
-				"value" => array("Do you want to mute the video (recommended)" => "true" ),
-				"param_name" => "video_mute",
-				"description" => "",
-				"dependency" => Array('element' => "video_bg", 'value' => array('use_video'))
-			),
-
-			array(
 				"type" => "textfield",
 				"class" => "",
 				"heading" => "Youtube Video URL",
@@ -876,20 +916,21 @@ function nectar_custom_maps() {
 				"param_name" => "shape_type",
 				"group" => "Shape Divider",
 				"options" => array(
-					"curve" => array( __('Curve', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/curve_down.jpg"),
-					'fan' => array( __('Fan', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/fan.jpg"),
-					'curve_opacity' => array( __('Curve Opacity', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/curve_opacity.jpg"),
-					"mountains" => array( __('Mountains', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/mountains.jpg"),
-					'curve_asym' => array( __('Curve Asym.', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/curve_asym.jpg"),
-					'curve_asym_2' => array( __('Curve Asym. Alt', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/curve_asym_2.jpg"),
-					"tilt" => array( __('Tilt', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/tilt.jpg"),
-					"tilt_alt" => array( __('Tilt Alt', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/tilt_alt.jpg"),
-					"triangle" => array( __('Triangle', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/triangle.jpg"),
-					'waves' => array( __('Waves', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/waves_no_opacity.jpg"),
-					'waves_opacity' => array( __('Waves Opacity', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/waves.jpg"),
-					'waves_opacity_alt' => array( __('Waves Opacity 2', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/waves_opacity.jpg"),
-					'clouds' => array( __('Clouds', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/clouds.jpg"),
-					"speech" => array( __('Speech', NECTAR_THEME_NAME) => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/speech.jpg")
+					"curve" => array( __('Curve', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/curve_down.jpg"),
+					'fan' => array( __('Fan', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/fan.jpg"),
+					'curve_opacity' => array( __('Curve Opacity', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/curve_opacity.jpg"),
+					"mountains" => array( __('Mountains', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/mountains.jpg"),
+					'curve_asym' => array( __('Curve Asym.', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/curve_asym.jpg"),
+					'curve_asym_2' => array( __('Curve Asym. Alt', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/curve_asym_2.jpg"),
+					"tilt" => array( __('Tilt', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/tilt.jpg"),
+					"tilt_alt" => array( __('Tilt Alt', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/tilt_alt.jpg"),
+					"triangle" => array( __('Triangle', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/triangle.jpg"),
+					'waves' => array( __('Waves', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/waves_no_opacity.jpg"),
+					'waves_opacity' => array( __('Waves Opacity', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/waves.jpg"),
+					'waves_opacity_alt' => array( __('Waves Opacity 2', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/waves_opacity.jpg"),
+					'clouds' => array( __('Clouds', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/clouds.jpg"),
+					"speech" => array( __('Speech', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/speech.jpg"),
+					"straight_section" => array( __('Straight Section', 'salient') => $nectar_get_template_directory_uri."/nectar/nectar-vc-addons/img/shape_dividers/straight_section.jpg")
 				),
 			),
 			array(
@@ -975,7 +1016,11 @@ function nectar_custom_maps() {
 		__( '9 columns - 3/4', 'js_composer' ) => '3/4',
 		__( '10 columns - 5/6', 'js_composer' ) => '5/6',
 		__( '11 columns - 11/12', 'js_composer' ) => '11/12',
-		__( '12 columns - 1/1', 'js_composer' ) => '1/1'
+		__( '12 columns - 1/1', 'js_composer' ) => '1/1',
+		__( '20% - 1/5', 'js_composer' ) => '1/5',
+		__( '40% - 2/5', 'js_composer' ) => '2/5',
+		__( '60% - 3/5', 'js_composer' ) => '3/5',
+		__( '80% - 4/5', 'js_composer' ) => '4/5'
 	);
 
 	vc_map( array(
@@ -1192,6 +1237,15 @@ function nectar_custom_maps() {
 				"description" => "If you wish for this column to link somewhere, enter the URL in here",
 			),
 			array(
+				"type" => "dropdown",
+				"class" => "",
+				"heading" => "Column Link Target",
+				"param_name" => "column_link_target",
+				'save_always' => true,
+				'value' => array(__("Same window", "js_composer") => "_self", __("New window", "js_composer") => "_blank")
+			),
+			
+			array(
 		      "type" => "dropdown",
 		      "heading" => __("Box Shadow", "js_composer"),
 		      'save_always' => true,
@@ -1255,7 +1309,21 @@ function nectar_custom_maps() {
 				'group' => __( 'Responsive Options', 'js_composer' ),
 				'description' => __( 'Adjust column for different screen sizes. Control width, offset and visibility settings.', 'js_composer' )
 			),
-
+			
+			array(
+				"type" => "dropdown",
+				"class" => "",
+				'group' => __( 'Responsive Options', 'js_composer' ),
+				'save_always' => true,
+				"heading" => "Tablet Column Width Inherits From",
+				"param_name" => "tablet_width_inherit",
+				"value" => array(
+					"Mobile Column Width (Default)" => "default",
+					"Small Desktop Colummn Width" => "small_desktop",
+				),
+				"description" => "This allows you to determine what your column width will inherit from when viewed on tablets in a portrait orientation."
+			),
+			
 			array(
 				"type" => "dropdown",
 				"class" => "",
@@ -1620,6 +1688,14 @@ function nectar_custom_maps() {
 				"admin_label" => false,
 				"description" => "If you wish for this column to link somewhere, enter the URL in here",
 			),
+			array(
+				"type" => "dropdown",
+				"class" => "",
+				"heading" => "Column Link Target",
+				"param_name" => "column_link_target",
+				'save_always' => true,
+				'value' => array(__("Same window", "js_composer") => "_self", __("New window", "js_composer") => "_blank")
+			),
 
 			array(
 				"type" => "textfield",
@@ -1645,6 +1721,20 @@ function nectar_custom_maps() {
 				'param_name' => 'offset',
 				'group' => __( 'Responsive Options', 'js_composer' ),
 				'description' => __( 'Adjust column for different screen sizes. Control width, offset and visibility settings.', 'js_composer' )
+			),
+			
+			array(
+				"type" => "dropdown",
+				"class" => "",
+				'group' => __( 'Responsive Options', 'js_composer' ),
+				'save_always' => true,
+				"heading" => "Tablet Column Width Inherits From",
+				"param_name" => "tablet_width_inherit",
+				"value" => array(
+					"Mobile Column Width (Default)" => "default",
+					"Small Desktop Colummn Width" => "small_desktop",
+				),
+				"description" => "This allows you to determine what your column width will inherit from when viewed on tablets in a portrait orientation."
 			),
 
 			array(
@@ -1833,53 +1923,7 @@ function nectar_custom_maps() {
 
 	class WPBakeryShortCode_Full_Width_Section extends WPBakeryShortCode_VC_Row {
 			
-				
-		public function contentAdmin($atts, $content = null) {
-	        $width = $el_class = '';
-	        extract(shortcode_atts($this->predefined_atts, $atts));
 
-	        $output = '';
-
-	        $column_controls = $this->getColumnControls($this->settings('controls'));
-
-	        for ( $i=0; $i < count($width); $i++ ) {
-	            $output .= '<div data-element_type="vc_row" class="'.$this->settings['base'].' wpb_vc_row wpb_sortable">';
-	            $output .= str_replace("%column_size%", 1, $column_controls);
-	            $output .= '<div class="wpb_element_wrapper">';
-	            $output .= '<div class="vc_row-fluid vc_row wpb_row_container vc_container_for_children">';
-	            if ( '' === $content && ! empty( $this->settings['default_content_in_template'] ) ) {
-					$output .= do_shortcode( shortcode_unautop( $this->settings['default_content_in_template'] ) );
-				} else {
-					$output .= do_shortcode( shortcode_unautop( $content ) );
-
-				}
-	            $output .= '</div>';
-	            if ( isset($this->settings['params']) ) {
-	                $inner = '';
-	                foreach ($this->settings['params'] as $param) {
-
-	                	if ( ! isset( $param['param_name'] ) ) {
-							continue;
-						}
-	                    $param_value = isset( $atts[ $param['param_name'] ] ) ? $atts[ $param['param_name'] ] : '';
-
-	                    if ( is_array( $param_value ) ) {
-							// Get first element from the array
-							reset( $param_value );
-							$first_key = key( $param_value );
-							$param_value = $param_value[ $first_key ];
-						}
-	                    $inner .= $this->singleParamHtmlHolder( $param, $param_value );
-	                }
-	                $output .= $inner;
-	            }
-	            $output .= '</div>';
-	            $output .= '</div>';
-	        }
-
-	        return $output;
-	    }	
-		
 	}
 
 	vc_lean_map('full_width_section', null, $nectar_template_dir . '/nectar/nectar-vc-addons/nectar_maps/full_width_section.php');
@@ -1913,6 +1957,15 @@ function nectar_custom_maps() {
 	class WPBakeryShortCode_Split_Line_Heading extends WPBakeryShortCode { }
 
 	vc_lean_map('split_line_heading', null, $nectar_template_dir . '/nectar/nectar-vc-addons/nectar_maps/split_line_heading.php');
+	
+	
+	
+	// Split Line Heading
+	class WPBakeryShortCode_Nectar_Highlighted_Text extends WPBakeryShortCode { }
+
+	vc_lean_map('nectar_highlighted_text', null, $nectar_template_dir . '/nectar/nectar-vc-addons/nectar_maps/nectar_highlighted_text.php');
+
+
 
 	// Divider
 	vc_lean_map('divider', null, $nectar_template_dir . '/nectar/nectar-vc-addons/nectar_maps/divider.php');
@@ -1962,8 +2015,84 @@ function nectar_custom_maps() {
 		}
 
 		vc_lean_map('nectar_woo_products', null, $nectar_template_dir . '/nectar/nectar-vc-addons/nectar_maps/nectar_woo_products.php');
+		
 
 	}
+	
+	
+	//category grid
+	class WPBakeryShortCode_Nectar_Category_Grid extends WPBakeryShortCode {
+		
+	}
+	
+	/*helper function*/
+	if(!function_exists('nectar_grid_item_markup')) {
+		
+		function nectar_grid_item_markup($temp_cat_obj_holder,$atts) {
+		    
+		    $markup = '';
+		    
+		    if($temp_cat_obj_holder) {
+		        $temp_cat_obj_holder->term_id;
+		        $temp_cat_obj_holder->name;
+		        
+		        //grab cat image
+		        $bg_style_markup = '';
+		        
+		        if($atts['post_type'] == 'posts') {
+		          $thumbnail_id = get_post_thumbnail_id( $temp_cat_obj_holder->term_id );
+		          $terms =  get_option( "taxonomy_$temp_cat_obj_holder->term_id" );
+		          $image_bg = $terms['category_thumbnail_image'];
+		          if(!empty($image_bg)) {
+		            $image_id = fjarrett_get_attachment_id_from_url($image_bg);
+		            $image_bg = wp_get_attachment_image_src( $image_id, 'large');
+		            
+		            $bg_style_markup = (!empty($image_bg)) ? 'style="background-image:url('. $image_bg[0] .');"' : '';
+		          }
+		        
+		          
+		        } else if( $atts['post_type'] == 'products') {
+		          $thumbnail_id = get_woocommerce_term_meta( $temp_cat_obj_holder->term_id, 'thumbnail_id', true );
+		          $image_bg = wp_get_attachment_image_src( $thumbnail_id, 'large');
+		          $bg_style_markup = (!empty($image_bg)) ? 'style="background-image:url('. $image_bg[0] .');"' : '';
+		          
+		        }
+		        
+		        $bg_overlay_markup = (!empty($atts['color_overlay'])) ? 'style=" background-color: '.$atts['color_overlay'].';"' : '';
+		        
+		        $markup .= '<div class="nectar-category-grid-item"> <div class="inner"> <a class="nectar-category-grid-link" href="'. get_term_link($temp_cat_obj_holder->term_id) .'"></a>';
+		        $markup .= '<div class="nectar-category-grid-item-bg" '.$bg_style_markup.'></div>';
+		        $markup .= '<div class="bg-overlay" '.$bg_overlay_markup.' data-opacity="'. $atts['color_overlay_opacity'] .'" data-hover-opacity="'. $atts['color_overlay_hover_opacity'] .'"></div>';
+		        $markup .= '<div class="content" data-subtext-vis="'. $atts['subtext_visibility'] .'" data-subtext="'. $atts['subtext'] .'" ><h3>'. $temp_cat_obj_holder->name .'</h3>';
+		
+		        if($atts['subtext'] == 'cat_item_count') {
+		          
+		          $subtext_count_markup = '';
+		          
+		          if($atts['post_type'] == 'posts') {
+		            if($temp_cat_obj_holder->count == 1) { $subtext_count_markup = '<span class="subtext">' . $temp_cat_obj_holder->count .  ' ' . __('post', 'salient') . '</span>'; } 
+		            else { $subtext_count_markup = '<span class="subtext">' . $temp_cat_obj_holder->count .  ' ' . __('posts', 'salient') . '</span>'; }
+		          } else if($atts['post_type'] == 'products') {
+		            if($temp_cat_obj_holder->count == 1) {  $subtext_count_markup = '<span class="subtext">' . $temp_cat_obj_holder->count .  ' ' . __('product', 'salient') . '</span>'; } 
+		            else { $subtext_count_markup = '<span class="subtext">' . $temp_cat_obj_holder->count .  ' ' . __('products', 'salient') . '</span>';  }  
+		          }
+		          
+		          $markup .= $subtext_count_markup;
+		
+		        } else if($atts['subtext'] == 'custom') {
+		          $markup .= '<span class="subtext">' . $atts['custom_subtext'] . '</span>';
+		        }
+		        $markup .= '</div>';
+		        $markup .= '</div></div>';
+		    }
+		    
+		    return $markup;
+		    
+		}
+ }
+
+	vc_lean_map('nectar_category_grid', null, $nectar_template_dir . '/nectar/nectar-vc-addons/nectar_maps/nectar_category_grid.php');
+	
 
 
 	// Centered Heading
@@ -2334,6 +2463,14 @@ function nectar_custom_maps() {
 	      "value" => Array(__("Yes, please", "js_composer") => 'true'),
 	      "dependency" => Array('element' => "type", 'value' => array('nectarslider_style'))
 	  ));
+		vc_add_param("vc_gallery",array(
+	      "type" => 'checkbox',
+	      "heading" => __("Disable Autorotate?", "js_composer"),
+	      "param_name" => "disable_auto_rotate",
+	      "description" => __("This will stop the slider from automatically rotating.", "js_composer"),
+	      "value" => Array(__("Yes, please", "js_composer") => 'true'),
+	      "dependency" => Array('element' => "type", 'value' => array('nectarslider_style'))
+	  ));
 	  vc_add_param("vc_gallery",array(
 	      "type" => 'checkbox',
 	      "heading" => __("Hide Arrow Navigation?", "js_composer"),
@@ -2356,7 +2493,8 @@ function nectar_custom_maps() {
 	      "param_name" => "bullet_navigation_style",
 	      "value" => array(
 				'See Through & Solid On Active' => 'see_through',
-				'Solid & Scale On Active' => 'scale'
+				'Solid & Scale On Active' => 'scale',
+				'See Through - Autorotate Visualized' => 'see_through_ar_visualized'
 	      ),
 	      'save_always' => true,
 	      "description" => 'Please select your overall bullet navigation style here.',
@@ -2422,7 +2560,7 @@ function nectar_custom_maps() {
 	      "type" => 'checkbox',
 	      "heading" => __("Constrain Max Columns to 4?", "js_composer"),
 	      "param_name" => "constrain_max_cols",
-	      "description" => __("This will change the max columns to 4 (default is 5 for fullwidth). Activating this will make it easier to create a grid with no empty spaces at the end of the list on all screen sizes. (Won't be used if masonry layout is active)", "js_composer"),
+	      "description" => __("This will change the max columns to 4 (default is 5 for fullwidth). Activating this will make it easier to create a grid with no empty spaces at the end of the list on all screen sizes.", "js_composer"),
 	      "value" => Array(__("Yes, please", "js_composer") => 'true'),
 	      "dependency" => Array('element' => "layout", 'value' => 'fullwidth')
 	));

@@ -76,7 +76,78 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
             $imported = false;
 
             $this->field['wbc_demo_imports'] = apply_filters( "redux/{$this->parent->args['opt_name']}/field/wbc_importer_files", array() );
+            
+            /*nectar addition*/
+            
+            
+            echo '<div class="nectar-demo-importer-selection-modal-backdrop"></div> <div class="nectar-demo-importer-selection-modal">';
+            
+            echo '
+                <div class="nectar-demo-preview-header"><div class="nectar-preview-img"></div><span>'. esc_html__("Selected Demo","salient") .'</span><h2></h2></div>
+                <div class="inner-wrap">';
+                
+                $plugin_array = array(
+                  array(
+                    'name'          => 'Salient WPBakery Page Builder',
+                    'slug'          => 'js_composer_salient', 
+                    'source'            => get_template_directory() . '/plugins/js_composer_salient.zip'
+                  ),
+                  array(
+                    'slug' => 'woocommerce'
+                  ),
+                  array(
+                    'slug' => 'yith-woocommerce-ajax-navigation'
+                  ),
+                  array(
+                    'slug' => 'popup-maker'
+                  )
+                );
 
+                if(class_exists('Connekt_Plugin_Installer')){
+                  Connekt_Plugin_Installer::init($plugin_array);
+                }
+                
+                echo '<h3>'. esc_html__('Demo Content To Import','salient').'</h3>';
+                
+                echo '<div class="demo-importer-form-row first-row">
+                    
+                    <div class="redux-container-switch import-nectar-theme-demo-content">
+                      <div class="switch-options salient activated">
+                      </div>
+                    </div>
+                    
+                    <a class="theme-demo-import-option" href="#">' . esc_html__("Demo Content","salient") . '<span>'. esc_html__("This includes all pages, posts and other content shown in the demo.","salient") . '</span></a>
+                  </div>
+                  
+                  <div class="demo-importer-form-row">
+                  
+                    <div class="redux-container-switch import-nectar-theme-option-settings">
+                      <div class="switch-options salient activated">
+                      </div>
+                    </div>
+                    <a class="theme-demo-import-option" href="#">' . esc_html__("Theme Option Settings","salient") . '<span>'. esc_html__("This will override your current theme option settings.","salient") . '</span></a>
+                  
+                  </div>
+                  
+                  <div class="demo-importer-form-row">
+                  
+                    <div class="redux-container-switch import-nectar-theme-demo-widgets">
+                      <div class="switch-options salient activated">
+                      </div>
+                    </div>
+                  
+                    <a class="theme-demo-import-option" href="#">' . esc_html__("Widgets","salient") . '<span>'. esc_html__("This will only add new widgets - your existing widgets will be retained.","salient") . '</span></a>
+                  </div>
+                  
+                  <div class="demo-importer-form-row">
+                    <a href="#" class="button submit">'. esc_html__('Confirm Demo Import','salient') . '</a>
+                    <a href="#" class="close button">'. esc_html__('Cancel','salient') . '</a>
+                  </div>';
+            
+            echo '</div></div>';
+            
+            //screenshots
+            /*nectar addition end*/
             echo '<div class="theme-browser"><div class="themes">';
 
             if ( !empty( $this->field['wbc_demo_imports'] ) ) {
@@ -145,7 +216,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
 
             wp_enqueue_script(
                 'redux-field-wbc-importer-js',
-                $this->extension_url . '/field_wbc_importer' . $min . '.js',
+                $this->extension_url . '/field_wbc_importer.js',
                 array( 'jquery' ),
                 time(),
                 true

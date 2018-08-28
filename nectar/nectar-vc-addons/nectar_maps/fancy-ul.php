@@ -882,7 +882,7 @@ return array(
 			 "Extra Color 3" => "Extra-Color-3"
 		   ),
 		  "dependency" => Array('element' => "icon_type", 'value' => array('font_icon','standard_dash')),
-		 'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+		 'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 		),
 		array(
 		  "type" => "dropdown",
@@ -922,7 +922,7 @@ return array(
 	      "heading" => __("Text Content", "js_composer"),
 	      "param_name" => "content",
 	      "value" => __("", "js_composer"),
-	      "description" => __("Please use the Unordered List button <img src='".get_template_directory_uri() ."/nectar/assets/img/icons/ul.png' alt='unordered list' /> on the editor to create the points of your fancy list.", "js_composer")
+	      "description" => "Please use the Unordered List button <img src='".get_template_directory_uri() ."/nectar/assets/img/icons/ul.png' alt='unordered list' /> on the editor to create the points of your fancy list."
 	    )
 	  )
 	);

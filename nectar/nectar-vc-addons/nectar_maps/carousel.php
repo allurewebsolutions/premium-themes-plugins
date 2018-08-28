@@ -94,7 +94,7 @@ return array(
 				"Color Gradient 2" => "extra-color-gradient-2"
 			),
 			"dependency" => array('element' => "flickity_formatting", 'value' => array('fixed_text_content_fullwidth')),
-			'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 		),
 		
 	   array(
@@ -231,6 +231,21 @@ return array(
 		 "description" => __("" , "js_composer")
 	 ),
 	 
+	 array(
+		 "type" => "dropdown",
+		 "class" => "",
+		 "heading" => "Pagination Alignment",
+		 'save_always' => true,
+		 "param_name" => "pagination_alignment_flickity",
+		 "value" => array(
+			 "Middle" => "default",
+			 "Left" => "left",
+			 "Right" => "right"
+		 ),
+	 	 "dependency" => array('element' => "flickity_formatting", 'value' => array('default')),
+		 "description" => __("" , "js_composer")
+	 ),
+		 
 	   array(
 	      "type" => "textfield",
 	      "heading" => __("Carousel Title", "js_composer"),

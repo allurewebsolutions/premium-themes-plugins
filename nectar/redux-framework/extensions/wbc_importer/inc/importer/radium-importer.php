@@ -253,7 +253,7 @@ if ( !class_exists( 'Radium_Theme_Importer' ) ) {
       // File exists?
       if ( ! file_exists( $file ) ) {
         wp_die(
-          __( 'Theme options Import file could not be found. Please try again.', 'radium' ),
+          __( 'Theme options Import file could not be found. Please try again.', 'salient' ),
           '',
           array( 'back_link' => true )
         );
@@ -273,10 +273,14 @@ if ( !class_exists( 'Radium_Theme_Importer' ) ) {
 
 
           update_option( $this->theme_option_name, $data );
+          
+          /*nectar addition*/
+          echo 'success';
+          /*nectar addition*/
       }
 
       do_action( 'wbc_importer_after_theme_options_import', $this->active_import, $this->demo_files_path );
-
+      
     }
 
     /**
@@ -328,7 +332,7 @@ if ( !class_exists( 'Radium_Theme_Importer' ) ) {
       // File exists?
       if ( ! file_exists( $file ) ) {
         wp_die(
-          __( 'Widget Import file could not be found. Please try again.', 'radium' ),
+          __( 'Widget Import file could not be found. Please try again.', 'salient' ),
           '',
           array( 'back_link' => true )
         );
@@ -402,7 +406,7 @@ if ( !class_exists( 'Radium_Theme_Importer' ) ) {
           $sidebar_available = false;
           $use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
           $sidebar_message_type = 'error';
-          $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'radium' );
+          $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'salient' );
         }
 
         // Result for sidebar
@@ -424,7 +428,7 @@ if ( !class_exists( 'Radium_Theme_Importer' ) ) {
           if ( ! $fail && ! isset( $available_widgets[$id_base] ) ) {
             $fail = true;
             $widget_message_type = 'error';
-            $widget_message = __( 'Site does not support widget', 'radium' ); // explain why widget not imported
+            $widget_message = __( 'Site does not support widget', 'salient' ); // explain why widget not imported
           }
 
           // Filter to modify settings before import
@@ -447,7 +451,7 @@ if ( !class_exists( 'Radium_Theme_Importer' ) ) {
 
                 $fail = true;
                 $widget_message_type = 'warning';
-                $widget_message = __( 'Widget already exists', 'radium' ); // explain why widget not imported
+                $widget_message = __( 'Widget already exists', 'salient' ); // explain why widget not imported
 
                 break;
 
@@ -496,17 +500,17 @@ if ( !class_exists( 'Radium_Theme_Importer' ) ) {
             // Success message
             if ( $sidebar_available ) {
               $widget_message_type = 'success';
-              $widget_message = __( 'Imported', 'radium' );
+              $widget_message = __( 'Imported', 'salient' );
             } else {
               $widget_message_type = 'warning';
-              $widget_message = __( 'Imported to Inactive', 'radium' );
+              $widget_message = __( 'Imported to Inactive', 'salient' );
             }
 
           }
 
           // Result for widget instance
           $results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
-          $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget->title ? $widget->title : __( 'No Title', 'radium' ); // show "No Title" if widget instance is untitled
+          $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget->title ? $widget->title : __( 'No Title', 'salient' ); // show "No Title" if widget instance is untitled
           $results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
           $results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 
@@ -516,6 +520,9 @@ if ( !class_exists( 'Radium_Theme_Importer' ) ) {
 
       // Hook after import
       do_action( 'radium_theme_import_widget_after_import' );
+      /*nectar addition*/
+      echo 'success';
+      /*nectar addition*/
 
       // Return results
       return apply_filters( 'radium_theme_import_widget_results', $results );

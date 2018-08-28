@@ -13,8 +13,9 @@
       "param_name" => "testimonial_style",
       "value" => array(
          "Small Modern" => "small_modern",
-				 "Basic" => "basic",
 				 "Big Bold" => "bold",
+				 "Basic" => "basic",
+				 "Basic - Left Image" => "basic_left_image",
        ),
       'save_always' => true,
       'description' => __( 'Choose your desired style here.', 'js_composer' ),
@@ -60,7 +61,7 @@
        ),
       'save_always' => true,
       "dependency" => array('element' => "testimonial_style", 'value' => array('small_modern','bold')),
-      'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+      'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
     ),
 
 	  )

@@ -27,7 +27,7 @@ if(!empty($image)){
 $open_quote = ($testimonial_style == 'basic') ? '&#8220;' : null; 
 $close_quote = ($testimonial_style == 'basic') ? '&#8221;' : null; 
 
-if($testimonial_style != 'basic') {
+if($testimonial_style != 'basic' && $testimonial_style != 'basic_left_image') {
 	$open_quote = '<span class="open-quote">&#8221;</span>'; 
 }
 

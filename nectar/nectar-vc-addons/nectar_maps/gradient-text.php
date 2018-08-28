@@ -32,7 +32,7 @@ return array(
 					"Color Gradient 1" => "extra-color-gradient-1",
 			 		"Color Gradient 2" => "extra-color-gradient-2"
 				),
-				'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>. <br/> Will fallback to the first color of the gardient on non webkit browsers.', 'js_composer' ),
+				'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a> <br/> Will fallback to the first color of the gardient on non webkit browsers.',
 			),
 			array(
 				"type" => "dropdown",

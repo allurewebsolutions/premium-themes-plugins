@@ -23,6 +23,7 @@ extract(shortcode_atts(array(
 	'css' => '',
 	'enable_animation' => '',
 	'animation' => '', 
+	'enable_border' => '',
 	'box_alignment' => 'left',
 	'delay' => ''
 	
@@ -166,7 +167,7 @@ if($box_style == 'parallax_hover') {
 } else {
 	
 
-	$output = '<div class="nectar-fancy-box '.$using_img_class.' '.$css_class.'" data-style="'. $box_style .'" data-animation="'.strtolower($parsed_animation).'" data-box-color-opacity="'.$box_color_opacity.'" data-delay="'.$delay.'" data-alignment="'.$box_alignment.'" data-color="'.strtolower($color).'" '.$style2.'>';
+	$output = '<div class="nectar-fancy-box '.$using_img_class.' '.$css_class.'" data-style="'. $box_style .'" data-animation="'.strtolower($parsed_animation).'" data-border="'.$enable_border.'" data-box-color-opacity="'.$box_color_opacity.'" data-delay="'.$delay.'" data-alignment="'.$box_alignment.'" data-color="'.strtolower($color).'" '.$style2.'>';
 	$output .= $extra_wrap_open2 . '<div class="box-bg" '.$style.'></div> <div class="inner" style="min-height: '.$min_height.'px">'.$extra_wrap_open . $icon_markup . do_shortcode($content) . $extra_wrap_close. '</div> '.$text_link.' '.$box_link. $extra_wrap_close2 .' </div>';
 
 }

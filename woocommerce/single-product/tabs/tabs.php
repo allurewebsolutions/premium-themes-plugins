@@ -21,13 +21,14 @@ $tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 global $options;
 
-$fullwidth_tabs = (!empty($options['product_tab_position']) && $options['product_tab_position'] == 'fullwidth') ? true : false;
+$tab_style = (!empty($options['product_tab_position'])) ? $options['product_tab_position'] : 'default';
+$fullwidth_tabs = (!empty($options['product_tab_position']) && $options['product_tab_position'] == 'fullwidth' || !empty($options['product_tab_position']) && $options['product_tab_position'] == 'fullwidth_centered') ? true : false;
 
 if ( ! empty( $tabs ) ) : ?>
 
-	<div class="woocommerce-tabs wc-tabs-wrapper <?php if($fullwidth_tabs == true) echo 'full-width-tabs'; ?>">
+	<div class="woocommerce-tabs wc-tabs-wrapper <?php if($fullwidth_tabs == true) echo 'full-width-tabs'; ?>" data-tab-style="<?php echo $tab_style; ?>">
 
-		<?php if($fullwidth_tabs == true) echo '<div class="full-width-content"> <div class="tab-container container">'; ?>
+		<?php if($fullwidth_tabs == true) echo '<div class="full-width-content" data-tab-style="'. $tab_style .'"> <div class="tab-container container">'; ?>
 
 			<ul class="tabs">
 				<?php foreach ( $tabs as $key => $tab ) : ?>

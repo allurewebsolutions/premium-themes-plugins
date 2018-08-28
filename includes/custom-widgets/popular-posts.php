@@ -13,10 +13,10 @@ class Nectar_Popular_Posts extends WP_Widget {
 
 		$widget_ops = array(
 			'classname'   => 'nectar_popular_posts_widget',
-			'description' => __( 'Display your most popular posts.', NECTAR_THEME_NAME ),
+			'description' => __( 'Display your most popular posts.', 'salient' ),
 		);
 
-		parent::__construct( 'nectar_popular_posts', __('Nectar Popular Posts', NECTAR_THEME_NAME), $widget_ops );
+		parent::__construct( 'nectar_popular_posts', __('Nectar Popular Posts', 'salient'), $widget_ops );
 
 	}
 
@@ -150,42 +150,42 @@ class Nectar_Popular_Posts extends WP_Widget {
 			'timeline' => 'All Time',
 			'title' => '',
 			'style' => 'Hover Featured Image',
-			'orderby' => esc_attr__( 'Highest Views', NECTAR_THEME_NAME ),
+			'orderby' => esc_attr__( 'Highest Views', 'salient' ),
 		);
 
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_attr_e( 'Title:', NECTAR_THEME_NAME ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_attr_e( 'Title:', 'salient' ); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'number_of_posts' ); ?>"><?php esc_attr_e( 'Number Of Posts:', NECTAR_THEME_NAME ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'number_of_posts' ); ?>"><?php esc_attr_e( 'Number Of Posts:', 'salient' ); ?></label>
 			<input type="text" style="width: 33px;" id="<?php echo $this->get_field_id( 'number_of_posts' ); ?>" name="<?php echo $this->get_field_name( 'number_of_posts' ); ?>" value="<?php echo $instance['number_of_posts']; ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php esc_attr_e( 'Style:', NECTAR_THEME_NAME ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php esc_attr_e( 'Style:', 'salient' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>" class="widefat" style="width:100%;">	
-				<option <?php if ( esc_attr__( 'Hover Featured Image', NECTAR_THEME_NAME ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Hover Featured Image', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Hover Featured Image Gradient And Counter', NECTAR_THEME_NAME ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Hover Featured Image Gradient And Counter', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Minimal Counter', NECTAR_THEME_NAME ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Minimal Counter', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Featured Image Left', NECTAR_THEME_NAME ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Featured Image Left', NECTAR_THEME_NAME ); ?></option>
+				<option <?php if ( esc_attr__( 'Hover Featured Image', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Hover Featured Image', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Hover Featured Image Gradient And Counter', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Hover Featured Image Gradient And Counter', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Minimal Counter', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Minimal Counter', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Featured Image Left', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Featured Image Left', 'salient' ); ?></option>
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'timeline' ); ?>"><?php esc_attr_e( 'Timeline:', NECTAR_THEME_NAME ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'timeline' ); ?>"><?php esc_attr_e( 'Timeline:', 'salient' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'timeline' ); ?>" name="<?php echo $this->get_field_name( 'timeline' ); ?>" class="widefat" style="width:100%;">	
-				<option <?php if ( esc_attr__( 'All Time', NECTAR_THEME_NAME ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'All Time', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Posts Published Within 7 Days', NECTAR_THEME_NAME ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Posts Published Within 7 Days', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Posts Published Within 30 Days', NECTAR_THEME_NAME ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Posts Published Within 30 Days', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Posts Published Within 1 Year', NECTAR_THEME_NAME ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Posts Published Within 1 Year', NECTAR_THEME_NAME ); ?></option>
+				<option <?php if ( esc_attr__( 'All Time', 'salient' ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'All Time', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Posts Published Within 7 Days', 'salient' ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Posts Published Within 7 Days', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Posts Published Within 30 Days', 'salient' ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Posts Published Within 30 Days', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Posts Published Within 1 Year', 'salient' ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Posts Published Within 1 Year', 'salient' ); ?></option>
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php esc_attr_e( 'Popular Posts Order By:', NECTAR_THEME_NAME ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php esc_attr_e( 'Popular Posts Order By:', 'salient' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'orderby' ); ?>" name="<?php echo $this->get_field_name( 'orderby' ); ?>" class="widefat" style="width:100%;">	
-				<option <?php if ( esc_attr__( 'Highest Views', NECTAR_THEME_NAME ) == $instance['orderby'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Highest Views', NECTAR_THEME_NAME ); ?></option>
-				<option <?php if ( esc_attr__( 'Highest Comments', NECTAR_THEME_NAME ) == $instance['orderby'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Highest Comments', NECTAR_THEME_NAME ); ?></option>
+				<option <?php if ( esc_attr__( 'Highest Views', 'salient' ) == $instance['orderby'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Highest Views', 'salient' ); ?></option>
+				<option <?php if ( esc_attr__( 'Highest Comments', 'salient' ) == $instance['orderby'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Highest Comments', 'salient' ); ?></option>
 			</select>
 		</p>
 		

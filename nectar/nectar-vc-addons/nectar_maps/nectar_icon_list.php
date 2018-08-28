@@ -38,9 +38,36 @@
 				"Color Gradient 2" => "extra-color-gradient-2"
 			),
 			'save_always' => true,
-			'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 		),
-
+		array(
+			"type" => "dropdown",
+			"heading" => __("Direction", "js_composer"),
+			"param_name" => "direction",
+			"value" => array(
+				"Vertical" => "vertical",
+				"Horizontal" => "horizontal"
+			),
+			'save_always' => true,
+			"description" => __("Please select the direction you would like your list items to display in", "js_composer")
+		),
+		array(
+			"type" => "dropdown",
+			"heading" => __("Columns", "js_composer"),
+			"param_name" => "columns",
+			"value" => array(
+				"Default (3)" => "default",
+				"1" => "1",
+				"2" => "2",
+				"3" => "3",
+				"4" => "4",
+				"5" => "5",
+			),
+			"dependency" => array('element' => "direction", 'value' => 'horizontal'),
+			'save_always' => true,
+			"description" => __("Please select the column number you desire for your icon list items", "js_composer")
+		),
+		
 	    array(
 	      "type" => "dropdown",
 	      "heading" => __("Icon Size", "js_composer"),
@@ -51,7 +78,7 @@
 				"Large" => "large"
 			),
 	      'save_always' => true,
-	      "description" => __("Please select the direction you would like your list items to display in", "js_composer")
+	      "description" => __("Please select the size you would like your list item icons to display in", "js_composer")
 	    ),
 
 	    array(
@@ -59,11 +86,11 @@
 	      "heading" => __("Icon Style", "js_composer"),
 	      "param_name" => "icon_style",
 	      "value" => array(
-				"Icon Colored W/ Border" => "border",
-				"Icon Colored No Border" => "no-border"
+				"Icon Colored W/ BG" => "border",
+				"Icon Colored No BG" => "no-border"
 			),
 	      'save_always' => true,
-	      "description" => __("Please select the direction you would like your list items to display in", "js_composer")
+	      "description" => __("Please select the style you would like your list item icons to display in", "js_composer")
 	    ),
 
 	  ),

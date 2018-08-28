@@ -100,7 +100,7 @@ vc_remove_element("vc_wp_text");
 
 //remove WC elements
 function your_name_vc_remove_woocommerce() {
-    if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+    if ( class_exists( 'woocommerce' ) ) {
         //vc_remove_element("woocommerce_cart");
 		//vc_remove_element("woocommerce_checkout");
 		//vc_remove_element("woocommerce_order_tracking");
@@ -1665,9 +1665,9 @@ function nectar_custom_maps() {
 			if (empty($locations)) {
 				$location_desc = 
 			      '<div class="alert">' .
-				 __('You currently don\'t have any Slider Locations setup. Please create some and add assign slides to them before using this!',NECTAR_THEME_NAME). 
+				 __('You currently don\'t have any Slider Locations setup. Please create some and add assign slides to them before using this!','salient'). 
 				'<br/><br/>
-				<a href="' . admin_url('edit.php?post_type=nectar_slider') . '">'. __('Link to Nectar Slider', NECTAR_THEME_NAME) . '</a>
+				<a href="' . admin_url('edit.php?post_type=nectar_slider') . '">'. __('Link to Nectar Slider', 'salient') . '</a>
 				</div>';
 			} else { $location_desc = ''; }
 
@@ -6846,7 +6846,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 	      "heading" => __("Text Content", "js_composer"),
 	      "param_name" => "content",
 	      "value" => __("", "js_composer"),
-	      "description" => __("Please use the Unordered List button <img src='".get_template_directory_uri() ."/nectar/assets/img/icons/ul.png' alt='unordered list' /> on the editor to create the points of your fancy list.", "js_composer")
+	      "description" => "Please use the Unordered List button <img src='".get_template_directory_uri() ."/nectar/assets/img/icons/ul.png' alt='unordered list' /> on the editor to create the points of your fancy list."
 	    )
 	  )
 	));

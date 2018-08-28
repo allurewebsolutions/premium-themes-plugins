@@ -29,7 +29,7 @@ if($link_style == 'play_button_2') {
 
 	  if(!empty($image_url)) {
         	if(!preg_match('/^\d+$/',$image_url)){
-        		$image = '<img src="'.$image_url.'" alt="" />';
+        		$image = '<img src="'.$image_url.'" alt="video preview" />';
         	} else {
         		$image = wp_get_attachment_image($image_url, 'full');
         	}  

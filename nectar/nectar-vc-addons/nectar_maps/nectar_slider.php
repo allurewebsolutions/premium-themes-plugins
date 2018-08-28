@@ -17,9 +17,9 @@
 	if (empty($locations)) {
 		$location_desc = 
 	      '<div class="alert">' .
-		 __('You currently don\'t have any Slider Locations setup. Please create some and add assign slides to them before using this!',NECTAR_THEME_NAME). 
+		 __('You currently don\'t have any Slider Locations setup. Please create some and add assign slides to them before using this!','salient'). 
 		'<br/><br/>
-		<a href="' . admin_url('edit.php?post_type=nectar_slider') . '">'. __('Link to Nectar Slider', NECTAR_THEME_NAME) . '</a>
+		<a href="' . admin_url('edit.php?post_type=nectar_slider') . '">'. __('Link to Nectar Slider', 'salient') . '</a>
 		</div>';
 	} else { $location_desc = ''; }
 
@@ -120,11 +120,24 @@
 	      "param_name" => "bullet_navigation_style",
 	      "value" => array(
 				'See Through & Solid On Active' => 'see_through',
-				'Solid & Scale On Active' => 'scale'
+				'Solid & Scale On Active' => 'scale',
+				'See Through - Autorotate Visualized' => 'see_through_ar_visualized'
 	      ),
 	      "description" => 'Please select your overall bullet navigation style here.',
 	      "dependency" => Array('element' => "bullet_navigation", 'not_empty' => true)
 	    ),
+			array(
+			 "type" => "dropdown",
+			 "heading" => __("Bullet Navigation Position", "js_composer"),
+			 "param_name" => "bullet_navigation_position",
+			 "value" => array(
+			 'Bottom' => 'bottom',
+			 'Left' => 'left',
+			 'Right' => 'right'
+			 ),
+			 "description" => 'Please select your bullet navigation position here.',
+			 "dependency" => Array('element' => "bullet_navigation", 'not_empty' => true)
+		 ),
 	    array(
 	      "type" => 'checkbox',
 	      "heading" => __("Enable Swipe on Desktop?", "js_composer"),
@@ -137,14 +150,30 @@
 	      "type" => 'checkbox',
 	      "heading" => __("Parallax Slider?", "js_composer"),
 	      "param_name" => "parallax",
-	      "description" => __("will only activate if the slider is the <b>top level element</b> in the page", "js_composer"),
 	      "value" => Array(__("Yes, please", "js_composer") => 'true')
 	    ),
+			array(
+	      "type" => 'checkbox',
+				"dependency" => Array('element' => "parallax", 'value' => 'true'),
+	      "heading" => __("Disable Parallax On Mobile", "js_composer"),
+	      "param_name" => "disable_parallax_mobile",
+	      "value" => Array(__("Yes, please", "js_composer") => 'true')
+	    ),
+		 array(
+				"type" => "dropdown",
+				"heading" => __("Slide BG Animation", "js_composer"),
+				"param_name" => "bg_animation",
+				"value" => array(
+				 'None' => 'none',
+				 'Ken Burns' => 'ken_burns'
+				),
+				'save_always' => true
+			),
 	    array(
 	      "type" => 'checkbox',
 	      "heading" => __("Loop Slider?", "js_composer"),
 	      "param_name" => "loop",
-	      "description" => __("Would you like your slider to loop infinitely?", "js_composer"),
+	      "description" => __("Would you like your slider to loop infinitely? <br/> Note - keep this option off if you are using slides with video backgrounds and would like them to play on mobile devices", "js_composer"),
 	      "value" => Array(__("Yes, please", "js_composer") => 'true'),
 	      "dependency" => Array('element' => "overall_style", 'value' => 'classic')
 	    ),
@@ -157,6 +186,20 @@
 				'Fade' => 'fade'
 	      ),
 	      "description" => 'Please select your slider transition here',
+	      "dependency" => Array('element' => "overall_style", 'value' => 'classic'),
+	      'save_always' => true
+	    ),
+			array(
+	      "type" => "dropdown",
+	      "heading" => __("Caption Transition", "js_composer"),
+	      "param_name" => "caption_transition",
+	      "value" => array(
+				'Fade In From Bottom' => 'fade_in_from_bottom',
+				'Title Reveal' => 'reveal_title',
+			//	'Individual Letter Title Reveal' => 'individual_letter_reveal',
+				'None' => 'none'
+	      ),
+	      "description" => 'Please select your slider caption transition here',
 	      "dependency" => Array('element' => "overall_style", 'value' => 'classic'),
 	      'save_always' => true
 	    ),

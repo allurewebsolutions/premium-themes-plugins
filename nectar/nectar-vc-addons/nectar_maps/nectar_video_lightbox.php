@@ -40,7 +40,7 @@ return array(
 		   ),
 		  'save_always' => true,
 		  "dependency" => array('element' => "link_style", 'value' => array("play_button_2","play_button_with_text")),
-		  'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 		),
 	    array(
 	      "type" => "fws_image",
@@ -134,7 +134,7 @@ return array(
 		   ),
 		  'save_always' => true,
 		  "dependency" => array('element' => "link_style", 'value' => "nectar-button"),
-		  'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 		),
 
 	  )

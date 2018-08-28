@@ -1,6 +1,14 @@
 <?php 
 
-extract(shortcode_atts(array("carousel_title" => '', "scroll_speed" => 'medium', 'loop' => 'false', 'flickity_fixed_content' => '', 'flickity_formatting' => 'default', 'easing' => 'easeInExpo', 'autorotate' => '', 'enable_animation' => '', 'delay' => '', 'autorotation_speed' => '5000','column_padding' => '' ,'script' => 'carouFredSel', 'desktop_cols' => '4', 'desktop_small_cols' => '3', 'tablet_cols' => '2','mobile_cols' => '1', 'cta_button_text' => '', 'cta_button_url' => '', 'cta_button_open_new_tab' => '', 'button_color' => '', 'enable_column_border' => '', 'border_radius' => 'none', 'column_color' => '', 'desktop_cols_flickity' => '3', 'desktop_small_cols_flickity' => '3', 'tablet_cols_flickity' => '2'), $atts));
+extract(shortcode_atts(array("carousel_title" => '', "scroll_speed" => 'medium', 'loop' => 'false', 'flickity_fixed_content' => '', 
+'flickity_formatting' => 'default', 'easing' => 'easeInExpo', 'autorotate' => '', 'enable_animation' => '', 'delay' => '', 
+'autorotation_speed' => '5000','column_padding' => '' ,'script' => 'carouFredSel', 
+'desktop_cols' => '4', 'desktop_small_cols' => '3', 'tablet_cols' => '2','mobile_cols' => '1', 
+'cta_button_text' => '', 'cta_button_url' => '', 'cta_button_open_new_tab' => '', 
+'button_color' => '', 'enable_column_border' => '', 'border_radius' => 'none', 
+'pagination_alignment_flickity' => 'default',
+'column_color' => '', 'desktop_cols_flickity' => '3', 'desktop_small_cols_flickity' => '3', 
+'tablet_cols_flickity' => '2'), $atts));
 
 $GLOBALS['nectar-carousel-script'] = $script;
 $GLOBALS['nectar_carousel_column_color'] = $column_color;
@@ -63,7 +71,7 @@ if($script == 'carouFredSel') {
 		
 	}
 	
-	echo '<div class="nectar-flickity not-initialized nectar-carousel" data-border-radius="'.$border_radius.'" data-column-border="'.$enable_column_border.'" data-column-padding="'.$column_padding.'" data-format="'.$flickity_formatting.'" data-autoplay="'.$autorotate.'" data-autoplay-dur="'.$autorotation_speed.'"  data-controls="material_pagination" data-desktop-columns="'.$desktop_cols_flickity.'" data-small-desktop-columns="'.$desktop_small_cols_flickity.'" data-tablet-columns="'.$tablet_cols_flickity.'">';
+	echo '<div class="nectar-flickity not-initialized nectar-carousel" data-pagination-alignment="'.$pagination_alignment_flickity.'" data-border-radius="'.$border_radius.'" data-column-border="'.$enable_column_border.'" data-column-padding="'.$column_padding.'" data-format="'.$flickity_formatting.'" data-autoplay="'.$autorotate.'" data-autoplay-dur="'.$autorotation_speed.'"  data-controls="material_pagination" data-desktop-columns="'.$desktop_cols_flickity.'" data-small-desktop-columns="'.$desktop_small_cols_flickity.'" data-tablet-columns="'.$tablet_cols_flickity.'">';
 		echo do_shortcode($content);
 	echo '</div>';
 	

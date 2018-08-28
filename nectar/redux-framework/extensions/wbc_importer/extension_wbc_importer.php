@@ -53,11 +53,26 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
             $this->parent = $parent;
 
             if ( !is_admin() ) return;
+            
+            /* do not load anywhere except needed (performance) */
+            if ( isset($_GET['page']) && $_GET['page'] == $this->parent->args['page_slug'] || isset($_REQUEST['demo_import_id']) || isset($_REQUEST['plugin_src']) ) { 
+              //init
+            } else {
+              //still add menu item
+              $this->add_importer_section();
+              return; 
+            }
+            
+            //plugin installer
+            if(file_exists( dirname( __FILE__ ) . '/wbc_importer/connekt-plugin-installer/class-connekt-plugin-installer.php' ) ) {
+              include_once('wbc_importer/connekt-plugin-installer/class-connekt-plugin-installer.php');
+            }
 
             //Hides importer section if anything but true returned. Way to abort :)
             if ( true !== apply_filters( 'wbc_importer_abort', true ) ) {
                 return;
             }
+            
 
             if ( empty( $this->extension_dir ) ) {
                 $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
@@ -102,7 +117,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
          * @return array list of files for demos
          */
         public function demoFiles() {
-
+        
             $this->filesystem = $this->parent->filesystem->execute( 'object' );
             $dir_array = $this->filesystem->dirlist( $this->demo_data_dir, false, true );
 
@@ -228,7 +243,11 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
                 $this->active_import_id = $_REQUEST['demo_import_id'];
                 
                 $this->active_import = array( $this->active_import_id => $this->wbc_import_files[$this->active_import_id] );
-
+                
+                $this->nectar_import_demo_content = ( isset($_REQUEST['import_demo_content']) ) ? $_REQUEST['import_demo_content'] : 'true';
+                $this->nectar_import_theme_option_settings = ( isset($_REQUEST['import_theme_option_settings']) ) ? $_REQUEST['import_theme_option_settings'] : 'true';
+                $this->nectar_import_demo_widgets = ( isset($_REQUEST['import_demo_widgets']) ) ? $_REQUEST['import_demo_widgets'] : 'true';
+                
                 if ( !isset( $import_parts['imported'] ) || true === $reimporting ) {
                     include $this->extension_dir.'inc/init-installer.php';
                     $installer = new Radium_Theme_Demo_Data_Importer( $this, $this->parent );

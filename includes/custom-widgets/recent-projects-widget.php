@@ -45,8 +45,8 @@ add_action('widgets_init', 'Recent_Projects_init');
 class Recent_Projects_Widget extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array('classname' => 'recent_projects_widget', 'description' => __( "The most recent projects on your site.",NECTAR_THEME_NAME));
-		parent::__construct('recent-projects', __('Recent Projects',NECTAR_THEME_NAME), $widget_ops);
+		$widget_ops = array('classname' => 'recent_projects_widget', 'description' => __( "The most recent projects on your site.",'salient'));
+		parent::__construct('recent-projects', __('Recent Projects','salient'), $widget_ops);
 		$this->alt_option_name = 'recent_projects_widget';
 
 		add_action( 'save_post', array(&$this, 'flush_widget_cache') );
@@ -70,7 +70,7 @@ class Recent_Projects_Widget extends WP_Widget {
 		ob_start();
 		extract($args);
 
-		$title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Projects',NECTAR_THEME_NAME) : $instance['title']);
+		$title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Projects','salient') : $instance['title']);
 		if ( !$number = (int) $instance['number'] )
 			$number = 6;
 		else if ( $number < 1 )
@@ -146,12 +146,12 @@ class Recent_Projects_Widget extends WP_Widget {
 		else if ( $number > 9 )
 			$number = 9;
 ?>
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', NECTAR_THEME_NAME); ?></label>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'salient'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
-		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of projects to show:', NECTAR_THEME_NAME); ?></label>
+		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of projects to show:', 'salient'); ?></label>
 		<input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="2" /><br />
-		<small><?php _e('Change in increments of 3 (at most 9)', NECTAR_THEME_NAME); ?></small></p>
+		<small><?php _e('Change in increments of 3 (at most 9)', 'salient'); ?></small></p>
 <?php
 	}
 }

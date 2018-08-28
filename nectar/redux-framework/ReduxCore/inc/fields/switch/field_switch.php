@@ -39,10 +39,14 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
             $fixed_ID = $this->field['id'];
             $legacy_switch = (!empty($old_options[$fixed_ID])) ? $old_options[$fixed_ID] : '-';
             $display_val = (isset($salient_redux[$this->field['id']]) || $legacy_switch == '-') ? $this->value : $legacy_switch;
-
+            
             //Get selected
+            /*nectar addition*/
+            $activated_switch = '';
+            /*nectar addition end*/
             if ( (int) $display_val == 1 ) {
                 $cb_enabled = ' selected';
+                $activated_switch = 'activated';
             } else {
                 $cb_disabled = ' selected';
             }
@@ -53,8 +57,10 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
 
             //Label OFF
             $this->field['off'] = isset( $this->field['off'] ) ? $this->field['off'] : __( 'Off', 'redux-framework' );
-
-            echo '<div class="switch-options">';
+            
+            /*nectar addition*/
+            echo '<div class="switch-options salient '.$activated_switch.'">';
+            /*nectar addition end*/
             echo '<label class="cb-enable' . $cb_enabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['on'] . '</span></label>';
             echo '<label class="cb-disable' . $cb_disabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['off'] . '</span></label>';
             echo '<input type="hidden" class="checkbox checkbox-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $display_val . '" />';

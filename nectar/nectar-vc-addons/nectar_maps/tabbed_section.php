@@ -23,7 +23,8 @@
 			 "Material" => "material",
 			 "Minimal" => "minimal",
 			 "Minimal Alt" => "minimal_alt",
-			 "Vertical" => "vertical"
+			 "Vertical" => "vertical",
+			 "Vertical Material" => "vertical_modern"
 		   ),
 		  'save_always' => true,
 		  "description" => __("Please select the style you desire for your tabbed element.", "js_composer")
@@ -104,7 +105,7 @@
 			 "Extra Color 3" => "extra-color-3"
 		   ),
 		  'save_always' => true,
-		  'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 		   "dependency" => Array('element' => "style", 'value' => array('minimal','minimal_alt'))
 		),
     

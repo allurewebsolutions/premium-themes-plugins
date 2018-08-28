@@ -45,12 +45,12 @@ $blog_types = ($is_admin) ? get_categories() : array('All' => 'all');
 			  "param_name" => "blog_masonry_style",
 			  "admin_label" => false,
 			  "value" => array(
-			  		 __('Inherit from Theme Options', NECTAR_THEME_NAME) => 'inherit',
-						 __('Material Style', NECTAR_THEME_NAME) => 'material',
-				     __('Classic Style', NECTAR_THEME_NAME) => 'classic',
-             __('Classic Enhanced Style', NECTAR_THEME_NAME) => 'classic_enhanced',
-             __('Meta Overlaid Style', NECTAR_THEME_NAME) => 'meta_overlaid',
-						 __('Auto Masonry: Meta Overlaid Spaced', NECTAR_THEME_NAME) => 'auto_meta_overlaid_spaced'
+			  		 __('Inherit from Theme Options', 'salient') => 'inherit',
+						 __('Material Style', 'salient') => 'material',
+				     __('Classic Style', 'salient') => 'classic',
+             __('Classic Enhanced Style', 'salient') => 'classic_enhanced',
+             __('Meta Overlaid Style', 'salient') => 'meta_overlaid',
+						 __('Auto Masonry: Meta Overlaid Spaced', 'salient') => 'auto_meta_overlaid_spaced'
 				),
 			  'save_always' => true,
 			  "dependency" => Array('element' => "layout", 'value' => array('masonry-blog-sidebar','masonry-blog-fullwidth','masonry-blog-full-screen-width')),
@@ -63,11 +63,11 @@ $blog_types = ($is_admin) ? get_categories() : array('All' => 'all');
 			  "param_name" => "auto_masonry_spacing",
 			  "admin_label" => false,
 			  "value" => array(
-			  	   __('4px', NECTAR_THEME_NAME) => '4px',
-			  		 __('8px', NECTAR_THEME_NAME) => '8px',
-             __('12px', NECTAR_THEME_NAME) => '12px',
-						 __('16px', NECTAR_THEME_NAME) => '16px',
-						 __('20px', NECTAR_THEME_NAME) => '20px',
+			  	   __('4px', 'salient') => '4px',
+			  		 __('8px', 'salient') => '8px',
+             __('12px', 'salient') => '12px',
+						 __('16px', 'salient') => '16px',
+						 __('20px', 'salient') => '20px',
 				),
 			  'save_always' => true,
 			  "dependency" => Array('element' => "blog_masonry_style", 'value' => array('auto_meta_overlaid_spaced')),
@@ -80,10 +80,10 @@ $blog_types = ($is_admin) ? get_categories() : array('All' => 'all');
 			  "param_name" => "blog_standard_style",
 			  "admin_label" => false,
 			  "value" => array(
-			  	   __('Inherit from Theme Options', NECTAR_THEME_NAME) => 'inherit',
-			  		 __('Classic Style', NECTAR_THEME_NAME) => 'classic',
-             __('Minimal Style', NECTAR_THEME_NAME) => 'minimal',
-						 __('Featured Image Left Style', NECTAR_THEME_NAME) => 'featured_img_left',
+			  	   __('Inherit from Theme Options', 'salient') => 'inherit',
+			  		 __('Classic Style', 'salient') => 'classic',
+             __('Minimal Style', 'salient') => 'minimal',
+						 __('Featured Image Left Style', 'salient') => 'featured_img_left',
 				),
 			  'save_always' => true,
 			  "dependency" => Array('element' => "layout", 'value' => array('std-blog-sidebar','std-blog-fullwidth')),
@@ -137,7 +137,7 @@ $blog_types = ($is_admin) ? get_categories() : array('All' => 'all');
 		      "type" => "textfield",
 		      "heading" => __("Post Offset", "js_composer"),
 		      "param_name" => "post_offset",
-		      "description" => __("Optioinally enter a number e.g. \"2\" to offset your posts by - useful for when you're using multiple styles of this element on the same page and would like them to no show duplicate posts", "js_composer")
+		      "description" => __("<b>Will not be used when \"Enable Pagination\" is on.</b> <br/> Optioinally enter a number e.g. \"2\" to offset your posts by - useful for when you're using multiple styles of this element on the same page and would like them to no show duplicate posts.", "js_composer")
 		    ),
 		    array(
 			  "type" => "dropdown",

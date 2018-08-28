@@ -46,7 +46,14 @@ switch($icon_family) {
 		break;
 }
 
-$icon_size_val = (!empty($icon_style) && $icon_style == 'border-basic' || !empty($icon_style) && $icon_style == 'border-animation') ? intval($icon_size)*1.5 : intval($icon_size);
+$icon_size_val = (!empty($icon_style) && $icon_style == 'border-basic' || !empty($icon_style) && $icon_style == 'border-animation' || !empty($icon_style) && $icon_style == 'soft-bg') ? intval($icon_size)*1.5 : intval($icon_size);
+
+//regular icon only grad extra space
+if(!empty($icon_style) && $icon_style == 'default') {
+	if(strtolower($icon_color) == 'extra-color-gradient-1' || strtolower($icon_color) == 'extra-color-gradient-2') {
+		$icon_size_val = intval($icon_size)*1.2;
+	}
+}
 
 //needed because display: initial will cause imperfect cirles
 $grad_dimensions = '';

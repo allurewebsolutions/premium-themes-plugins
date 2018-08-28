@@ -1,10 +1,4 @@
 <?php
-/*
-Name: NectarLove
-Description: Adds a "Love It" link to posts
-Author: Phil Martinez | ThemeNectar
-Author URI: http://themenectar.com
-*/
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
@@ -13,7 +7,7 @@ class NectarLove {
 	 function __construct()   {	
         add_action('wp_enqueue_scripts', array(&$this, 'enqueue_scripts'));
         add_action('wp_ajax_nectar-love', array(&$this, 'ajax'));
-		add_action('wp_ajax_nopriv_nectar-love', array(&$this, 'ajax'));
+		    add_action('wp_ajax_nopriv_nectar-love', array(&$this, 'ajax'));
 	}
 	
 	function enqueue_scripts() {
@@ -117,10 +111,10 @@ class NectarLove {
 		$output = $this->love_post($post->ID);
   
   		$class = 'nectar-love';
-  		$title = __('Love this', NECTAR_THEME_NAME);
+  		$title = __('Love this', 'salient');
 		if( isset($_COOKIE['nectar_love_'. $post->ID]) ){
 			$class = 'nectar-love loved';
-			$title = __('You already love this!', NECTAR_THEME_NAME);
+			$title = __('You already love this!', 'salient');
 		}
 
 		$options = get_nectar_theme_options(); 
@@ -133,9 +127,9 @@ class NectarLove {
 		if( isset($_COOKIE['nectar_love_'. $post->ID])) $heart_icon = '<i class="icon-salient-heart-2 loved"></i>';
 		
 		if( ($post->post_type == 'post' && is_single()) && $post_header_style == 'default_minimal') {
-			return '<a href="#" class="'. $class .'" id="nectar-love-'. $post->ID .'" title="'. $title .'"> '.$heart_icon . __('Love',NECTAR_THEME_NAME) . '<span class="total_loves">' . $output . '</span></a>';
+			return '<a href="#" class="'. $class .'" id="nectar-love-'. $post->ID .'" title="'. $title .'"> '.$heart_icon . __('Love','salient') . '<span class="total_loves">' . $output . '</span></a>';
 		} else if(($post->post_type == 'post' && is_single()) && $post_header_style == 'fullscreen') {
-			return '<a href="#" class="'. $class .'" id="nectar-love-'. $post->ID .'" title="'. $title .'"> '.$heart_icon . $output .' <span class="love-txt plural">'.__("Loves",NECTAR_THEME_NAME).'</span><span class="love-txt single">'.__("Love",NECTAR_THEME_NAME).'</span></a>';
+			return '<a href="#" class="'. $class .'" id="nectar-love-'. $post->ID .'" title="'. $title .'"> '.$heart_icon . $output .' <span class="love-txt plural">'.__("Loves",'salient').'</span><span class="love-txt single">'.__("Love",'salient').'</span></a>';
 		} else {
 			return '<a href="#" class="'. $class .'" id="nectar-love-'. $post->ID .'" title="'. $title .'"> '.$heart_icon . $output .'</a>';
 		}

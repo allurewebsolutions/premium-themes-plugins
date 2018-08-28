@@ -2,13 +2,19 @@
 
 $options = get_nectar_theme_options(); 
 global $post;
+
+$headerFormat = (!empty($options['header_format'])) ? $options['header_format'] : 'default';
 $theme_skin = ( !empty($options['theme-skin']) ) ? $options['theme-skin'] : 'original';
+if($headerFormat == 'centered-menu-bottom-bar') $theme_skin = 'material';
+
 $cta_link = ( !empty($options['cta-btn-link']) ) ? $options['cta-btn-link'] : '#';
 $using_footer_widget_area = (!empty($options['enable-main-footer-area']) && $options['enable-main-footer-area'] == 1) ? 'true' : 'false';
 $disable_footer_copyright = (!empty($options['disable-copyright-footer-area']) && $options['disable-copyright-footer-area'] == 1) ? 'true' : 'false';
 $footer_reveal = (!empty($options['footer-reveal'])) ? $options['footer-reveal'] : 'false'; 
 $footer_full_width = (!empty($options['footer-full-width'])) ? $options['footer-full-width'] : 'false'; 
 $midnight_non_reveal = ($footer_reveal != 'false') ? null : 'data-midnight="light"';
+$copyright_footer_layout = (!empty($options['footer-copyright-layout'])) ? $options['footer-copyright-layout'] : 'default';  
+$copyright_line = (!empty($options['footer-copyright-line']) && $options['footer-copyright-line'] == 1) ? 'true' : 'false';
 
 $footer_bg_image_overlay = (!empty($options['footer-background-image-overlay'])) ? $options['footer-background-image-overlay'] : '0.8'; 
 $footer_bg_image = (!empty($options['footer-background-image']) && !empty($options['footer-background-image']['url'])) ? nectar_options_img($options['footer-background-image']) : false;
@@ -23,9 +29,23 @@ if($footer_bg_image && !empty($footer_bg_image)) {
 $exclude_pages = (!empty($options['exclude_cta_pages'])) ? $options['exclude_cta_pages'] : array(); 
 $footerColumns = (!empty($options['footer_columns'])) ? $options['footer_columns'] : '4'; 
 
+$footer_custom_color = (!empty($options['footer-custom-color']) && $options['footer-custom-color'] == '1') ? 'true' : 'false';
+
+$matching_footer_color = 'false';
+
+if($footer_custom_color == 'true') {
+	$footer_bg_color = (!empty($options['footer-background-color'])) ? $options['footer-background-color'] : 'default-footer-color';
+	$footer_copyright_bg_color = (!empty($options['footer-copyright-background-color'])) ? $options['footer-copyright-background-color'] : 'default-footer-copyright-color';
+	
+	$matching_footer_color = ($footer_bg_color == $footer_copyright_bg_color) ? 'true' : 'false';
+} else if($footer_custom_color == 'false' && $theme_skin == 'material' || $footer_custom_color == 'false' && $theme_skin == 'ascend') {
+	$matching_footer_color = 'true';
+}
+
+
 ?>
 
-<div id="footer-outer" <?php echo $midnight_non_reveal; ?> data-cols="<?php echo $footerColumns; ?>" data-disable-copyright="<?php echo $disable_footer_copyright; ?>" data-using-bg-img="<?php echo $usingFooterBgImg; ?>" data-bg-img-overlay="<?php echo $footer_bg_image_overlay; ?>" data-full-width="<?php echo $footer_full_width; ?>" data-using-widget-area="<?php echo $using_footer_widget_area; ?>" <?php echo $footer_bg_image_markup;?>>
+<div id="footer-outer" <?php echo $midnight_non_reveal; ?> data-cols="<?php echo $footerColumns; ?>" data-custom-color="<?php echo $footer_custom_color; ?>" data-disable-copyright="<?php echo $disable_footer_copyright; ?>" data-matching-section-color="<?php echo $matching_footer_color; ?>" data-copyright-line="<?php echo $copyright_line; ?>" data-using-bg-img="<?php echo $usingFooterBgImg; ?>" data-bg-img-overlay="<?php echo $footer_bg_image_overlay; ?>" data-full-width="<?php echo $footer_full_width; ?>" data-using-widget-area="<?php echo $using_footer_widget_area; ?>" <?php echo $footer_bg_image_markup;?>>
 	
 	<?php if(!empty($options['cta-text']) && current_page_url() != $cta_link && !in_array($post->ID, $exclude_pages)) {  
 		$cta_btn_color = (!empty($options['cta-btn-color'])) ? $options['cta-btn-color'] : 'accent-color'; ?>
@@ -70,9 +90,8 @@ $footerColumns = (!empty($options['footer_columns'])) ? $options['footer_columns
 				      <!-- Footer widget area 1 -->
 		              <?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar('Footer Area 1') ) : else : ?>	
 		              	  <div class="widget">		
-						  	 <h4 class="widgettitle">Widget Area 1</h4>
-						 	 <p class="no-widget-added"><a href="<?php echo admin_url('widgets.php'); ?>">Click here to assign a widget to this area.</a></p>
-				     	  </div>
+						  	 
+				     	  			</div>
 				     <?php endif; ?>
 				</div><!--/span_3-->
 				
@@ -82,9 +101,8 @@ $footerColumns = (!empty($options['footer_columns'])) ? $options['footer_columns
 						 <!-- Footer widget area 2 -->
 			             <?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar('Footer Area 2') ) : else : ?>	
 			                  <div class="widget">			
-							 	 <h4 class="widgettitle">Widget Area 2</h4>
-							 	 <p class="no-widget-added"><a href="<?php echo admin_url('widgets.php'); ?>">Click here to assign a widget to this area.</a></p>
-					     	  </div>
+							 	 
+					     	  			</div>
 					     <?php endif; ?>
 					     
 					</div><!--/span_3-->
@@ -96,10 +114,9 @@ $footerColumns = (!empty($options['footer_columns'])) ? $options['footer_columns
 					<div class="col <?php echo $footerColumnClass;?>">
 						 <!-- Footer widget area 3 -->
 			              <?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar('Footer Area 3') ) : else : ?>		
-			              	  <div class="widget">			
-							  	<h4 class="widgettitle">Widget Area 3</h4>
-							  	<p class="no-widget-added"><a href="<?php echo admin_url('widgets.php'); ?>">Click here to assign a widget to this area.</a></p>
-							  </div>		   
+			              	 <div class="widget">			
+							  
+							  		</div>		   
 					     <?php endif; ?>
 					     
 					</div><!--/span_3-->
@@ -110,9 +127,8 @@ $footerColumns = (!empty($options['footer_columns'])) ? $options['footer_columns
 						 <!-- Footer widget area 4 -->
 			              <?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar('Footer Area 4') ) : else : ?>	
 			              	<div class="widget">		
-							    <h4>Widget Area 4</h4>
-							    <p class="no-widget-added"><a href="<?php echo admin_url('widgets.php'); ?>">Click here to assign a widget to this area.</a></p>
-							 </div><!--/widget-->	
+							   
+							 					</div><!--/widget-->	
 					     <?php endif; ?>
 					     
 					</div><!--/span_3-->
@@ -132,12 +148,21 @@ $footerColumns = (!empty($options['footer_columns'])) ? $options['footer_columns
 	   if( $disable_footer_copyright == 'false') { ?>
 
 	
-		<div class="row" id="copyright">
+		<div class="row" id="copyright" data-layout="<?php echo $copyright_footer_layout; ?>">
 			
 			<div class="container">
 				
 				<?php if($footerColumns != '1'){ ?>
 					<div class="col span_5">
+						
+						<?php 
+						if($copyright_footer_layout == 'centered') {
+								if ( function_exists('dynamic_sidebar') && dynamic_sidebar('Footer Copyright') ) : else : ?>		
+								  <div class="widget">			
+						
+							  	</div>		   
+					 	  	<?php endif; 
+						} ?>
 						
 						<?php if(!empty($options['disable-auto-copyright']) && $options['disable-auto-copyright'] == 1) { ?>
 							<p><?php if(!empty($options['footer-copyright-text'])) echo $options['footer-copyright-text']; ?> </p>	
@@ -149,7 +174,7 @@ $footerColumns = (!empty($options['footer_columns'])) ? $options['footer_columns
 				<?php } ?>
 				
 				<div class="col span_7 col_last">
-					<ul id="social">
+					<ul class="social">
 						<?php  if(!empty($options['use-twitter-icon']) && $options['use-twitter-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['twitter-url']; ?>"><i class="fa fa-twitter"></i> </a></li> <?php } ?>
 						<?php  if(!empty($options['use-facebook-icon']) && $options['use-facebook-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['facebook-url']; ?>"><i class="fa fa-facebook"></i> </a></li> <?php } ?>
 						<?php  if(!empty($options['use-vimeo-icon']) && $options['use-vimeo-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['vimeo-url']; ?>"> <i class="fa fa-vimeo"></i> </a></li> <?php } ?>
@@ -174,12 +199,22 @@ $footerColumns = (!empty($options['footer_columns'])) ? $options['footer_columns
 						<?php  if(!empty($options['use-snapchat-icon']) && $options['use-snapchat-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['snapchat-url']; ?>"><i class="fa-snapchat"></i></a></li> <?php } ?>
 						<?php  if(!empty($options['use-mixcloud-icon']) && $options['use-mixcloud-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['mixcloud-url']; ?>"><i class="fa-mixcloud"></i></a></li> <?php } ?>
 						<?php  if(!empty($options['use-bandcamp-icon']) && $options['use-bandcamp-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['bandcamp-url']; ?>"><i class="fa-bandcamp"></i></a></li> <?php } ?>
+						<?php  if(!empty($options['use-tripadvisor-icon']) && $options['use-tripadvisor-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['tripadvisor-url']; ?>"><i class="fa-tripadvisor"></i></a></li> <?php } ?>
+						<?php  if(!empty($options['use-telegram-icon']) && $options['use-telegram-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['telegram-url']; ?>"><i class="fa-telegram"></i></a></li> <?php } ?>
+						<?php  if(!empty($options['use-slack-icon']) && $options['use-slack-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['slack-url']; ?>"><i class="fa-slack"></i></a></li> <?php } ?>
+						<?php  if(!empty($options['use-medium-icon']) && $options['use-medium-icon'] == 1) { ?> <li><a target="_blank" href="<?php echo $options['medium-url']; ?>"><i class="fa-medium"></i></a></li> <?php } ?>
 					</ul>
 				</div><!--/span_7-->
 
 				<?php if($footerColumns == '1'){ ?>
 					<div class="col span_5">
 						
+						<?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar('Footer Copyright') ) : else : ?>		
+						  <div class="widget">			
+				
+					  	</div>		   
+			 	  	<?php endif; ?>
+			 
 						<?php if(!empty($options['disable-auto-copyright']) && $options['disable-auto-copyright'] == 1) { ?>
 							<p><?php if(!empty($options['footer-copyright-text'])) echo $options['footer-copyright-text']; ?> </p>	
 						<?php } else { ?>
@@ -206,7 +241,7 @@ $sideWidgetArea = (!empty($options['header-slide-out-widget-area'])) ? $options[
 $userSetSideWidgetArea = $sideWidgetArea;
 if($has_main_menu == 'true' && $mobile_fixed == '1' || $has_main_menu == 'true' && $theme_skin == 'material') $sideWidgetArea = '1';
 
-$headerFormat = (!empty($options['header_format'])) ? $options['header_format'] : 'default';
+
 $fullWidthHeader = (!empty($options['header-fullwidth']) && $options['header-fullwidth'] == '1') ? true : false;
 $sideWidgetClass = (!empty($options['header-slide-out-widget-area-style'])) ? $options['header-slide-out-widget-area-style'] : 'slide-out-from-right';
 
@@ -230,7 +265,7 @@ if($sideWidgetArea == '1') {
 	if($sideWidgetClass == 'fullscreen') echo '</div><!--blurred-wrap-->'; ?>
 
 	<div id="slide-out-widget-area-bg" class="<?php echo $sideWidgetClass . ' '. $sideWidgetOverlayOpacity; ?>"><?php if($sideWidgetClass == 'fullscreen-alt') echo '<div class="bg-inner"></div>';?></div>
-	<div id="slide-out-widget-area" class="<?php echo $sideWidgetClass; ?>" data-dropdown-func="<?php echo $dropdownFunc; ?>" data-back-txt="<?php echo __('Back', NECTAR_THEME_NAME); ?>">
+	<div id="slide-out-widget-area" class="<?php echo $sideWidgetClass; ?>" data-dropdown-func="<?php echo $dropdownFunc; ?>" data-back-txt="<?php echo __('Back', 'salient'); ?>">
 
 		<?php if($sideWidgetClass == 'fullscreen' || $sideWidgetClass == 'fullscreen-alt' || ($theme_skin == 'material' && $sideWidgetClass == 'slide-out-from-right') || ($theme_skin == 'material' && $sideWidgetClass == 'slide-out-from-right-hover') ) echo '<div class="inner-wrap">'; ?>
 
@@ -251,15 +286,34 @@ if($sideWidgetArea == '1') {
 
 		   if($userSetSideWidgetArea == 'off' || $prependTopNavMobile == '1' && $has_main_menu == 'true') { ?>
 			   <div class="off-canvas-menu-container mobile-only">
+					 
+					 <?php 
+					 if(!empty($options['secondary-header-text'])) {
+							$nectar_secondary_link = (!empty($options['secondary-header-link'])) ? !empty($options['secondary-header-link']) : '';
+							echo '<div class="secondary-header-text">';
+							if(!empty($nectar_secondary_link)) { echo '<a href="'. $nectar_secondary_link .'">'; }
+							echo $options['secondary-header-text'];
+							if(!empty($nectar_secondary_link)) { echo '</a>'; }
+							echo '</div>';
+						} 
+						?>
+						
 			  		<ul class="menu">
 					   <?php 
+						
 					  		////use default top nav menu if ocm is not activated
-					  	     ////but is needed for mobile when the mobile fixed nav is on
+					  	  ////but is needed for mobile when the mobile fixed nav is on
 					   		wp_nav_menu( array('theme_location' => 'top_nav', 'container' => '', 'items_wrap' => '%3$s')); 
 
 					   		if($headerFormat == 'centered-menu' || $headerFormat == 'menu-left-aligned') {
 					   			if(has_nav_menu('top_nav_pull_right')) {
-									wp_nav_menu( array('walker' => new Nectar_Arrow_Walker_Nav_Menu, 'theme_location' => 'top_nav_pull_right', 'container' => '', 'items_wrap' => '%3$s' ) );  
+										wp_nav_menu( array('walker' => new Nectar_Arrow_Walker_Nav_Menu, 'theme_location' => 'top_nav_pull_right', 'container' => '', 'items_wrap' => '%3$s' ) );  
+									}
+								}
+							
+							if($headerFormat == 'centered-menu-bottom-bar') {
+								if(has_nav_menu('top_nav_pull_left')) {
+									wp_nav_menu( array('walker' => new Nectar_Arrow_Walker_Nav_Menu, 'theme_location' => 'top_nav_pull_left', 'container' => '', 'items_wrap' => '%3$s' ) );  
 								}
 							}
 							
@@ -292,9 +346,8 @@ if($sideWidgetArea == '1') {
 		   if($sideWidgetClass != 'slide-out-from-right-hover') {
 			   if ( function_exists('dynamic_sidebar') && dynamic_sidebar('Off Canvas Menu') ) : elseif(!has_nav_menu('off_canvas_nav') && $userSetSideWidgetArea != 'off') : ?>	
 			      <div class="widget">			
-				 	 <h4 class="widgettitle">Side Widget Area</h4>
-				 	 <p class="no-widget-added"><a href="<?php echo admin_url('widgets.php'); ?>">Click here to assign widgets to this area.</a></p>
-			 	  </div>
+				 	 
+			 	  	</div>
 			 <?php endif; 
 
 			} ?>
@@ -312,8 +365,7 @@ if($sideWidgetArea == '1') {
 			if($sideWidgetClass == 'slide-out-from-right-hover') {
 			   if ( function_exists('dynamic_sidebar') && dynamic_sidebar('Off Canvas Menu') ) : elseif(!has_nav_menu('off_canvas_nav') && $userSetSideWidgetArea != 'off') : ?>	
 			      <div class="widget">			
-				 	 <h4 class="widgettitle">Side Widget Area</h4>
-				 	 <p class="no-widget-added"><a href="<?php echo admin_url('widgets.php'); ?>">Click here to assign widgets to this area.</a></p>
+				 	 
 			 	  </div>
 			 <?php endif; 
 
@@ -322,8 +374,8 @@ if($sideWidgetArea == '1') {
 			global $using_secondary;
 		 	/*social icons*/
 			 if(!empty($options['header-slide-out-widget-area-social']) && $options['header-slide-out-widget-area-social'] == '1') {
-			 	$social_link_arr = array('twitter-url','facebook-url','vimeo-url','pinterest-url','linkedin-url','youtube-url','tumblr-url','dribbble-url','rss-url','github-url','behance-url','google-plus-url','instagram-url','stackexchange-url','soundcloud-url','flickr-url','spotify-url','vk-url','vine-url','houzz-url', 'yelp-url','bandcamp-url', 'mixcloud-url', 'snapchat-url', 'phone-url','email-url');
-			 	$social_icon_arr = array('fa fa-twitter','fa fa-facebook','fa fa-vimeo','fa fa-pinterest','fa fa-linkedin','fa fa-youtube-play','fa fa-tumblr','fa fa-dribbble','fa fa-rss','fa fa-github-alt','fa fa-behance','fa fa-google-plus','fa fa-instagram','fa fa-stackexchange','fa fa-soundcloud','fa fa-flickr','icon-salient-spotify','fa fa-vk','fa-vine','fa-houzz', 'fa-yelp', 'fa-bandcamp', 'fa-mixcloud', 'fa fa-snapchat', 'fa fa-phone', 'fa fa-envelope');
+			 	$social_link_arr = array('twitter-url','facebook-url','vimeo-url','pinterest-url','linkedin-url','youtube-url','tumblr-url','dribbble-url','rss-url','github-url','behance-url','google-plus-url','instagram-url','stackexchange-url','soundcloud-url','flickr-url','spotify-url','vk-url','vine-url','houzz-url', 'yelp-url','bandcamp-url', 'tripadvisor-url', 'mixcloud-url', 'snapchat-url', 'telegram-url', 'slack-url', 'medium-url', 'phone-url','email-url');
+			 	$social_icon_arr = array('fa fa-twitter','fa fa-facebook','fa fa-vimeo','fa fa-pinterest','fa fa-linkedin','fa fa-youtube-play','fa fa-tumblr','fa fa-dribbble','fa fa-rss','fa fa-github-alt','fa fa-behance','fa fa-google-plus','fa fa-instagram','fa fa-stackexchange','fa fa-soundcloud','fa fa-flickr','icon-salient-spotify','fa fa-vk','fa-vine','fa-houzz', 'fa-yelp', 'fa-bandcamp', 'fa-tripadvisor', 'fa-mixcloud', 'fa fa-snapchat', 'fa fa-telegram', 'fa fa-slack','fa fa-medium', 'fa fa-phone', 'fa fa-envelope');
 			 	
 			 	echo '<ul class="off-canvas-social-links">';
 

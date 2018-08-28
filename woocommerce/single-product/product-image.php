@@ -20,21 +20,31 @@ defined( 'ABSPATH' ) || exit;
 
 global $post, $product, $woocommerce, $options;
 
-wp_enqueue_script('iosSlider');
+$product_gallery_style = (!empty($options['single_product_gallery_type'])) ? $options['single_product_gallery_type'] : 'default';
 
-if(!empty($options['single_product_gallery_type']) && $options['single_product_gallery_type'] == 'ios_slider') {
+if($product_gallery_style == 'left_thumb_sticky') { wp_enqueue_script('stickykit'); }
+
+if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thumb_sticky') {
+	wp_enqueue_script('flickity');
+}
+wp_enqueue_script('nectar_single_product');
+
+
+if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thumb_sticky') {
 
 	if( $woocommerce && version_compare( $woocommerce->version, "3.0", ">=" ) ) {
 		$product_attach_ids = $product->get_gallery_image_ids(); 
 	} else {
 		$product_attach_ids = $product->get_gallery_attachment_ids(); 
 	} 
+	
+	$has_gallery_imgs = ($product_attach_ids) ? 'true' : 'false';
 	?>
 
 
-    <div class="images">
+    <div class="images" data-has-gallery-imgs="<?php echo $has_gallery_imgs; ?>">
 
-    	<div class="iosSlider product-slider">
+    	<div class="flickity product-slider woocommerce-product-gallery">
 
 			<div class="slider">
 
@@ -59,13 +69,13 @@ if(!empty($options['single_product_gallery_type']) && $options['single_product_g
 					
 				?>
              
-                <div class="slide">
-                	<div data-thumb="<?php echo get_the_post_thumbnail_url( $post->ID, 'shop_thumbnail' ); ?>" class="easyzoom woocommerce-product-gallery__image">
-	                	<a href="<?php echo $img_link; ?>">
-	                		<?php echo get_the_post_thumbnail( $post->ID, 'shop_single', $attributes ); ?>
-	                	</a>
-	                </div>
-                </div>
+        <div class="slide">
+        	<div data-thumb="<?php echo get_the_post_thumbnail_url( $post->ID, 'shop_thumbnail' ); ?>" class="woocommerce-product-gallery__image easyzoom">
+          	<a href="<?php echo $img_link; ?>" class="no-ajaxy">
+          		<?php echo get_the_post_thumbnail( $post->ID, 'shop_single', $attributes ); ?>
+          	</a>
+          </div>
+        </div>
 				
 				<?php } else { 
 					echo '<div class="slide">'.apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID ) .'</div>';
@@ -79,8 +89,17 @@ if(!empty($options['single_product_gallery_type']) && $options['single_product_g
 			
 						if (!$img_link)
 							continue;
+							
+							
+							$full_size_image   = wp_get_attachment_image_src( $product_attach_id, 'full' );
+							$attributes = array(
+								'data-src'                => $full_size_image[0],
+								'data-large_image'        => $full_size_image[0],
+								'data-large_image_width'  => $full_size_image[1],
+								'data-large_image_height' => $full_size_image[2],
+							);	
 
-						printf( '<div class="slide"><div class="easyzoom"><a href="%s" title="%s"> %s </a></div></div>', wp_get_attachment_url($product_attach_id),esc_attr( get_post($product_attach_id)->post_title ), wp_get_attachment_image($product_attach_id, 'shop_single'));
+						printf( '<div class="slide"><div class="woocommerce-product-gallery__image easyzoom" data-thumb="'. get_the_post_thumbnail_url( $post->ID, 'shop_thumbnail' ) .'"><a href="%s" class="no-ajaxy"> %s </a></div></div>', wp_get_attachment_url($product_attach_id),wp_get_attachment_image($product_attach_id, 'shop_single', false, $attributes));
 				
 					}
 				}
@@ -88,30 +107,21 @@ if(!empty($options['single_product_gallery_type']) && $options['single_product_g
 			
 			</div>
          	
-    		<div class="slider_controls">
-				 <div class="nav_wrap">
-		       		 <a href="#" class="prev_slide" onclick="return false;"><span class="fa fa-angle-left"></span></a>
-		       		 <a href="#" class="next_slide" onclick="return false;"><span class="fa fa-angle-right"></span></a>
-		        </div>
-       		</div>
+    	
 		</div>
 		
 	</div>
 
         		
-	<?php if ( $product_attach_ids ) { 
-
-		$img_size = get_option('shop_thumbnail_image_size'); ?>
+	<?php if ( $product_attach_ids ) {  ?>
         
-        <div class="iosSlider product-thumbs" style="min-height:<?php echo ($img_size['height']).'px'; ?>!important">
+      <div class="flickity product-thumbs">
 			<div class ="slider">
-                        <?php 	
-                        
-						$img_height = ($img_size['height']); 
-
-                        if ( has_post_thumbnail() ) { ?>
-                      	  <div class="thumb active" style="height:<?php echo $img_height . 'px'; ?>"><div class="thumb-inner"><?php echo get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ) ) ?></div></div>
-                        <?php } 
+				
+            <?php 	
+            if ( has_post_thumbnail() ) { ?>
+          	  <div class="thumb active"><div class="thumb-inner"><?php echo get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ) ) ?></div></div>
+            <?php } 
 						
 						foreach ( $product_attach_ids as $product_attach_id) {
 
@@ -124,18 +134,13 @@ if(!empty($options['single_product_gallery_type']) && $options['single_product_g
 							$classes = array();
 							$image_class = esc_attr( implode(' ', $classes));
 						
-							echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', sprintf( '<div class="thumb"  style="height:'.$img_height.'px"><div class="thumb-inner">%s</div></div>', $img_size ), $product_attach_id, $post->ID, $image_class );
+							echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', sprintf( '<div class="thumb"><div class="thumb-inner">%s</div></div>', $img_size ), $product_attach_id, $post->ID, $image_class );
 							
 					
 						} ?>
 			</div>
 
-        	 <div class="slider_controls">
-				  <div class="nav_wrap">
-		       		 <a href="#" onclick="return false;" class="prev_slide"><span class="fa fa-angle-left"></span></a>
-		       		 <a href="#" onclick="return false;" class="next_slide"><span class="fa fa-angle-right"></span></a>
-		        </div>
-       		</div>
+
 		</div>
 
     <?php } 
@@ -143,6 +148,7 @@ if(!empty($options['single_product_gallery_type']) && $options['single_product_g
 
 
 } 
+
 //default lightbox functionality
 else { ?>
 

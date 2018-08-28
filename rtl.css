@@ -1,38 +1,3 @@
-
-
-/*
-/*  We added some css in below for change theme's fonts to Arabic.
-/*  If you want to use them, you can copy them in your child theme
-/*  or directly comment out below lines!
-*/
-
-/******************* Arabic font *******************/
-
-/*
-	@import url(http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
-
-	body{font-family: 'Droid Arabic Naskh',serif ;}
-	h1, h2, h3, h4, h5, h6{font-family: 'Droid Arabic Naskh',serif ;}
-	article.post.quote .post-content h2, article.post.link .post-content h2, article.post.format-status .post-content h2{   font-size: 24px;
-		line-height: 40px;}
-	#page-header-bg h1, .nectar-box-roll .overlaid-content h1{font-family: 'Droid Arabic Naskh',serif ;font-size: 36px;}
-	body h1.light, body h2.light, body h3.light, body h4.light, body h5.light, body h6.light, p.light{font-family: 'Droid Arabic Naskh',serif ;}
-	.nectar-button{font-family: 'Droid Arabic Naskh',serif ;}
-	.related.products h2, .upsells.products h2, #comments h2, #review_form h3, .cart_totals h2, .shipping_calculator h2, .cross-sells h2, .cart-collaterals h2 {
-		font-size: 22px !important;
-		line-height: 40px !important;
-	}
-	.woocommerce form .form-row input.input-text, .woocommerce form .form-row textarea{line-height: 1.8;}
-	.woocommerce ul.products li.product .price{font-family: 'Droid Arabic Naskh',serif ;}
-	.woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3{font-family: 'Droid Arabic Naskh',serif ;}
-	.swiper-slide .content h2{font-family: 'Droid Arabic Naskh',serif ;font-size: 52px;}
-	.swiper-slide .content p{font-family: 'Droid Arabic Naskh',serif ;}
-	.swiper-slide .button a{font-family: 'Droid Arabic Naskh',serif ;}
-	body .carousel-wrap[data-full-width="true"] .carousel-heading h2{font-family: 'Droid Arabic Naskh',serif ;}
-	#page-header-bg .subheader, .nectar-box-roll .overlaid-content .subheader{font-family: 'Droid Arabic Naskh',serif ;}
-	blockquote{font-family: 'Droid Arabic Naskh',serif ;}
-*/
-
 body {
     direction: rtl;
     unicode-bidi: embed;
@@ -48,9 +13,7 @@ code, pre {
     text-align: right;
 }
 
-.vc_row-fluid, .wpb_row, .full-width-content, .nectar-slider-wrap {
-    direction: ltr;
-}
+.vc_row-fluid, .wpb_row, .full-width-content, .nectar-slider-wrap { direction: ltr; }
 
 #portfolio-extra {
     direction: ltr;
@@ -673,35 +636,6 @@ body .icon-tiny[class^="icon-"] {
     float: left;
 }
 
-body[data-fancy-form-rcs="1"] [type="radio"]:not(:checked) + label, body[data-fancy-form-rcs="1"] [type="radio"]:checked + label {
-    padding-right: 28px;
-    padding-left: 0;
-    margin-left: 15px;
-    margin-right: 0;
-}
-
-body[data-fancy-form-rcs="1"] [type="radio"] + label:before, body[data-fancy-form-rcs="1"] [type="radio"] + label:after {
-    right: 0;
-    left: auto;
-}
-
-body[data-fancy-form-rcs="1"] input[type='checkbox'] + label > span {
-    right: 0;
-    left: auto;
-    margin-left: 12px;
-    margin-right: 0;
-}
-
-body[data-fancy-form-rcs="1"] input[type='checkbox'] + label {
-    padding-right: 30px;
-    padding-left: 0;
-    margin-left: 15px;
-    margin-right: 0;
-}
-
-body[data-fancy-form-rcs="1"] input[type='checkbox'] {
-    left: 9999px;
-}
 
 .ascend.single-product #reply-title, .ascend.single-product #commentform .form-submit {
     text-align: right !important;
@@ -871,9 +805,6 @@ body.single-product div.product .product_title {
     text-align: left !important;
 }
 
-.woocommerce-account[data-fancy-form-rcs="1"] label[for="rememberme"] {
-    margin-right: 15px;
-}
 
 .woocommerce table.my_account_orders .order-actions .button, .woocommerce-page table.my_account_orders .order-actions .button {
     margin: 0.125em 0.25em 0.125em 0;
@@ -1940,4 +1871,15 @@ body #header-outer[data-format="menu-left-aligned"] .row .col.span_3 { float: ri
 
 .main-content > .row > .vc_row-o-equal-height.vc_row-flex {
     direction: ltr;
+}
+
+.nectar-recent-posts-single_featured.multiple_featured[data-nav-location="bottom"] .recent-post-container {
+  z-index: 10;
+}
+
+.nectar-recent-posts-single_featured.multiple_featured[data-nav-location="bottom"] .recent-post-container .inner-wrap {
+  float: right;
+}
+.blog-recent[data-style="list_featured_first_row"] .col.span_4 {
+  width: 29.3%;
 }

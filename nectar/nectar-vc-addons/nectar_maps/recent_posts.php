@@ -191,7 +191,19 @@ return array(
 					'save_always' => true,
 					'param_name' => 'button_color',
 					"dependency" => Array('element' => "style", 'value' => array('single_large_featured','multiple_large_featured', 'slider_multiple_visible')),
-					'description' => __( 'Choose a color from your <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6">globally defined color scheme</a>', 'js_composer' ),
+					'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+				),
+				array(
+					'type' => 'dropdown',
+					'heading' => __( 'Hover Shadow Type', 'js_composer' ),
+					'value' => array(
+						"Inherit Color From Image" => "default",
+						"Regular Dark" => "dark",
+					),
+					'save_always' => true,
+					'param_name' => 'hover_shadow_type',
+					"dependency" => Array('element' => "style", 'value' => array('slider_multiple_visible') ),
+					"description" => __("Please select your desired shadow color that will appear when hovering over posts.", "js_composer")
 				),
 				array(
 				  "type" => "dropdown",

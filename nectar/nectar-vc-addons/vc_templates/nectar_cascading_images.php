@@ -127,7 +127,7 @@ for($i=1;$i<5;$i++){
 	if(!empty($cascading_attrs['image_'.$i.'_offset_y'])) $transform_string .= 'translateY('.$transform_y_sign_string . $cascading_attrs['image_'.$i.'_offset_y'].') '; 
 	if(!empty($cascading_attrs['image_'.$i.'_rotate']) && $cascading_attrs['image_'.$i.'_rotate'] != 'none') $transform_string .= 'rotate('.$rotate_sign_string . $cascading_attrs['image_'.$i.'_rotate'].'deg) ';
 
-	$img_markup = (!empty($image_url)) ? '<div style=" -webkit-transform:'.$transform_string.';  -ms-transform:'.$transform_string.'; transform:'.$transform_string.';" class="img-wrap"> <img src="'.$image_url.'" alt="'.$image_alt.'" /> </div>': null;
+	$img_markup = (!empty($image_url)) ? '<div style=" -webkit-transform:'.$transform_string.';  -ms-transform:'.$transform_string.'; transform:'.$transform_string.';" class="img-wrap"> <img src="'.$image_url.'" class="skip-lazy" alt="'.$image_alt.'" /> </div>': null;
 	$data_has_bg_img = (!empty($image_url)) ? 'true': 'false';
 	$data_has_bg_color = (!empty($cascading_attrs['image_'.$i.'_bg_color'])) ? 'true' : 'false';
 	$bg_color_markup = ($data_has_bg_color == 'true') ? '<div class="bg-color" style=" -webkit-transform:'.$transform_string.';  -ms-transform:'.$transform_string.';  transform: '.$transform_string.'; background-color: '.$cascading_attrs['image_'.$i.'_bg_color'].';" data-has-bg-color="'.$data_has_bg_color.'"></div>' : null;

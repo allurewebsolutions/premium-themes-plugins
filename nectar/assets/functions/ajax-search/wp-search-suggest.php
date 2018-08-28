@@ -57,15 +57,15 @@
       		
 			if(get_post_type($post->ID) == 'post'){
 				
-				$suggestion['post_type'] = __('Blog Post',NECTAR_THEME_NAME); 
+				$suggestion['post_type'] = __('Blog Post','salient'); 
 				
 			} else if(get_post_type($post->ID) == 'page'){
 				
-				$suggestion['post_type'] = __('Page',NECTAR_THEME_NAME); 
+				$suggestion['post_type'] = __('Page','salient'); 
 				
 			} else if(get_post_type($post->ID) == 'portfolio'){
 				
-				$suggestion['post_type'] = __('Portfolio Item',NECTAR_THEME_NAME); 
+				$suggestion['post_type'] = __('Portfolio Item','salient'); 
 				
 				//show custom thumbnail if in use
 				$custom_thumbnail = get_post_meta($post->ID, '_nectar_portfolio_custom_thumbnail', true); 
@@ -76,7 +76,7 @@
 				
 			} else if(get_post_type($post->ID) == 'product'){
 				
-				$suggestion['post_type'] = __('Product',NECTAR_THEME_NAME); 
+				$suggestion['post_type'] = __('Product','salient'); 
 			}
 			
             // Add suggestion to suggestions array  

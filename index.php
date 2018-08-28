@@ -26,9 +26,16 @@
 				$masonry_class = 'masonry';
 			}
 			
+			$blog_masonry_style = (!empty($options['blog_masonry_type'])) ? $options['blog_masonry_type']: 'classic';
+			
+			/*
 			if($blog_type == 'masonry-blog-full-screen-width') {
-				$masonry_class = 'masonry full-width-content';
-			}
+				if($blog_masonry_style == 'auto_meta_overlaid_spaced') {
+					$masonry_class = 'masonry';
+				} else {
+					$masonry_class = 'masonry full-width-content';
+				}
+			} */
 			
 			if(!empty($options['blog_pagination_type']) && $options['blog_pagination_type'] == 'infinite_scroll'){
 				$infinite_scroll_class = ' infinite_scroll';
@@ -39,22 +46,31 @@
 				$masonry_style = (!empty($options['blog_masonry_type'])) ? $options['blog_masonry_type']: 'classic';
 			}
 
-			if($blog_standard_type == 'minimal' && $blog_type == 'std-blog-fullwidth')
+			if($blog_standard_type == 'minimal' && $blog_type == 'std-blog-fullwidth') {
 				$std_minimal_class = 'standard-minimal full-width-content';
-			else if($blog_standard_type == 'minimal' && $blog_type == 'std-blog-sidebar')
+			}
+			else if($blog_standard_type == 'minimal' && $blog_type == 'std-blog-sidebar') {
 				$std_minimal_class = 'standard-minimal';
-			else
+			}
+			else {
 				$std_minimal_class = '';
+			}
 				
-			if($masonry_style == null && $blog_standard_type == 'featured_img_left')
+			if($masonry_style == null && $blog_standard_type == 'featured_img_left') {
 				$std_minimal_class = 'featured_img_left';
+			}
 			
 			if($blog_type == 'std-blog-sidebar' || $blog_type == 'masonry-blog-sidebar'){
 				echo '<div class="post-area col '.$std_minimal_class.' span_9 '.$masonry_class.' '.$masonry_style.' '. $infinite_scroll_class.'" data-ams="'.$auto_masonry_spacing.'"> <div class="posts-container"  data-load-animation="'.$load_in_animation.'">';
 			} else {
+				if($blog_type == 'masonry-blog-full-screen-width' && $blog_masonry_style == 'auto_meta_overlaid_spaced' || $blog_type == 'masonry-blog-full-screen-width' && $blog_masonry_style == 'meta_overlaid') { echo '<div class="full-width-content blog-fullwidth-wrap meta-overlaid">'; }
+				else if($blog_type == 'masonry-blog-full-screen-width') { echo '<div class="full-width-content blog-fullwidth-wrap">'; }
+				
 				echo '<div class="post-area col '.$std_minimal_class.' span_12 col_last '.$masonry_class.' '.$masonry_style.' '. $infinite_scroll_class.'" data-ams="'.$auto_masonry_spacing.'"> <div class="posts-container"  data-load-animation="'.$load_in_animation.'">';
 			}
-	
+				
+				add_filter('wp_get_attachment_image_attributes','nectar_remove_lazy_load_functionality');
+				
 				if(have_posts()) : while(have_posts()) : the_post(); ?>
 					
 					<?php 
@@ -68,13 +84,19 @@
 						 get_template_part( 'includes/post-templates/entry', $nectar_post_format ); 
 					} ?>
 	
-				<?php endwhile; endif; ?>
+				<?php endwhile; endif; 
 				
-				</div><!--/posts container-->
+				remove_filter('wp_get_attachment_image_attributes','nectar_remove_lazy_load_functionality');
+				
+				?>
+				
+			</div><!--/posts container-->
 				
 			<?php nectar_pagination(); ?>
 				
-			</div><!--/span_9-->
+		</div><!--/post-area-->
+		
+		<?php if($blog_type == 'masonry-blog-full-screen-width') { echo '</div>'; } ?>
 			
 			<?php  if($blog_type == 'std-blog-sidebar' || $blog_type == 'masonry-blog-sidebar') { ?>
 				<div id="sidebar" data-nectar-ss="<?php echo $enable_ss; ?>" class="col span_3 col_last">

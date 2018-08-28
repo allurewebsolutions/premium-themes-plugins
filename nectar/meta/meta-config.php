@@ -68,8 +68,8 @@ function nectar_create_meta_box( $post, $meta_box )
 				echo '<td><input type="hidden" id="' . $field['id'] . '" name="nectar_meta[' . $field['id'] . ']" value="' . ($meta ? $meta : $field['std']) . '" />';
 		        echo '<img class="redux-opts-screenshot" id="redux-opts-screenshot-' . $field['id'] . '" src="' . ($meta ? $meta : $field['std']) . '" />';
 		        if( ($meta ? $meta : $field['std']) == '') {$remove = ' style="display:none;"'; $upload = ''; } else {$remove = ''; $upload = ' style="display:none;"'; }
-		        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary"' . $upload . ' rel-id="' . $field['id'] . '">' . __('Upload', NECTAR_THEME_NAME) . '</a>';
-		        echo ' <a href="javascript:void(0);" class="redux-opts-upload-remove"' . $remove . ' rel-id="' . $field['id'] . '">' . __('Remove Upload', NECTAR_THEME_NAME) . '</a></td>';
+		        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary"' . $upload . ' rel-id="' . $field['id'] . '">' . __('Upload', 'salient') . '</a>';
+		        echo ' <a href="javascript:void(0);" class="redux-opts-upload-remove"' . $remove . ' rel-id="' . $field['id'] . '">' . __('Remove Upload', 'salient') . '</a></td>';
 		        
 				break;
 				
@@ -110,8 +110,8 @@ function nectar_create_meta_box( $post, $meta_box )
 				 
 				echo '<td><input type="text" class="file_display_text" id="' . $field['id'] . '" name="nectar_meta[' . $field['id'] . ']" value="' . ($meta ? $meta : $field['std']) . '" />';
 		        if( ($meta ? $meta : $field['std']) == '') {$remove = ' style="display:none;"'; $upload = ''; } else {$remove = ''; $upload = ' style="display:none;"'; }
-		        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-media-upload button-secondary"' . $upload . ' rel-id="' . $field['id'] . '">' . __('Add Media', NECTAR_THEME_NAME) . '</a>';
-		        echo ' <a href="javascript:void(0);" class="redux-opts-upload-media-remove"' . $remove . ' rel-id="' . $field['id'] . '">' . __('Remove Media', NECTAR_THEME_NAME) . '</a></td>';
+		        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-media-upload button-secondary"' . $upload . ' rel-id="' . $field['id'] . '">' . __('Add Media', 'salient') . '</a>';
+		        echo ' <a href="javascript:void(0);" class="redux-opts-upload-media-remove"' . $remove . ' rel-id="' . $field['id'] . '">' . __('Remove Media', 'salient') . '</a></td>';
 		        
 				break;
 				
@@ -285,15 +285,32 @@ function nectar_create_meta_box( $post, $meta_box )
 
 			    echo '<td>';		 
 			    $val = '';
+					$activated_checkbox = '';
+					$starting_disabled = '';
+					$starting_enabled = '';
+
                 if( $meta ) {
-                    if( $meta == 'on' ) $val = ' checked="checked"';
+                    if( $meta == 'on' ) {
+											$val = ' checked="checked"';
+											$activated_checkbox = 'activated';
+											$starting_enabled = 'selected';
+										}
+										else {
+											$starting_disabled = 'selected';
+										}
                 } else {
                     if( $field['std'] == 'on' ) $val = ' checked="checked"';
                 }
+								
+								echo '<div class="switch-options salient '.$activated_checkbox.'">';
+								echo '<label class="cb-enable '.$starting_enabled.'"><span>' . __("On", 'salient') . '</span></label>';
+								echo '<label class="cb-disable '.$starting_disabled.'"><span>' . __("Off", 'salient') . '</span></label>';
 
                 echo '<input type="hidden" name="nectar_meta['. $field['id'] .']" value="off" />
                 <input type="checkbox" id="'. $field['id'] .'" name="nectar_meta['. $field['id'] .']" value="on"'. $val .' /> ';
-
+								
+								echo '</div>';
+								
                  if(!empty($field['extra']) && $field['extra'] == 'first2' || !empty($field['extra']) && $field['extra'] == 'last'){
                	   echo '<br/><br/><label for="'. $field['id'] .'"><strong>'. $field['name'] .'</strong><span>'. $field['desc'] .'</span></label>'; 
                 }
@@ -397,7 +414,7 @@ function nectar_create_meta_box( $post, $meta_box )
 
 	                foreach ( $ids as $attachment_id ) {
 	                    $img = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
-	                    echo '<img class="redux-option-image" id="image_' . $field['id'] . '_' . $attachment_id . '" src="' . $img[0] . '" alt="" target="_blank" rel="external" />';
+	                    echo '<img class="redux-option-image" id="image_' . $field['id'] . '_' . $attachment_id . '" src="' . $img[0] . '" target="_blank" rel="external" />';
 	                }
 	            }
 

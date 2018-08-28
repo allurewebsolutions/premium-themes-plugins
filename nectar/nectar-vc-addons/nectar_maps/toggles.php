@@ -23,9 +23,9 @@ return array(
 		),
 	    array(
 	      "type" => 'checkbox',
-	      "heading" => __("Allow collapsible all", "js_composer"),
+	      "heading" => __("Accordion Toggles", "js_composer"),
 	      "param_name" => "accordion",
-	      "description" => __("Select checkbox to turn the toggles in an accordion.", "js_composer"),
+	      "description" => __("Selecting this will make it so that only one toggle can be opened at a time.", "js_composer"),
 	      "value" => Array(__("Allow", "js_composer") => 'true')
 	    )
 	  ),

@@ -82,7 +82,9 @@
                 //*****************************************************************
                 Redux_CDN::register_style(
                     'select2-css',
-                    '//cdn.jsdelivr.net/select2/3.5.2/select2.css',
+                    /*nectar addition - local load */
+                    'select2.css',
+                    /*nectar addition end  */
                     array(),
                     '3.5.2',//$this->timestamp,
                     'all'
@@ -220,7 +222,9 @@
                 
                 Redux_CDN::register_script(
                     'select2-js',
-                    '//cdn.jsdelivr.net/select2/3.5.2/select2' . $this->min . '.js',
+                    /*nectar addition - local load */
+                    'select2' . $this->min . '.js',
+                    /*nectar addition end */
                     array( 'jquery', 'redux-select2-sortable-js' ),
                     '3.5.2',
                     true
@@ -284,10 +288,14 @@
                     $this->timestamp,
                     true
                 );
-
+                
+                global $nectar_get_template_directory_uri;
+                
                 wp_enqueue_script(
                     'webfontloader',
-                    'https://ajax.googleapis.com/ajax/libs/webfont/1.5.0/webfont.js',
+                    /*nectar addition - local load */
+                    $nectar_get_template_directory_uri . '/nectar/assets/js/webfont.js',
+                    /*nectar addition end */
                     array( 'jquery' ),
                     '1.5.0',
                     true

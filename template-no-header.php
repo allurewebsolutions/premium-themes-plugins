@@ -97,7 +97,7 @@ $form_style = (!empty($options['form-style'])) ? $options['form-style'] : 'defau
 $fancy_rcs = (!empty($options['form-fancy-select'])) ? $options['form-fancy-select'] : 'default';
 $footer_reveal = (!empty($options['footer-reveal'])) ? $options['footer-reveal'] : 'false'; 
 $footer_reveal_shadow = (!empty($options['footer-reveal-shadow']) && $footer_reveal == '1') ? $options['footer-reveal-shadow'] : 'none'; 
-$icon_style = (!empty($options['theme-icon-style'])) ? $options['theme-icon-style'] : 'inherit';
+$icon_style = 'minimal';
 $has_main_menu = (has_nav_menu('top_nav')) ? 'true' : 'false';
 $animate_in_effect = (!empty($options['header-animate-in-effect'])) ? $options['header-animate-in-effect'] : 'none';
 if($headerColorScheme == 'dark') { $userSetBG = '#1f1f1f'; } 	
@@ -108,7 +108,7 @@ if($sideWidgetClass == 'slide-out-from-right-hover' && $userSetSideWidgetArea ==
 $column_animation_easing = (!empty($options['column_animation_easing'])) ? $options['column_animation_easing'] : 'linear'; 
 $column_animation_duration = (!empty($options['column_animation_timing'])) ? $options['column_animation_timing'] : '650'; 
 $prependTopNavMobile = (!empty($options['header-slide-out-widget-area-top-nav-in-mobile']) && $userSetSideWidgetArea == '1') ? $options['header-slide-out-widget-area-top-nav-in-mobile'] : 'false';
-$smooth_scrolling = (!empty($options['smooth-scrolling'])) ? $options['smooth-scrolling'] : '0';
+$smooth_scrolling = '0';
 if($body_border == '1') $smooth_scrolling = '0';
 $page_full_screen_rows = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_full_screen_rows', true) : '';
 if($page_full_screen_rows == 'on') $smooth_scrolling = '0';
