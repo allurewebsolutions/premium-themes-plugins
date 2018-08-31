@@ -3,7 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
+/*nectar addition*/
 $options = (function_exists('get_nectar_theme_options')) ? get_nectar_theme_options() : ''; 
+/*nectar addition end*/
 return array(
 	'name' => __( 'Pie Chart', 'js_composer' ),
 	'base' => 'vc_pie',

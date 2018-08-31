@@ -440,12 +440,14 @@ class Vc_Base {
 	 * @param int $id
 	 */
 	public function addPageCustomCss( $id = null ) {
-		if ( ! is_singular() ) {
-			return;
+		if ( is_front_page() || is_home() ) {
+			$id = get_queried_object_id();
+		} else if ( is_singular() ) {
+			if ( ! $id ) {
+				$id = get_the_ID();
+			}
 		}
-		if ( ! $id ) {
-			$id = get_the_ID();
-		}
+
 		if ( $id ) {
 			$post_custom_css = get_post_meta( $id, '_wpb_post_custom_css', true );
 			if ( ! empty( $post_custom_css ) ) {
@@ -554,7 +556,7 @@ class Vc_Base {
 	 */
 	public function enqueueStyle() {
 		$post = get_post();
-		if ( $post && preg_match( '/vc_row/', $post->post_content ) ) {
+		if ( $post && strpos( $post->post_content, '[vc_row' ) !== false ) {
 			wp_enqueue_style( 'js_composer_front' );
 		}
 		wp_enqueue_style( 'js_composer_custom_css' );
@@ -713,21 +715,21 @@ class Vc_Base {
 	 * @return string
 	 */
 	 public function excerptFilter( $output ) {
- 		global $post;
- 		/* nectar addition */ 
- 		if ( empty( $output ) && ! empty( $post->post_content ) ) {
- 			$post_content =  preg_replace ('/\[recent_posts[^\]]*\]/', ' ', $post->post_content);
- 			$text = strip_tags( do_shortcode($post_content ));
- 			$options = get_option('salient');
- 			$the_excerpt_length = (!empty($options['blog_excerpt_length'])) ? intval($options['blog_excerpt_length']) : 30; 
- 			$excerpt_length = apply_filters('excerpt_length', $the_excerpt_length);
- 			$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
- 			$text = wp_trim_words( $text, $the_excerpt_length, $excerpt_more );
- 			return $text;
- 		}
- 		/* nectar addition end */ 
- 		return $output;
- 	}
+ 	 global $post;
+ 	 /* nectar addition */ 
+ 	 if ( empty( $output ) && ! empty( $post->post_content ) ) {
+ 		 $post_content =  preg_replace ('/\[recent_posts[^\]]*\]/', ' ', $post->post_content);
+ 		 $text = strip_tags( do_shortcode($post_content ));
+ 		 $options = get_option('salient');
+ 		 $the_excerpt_length = (!empty($options['blog_excerpt_length'])) ? intval($options['blog_excerpt_length']) : 30; 
+ 		 $excerpt_length = apply_filters('excerpt_length', $the_excerpt_length);
+ 		 $excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
+ 		 $text = wp_trim_words( $text, $the_excerpt_length, $excerpt_more );
+ 		 return $text;
+ 	 }
+ 	 /* nectar addition end */ 
+ 	 return $output;
+  }
 
 	/**
 	 * Remove unwanted wraping with p for content.
@@ -845,6 +847,8 @@ class Vc_Base {
 			'ui_template_update' => __( 'Update', 'js_composer' ),
 			'ui_templates_failed_to_download' => __( 'Failed to download template', 'js_composer' ),
 			'preset_removed' => __( 'Element successfully removed.', 'js_composer' ),
+			'vc_successfully_updated' => __( 'Successfully updated!', 'js_composer' ),
+			'gutenbergDoesntWorkProperly' => __( 'Gutenberg plugin doesn\'t work properly. Please check Gutenberg plugin.', 'js_composer' ),
 		);
 	}
 }

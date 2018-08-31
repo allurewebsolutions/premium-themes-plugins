@@ -39,7 +39,7 @@ function vc_backend_editor_register_pointer( $pointers ) {
 					),
 				),
 				array(
-					'target' => '#vc_templates-editor-button, #vc-templatera-editor-button',
+					'target' => '.vc_templates-button.salient-studio-templates, #vc-templatera-editor-button',
 					'options' => array(
 						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
 							__( 'Add Elements', 'js_composer' ),

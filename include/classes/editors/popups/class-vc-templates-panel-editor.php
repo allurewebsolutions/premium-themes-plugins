@@ -23,7 +23,7 @@ class Vc_Templates_Panel_Editor {
 	 * @var bool
 	 */
 	protected $initialized = false;
-
+	
 	/*nectar addition*/
 	protected $template_count = 0;
 	/*nectar addition end*/
@@ -862,7 +862,7 @@ HTML;
 		$template_name_lower = esc_attr( vc_slugify( $template_name ) );
 		$template_type = esc_attr( isset( $template['type'] ) ? $template['type'] : 'custom' );
 		$custom_class = esc_attr( isset( $template['custom_class'] ) ? $template['custom_class'] : '' );
-
+   
 		/*nectar addition - adding in preview img*/
 		$preview_img = esc_attr( isset( $template['image'] ) &&  $template['image'] != '' ? $template['image'] : get_template_directory_uri() .'/nectar/nectar-vc-addons/img/templates/no-img.jpg'  );
 		$cat_display_name = esc_attr( isset( $template['cat_display_name'] ) ? $template['cat_display_name'] : '' );
@@ -899,7 +899,7 @@ HTML;
 	$this->template_count++;
 
 	/*nectar addition end*/
-
+	
 		return $output;
 	}
 

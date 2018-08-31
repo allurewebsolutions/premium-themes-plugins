@@ -8,10 +8,10 @@ function vc_icon_element_params() {
 		'name' => __( 'Icon', 'js_composer' ),
 		'base' => 'vc_icon',
 		'icon' => 'icon-wpb-vc_icon',
+		'category' => __( 'Content', 'js_composer' ),
 		/* nectar addition - removing the el from the list but keeping it to parse vc_icon in text with separator */
 		'content_element' => false,
 		 /* nectar addition end */
-		'category' => __( 'Content', 'js_composer' ),
 		'description' => __( 'Eye catching icons from libraries', 'js_composer' ),
 		'params' => array(
 			array(

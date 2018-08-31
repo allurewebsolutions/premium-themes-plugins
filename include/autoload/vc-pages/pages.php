@@ -36,12 +36,12 @@ function vc_pages_group_build( $slug, $title, $tab = '' ) {
 	// Create page group to stick with other in template.
 	$pages_group = new Vc_Pages_Group();
 	/* nectar addition */ 
-	/*$pages_group->setSlug( $slug )
+	/*
+	$pages_group->setSlug( $slug )
 	            ->setPages( $vc_page_welcome_tabs )
 	            ->setActivePage( $page )
 	            ->setTemplatePath( 'pages/vc-welcome/index.php' ); */
-	/* nectar addition end */ 
-
+  /* nectar addition end */ 
 	return $pages_group;
 }
 
