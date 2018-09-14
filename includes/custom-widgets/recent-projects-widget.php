@@ -89,9 +89,10 @@ class Recent_Projects_Widget extends WP_Widget {
 			global $post;
 			
 			$custom_project_link = get_post_meta($post->ID, '_nectar_external_project_url', true);
-			$the_project_link = (!empty($custom_project_link)) ? $custom_project_link : get_permalink(); ?>	 
+			$the_project_link = (!empty($custom_project_link)) ? $custom_project_link : get_permalink();  
+			$custom_content_project = get_post_meta($post->ID, '_nectar_portfolio_custom_grid_item', true); ?>	
 				
-			<a href="<?php echo $the_project_link; ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>">
+			<a href="<?php echo $the_project_link; ?>" data-custom-grid-item="<?php echo $custom_content_project; ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>">
 				<?php 
 
 				//custom thumbnail

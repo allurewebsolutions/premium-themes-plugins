@@ -3787,6 +3787,13 @@ body #sidebar .widget_layered_nav ul.yith-wcan-label li a { padding: 10px 20px!i
 	padding-left: 0!important;
 }
 
+.woocommerce .widget_layered_nav ul.yith-wcan-color li a span.multicolor.color-1 {
+  border-width: 32px 32px 0 0;
+}
+.woocommerce .widget_layered_nav ul.yith-wcan-color li a span.multicolor.color-2 {
+	border-width: 0 0 32px 32px;
+}
+
 
 #customer_details p.create-account {
 	padding-left: 0;
@@ -5732,4 +5739,9 @@ body[data-button-style^="rounded"] .nectar-quick-view-box p.stock.out-of-stock {
 	width: 100%;
 	margin-top: 50px;
 	margin-bottom: 5px;
+}
+
+.woocommerce-account[data-form-submit="see-through"] .woocommerce-form-login button.button,
+.woocommerce-account[data-form-submit="see-through"] .woocommerce-form-register button.button {
+	border: 2px solid #000!important;
 }

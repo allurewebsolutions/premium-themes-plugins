@@ -453,6 +453,14 @@
                 'desc' => '',
                 'default' => '0' 
             ),
+            array(
+                'id' => 'disable-mobile-video-bgs',
+                'type' => 'switch',
+                'title' => __('Disable Video Backgrounds On Mobile Devices', 'salient'), 
+                'subtitle' => __('This will remove all self hosted video backgrounds from your rows/page headers that use them on mobile devices and cause the supplied preview image to be shown instead.', 'salient'),
+                'desc' => '',
+                'default' => '0' 
+            ),
              array(
                 'id' => 'column_animation_easing', 
                 'type' => 'select', 

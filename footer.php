@@ -289,7 +289,7 @@ if($sideWidgetArea == '1') {
 					 
 					 <?php 
 					 if(!empty($options['secondary-header-text'])) {
-							$nectar_secondary_link = (!empty($options['secondary-header-link'])) ? !empty($options['secondary-header-link']) : '';
+							$nectar_secondary_link = (!empty($options['secondary-header-link'])) ? $options['secondary-header-link'] : '';
 							echo '<div class="secondary-header-text">';
 							if(!empty($nectar_secondary_link)) { echo '<a href="'. $nectar_secondary_link .'">'; }
 							echo $options['secondary-header-text'];

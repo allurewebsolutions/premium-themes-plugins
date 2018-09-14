@@ -4,7 +4,7 @@
 	Author: ThemeNectar
 	Author URI: https://themeforest.net/user/themenectar
 	Description: An Ultra Responsive Multi-Purpose Theme.
-	Version: 9.0
+	Version: 9.0.1
   Text Domain: salient
 	License: GNU General Public License version 3.0
 	License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -2325,15 +2325,15 @@ body .wpb_text_column h2:last-child, body .wpb_text_column h3:last-child{margin-
 .wpb_column[data-border-radius*="px"]:before,
 .wpb_column[data-border-radius*="px"] { overflow: hidden; }
 
-.wpb_column[data-border-radius="3px"], .wpb_column[data-border-radius="3px"]:before,
+.wpb_column[data-border-radius="3px"], .wpb_column[data-border-radius="3px"] > .column-bg-overlay,
 .img-with-aniamtion-wrap[data-border-radius="3px"] .img-with-animation { border-radius: 3px; }
-.wpb_column[data-border-radius="5px"], .wpb_column[data-border-radius="5px"]:before,
+.wpb_column[data-border-radius="5px"], .wpb_column[data-border-radius="5px"] > .column-bg-overlay,
 .img-with-aniamtion-wrap[data-border-radius="5px"] .img-with-animation { border-radius: 5px; }
-.wpb_column[data-border-radius="10px"], .wpb_column[data-border-radius="10px"]:before,
+.wpb_column[data-border-radius="10px"], .wpb_column[data-border-radius="10px"] > .column-bg-overlay,
 .img-with-aniamtion-wrap[data-border-radius="10px"] .img-with-animation { border-radius: 10px; }
-.wpb_column[data-border-radius="15px"], .wpb_column[data-border-radius="15px"]:before,
+.wpb_column[data-border-radius="15px"], .wpb_column[data-border-radius="15px"] > .column-bg-overlay,
 .img-with-aniamtion-wrap[data-border-radius="15px"] .img-with-animation { border-radius: 15px; }
-.wpb_column[data-border-radius="20px"], .wpb_column[data-border-radius="20px"]:before,
+.wpb_column[data-border-radius="20px"], .wpb_column[data-border-radius="20px"] > .column-bg-overlay,
 .img-with-aniamtion-wrap[data-border-radius="20px"] .img-with-animation { border-radius: 20px; }
 
 .wpb_column[data-border-width*="px"][data-border-radius*="px"]:before { border-radius: 0; }

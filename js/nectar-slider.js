@@ -4367,6 +4367,10 @@ jQuery(document).ready(function($){
                
     			
     			var $sliderHeight = parseInt($(this).find('.swiper-container').attr('data-height'));
+          var $sliderMinHeight = ( $(this).find('.swiper-container').is('[data-min-height]') && $(this).find('.swiper-container').attr('data-min-height').length > 0 ) ? parseInt($(this).find('.swiper-container').attr('data-min-height')) : 0;
+      
+          if($sliderMinHeight > $sliderHeight) { $sliderHeight = $sliderMinHeight; }
+          
     			var isFullWidthCompatible = ($(this).attr('data-full-width') == 'true') ? 'true' : 'false';
     			
     			if($(this).parent().attr('id') == 'portfolio-extra' && $('#full_width_portfolio').length == 0 || $(this).parents('.post-area').length > 0) { isFullWidthCompatible = 'false'; };
@@ -4382,6 +4386,7 @@ jQuery(document).ready(function($){
           
           //when using parallax, let that calc height/width
           if(!$(this).is('[data-parallax="true"]')) { 
+
     		    // set the video viewport to the window size
     		    $(this).find('.video-wrap').width($sliderWidth+2);
     		    $(this).find('.video-wrap').height($sliderHeight+2);

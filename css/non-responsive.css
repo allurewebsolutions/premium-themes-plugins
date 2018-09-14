@@ -221,8 +221,37 @@
 }
 
 
+
+@media only screen and (max-width: 880px) { 
+  body .portfolio-filters-inline.full-width-section:not(.non-fw), 
+  body .portfolio-filters-inline.full-width-content, 
+  body .post-area.full-width-content.standard-minimal, 
+  body .full-width-content.blog-fullwidth-wrap, 
+  body .wpb_row.full-width-content, 
+  body .full-width-content.nectar-shop-outer, 
+  body .page-submenu > .full-width-section, 
+  body .page-submenu .full-width-content, 
+  body .wpb_row.full-width-section .mobile-video-image, 
+  html body .full-width-section .row-bg-wrap, 
+  html body .full-width-section .nectar-parallax-scene, 
+  html body .full-width-section > .nectar-shape-divider-wrap, 
+  html body .full-width-section > .video-color-overlay, 
+  html body[data-aie="zoom-out"] .first-section .row-bg-wrap, 
+  html body[data-aie="long-zoom-out"] .first-section .row-bg-wrap, 
+  html body[data-aie="zoom-out"] .top-level.full-width-section .row-bg-wrap, 
+  html body[data-aie="long-zoom-out"] .top-level.full-width-section .row-bg-wrap, 
+  html body .full-width-section.parallax_section .row-bg-wrap, 
+  html .nectar-slider-wrap[data-full-width="true"] {
+    margin-left: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+
 @media only screen and (max-width: 1000px) { 
 	
+
 	.container, #portfolio {
 	    width: 880px;
 	}

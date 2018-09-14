@@ -692,6 +692,27 @@ box-sizing: border-box;
 	line-height: 29px;
 }
 
+.nectar-metabox-table .cb-enable span, 
+.nectar-metabox-table .cb-disable span {
+	font-weight: 600;
+	position: absolute;
+	left: 105%;
+	padding: 0 7px;
+	opacity: 0;
+	transition: none;
+}
+
+.nectar-metabox-table .cb-enable span {
+	color: rgba(119, 204, 109, 1)!important;
+}
+
+.nectar-metabox-table .cb-disable.selected span {
+	opacity: 1;
+}
+.nectar-metabox-table .cb-enable.selected span {
+	opacity: 1;
+}
+
 .nectar-metabox-table .switch-options.salient:before{
     position: absolute;
     top: 5px;
@@ -733,8 +754,6 @@ box-sizing: border-box;
 
 .nectar-metabox-table .switch-options.salient.activated .cb-enable {
     color: #fff;
-    -webkit-transition: color .2s .05s;
-    transition: color .2s .05s ;
 }
 .nectar-metabox-table  .cb-enable span,
 .nectar-metabox-table  .cb-disable span { float: none; }
@@ -758,20 +777,16 @@ box-sizing: border-box;
 		text-align: right;
     cursor: pointer;
     color: #999;
-		-webkit-transition: color .2s .05s;
-		transition: color .2s .05s;
 }
 
 .nectar-metabox-table .switch-options.salient.activated  .cb-disable {
     color: rgba(0,0,0,0);
-		-webkit-transition: color .2s;
-    transition: color .2s;
 }
 
 .nectar-metabox-table .switch-options.salient label span {
 	color:inherit;
 	font-weight: 600;
-	font-size: 14px;
+	font-size: 15px;
 }
 
 .nectar-metabox-table .switch-options.salient.activated .cb-enable,

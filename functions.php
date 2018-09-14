@@ -26,7 +26,7 @@ if ( !function_exists( 'lang_setup' ) ) {
 
 if ( !function_exists( 'get_nectar_theme_version' ) ) {
 	function nectar_get_theme_version() {
-		return '9.0';
+		return '9.0.1';
 	}
 }
 
@@ -1587,34 +1587,30 @@ if (class_exists('WPBakeryVisualComposerAbstract') && defined( 'SALIENT_VC_ACTIV
 # Theme Skin
 #-----------------------------------------------------------------#
 
-if(!empty($options['theme-skin'])){
+$nectar_theme_skin = ( !empty($options['theme-skin']) ) ? $options['theme-skin'] : 'original';
 
-	$nectar_theme_skin = $options['theme-skin'];
-	$headerFormat = (!empty($options['header_format'])) ? $options['header_format'] : 'default';
-	if($headerFormat == 'centered-menu-bottom-bar') $nectar_theme_skin = 'material';
+$headerFormat = (!empty($options['header_format'])) ? $options['header_format'] : 'default';
+if($headerFormat == 'centered-menu-bottom-bar') $nectar_theme_skin = 'material';
 
-	add_filter('body_class','nectar_theme_skin_class');
+add_filter('body_class','nectar_theme_skin_class');
 
-	function nectar_theme_skin_class($classes) {
-		global $nectar_theme_skin;
-		// add 'class-name' to the $classes array
-		$classes[] = $nectar_theme_skin;
-		// return the $classes array
-		return $classes;
-	}
-
-
-	function nectar_theme_skin_css(){
-		global $nectar_theme_skin;
-		wp_enqueue_style('skin-'.$nectar_theme_skin); 
-	}
-	
-	add_action('wp_enqueue_scripts', 'nectar_theme_skin_css');
-	
-
-} else {
-	$nectar_theme_skin = 'original';
+function nectar_theme_skin_class($classes) {
+	global $nectar_theme_skin;
+	// add 'class-name' to the $classes array
+	$classes[] = $nectar_theme_skin;
+	// return the $classes array
+	return $classes;
 }
+
+
+function nectar_theme_skin_css(){
+	global $nectar_theme_skin;
+	wp_enqueue_style('skin-'.$nectar_theme_skin); 
+}
+
+add_action('wp_enqueue_scripts', 'nectar_theme_skin_css');
+	
+
 
 
 
@@ -2300,7 +2296,7 @@ function nectar_redux_deps($hook_suffix) {
 	global $using_nectar_redux_framework;
 	if ( strstr($hook_suffix,'Salient') || strstr($hook_suffix,'salient') ) {
 
-		wp_enqueue_style('nectar_redux_admin_style', get_template_directory_uri() .'/nectar/redux-framework/ReduxCore/assets/css/salient-redux-styling.css', array(), '8.6.0', 'all');
+		wp_enqueue_style('nectar_redux_admin_style', get_template_directory_uri() .'/nectar/redux-framework/ReduxCore/assets/css/salient-redux-styling.css', array(), '9.0', 'all');
 		
 		if($using_nectar_redux_framework == false) {
 			wp_enqueue_style('nectar_redux_select_2', get_template_directory_uri() .'/nectar/redux-framework/extensions/vendor_support/vendor/select2/select2.css', array(), time(), 'all');
@@ -4416,7 +4412,7 @@ if (!function_exists('enqueue_media')) {
 
 //post meta styling
 function  nectar_metabox_styles() {
-	wp_enqueue_style('nectar_meta_css', NECTAR_FRAMEWORK_DIRECTORY .'assets/css/nectar_meta.css','', '9.0');
+	wp_enqueue_style('nectar_meta_css', NECTAR_FRAMEWORK_DIRECTORY .'assets/css/nectar_meta.css','', '9.0.1');
 }
 
 //post meta scripts

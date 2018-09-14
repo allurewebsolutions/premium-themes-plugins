@@ -99,7 +99,9 @@ if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thu
 								'data-large_image_height' => $full_size_image[2],
 							);	
 
-						printf( '<div class="slide"><div class="woocommerce-product-gallery__image easyzoom" data-thumb="'. get_the_post_thumbnail_url( $post->ID, 'shop_thumbnail' ) .'"><a href="%s" class="no-ajaxy"> %s </a></div></div>', wp_get_attachment_url($product_attach_id),wp_get_attachment_image($product_attach_id, 'shop_single', false, $attributes));
+						echo '<div class="slide"><div class="woocommerce-product-gallery__image easyzoom" data-thumb="'. get_the_post_thumbnail_url( $post->ID, 'shop_thumbnail' ) .'"><a href="'. wp_get_attachment_url($product_attach_id) .'" class="no-ajaxy">'; 
+						echo wp_get_attachment_image($product_attach_id, 'shop_single', false, $attributes);
+						echo '</a></div></div>';
 				
 					}
 				}
