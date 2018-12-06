@@ -2715,7 +2715,7 @@ jQuery(document).ready(function($){
         
     });
 
-    $(window).on("pronto.render", function(){ 
+    $(window).on("pronto.render vc_reload", function(){ 
 
         if($('.nectar-slider-wrap').length > 0){
 
@@ -3608,6 +3608,9 @@ jQuery(document).ready(function($){
     var $existingSliders = [];
     var slideAnimationQueues = [];
     
+    var sliderLength = $('.swiper-container').length;
+  	var sliderLoadedLength = 0;
+    
     function initialSlideLoad() {
 
         $animating = false;
@@ -3894,7 +3897,21 @@ jQuery(document).ready(function($){
   
 	initialSlideLoad();
 	
-	
+	//switching tab with autorotate hides captions
+  document.addEventListener("visibilitychange", function() {
+      if (document.hidden){
+          //browser tab is hidden
+      } else {
+          //browser tab is vis
+          $('.nectar-slider-wrap').each(function(i){
+              $nectarSliders[i].resizeFix();
+          });
+        
+      }
+  });
+  
+  
+
 
 	var headerPadding = parseInt($('#header-outer').attr('data-padding'));
     var shrinkNum = 8;
@@ -4877,8 +4894,6 @@ function charming(element, options) {
 	}
 	
 	
-	var sliderLength = $('.swiper-container').length;
-	var sliderLoadedLength = 0;
 
 	function sliderLoadIn(slider,index) { 
 		

@@ -839,16 +839,16 @@
 $icon_arr = array_merge($fa_icons, $steadysets, $linecons);
 
 return array(
-	  "name" => __("Fancy Unordered List", "js_composer"),
+	  "name" => esc_html__("Fancy Unordered List", "js_composer"),
 	  "base" => "fancy-ul",
 	  "icon" => "icon-wpb-fancy-ul",
-	  "category" => __('Nectar Elements', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
 	  "weight" => 1,
-	  "description" => __('Make your lists appealing', 'js_composer'),
+	  "description" => esc_html__('Make your lists appealing', 'js_composer'),
 	  "params" => array(
 	    array(
 		  "type" => "dropdown",
-		  "heading" => __("Icon Type", "js_composer"),
+		  "heading" => esc_html__("Icon Type", "js_composer"),
 		  "param_name" => "icon_type",
 		  "admin_label" => false,
 		  'save_always' => true,
@@ -857,21 +857,21 @@ return array(
 			 "None" => "none",
 			 "Font Icon" => "font_icon",
 		   ),
-		  "description" => __("Please select type of icon you would like for your fancy list", "js_composer")
+		  "description" => esc_html__("Please select type of icon you would like for your fancy list", "js_composer")
 		),
 		array(
 		  "type" => "dropdown",
-		  "heading" => __("Icon", "js_composer"),
+		  "heading" => esc_html__("Icon", "js_composer"),
 		  "param_name" => "icon",
 		  "admin_label" => false,
 		  "value" => $icon_arr,
 		  'save_always' => true,
-		  "description" => __("Please select the icon you wish to use", "js_composer"),
+		  "description" => esc_html__("Please select the icon you wish to use", "js_composer"),
 		  "dependency" => Array('element' => "icon_type", 'value' => array('font_icon'))
 		),
 	     array(
 		  "type" => "dropdown",
-		  "heading" => __("Color", "js_composer"),
+		  "heading" => esc_html__("Color", "js_composer"),
 		  "param_name" => "color",
 		  "admin_label" => false,
 		  'save_always' => true,
@@ -882,11 +882,11 @@ return array(
 			 "Extra Color 3" => "Extra-Color-3"
 		   ),
 		  "dependency" => Array('element' => "icon_type", 'value' => array('font_icon','standard_dash')),
-		 'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+		 'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 		array(
 		  "type" => "dropdown",
-		  "heading" => __("Alignment", "js_composer"),
+		  "heading" => esc_html__("Alignment", "js_composer"),
 		  "param_name" => "alignment",
 		  "admin_label" => false,
 		  'save_always' => true,
@@ -895,7 +895,7 @@ return array(
 			 "Center" => "center",
 			 "Right" => "right",
 		   ),
-		  "description" => __("Please select alignment you desire", "js_composer")
+		  "description" => esc_html__("Please select alignment you desire", "js_composer")
 		),
 		array(
 			"type" => "checkbox",
@@ -919,9 +919,9 @@ return array(
 		array(
 	      "type" => "textarea_html",
 	      "holder" => "div",
-	      "heading" => __("Text Content", "js_composer"),
+	      "heading" => esc_html__("Text Content", "js_composer"),
 	      "param_name" => "content",
-	      "value" => __("", "js_composer"),
+	      "value" => '',
 	      "description" => "Please use the Unordered List button <img src='".get_template_directory_uri() ."/nectar/assets/img/icons/ul.png' alt='unordered list' /> on the editor to create the points of your fancy list."
 	    )
 	  )

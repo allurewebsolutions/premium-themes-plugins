@@ -44,7 +44,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
             }
 
             if ( empty( $this->extension_dir ) ) {
-                $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+                $this->extension_dir = get_template_directory() . '/nectar/redux-framework/extensions/wbc_importer/';
                 $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
             }
         }
@@ -161,18 +161,18 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
                     if ( !array_key_exists( 'imported', $imports ) ) {
                         $extra_class = 'not-imported';
                         $imported = false;
-                        $import_message = esc_html__( 'Import Demo', 'framework' );
+                        $import_message = esc_html__( 'Import Demo', 'salient' );
                     }else {
                         $imported = true;
                         $extra_class = 'active imported';
-                        $import_message = esc_html__( 'Demo Imported', 'framework' );
+                        $import_message = esc_html__( 'Demo Imported', 'salient' );
                     }
                     echo '<div class="wrap-importer theme '.$extra_class.'" data-demo-id="'.esc_attr( $section ).'"  data-nonce="' . $nonce . '" id="' . $this->field['id'] . '-custom_imports">';
 
                     echo '<div class="theme-screenshot">';
 
                     if ( isset( $imports['image'] ) ) {
-                        echo '<img class="wbc_image" src="'.esc_attr( esc_url( $this->demo_data_url.$imports['directory'].'/'.$imports['image'] ) ).'"/>';
+                        echo '<img class="wbc_image" src="'.esc_attr( esc_url( get_template_directory_uri() . '/nectar/redux-framework/extensions/wbc_importer/demo-data/'.$imports['directory'].'/'.$imports['image'] ) ).'"/>';
 
                     }
                     echo '</div>';
@@ -182,11 +182,11 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
 
                     echo '<div class="theme-actions">';
                     if ( false == $imported ) {
-                        echo '<div class="wbc-importer-buttons"><span class="spinner">'.esc_html__( 'Please Wait...', 'framework' ).'</span><span class="button-primary importer-button import-demo-data">' . __( 'Import Demo', 'framework' ) . '</span></div>';
+                        echo '<div class="wbc-importer-buttons"><span class="spinner">'.esc_html__( 'Please Wait...', 'salient' ).'</span><span class="button-primary importer-button import-demo-data">' . __( 'Import Demo', 'salient' ) . '</span></div>';
                     }else {
-                        echo '<div class="wbc-importer-buttons button-secondary importer-button">'.esc_html__( 'Imported', 'framework' ).'</div>';
-                        echo '<span class="spinner">'.esc_html__( 'Please Wait...', 'framework' ).'</span>';
-                        echo '<div id="wbc-importer-reimport" class="wbc-importer-buttons button-primary import-demo-data importer-button">'.esc_html__( 'Re-Import', 'framework' ).'</div>';
+                        echo '<div class="wbc-importer-buttons button-secondary importer-button">'.esc_html__( 'Imported', 'salient' ).'</div>';
+                        echo '<span class="spinner">'.esc_html__( 'Please Wait...', 'salient' ).'</span>';
+                        echo '<div id="wbc-importer-reimport" class="wbc-importer-buttons button-primary import-demo-data importer-button">'.esc_html__( 'Re-Import', 'salient' ).'</div>';
                     }
                     echo '</div>';
                     echo '</div>';
@@ -195,7 +195,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
                 }
 
             } else {
-                echo "<h5>".esc_html__( 'No Demo Data Provided', 'framework' )."</h5>";
+                echo "<h5>".esc_html__( 'No Demo Data Provided', 'salient' )."</h5>";
             }
 
             echo '</div></div>';
@@ -213,10 +213,10 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
         public function enqueue() {
 
             $min = Redux_Functions::isMin();
-
+            
             wp_enqueue_script(
                 'redux-field-wbc-importer-js',
-                $this->extension_url . '/field_wbc_importer.js',
+                get_template_directory_uri() . '/nectar/redux-framework/extensions/wbc_importer/wbc_importer/field_wbc_importer.js',
                 array( 'jquery' ),
                 time(),
                 true
@@ -224,7 +224,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
 
             wp_enqueue_style(
                 'redux-field-wbc-importer-css',
-                $this->extension_url . 'field_wbc_importer.css',
+                get_template_directory_uri() . '/nectar/redux-framework/extensions/wbc_importer/wbc_importer/field_wbc_importer.css',
                 time(),
                 true
             );

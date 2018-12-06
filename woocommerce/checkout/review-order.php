@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 						<div class="product-image">
 							<?php 
-							echo '<a href="'.get_permalink($cart_item['product_id']).'" target="_blank">';
+							echo '<a href="'. esc_url(get_permalink($cart_item['product_id'])) .'" target="_blank">';
 							echo apply_filters( 'woocommerce_in_cart_product_thumbnail', $_product->get_image(), $cart_item, $cart_item_key ); 
 							echo '</a>';
 							?>

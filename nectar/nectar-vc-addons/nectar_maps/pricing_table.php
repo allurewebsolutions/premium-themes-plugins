@@ -5,19 +5,19 @@
 	$vc_is_wp_version_3_6_more = version_compare(preg_replace('/^([\d\.]+)(\-.*$)/', '$1', get_bloginfo('version')), '3.6') >= 0;
 
 return array(
-	  "name"  => __("Pricing Table", "js_composer"),
+	  "name"  => esc_html__("Pricing Table", "js_composer"),
 	  "base" => "pricing_table",
 	  "show_settings_on_create" => false,
 	  "is_container" => true,
 	  "icon" => "icon-wpb-pricing-table",
-	  "category" => __('Nectar Elements', 'js_composer'),
-	  "description" => __('Stylish pricing tables', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
+	  "description" => esc_html__('Stylish pricing tables', 'js_composer'),
 	  "params" => array(
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Extra class name", "js_composer"),
+	      "heading" => esc_html__("Extra class name", "js_composer"),
 	      "param_name" => "el_class",
-	      "description" => __("If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer")
+	      "description" => esc_html__("If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer")
 		),
 		array(
 			"type" => "dropdown",
@@ -42,8 +42,8 @@ return array(
 	  </div>'
 	  ,
 	  'default_content' => '
-	  [pricing_column title="'.__('Column','js_composer').'" id="'.$tab_id_1.'"]  [/pricing_column]
-	  [pricing_column title="'.__('Column','js_composer').'" id="'.$tab_id_2.'"]  [/pricing_column]
+	  [pricing_column title="'.esc_html__('Column','js_composer').'" id="'.$tab_id_1.'"]  [/pricing_column]
+	  [pricing_column title="'.esc_html__('Column','js_composer').'" id="'.$tab_id_2.'"]  [/pricing_column]
 	  ',
 	  "js_view" => ($vc_is_wp_version_3_6_more ? 'VcTabsView' : 'VcTabsView35')
 	);

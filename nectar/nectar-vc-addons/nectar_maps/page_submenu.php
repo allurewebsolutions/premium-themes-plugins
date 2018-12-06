@@ -6,17 +6,17 @@ $tab_id_1 = time().'-1-'.rand(0, 100);
 $tab_id_2 = time().'-2-'.rand(0, 100);
 
 	return array(
-	  "name"  => __("Page Submenu", "js_composer"),
+	  "name"  => esc_html__("Page Submenu", "js_composer"),
 	  "base" => "page_submenu",
 	  "show_settings_on_create" => true,
 	  "is_container" => true,
 	  "icon" => "icon-wpb-page-submenu",
-	  "category" => __('Nectar Elements', 'js_composer'),
-	  "description" => __('Great for animated anchors', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
+	  "description" => esc_html__('Great for animated anchors', 'js_composer'),
 	  "params" => array( 
 	  	array(
 	      "type" => "dropdown",
-	      "heading" => __("Link Alignment", "js_composer"),
+	      "heading" => esc_html__("Link Alignment", "js_composer"),
 	      "param_name" => "alignment",
 	      "value" => array(
 				"Center" => "center",
@@ -24,7 +24,7 @@ $tab_id_2 = time().'-2-'.rand(0, 100);
 				"Right" => "right"
 			),
 	      'save_always' => true,
-	      "description" => __("Please select your desired link alignment", "js_composer")
+	      "description" => esc_html__("Please select your desired link alignment", "js_composer")
 	    ),
 	    array(
 	      "type" => "checkbox",
@@ -59,8 +59,8 @@ $tab_id_2 = time().'-2-'.rand(0, 100);
 	  </div>'
 	  ,
 	  'default_content' => '
-	  [page_link link_url="#" title="'.__('Link','js_composer').'" id="'.$tab_id_1.'"] [/page_link]
-	  [page_link link_url="#" title="'.__('Link','js_composer').'" id="'.$tab_id_2.'"]  [/page_link]
+	  [page_link link_url="#" title="'.esc_html__('Link','js_composer').'" id="'.$tab_id_1.'"] [/page_link]
+	  [page_link link_url="#" title="'.esc_html__('Link','js_composer').'" id="'.$tab_id_2.'"]  [/page_link]
 	  ',
 	  "js_view" => ($vc_is_wp_version_3_6_more ? 'VcTabsView' : 'VcTabsView35')
 	);

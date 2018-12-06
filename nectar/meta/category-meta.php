@@ -23,8 +23,8 @@ function nectar_taxonomy_edit_meta_field($term) {
 				<input type="hidden" id="category_thumbnail_image" name="term_meta[category_thumbnail_image]" value="<?php echo esc_attr( $term_meta['category_thumbnail_image'] ) ? esc_attr( $term_meta['category_thumbnail_image'] ) : ''; ?>" />
 		        <img class="redux-opts-screenshot" id="redux-opts-screenshot-category_thumbnail_image" src="<?php echo esc_attr( $term_meta['category_thumbnail_image'] ) ? esc_attr( $term_meta['category_thumbnail_image'] ) : ''; ?>" />
 		        <?php if(empty($term_meta['category_thumbnail_image'])) { $remove = ' style="display:none;"'; $upload = ''; } else {$remove = ''; $upload = ' style="display:none;"'; } ?>
-		        <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" <?php echo $upload; ?>  rel-id="category_thumbnail_image"> <?php echo __('Upload', 'salient'); ?> </a>
-		        <a href="javascript:void(0);" class="redux-opts-upload-remove" <?php echo $remove; ?> rel-id="category_thumbnail_image"> <?php echo __('Remove Upload', 'salient'); ?> </a>
+		        <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" <?php echo $upload; // WPCS: XSS ok. ?>  rel-id="category_thumbnail_image"> <?php echo esc_html__('Upload', 'salient'); ?> </a>
+		        <a href="javascript:void(0);" class="redux-opts-upload-remove" <?php echo $remove; // WPCS: XSS ok. ?> rel-id="category_thumbnail_image"> <?php echo esc_html__('Remove Upload', 'salient'); ?> </a>
 		
 		</td>
 	</tr>
@@ -36,8 +36,8 @@ function nectar_taxonomy_edit_meta_field($term) {
 				<input type="hidden" id="category_image" name="term_meta[category_image]" value="<?php echo esc_attr( $term_meta['category_image'] ) ? esc_attr( $term_meta['category_image'] ) : ''; ?>" />
 		        <img class="redux-opts-screenshot" id="redux-opts-screenshot-category_image" src="<?php echo esc_attr( $term_meta['category_image'] ) ? esc_attr( $term_meta['category_image'] ) : ''; ?>" />
 		        <?php if(empty($term_meta['category_image'])) { $remove = ' style="display:none;"'; $upload = ''; } else {$remove = ''; $upload = ' style="display:none;"'; } ?>
-		        <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" <?php echo $upload; ?>  rel-id="category_image"> <?php echo __('Upload', 'salient'); ?> </a>
-		        <a href="javascript:void(0);" class="redux-opts-upload-remove" <?php echo $remove; ?> rel-id="category_image"> <?php echo __('Remove Upload', 'salient'); ?> </a>
+		        <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" <?php echo $upload; // WPCS: XSS ok. ?>  rel-id="category_image"> <?php echo esc_html__('Upload', 'salient'); ?> </a>
+		        <a href="javascript:void(0);" class="redux-opts-upload-remove" <?php echo $remove; // WPCS: XSS ok. ?> rel-id="category_image"> <?php echo esc_html__('Remove Upload', 'salient'); ?> </a>
 		
 		</td>
 	</tr>
@@ -133,8 +133,8 @@ function nectar_taxonomy_edit_product_meta_field($term) {
 				<input type="hidden" id="product_category_image" name="term_meta[product_category_image]" value="<?php echo esc_attr( $term_meta['product_category_image'] ) ? esc_attr( $term_meta['product_category_image'] ) : ''; ?>" />
 		        <img class="redux-opts-screenshot" id="redux-opts-screenshot-category_image" src="<?php echo esc_attr( $term_meta['product_category_image'] ) ? esc_attr( $term_meta['product_category_image'] ) : ''; ?>" />
 		        <?php if(empty($term_meta['product_category_image'])) { $remove = ' style="display:none;"'; $upload = ''; } else {$remove = ''; $upload = ' style="display:none;"'; } ?>
-		        <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" <?php echo $upload; ?>  rel-id="product_category_image"> <?php echo __('Upload', 'salient'); ?> </a>
-		        <a href="javascript:void(0);" class="redux-opts-upload-remove" <?php echo $remove; ?> rel-id="product_category_image"> <?php echo __('Remove Upload', 'salient'); ?> </a>
+		        <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" <?php echo $upload; ?>  rel-id="product_category_image"> <?php echo esc_html__('Upload', 'salient'); ?> </a>
+		        <a href="javascript:void(0);" class="redux-opts-upload-remove" <?php echo $remove; // WPCS: XSS ok. ?> rel-id="product_category_image"> <?php echo esc_html__('Remove Upload', 'salient'); ?> </a>
 		
 		</td>
 	</tr>

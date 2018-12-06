@@ -463,3 +463,81 @@ html body.wp-admin.admin-color-fresh .redux-main .redux-container-switch .cb-ena
 }
 .toplevel_page_Salient .qtip .qtip-tip { display: none!important; }
 
+
+fieldset[id*="salient_redux"] .switch-options {
+    width: 67px;
+    height: 28px;
+    position: relative;
+    box-shadow: inset 0px 0px 0px 2px #999;
+    border-radius: 20px;
+    -webkit-transition: box-shadow .45s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: box-shadow .45s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+fieldset[id*="salient_redux"] .switch-options.activated {
+    border-color: rgba(119, 204, 109, 1);
+    background-color: rgba(119, 204, 109, 1);
+    box-shadow: inset 0px 0px 0px 15px rgba(119, 204, 109, 1);
+    -webkit-transition: box-shadow .45s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.25s 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: box-shadow .45s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.25s 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+fieldset[id*="salient_redux"] .switch-options.activated .cb-enable, fieldset[id*="salient_redux"] .switch-options .cb-disable {
+    pointer-events: none;
+}
+
+fieldset[id*="salient_redux"] .switch-options.activated .cb-disable, fieldset[id*="salient_redux"] .switch-options .cb-enable {
+    pointer-events: all;
+}
+fieldset[id*="salient_redux"] .switch-options .cb-disable {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    right: 2px;
+    line-height: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    text-align: right;
+    cursor: pointer;
+    color: #282d33;
+}
+fieldset[id*="salient_redux"] .switch-options .cb-enable {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    line-height: 7px;
+    text-align: left;
+    font-size: 15px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    color: rgba(0,0,0,0);
+}
+
+fieldset[id*="salient_redux"] .switch-options:before{
+    position: absolute;
+    top: 5px;
+    width: 20px;
+    bottom: 5px;
+    right: 41px;
+		display: block;
+		content: '';
+    background-color: #999;
+    border-radius: 19px; 
+    cursor: pointer;
+    -webkit-transition: all .35s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: all .35s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+fieldset[id*="salient_redux"] .switch-options.activated:before {
+    right: 5px;
+    background-color: #fff;
+}

@@ -648,6 +648,7 @@ function nectarWooProdSliderInit() {
                           else {
                             $thumbProdSlider.flickity( 'selectCell', 0 );
                             $mainProdSlider.flickity( 'selectCell', 0 );
+                            $mainProdSlider.flickity( 'resize' );
                           }
                           
                           //update zoom
@@ -693,6 +694,13 @@ function nectarWooProdSliderInit() {
     		 	$('.slide div a:first > img').attr('src',$startingImage);
     		 	$('.product-thumbs .flickity-slider > .thumb:first-child img, .product-thumbs .slider > .thumb:first-child img').attr('src',$startingImageThumb).removeAttr('srcset');
           
+          //resize
+          if($('[data-gallery-style="left_thumb_sticky"]').length > 0 && $('body.mobile').length == 0) {
+          
+          } else {
+            $mainProdSlider.flickity( 'resize' );
+          }
+          
           //update zoom
           if($().zoom) {
               if( $('[data-gallery-style="left_thumb_sticky"]').length > 0 && $('body.mobile').length == 0) {
@@ -714,7 +722,7 @@ function nectarWooProdSliderInit() {
   
   
   function productStickySS() {
-		$('.product[data-gallery-style="left_thumb_sticky"] .flickity.product-thumbs, .product[data-gallery-style="left_thumb_sticky"] .single-product-summary').each(function(){
+		$('.product[data-gallery-style="left_thumb_sticky"] .flickity.product-thumbs, .product[data-gallery-style="left_thumb_sticky"][data-tab-pos="in_sidebar"] .single-product-summary, .product[data-gallery-style="left_thumb_sticky"][data-tab-pos="fullwidth"] .summary.entry-summary').each(function(){
 
 			//padding from top of screen
 			$ssExtraTopSpace = 50;
@@ -767,7 +775,12 @@ function nectarWooProdSliderInit() {
      
      //wrap for sticky
      var prodImg = $('.single-product .product[data-gallery-style="left_thumb_sticky"] > .single-product-main-image').detach();
-     var prodDesc = $('.single-product .product[data-gallery-style="left_thumb_sticky"] > .single-product-summary').detach();
+     if($('.product[data-gallery-style="left_thumb_sticky"][data-tab-pos="in_sidebar"]').length > 0) {
+       var prodDesc = $('.single-product .product[data-gallery-style="left_thumb_sticky"] > .single-product-summary').detach();
+     } else {
+       var prodDesc = $('.single-product .product[data-gallery-style="left_thumb_sticky"] > .summary.entry-summary').detach();
+     }
+     
      $('.single-product .product[data-gallery-style="left_thumb_sticky"]').prepend('<div class="nectar-sticky-prod-wrap" />');
      $('.single-product .product[data-gallery-style="left_thumb_sticky"] .nectar-sticky-prod-wrap').append(prodImg).append(prodDesc);
      

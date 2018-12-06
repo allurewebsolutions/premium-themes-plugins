@@ -1,11 +1,11 @@
 <?php 
 
 return array(
-		  "name" => __("Gradient Text", "js_composer"),
+		  "name" => esc_html__("Gradient Text", "js_composer"),
 		  "base" => "nectar_gradient_text",
 		  "icon" => "icon-wpb-nectar-gradient-text",
-		  "category" => __('Nectar Elements', 'js_composer'),
-		  "description" => __('Add text with gradient coloring', 'js_composer'),
+		  "category" => esc_html__('Nectar Elements', 'js_composer'),
+		  "description" => esc_html__('Add text with gradient coloring', 'js_composer'),
 		  "params" => array(
 		  	array(
 			"type" => "dropdown",
@@ -32,7 +32,7 @@ return array(
 					"Color Gradient 1" => "extra-color-gradient-1",
 			 		"Color Gradient 2" => "extra-color-gradient-2"
 				),
-				'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a> <br/> Will fallback to the first color of the gardient on non webkit browsers.',
+				'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a> <br/> Will fallback to the first color of the gardient on non webkit browsers.',
 			),
 			array(
 				"type" => "dropdown",
@@ -49,38 +49,38 @@ return array(
 			),
 			array(
 		      "type" => "textarea",
-		      "heading" => __("Text Content", "js_composer"),
+		      "heading" => esc_html__("Text Content", "js_composer"),
 		      "param_name" => "text",
 		      "admin_label" => true,
-		      "description" => __("The text that will display with gradient coloring", "js_composer")
+		      "description" => esc_html__("The text that will display with gradient coloring", "js_composer")
 		    ),
 		    array(
 		      "type" => "textfield",
-		      "heading" => __("Margin <span>Top</span>", "js_composer"),
+		      "heading" => esc_html__("Margin", "js_composer") . "<span>" . esc_html__("Top", "js_composer") . "</span>",
 		      "param_name" => "margin_top",
 		      "edit_field_class" => "col-md-2",
-		      "description" => __("." , "js_composer")
+		      "description" => esc_html__("." , "js_composer")
 		    ),
 			 array(
 		      "type" => "textfield",
-		      "heading" => __("<span>Right</span>", "js_composer"),
+		      "heading" => "<span>" . esc_html__("Right", "js_composer") . "</span>",
 		      "param_name" => "margin_right",
 		      "edit_field_class" => "col-md-2",
-		      "description" => __("" , "js_composer")
+		      "description" => ''
 		    ),
 			array(
 		      "type" => "textfield",
-		      "heading" => __("<span>Bottom</span>", "js_composer"),
+		      "heading" => "<span>" . esc_html__("Bottom", "js_composer") . "</span>",
 		      "param_name" => "margin_bottom",
 		      "edit_field_class" => "col-md-2",
-		      "description" => __("" , "js_composer")
+		      "description" => ''
 		    ),
 		    array(
 		      "type" => "textfield",
-		      "heading" => __("<span>Left</span>", "js_composer"),
+		      "heading" => "<span>" . esc_html__("Left", "js_composer") . "</span>",
 		      "param_name" => "margin_left",
 		      "edit_field_class" => "col-md-2",
-		      "description" => __("" , "js_composer")
+		      "description" => ''
 		    ),
 		 	 
 		  )

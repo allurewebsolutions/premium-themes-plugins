@@ -410,7 +410,6 @@
 
                     //print_r($section);
                     //print_r($this->parent->sections[$key+1]);
-                    //echo $key;
                     //exit();
 
 
@@ -492,7 +491,6 @@
                         }
 
                         //$option['id'] = $this->parent->args['opt_name'].'['.$option['id'].']';
-                        //echo $option['id'];
 
                         if ( ! isset( $option['default'] ) ) {
                             $option['default'] = "";
@@ -620,7 +618,6 @@
                 $id = $matches[1][0];
                 echo $option->link();
                 //$link = $option->link();
-                //echo $link;
 
                 $this->parent->_field_input( $this->controls[ $id ] );
                 echo '2';

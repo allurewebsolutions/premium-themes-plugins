@@ -1,22 +1,22 @@
 <?php 
 
-    $tab_id_1 = time().'-1-'.rand(0, 100);
+  $tab_id_1 = time().'-1-'.rand(0, 100);
 	$tab_id_2 = time().'-2-'.rand(0, 100);
 
 	$vc_is_wp_version_3_6_more = version_compare(preg_replace('/^([\d\.]+)(\-.*$)/', '$1', get_bloginfo('version')), '3.6') >= 0;
 	
 	return array(
-	  "name"  => __("Testimonial Slider", "js_composer"),
+	  "name"  => esc_html__("Testimonial Slider", "js_composer"),
 	  "base" => "testimonial_slider",
 	  "show_settings_on_create" => false,
 	  "is_container" => true,
 	  "icon" => "icon-wpb-testimonial-slider",
-	  "category" => __('Nectar Elements', 'js_composer'),
-	  "description" => __('An appealing testmonial slider.', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
+	  "description" => esc_html__('An appealing testmonial slider.', 'js_composer'),
 	  "params" => array(
 	  	 array(
 		  "type" => "dropdown",
-		  "heading" => __("Style", "js_composer"),
+		  "heading" => esc_html__("Style", "js_composer"),
 		  "param_name" => "style",
 		  "admin_label" => false,
 		  "value" => array(
@@ -26,11 +26,11 @@
 			 "Multiple Visible Minimal" => "multiple_visible_minimal",
 		   ),
 		  'save_always' => true,
-		  "description" => __("Please select the style for your testimonial slider", "js_composer")
+		  "description" => esc_html__("Please select the style for your testimonial slider", "js_composer")
 		),
 	  	array(
 		  "type" => "dropdown",
-		  "heading" => __("Color", "js_composer"),
+		  "heading" => esc_html__("Color", "js_composer"),
 		  "param_name" => "color",
 		  "admin_label" => false,
 		  "value" => array(
@@ -46,11 +46,11 @@
 		   ),
 		  'save_always' => true,
 		  "dependency" => Array('element' => "style", 'value' => array('multiple_visible')),
-		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 		array(
 		  "type" => "dropdown",
-		  "heading" => __("Star Rating Color", "js_composer"),
+		  "heading" => esc_html__("Star Rating Color", "js_composer"),
 		  "param_name" => "star_rating_color",
 		  "admin_label" => false,
 		  "value" => array(
@@ -63,7 +63,7 @@
 		   ),
 		  'save_always' => true,
 		  "dependency" => Array('element' => "style", 'value' => array('multiple_visible_minimal','minimal','default')),
-		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 		array(
 	      "type" => "checkbox",
@@ -76,10 +76,10 @@
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Auto rotate?", "js_composer"),
+	      "heading" => esc_html__("Auto rotate?", "js_composer"),
 	      "param_name" => "autorotate",
 	      "value" => '',
-	      "description" => __("If you would like this to autorotate, enter the rotation speed in miliseconds here. i.e 5000", "js_composer")
+	      "description" => esc_html__("If you would like this to autorotate, enter the rotation speed in miliseconds here. i.e 5000", "js_composer")
 	    ),
 	    array(
 	      "type" => "checkbox",
@@ -99,8 +99,8 @@
 	  </div>'
 	  ,
 	  'default_content' => '
-	  [testimonial title="'.__('Testimonial','js_composer').'" id="'.$tab_id_1.'"] Click the edit button to add your testimonial. [/testimonial]
-	  [testimonial title="'.__('Testimonial','js_composer').'" id="'.$tab_id_2.'"] Click the edit button to add your testimonial. [/testimonial]
+	  [testimonial title="'.esc_html__('Testimonial','js_composer').'" id="'.$tab_id_1.'"] Click the edit button to add your testimonial. [/testimonial]
+	  [testimonial title="'.esc_html__('Testimonial','js_composer').'" id="'.$tab_id_2.'"] Click the edit button to add your testimonial. [/testimonial]
 	  ',
 	  "js_view" => ($vc_is_wp_version_3_6_more ? 'VcTabsView' : 'VcTabsView35')
 	);

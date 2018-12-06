@@ -26,7 +26,7 @@ function nectar_add_admin_notice_script() {
 	  wp_register_script( 'nectar-woo-admin-notice-update', $nectar_get_template_directory_uri . '/nectar/woo/js/admin_notices.js','','1.0', false );
 	  
 	  wp_localize_script( 'nectar-woo-admin-notice-update', 'notice_params', array(
-	      'ajaxurl' => get_admin_url() . 'admin-ajax.php', 
+	      'ajaxurl' => esc_url(get_admin_url()) . 'admin-ajax.php', 
 	  ));
 	  
 	  wp_enqueue_script(  'nectar-woo-admin-notice-update' );

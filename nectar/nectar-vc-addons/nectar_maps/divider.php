@@ -5,8 +5,8 @@ return array(
 			"base" => "divider",
 			"icon" => "icon-wpb-separator",
 			"allowed_container_element" => 'vc_row',
-			"category" => __('Nectar Elements', 'js_composer'),
-			"description" => __('Create space between your content', 'js_composer'),
+			"category" => esc_html__('Nectar Elements', 'js_composer'),
+			"description" => esc_html__('Create space between your content', 'js_composer'),
 			"params" => array(
 				array(
 					"type" => "textfield",
@@ -46,7 +46,7 @@ return array(
 				),
 				array(
 				  "type" => "dropdown",
-				  "heading" => __("Line Thickness", "js_composer"),
+				  "heading" => esc_html__("Line Thickness", "js_composer"),
 				  "admin_label" => false,
 				  "param_name" => "line_thickness",
 				  "value" => array(
@@ -61,7 +61,7 @@ return array(
 					    "9px" => "9",
 					    "10px" => "10"
 					),
-				  "description" => __("Please select thickness of your line ", "js_composer"),
+				  "description" => esc_html__("Please select thickness of your line ", "js_composer"),
 				  'save_always' => true,
 				  "dependency" => Array('element' => "line_type", 'value' => array('Full Width Line','Small Line'))
 				),
@@ -77,7 +77,7 @@ return array(
 				),
 				 array(
 				  "type" => "dropdown",
-				  "heading" => __("Divider Color", "js_composer"),
+				  "heading" => esc_html__("Divider Color", "js_composer"),
 				  "param_name" => "divider_color",
 				  "admin_label" => false,
 				  "value" => array(
@@ -91,22 +91,22 @@ return array(
 				   ),
 				  'save_always' => true,
 				  "dependency" => Array('element' => "line_type", 'value' => array('Full Width Line','Small Line')),
-				  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+				  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 				),
 				 array(
 			      "type" => 'checkbox',
-			      "heading" => __("Animate Line", "js_composer"),
+			      "heading" => esc_html__("Animate Line", "js_composer"),
 			      "param_name" => "animate",
-			      "description" => __("If selected, the divider line will animate in when scrolled to", "js_composer"),
-			      "value" => Array(__("Yes, please", "js_composer") => 'yes'),
+			      "description" => esc_html__("If selected, the divider line will animate in when scrolled to", "js_composer"),
+			      "value" => Array(esc_html__("Yes, please", "js_composer") => 'yes'),
 			      "dependency" => Array('element' => "line_type", 'value' => array('Full Width Line','Small Line')),
 			    ),
 				 array(
 			      "type" => "textfield",
-			      "heading" => __("Animation Delay", "js_composer"),
+			      "heading" => esc_html__("Animation Delay", "js_composer"),
 			      "param_name" => "delay",
 			      "dependency" => Array('element' => "line_type", 'value' => array('Full Width Line','Small Line')),
-			      "description" => __("Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in \"one by one\" effect.", "js_composer")
+			      "description" => esc_html__("Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in \"one by one\" effect.", "js_composer")
 			    ),
 
 			)

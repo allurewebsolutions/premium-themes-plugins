@@ -3,7 +3,7 @@
 $vc_is_wp_version_3_6_more = version_compare(preg_replace('/^([\d\.]+)(\-.*$)/', '$1', get_bloginfo('version')), '3.6') >= 0;
 
 return array(
-	  "name" => __("Pricing Column", "js_composer"),
+	  "name" => esc_html__("Pricing Column", "js_composer"),
 	  "base" => "pricing_column",
 	  "allowed_container_element" => 'vc_row',
 	  "is_container" => true,
@@ -11,28 +11,28 @@ return array(
 	  "params" => array(
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Title", "js_composer"),
+	      "heading" => esc_html__("Title", "js_composer"),
 	      "param_name" => "title",
-	      "description" => __("Please enter a title for your pricing column", "js_composer")
+	      "description" => esc_html__("Please enter a title for your pricing column", "js_composer")
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Price", "js_composer"),
+	      "heading" => esc_html__("Price", "js_composer"),
 	      "param_name" => "price",
 	       "admin_label" => true,
-	      "description" => __("Enter the price for your column", "js_composer")
+	      "description" => esc_html__("Enter the price for your column", "js_composer")
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Currency Symbol", "js_composer"),
+	      "heading" => esc_html__("Currency Symbol", "js_composer"),
 	      "param_name" => "currency_symbol",
-	      "description" => __("Enter the currency symbol that will display for your price", "js_composer")
+	      "description" => esc_html__("Enter the currency symbol that will display for your price", "js_composer")
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Interval", "js_composer"),
+	      "heading" => esc_html__("Interval", "js_composer"),
 	      "param_name" => "interval",
-	      "description" => __("Enter the interval for your pricing e.g. \"Per Month\" or \"Per Year\" ", "js_composer")
+	      "description" => esc_html__("Enter the interval for your pricing e.g. \"Per Month\" or \"Per Year\" ", "js_composer")
 	    ),
 	    array(
 	      "type" => "checkbox",
@@ -44,9 +44,9 @@ return array(
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Highlight Reason", "js_composer"),
+	      "heading" => esc_html__("Highlight Reason", "js_composer"),
 	      "param_name" => "highlight_reason",
-	      "description" => __("Enter the reason for the column being highlighted e.g. \"Most Popular\"" , "js_composer"),
+	      "description" => esc_html__("Enter the reason for the column being highlighted e.g. \"Most Popular\"" , "js_composer"),
 	      "dependency" => Array('element' => "highlight", 'not_empty' => true)
 	    ),
 	    array(
@@ -62,14 +62,14 @@ return array(
 				"Extra Color 3" => "Extra-Color-3"
 			),
 			'save_always' => true,
-			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 		array(
 	      "type" => "textarea_html",
 	      "holder" => "hidden",
-	      "heading" => __("Text Content", "js_composer"),
+	      "heading" => esc_html__("Text Content", "js_composer"),
 	      "param_name" => "content",
-	      "value" => __("", "js_composer")
+	      "value" => ''
 	    )
 	  ),
 	  'js_view' => ($vc_is_wp_version_3_6_more ? 'VcTabView' : 'VcTabView35')

@@ -7,9 +7,9 @@
 			"base" => "bar",
 			"icon" => "icon-wpb-progress_bar",
 			"allowed_container_element" => 'vc_row',
-			"category" => __('Nectar Elements', 'js_composer'),
+			"category" => esc_html__('Nectar Elements', 'js_composer'),
 			"class" => 'three-cols',
-			"description" => __('Include a horizontal progress bar', 'js_composer'),
+			"description" => esc_html__('Include a horizontal progress bar', 'js_composer'),
 			"params" => array(
 				array(
 					"type" => "textfield",
@@ -42,7 +42,7 @@
 						"Color Gradient 1" => "extra-color-gradient-1",
 				 		"Color Gradient 2" => "extra-color-gradient-2"
 					),
-					'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+					'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 				)
 
 			)

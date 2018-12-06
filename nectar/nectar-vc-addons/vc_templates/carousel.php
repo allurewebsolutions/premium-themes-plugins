@@ -10,6 +10,16 @@ extract(shortcode_atts(array("carousel_title" => '', "scroll_speed" => 'medium',
 'column_color' => '', 'desktop_cols_flickity' => '3', 'desktop_small_cols_flickity' => '3', 
 'tablet_cols_flickity' => '2'), $atts));
 
+
+if( isset($_GET['vc_editable']) ) {
+	$nectar_using_VC_front_end_editor = sanitize_text_field($_GET['vc_editable']);
+	$nectar_using_VC_front_end_editor = ($nectar_using_VC_front_end_editor == 'true') ? true : false;
+	//imit script choices on front end editor
+	if($nectar_using_VC_front_end_editor && $script != 'flickity') {
+		$script = 'flickity';
+	}
+}
+
 $GLOBALS['nectar-carousel-script'] = $script;
 $GLOBALS['nectar_carousel_column_color'] = $column_color;
 
@@ -42,7 +52,7 @@ if($script == 'carouFredSel') {
 		
 		if(!empty($cta_button_text)) {
 			
-			global $options;
+			global $nectar_options;
 			
 			$button_color = strtolower($button_color);
 			$regular_btn_class = ' regular-button';
@@ -54,10 +64,10 @@ if($script == 'carouFredSel') {
 				$btn_text_markup = '<span class="start">'.$cta_button_text.' <i class="icon-button-arrow"></i></span><span class="hover">'.$cta_button_text.' <i class="icon-button-arrow"></i></span>';
 			}
 			
-			if($options['theme-skin'] == 'material' && $button_color == 'extra-color-gradient-1') {
+			if($nectar_options['theme-skin'] == 'material' && $button_color == 'extra-color-gradient-1') {
 				$button_color = 'm-extra-color-gradient-1';
 				$btn_text_markup = '<span>'.$cta_button_text.'</span> <i class="icon-button-arrow"></i>';
-			} else if( $options['theme-skin'] == 'material' && $button_color == 'extra-color-gradient-2') {
+			} else if( $nectar_options['theme-skin'] == 'material' && $button_color == 'extra-color-gradient-2') {
 				$button_color = 'm-extra-color-gradient-2';
 				$btn_text_markup = '<span>'.$cta_button_text.'</span> <i class="icon-button-arrow"></i>';
 			} 
@@ -71,8 +81,11 @@ if($script == 'carouFredSel') {
 		
 	}
 	
-	echo '<div class="nectar-flickity not-initialized nectar-carousel" data-pagination-alignment="'.$pagination_alignment_flickity.'" data-border-radius="'.$border_radius.'" data-column-border="'.$enable_column_border.'" data-column-padding="'.$column_padding.'" data-format="'.$flickity_formatting.'" data-autoplay="'.$autorotate.'" data-autoplay-dur="'.$autorotation_speed.'"  data-controls="material_pagination" data-desktop-columns="'.$desktop_cols_flickity.'" data-small-desktop-columns="'.$desktop_small_cols_flickity.'" data-tablet-columns="'.$tablet_cols_flickity.'">';
-		echo do_shortcode($content);
+	$flickity_markup_opening = '<div class="flickity-viewport"> <div class="flickity-slider">';
+	$flickity_markup_closing = '</div></div>';
+	
+	echo '<div class="nectar-flickity not-initialized nectar-carousel" data-pagination-alignment="'.$pagination_alignment_flickity.'" data-border-radius="'.$border_radius.'" data-column-border="'.$enable_column_border.'" data-column-padding="'.$column_padding.'" data-format="'.$flickity_formatting.'" data-autoplay="'.$autorotate.'" data-autoplay-dur="'.$autorotation_speed.'"  data-controls="material_pagination" data-desktop-columns="'.$desktop_cols_flickity.'" data-small-desktop-columns="'.$desktop_small_cols_flickity.'" data-tablet-columns="'.$tablet_cols_flickity.'" data-column-color="'.$column_color.'">';
+		echo $flickity_markup_opening . do_shortcode($content) . $flickity_markup_closing;
 	echo '</div>';
 	
 	if($flickity_formatting == 'fixed_text_content_fullwidth') {

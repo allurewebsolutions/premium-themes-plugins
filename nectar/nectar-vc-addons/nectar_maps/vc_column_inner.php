@@ -1,7 +1,7 @@
 <?php 
 
 return array(
-		"name" => __( "Column", "js_composer" ),
+		"name" => esc_html__("Column", "js_composer" ),
 		"base" => "vc_column_inner",
 		"class" => "",
 		"icon" => "",
@@ -49,7 +49,7 @@ return array(
 				"heading" => "Animation Delay",
 				"param_name" => "delay",
 				"admin_label" => false,
-				"description" => __("Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in \"one by one\" effect.", "js_composer"),
+				"description" => esc_html__("Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in \"one by one\" effect.", "js_composer"),
 				"dependency" => Array('element' => "enable_animation", 'not_empty' => true)
 			),
 
@@ -192,19 +192,19 @@ return array(
 			array(
 				'type' => 'dropdown',
 				'save_always' => true,
-				'heading' => __( 'Width', 'js_composer' ),
+				'heading' => esc_html__('Width', 'js_composer' ),
 				'param_name' => 'width',
 				'value' => $vc_column_width_list,
-				'group' => __( 'Responsive Options', 'js_composer' ),
-				'description' => __( 'Select column width.', 'js_composer' ),
+				'group' => esc_html__('Responsive Options', 'js_composer' ),
+				'description' => esc_html__('Select column width.', 'js_composer' ),
 				'std' => '1/1'
 			),
 			array(
 				'type' => 'column_offset',
-				'heading' => __( 'Responsiveness', 'js_composer' ),
+				'heading' => esc_html__('Responsiveness', 'js_composer' ),
 				'param_name' => 'offset',
-				'group' => __( 'Responsive Options', 'js_composer' ),
-				'description' => __( 'Adjust column for different screen sizes. Control width, offset and visibility settings.', 'js_composer' )
+				'group' => esc_html__('Responsive Options', 'js_composer' ),
+				'description' => esc_html__('Adjust column for different screen sizes. Control width, offset and visibility settings.', 'js_composer' )
 			)
 		),
 		"js_view" => 'VcColumnView'

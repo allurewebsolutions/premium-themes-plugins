@@ -8,13 +8,13 @@ $tab_id_1 = time().'-1-'.rand(0, 100);
 	$vc_is_wp_version_3_6_more = version_compare(preg_replace('/^([\d\.]+)(\-.*$)/', '$1', get_bloginfo('version')), '3.6') >= 0;
 
 return array(
-	  "name"  => __("Carousel", "js_composer"),
+	  "name"  => esc_html__("Carousel", "js_composer"),
 	  "base" => "carousel",
 	  "show_settings_on_create" => true,
 	  "is_container" => true,
 	  "icon" => "icon-wpb-carousel",
-	  "category" => __('Nectar Elements', 'js_composer'),
-	  "description" => __('A simple carousel for any content', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
+	  "description" => esc_html__('A simple carousel for any content', 'js_composer'),
 	  "params" => array(
 	  array(
 			"type" => "dropdown",
@@ -27,7 +27,7 @@ return array(
 				"Owl Carousel" => "owl_carousel",
 				"Flickity" => "flickity"
 			),
-			"description" => __("Owl Carousel and Flickity are reccomended over carouFredSel - however carouFredSel is still available for legacy users who prefer it." , "js_composer")
+			"description" => esc_html__("Owl Carousel and Flickity are reccomended over carouFredSel - however carouFredSel is still available for legacy users who prefer it." , "js_composer")
 		),
 		array(
 		 "type" => "dropdown",
@@ -40,41 +40,41 @@ return array(
 			 "Fixed Text Content Fullwidth" => "fixed_text_content_fullwidth",
 		 ),
 		 "dependency" => array('element' => "script", 'value' => 'flickity'),
-		 "description" => __("Select the formatting of your carousel. <br/>When using the \"Fixed Text Content Fullwidth\" format, the carousel should be the only element in your row and inside of a full (1/1) column." , "js_composer")
+		 "description" => esc_html__("Select the formatting of your carousel. When using the \"Fixed Text Content Fullwidth\" format, the carousel should be the only element in your row and inside of a full (1/1) column." , "js_composer")
 	 ),
 	 array(
 			 "type" => "textarea",
 			 "holder" => "div",
-			 "heading" => __("Text Content", "js_composer"),
+			 "heading" => esc_html__("Text Content", "js_composer"),
 			 "param_name" => "flickity_fixed_content",
-			 "value" => __("", "js_composer"),
+			 "value" => '',
 			 "dependency" => array('element' => "flickity_formatting", 'value' => array('fixed_text_content_fullwidth')),
-			 "description" => __("Enter any text/content you would like to be shown prominently in your carousel", "js_composer"),
+			 "description" => esc_html__("Enter any text/content you would like to be shown prominently in your carousel", "js_composer"),
 			 "admin_label" => false
 		 ),
 		 
 		 array(
 				"type" => "textfield",
-				"heading" => __("CTA Button Text", "js_composer"),
+				"heading" => esc_html__("CTA Button Text", "js_composer"),
 				"param_name" => "cta_button_text",
-				"description" => __("Enter your CTA text here" , "js_composer"),
+				"description" => esc_html__("Enter your CTA text here" , "js_composer"),
 				"dependency" => array('element' => "flickity_formatting", 'value' => array('fixed_text_content_fullwidth'))
 			),
 
 		array(
 				"type" => "textfield",
-				"heading" => __("CTA Button Link URL", "js_composer"),
+				"heading" => esc_html__("CTA Button Link URL", "js_composer"),
 				"param_name" => "cta_button_url",
-				"description" => __("Enter your URL here" , "js_composer"),
+				"description" => esc_html__("Enter your URL here" , "js_composer"),
 				"dependency" => array('element' => "flickity_formatting", 'value' => array('fixed_text_content_fullwidth'))
 			),
 
 		 array(
 			"type" => "checkbox",
 			"class" => "",
-			"heading" => __("CTA Button Open in New Tab", "js_composer"),
+			"heading" => esc_html__("CTA Button Open in New Tab", "js_composer"),
 				"param_name" => "cta_button_open_new_tab",
-			"value" => Array(__("Yes", "js_composer") => 'true'),
+			"value" => Array(esc_html__("Yes", "js_composer") => 'true'),
 			"description" => "",
 			"dependency" => array('element' => "flickity_formatting", 'value' => array('fixed_text_content_fullwidth'))
 		),
@@ -94,7 +94,7 @@ return array(
 				"Color Gradient 2" => "extra-color-gradient-2"
 			),
 			"dependency" => array('element' => "flickity_formatting", 'value' => array('fixed_text_content_fullwidth')),
-			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 		
 	   array(
@@ -116,7 +116,7 @@ return array(
 			),
 			"edit_field_class" => "col-md-2 vc_column",
 			"dependency" => array('element' => "script", 'value' => array('owl_carousel')),
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 	   array(
 			"type" => "dropdown",
@@ -137,7 +137,7 @@ return array(
 			),
 			"edit_field_class" => "col-md-2 vc_column",
 			"dependency" => array('element' => "script", 'value' => array('owl_carousel')),
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 	    array(
 			"type" => "dropdown",
@@ -156,7 +156,7 @@ return array(
 			),
 			"edit_field_class" => "col-md-2 vc_column",
 			"dependency" => array('element' => "script", 'value' => array('owl_carousel')),
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 	    array(
 			"type" => "dropdown",
@@ -173,7 +173,7 @@ return array(
 			),
 			"dependency" => array('element' => "script", 'value' => array('owl_carousel')),
 			"edit_field_class" => "col-md-2 vc_column",
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 		
 		array(
@@ -193,7 +193,7 @@ return array(
 		 ),
 		 "edit_field_class" => "col-md-2 vc_column",
 		 "dependency" => array('element' => "script", 'value' => array('flickity')),
-		 "description" => __("" , "js_composer")
+		 "description" => ''
 	 ),
 		array(
 		 "type" => "dropdown",
@@ -212,7 +212,7 @@ return array(
 		 ),
 		 "edit_field_class" => "col-md-2 vc_column",
 		 "dependency" => array('element' => "script", 'value' => array('flickity')),
-		 "description" => __("" , "js_composer")
+		 "description" => ''
 	 ),
 		 array(
 		 "type" => "dropdown",
@@ -228,7 +228,7 @@ return array(
 		 ),
 		 "edit_field_class" => "col-md-2 vc_column",
 		 "dependency" => array('element' => "script", 'value' => array('flickity')),
-		 "description" => __("" , "js_composer")
+		 "description" => ''
 	 ),
 	 
 	 array(
@@ -243,15 +243,15 @@ return array(
 			 "Right" => "right"
 		 ),
 	 	 "dependency" => array('element' => "flickity_formatting", 'value' => array('default')),
-		 "description" => __("" , "js_composer")
+		 "description" => ''
 	 ),
 		 
 	   array(
 	      "type" => "textfield",
-	      "heading" => __("Carousel Title", "js_composer"),
+	      "heading" => esc_html__("Carousel Title", "js_composer"),
 	      "param_name" => "carousel_title",
 	      "dependency" => array('element' => "script", 'value' => array('carouFredSel')),
-	      "description" => __("Enter the title you would like at the top of your carousel (optional)" , "js_composer")
+	      "description" => esc_html__("Enter the title you would like at the top of your carousel (optional)" , "js_composer")
 	    ),
 	   array(
 	     "type" => "dropdown",
@@ -270,38 +270,38 @@ return array(
 				"50px" => "50px"
 			),
 			"dependency" => array('element' => "script", 'value' => array('owl_carousel','flickity')),
-			"description" => __("Please select your desired column padding " , "js_composer")
+			"description" => esc_html__("Please select your desired column padding " , "js_composer")
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Transition Scroll Speed", "js_composer"),
+	      "heading" => esc_html__("Transition Scroll Speed", "js_composer"),
 	      "param_name" => "scroll_speed",
 	      "dependency" => array('element' => "script", 'value' => array('carouFredSel')),
-	      "description" => __("Enter in milliseconds (default is 700)" , "js_composer")
+	      "description" => esc_html__("Enter in milliseconds (default is 700)" , "js_composer")
 	    ),
 			array(
 	 		 "type" => "checkbox",
 	 		 "class" => "",
-	 		 "heading" => __("Loop?", "js_composer"),
+	 		 "heading" => esc_html__("Loop?", "js_composer"),
 	 			 "param_name" => "loop",
-	 		 "value" => Array(__("Yes", "js_composer") => 'true'),
+	 		 "value" => Array(esc_html__("Yes", "js_composer") => 'true'),
 			 "dependency" => array('element' => "script", 'value' => array('owl_carousel')),
 	 		 "description" => ""
 	 	 ),
 	    array(
 			"type" => "checkbox",
 			"class" => "",
-			"heading" => __("Autorotate?", "js_composer"),
+			"heading" => esc_html__("Autorotate?", "js_composer"),
 	     	"param_name" => "autorotate",
-			"value" => Array(__("Yes", "js_composer") => 'true'),
+			"value" => Array(esc_html__("Yes", "js_composer") => 'true'),
 			"description" => ""
 		),
 		array(
 	      "type" => "textfield",
-	      "heading" => __("Autorotation Speed", "js_composer"),
+	      "heading" => esc_html__("Autorotation Speed", "js_composer"),
 	      "param_name" => "autorotation_speed",
 	      "dependency" => array('element' => "script", 'value' => array('owl_carousel','flickity')),
-	      "description" => __("Enter in milliseconds (default is 5000)" , "js_composer")
+	      "description" => esc_html__("Enter in milliseconds (default is 5000)" , "js_composer")
 	    ),
 			array(
 				"type" => "colorpicker",
@@ -314,17 +314,17 @@ return array(
 			),
 			array(
 					"type" => "dropdown",
-					"heading" => __("Border Radius", "js_composer"),
+					"heading" => esc_html__("Border Radius", "js_composer"),
 					'save_always' => true,
 					"param_name" => "border_radius",
 					"dependency" => array('element' => "script", 'value' => array('flickity')),
 					"value" => array(
-						__("0px", "js_composer") => "none",
-						__("3px", "js_composer") => "3px",
-						__("5px", "js_composer") => "5px", 
-						__("10px", "js_composer") => "10px", 
-						__("15px", "js_composer") => "15px", 
-						__("20px", "js_composer") => "20px"),
+						esc_html__("0px", "js_composer") => "none",
+						esc_html__("3px", "js_composer") => "3px",
+						esc_html__("5px", "js_composer") => "5px", 
+						esc_html__("10px", "js_composer") => "10px", 
+						esc_html__("15px", "js_composer") => "15px", 
+						esc_html__("20px", "js_composer") => "20px"),
 				),	
 				array(
 				"type" => "checkbox",

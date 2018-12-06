@@ -4,19 +4,19 @@
   
 $order_by_values = array(
   '',
-  __( 'Date', 'js_composer' ) => 'date',
-  __( 'ID', 'js_composer' ) => 'ID',
-  __( 'Author', 'js_composer' ) => 'author',
-  __( 'Title', 'js_composer' ) => 'title',
-  __( 'Modified', 'js_composer' ) => 'modified',
-  __( 'Random', 'js_composer' ) => 'rand',
-  __( 'Menu order', 'js_composer' ) => 'menu_order',
+  esc_html__('Date', 'js_composer' ) => 'date',
+  esc_html__('ID', 'js_composer' ) => 'ID',
+  esc_html__('Author', 'js_composer' ) => 'author',
+  esc_html__('Title', 'js_composer' ) => 'title',
+  esc_html__('Modified', 'js_composer' ) => 'modified',
+  esc_html__('Random', 'js_composer' ) => 'rand',
+  esc_html__('Menu order', 'js_composer' ) => 'menu_order',
 );
 
 $order_way_values = array(
   '',
-  __( 'Descending', 'js_composer' ) => 'DESC',
-  __( 'Ascending', 'js_composer' ) => 'ASC',
+  esc_html__('Descending', 'js_composer' ) => 'DESC',
+  esc_html__('Ascending', 'js_composer' ) => 'ASC',
 );
 
 $is_admin = is_admin();
@@ -73,8 +73,8 @@ if($woocommerce) {
     'name' => __( 'Category Grid', 'js_composer' ),
     'base' => 'nectar_category_grid',
     'icon' => 'icon-wpb-portfolio',
-    "category" => __('Nectar Elements', 'js_composer'),
-    'description' => __( 'Show categories in a stylish grid', 'js_composer' ),
+    "category" => esc_html__('Nectar Elements', 'js_composer'),
+    'description' => esc_html__('Show categories in a stylish grid', 'js_composer' ),
     'params' => array(
     array(
       'type' => 'dropdown',
@@ -87,23 +87,23 @@ if($woocommerce) {
     ),
     array(
   	  "type" => "dropdown_multi",
-  	  "heading" => __("Product Categories", "js_composer"),
+  	  "heading" => esc_html__("Product Categories", "js_composer"),
   	  "param_name" => "product_category",
   	  "admin_label" => true,
   	  "value" => $woo_options,
   	  'save_always' => true,
       "dependency" => array('element' => "post_type", 'value' => 'products'),
-  	  "description" => __("Please select the categories you would like to display in the grid. <br/> You can select multiple categories too (ctrl + click on PC and command + click on Mac).", "js_composer")
+  	  "description" => esc_html__("Please select the categories you would like to display in the grid. You can select multiple categories too (ctrl + click on PC and command + click on Mac).", "js_composer")
   	),
     array(
       "type" => "dropdown_multi",
-      "heading" => __("Blog Categories", "js_composer"),
+      "heading" => esc_html__("Blog Categories", "js_composer"),
       "param_name" => "blog_category",
       "admin_label" => true,
       "value" => $blog_options,
       'save_always' => true,
       "dependency" => array('element' => "post_type", 'value' => 'posts'),
-      "description" => __("Please select the categories you would like to display for your blog. <br/> You can select multiple categories too (ctrl + click on PC and command + click on Mac).", "js_composer")
+      "description" => esc_html__("Please select the categories you would like to display for your blog. You can select multiple categories too (ctrl + click on PC and command + click on Mac).", "js_composer")
     ),
     
     
@@ -138,11 +138,11 @@ if($woocommerce) {
     ),
     array(
         "type" => "textfield",
-        "heading" => __("Text Content", "js_composer"),
+        "heading" => esc_html__("Text Content", "js_composer"),
         "param_name" => "custom_subtext",
         "admin_label" => true,
         "dependency" => array('element' => "subtext", 'value' => 'custom'),
-        "description" => __("Enter custom text that will be shown below each category title", "js_composer")
+        "description" => esc_html__("Enter custom text that will be shown below each category title", "js_composer")
       ),
 
 
@@ -156,12 +156,13 @@ if($woocommerce) {
           '2' => '2',
           '1' => '1'
         ),
+        'std' => '4',
         'save_always' => true
       ),
       
       array(
   		  "type" => "dropdown",
-  		  "heading" => __("Grid Item Spacing", "js_composer"),
+  		  "heading" => esc_html__("Grid Item Spacing", "js_composer"),
   		  "param_name" => "grid_item_spacing",
   		  'save_always' => true,
   		  "value" => array(
@@ -171,15 +172,15 @@ if($woocommerce) {
   			    "15px" => "15px",
             "25px" => "25px"
   			),
-  		  "description" => __("Please select the spacing you would like between your items. ", "js_composer")
+  		  "description" => esc_html__("Please select the spacing you would like between your items. ", "js_composer")
   		),
       
       array(
          "type" => 'checkbox',
-         "heading" => __("Masonry Layout", "js_composer"),
+         "heading" => esc_html__("Masonry Layout", "js_composer"),
          "param_name" => "enable_masonry",
-         "description" => __("This will allow your portfolio items to display in a masonry layout as opposed to a fixed grid", "js_composer"),
-         "value" => Array(__("Yes, please", "js_composer") => 'yes')
+         "description" => esc_html__("This will allow your portfolio items to display in a masonry layout as opposed to a fixed grid", "js_composer"),
+         "value" => Array(esc_html__("Yes, please", "js_composer") => 'yes')
        ),
        
  
@@ -212,7 +213,8 @@ if($woocommerce) {
          "0.8" => "0.8",
          "0.9" => "0.9",
          "1" => "1"
-       )
+       ),
+       'std' => '0.3',
      ),
        
        array(
@@ -235,6 +237,7 @@ if($woocommerce) {
            "0.9" => "0.9",
            "1" => "1"
          ),
+         'std' => '0.4',
        ),
        
        
@@ -248,7 +251,8 @@ if($woocommerce) {
          "value" => array(
            "Dark" => "dark",
            "Light" => "light",
-         )
+         ),
+         'std' => 'light',
        ),
        
        array(
@@ -261,16 +265,17 @@ if($woocommerce) {
          "value" => array(
            "Dark" => "dark",
            "Light" => "light",
-         )
+         ),
+          'std' => 'light',
        ),
        
        array(
           "type" => 'checkbox',
-          "heading" => __("Shadow on Hover", "js_composer"),
+          "heading" => esc_html__("Shadow on Hover", "js_composer"),
           "param_name" => "shadow_on_hover",
           "group" => 'Grid Item Coloring/Style',
-          "description" => __("This will add a shadow effect on hover to your grid items", "js_composer"),
-          "value" => Array(__("Yes, please", "js_composer") => 'yes')
+          "description" => esc_html__("This will add a shadow effect on hover to your grid items", "js_composer"),
+          "value" => Array(esc_html__("Yes, please", "js_composer") => 'yes')
         ),
         
         array(

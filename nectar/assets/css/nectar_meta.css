@@ -117,6 +117,10 @@ tr.font-option {
 	font-weight: normal!important;
 }*/
 
+div[id*="nectar-metabox"] .ui-buttonset .ui-button {
+	box-sizing: border-box;
+}
+
 div[id*="nectar-metabox"] fieldset.buttonset:not(.ui-buttonset) { opacity: 0;}
 
 tr.font-option th {
@@ -644,7 +648,7 @@ div#nectar-metabox-page-header .inside {
 #nectar-metabox-page-header .hndle.ui-sortable-handle,
 #poststuff #nectar-metabox-fullscreen-rows .hndle.ui-sortable-handle, 
 #poststuff #nectar-metabox-page-header .hndle.ui-sortable-handle {
-	background-color: #18a1f9;
+	background-color: #3a67ff;
 	color: #fff;
 }
 #nectar-metabox-fullscreen-rows .handlediv, 

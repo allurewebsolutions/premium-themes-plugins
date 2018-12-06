@@ -1,26 +1,26 @@
 <?php 
 
 return array(
-		  "name" => __("Flip Box", "js_composer"),
+		  "name" => esc_html__("Flip Box", "js_composer"),
 		  "base" => "nectar_flip_box",
 		  "icon" => "icon-wpb-nectar-flip-box",
-		  "category" => __('Nectar Elements', 'js_composer'),
-		  "description" => __('Add a flip box element', 'js_composer'),
+		  "category" => esc_html__('Nectar Elements', 'js_composer'),
+		  "description" => esc_html__('Add a flip box element', 'js_composer'),
 		  "params" => array(
 		  	array(
 		      "type" => "textarea",
-		      "heading" => __("Front Box Content", "js_composer"),
+		      "heading" => esc_html__("Front Box Content", "js_composer"),
 		      "param_name" => "front_content",
-		      "description" => __("The text that will display on the front of your flip box", "js_composer"),
+		      "description" => esc_html__("The text that will display on the front of your flip box", "js_composer"),
 		      "group" => 'Front Side'
 		    ),
 		 	  array(
 		      "type" => "fws_image",
-		      "heading" => __("Background Image", "js_composer"),
+		      "heading" => esc_html__("Background Image", "js_composer"),
 		      "param_name" => "image_url_1",
 		      "value" => "",
 		      "group" => 'Front Side',
-		      "description" => __("Select a background image from the media library.", "js_composer")
+		      "description" => esc_html__("Select a background image from the media library.", "js_composer")
 		    ),
 		 	array(
 				"type" => "colorpicker",
@@ -33,11 +33,11 @@ return array(
 			),
 			 array(
 		      "type" => 'checkbox',
-		      "heading" => __("BG Color overlay on BG Image", "js_composer"),
+		      "heading" => esc_html__("BG Color overlay on BG Image", "js_composer"),
 		      "param_name" => "bg_color_overlay",
 		      "group" => 'Front Side',
-		      "description" => __("Checking this will overlay your BG color on your BG image", "js_composer"),
-		      "value" => Array(__("Yes", "js_composer") => 'true')
+		      "description" => esc_html__("Checking this will overlay your BG color on your BG image", "js_composer"),
+		      "value" => Array(esc_html__("Yes", "js_composer") => 'true')
 		    ),
 			 array(
 				"type" => "dropdown",
@@ -66,39 +66,39 @@ return array(
 			),
 			array(
 		      "type" => "iconpicker",
-		      "heading" => __("Icon Above Title", "js_composer"),
+		      "heading" => esc_html__("Icon Above Title", "js_composer"),
 		      "param_name" => "icon_fontawesome",
 		      "group" => 'Front Side',
 		      "settings" => array( "emptyIcon" => true, "iconsPerPage" => 4000),
 		      "dependency" => Array('element' => "icon_family", 'value' => 'fontawesome'),
-		      "description" => __("Select icon from library.", "js_composer")
+		      "description" => esc_html__("Select icon from library.", "js_composer")
 		    ),
 		    array(
 		      "type" => "iconpicker",
-		      "heading" => __("Icon", "js_composer"),
+		      "heading" => esc_html__("Icon", "js_composer"),
 		      "param_name" => "icon_iconsmind",
 		      "group" => 'Front Side',
 		      "settings" => array( 'type' => 'iconsmind', 'emptyIcon' => false, "iconsPerPage" => 4000),
 		      "dependency" => array('element' => "icon_family", 'value' => 'iconsmind'),
-		      "description" => __("Select icon from library.", "js_composer")
+		      "description" => esc_html__("Select icon from library.", "js_composer")
 		    ),
 		    array(
 		      "type" => "iconpicker",
-		      "heading" => __("Icon Above Title", "js_composer"),
+		      "heading" => esc_html__("Icon Above Title", "js_composer"),
 		      "param_name" => "icon_linea",
 		      "group" => 'Front Side',
 		      "settings" => array( 'type' => 'linea', "emptyIcon" => true, "iconsPerPage" => 4000),
 		      "dependency" => Array('element' => "icon_family", 'value' => 'linea'),
-		      "description" => __("Select icon from library.", "js_composer")
+		      "description" => esc_html__("Select icon from library.", "js_composer")
 		    ),
 		    array(
 		      "type" => "iconpicker",
-		      "heading" => __("Icon", "js_composer"),
+		      "heading" => esc_html__("Icon", "js_composer"),
 		      "param_name" => "icon_steadysets",
 		      "group" => 'Front Side',
 		      "settings" => array( 'type' => 'steadysets', 'emptyIcon' => false, "iconsPerPage" => 4000),
 		      "dependency" => array('element' => "icon_family", 'value' => 'steadysets'),
-		      "description" => __("Select icon from library.", "js_composer")
+		      "description" => esc_html__("Select icon from library.", "js_composer")
 		    ),
 		    array(
 				"type" => "dropdown",
@@ -115,31 +115,31 @@ return array(
 					"Color Gradient 1" => "extra-color-gradient-1",
 			 		"Color Gradient 2" => "extra-color-gradient-2"
 				),
-				'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+				'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 			),
 			array(
 		      "type" => "textfield",
 		      "group" => 'Front Side',
-		      "heading" => __("Icon Size", "js_composer"),
+		      "heading" => esc_html__("Icon Size", "js_composer"),
 		      "param_name" => "icon_size",
-		      "description" => __("Please enter the size for your icon. Enter in number of pixels - Don't enter \"px\", default is \"60\"", "js_composer"),
+		      "description" => esc_html__("Please enter the size for your icon. Enter in number of pixels - Don't enter \"px\", default is \"60\"", "js_composer"),
 		      "group" => 'Front Side'
 		    ),
 			array(
 		      "type" => "textarea_html",
-		      "heading" => __("Back Box Content", "js_composer"),
+		      "heading" => esc_html__("Back Box Content", "js_composer"),
 		      "param_name" => "content",
 		      "admin_label" => true,
 		      "group" => 'Back Side',
-		      "description" => __("The content that will display on the back of your flip box", "js_composer")
+		      "description" => esc_html__("The content that will display on the back of your flip box", "js_composer")
 		    ),	
 		     array(
 		      "type" => "fws_image",
-		      "heading" => __("Background Image", "js_composer"),
+		      "heading" => esc_html__("Background Image", "js_composer"),
 		      "param_name" => "image_url_2",
 		      "value" => "",
 		      "group" => 'Back Side',
-		      "description" => __("Select a background image from the media library.", "js_composer")
+		      "description" => esc_html__("Select a background image from the media library.", "js_composer")
 		    ),
 		     array(
 				"type" => "colorpicker",
@@ -152,11 +152,11 @@ return array(
 			),
 		     array(
 		      "type" => 'checkbox',
-		      "heading" => __("BG Color overlay on BG Image", "js_composer"),
+		      "heading" => esc_html__("BG Color overlay on BG Image", "js_composer"),
 		      "param_name" => "bg_color_overlay_2",
 		      "group" => 'Back Side',
-		      "description" => __("Checking this will overlay your BG color on your BG image", "js_composer"),
-		      "value" => Array(__("Yes", "js_composer") => 'true')
+		      "description" => esc_html__("Checking this will overlay your BG color on your BG image", "js_composer"),
+		      "value" => Array(esc_html__("Yes", "js_composer") => 'true')
 		    ),
 		     array(
 				"type" => "dropdown",
@@ -172,11 +172,11 @@ return array(
 			), 
 		     array(
 		      "type" => "textfield",
-		      "heading" => __("Min Height", "js_composer"),
+		      "heading" => esc_html__("Min Height", "js_composer"),
 		      "param_name" => "min_height",
 		      "admin_label" => false,
 		      "group" => 'General Settings',
-		      "description" => __("Please enter the minimum height you would like for you box. Enter in number of pixels - Don't enter \"px\", default is \"300\"", "js_composer")
+		      "description" => esc_html__("Please enter the minimum height you would like for you box. Enter in number of pixels - Don't enter \"px\", default is \"300\"", "js_composer")
 		    ),
 
 			array(

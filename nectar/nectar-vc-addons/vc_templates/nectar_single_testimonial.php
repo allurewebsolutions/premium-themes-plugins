@@ -6,7 +6,8 @@ extract(shortcode_atts(array(
   'image' => '',
   'name' => '',
   'subtitle' => '',
-  'color' => ''
+  'color' => '',
+	'add_image_shadow' => ''
 ), $atts));
 
 $bg_markup = null;
@@ -20,7 +21,7 @@ if(!empty($image)){
 
 	$bg_markup = 'style="background-image: url('.$image.');"';
   
-  $image_icon_markup = '<div class="image-icon " '.$bg_markup.'></div>';
+  $image_icon_markup = '<div data-shadow="' . $add_image_shadow . '" class="image-icon " '.$bg_markup.'></div>';
 
 }
 

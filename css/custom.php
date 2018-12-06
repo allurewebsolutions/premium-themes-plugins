@@ -110,10 +110,10 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 	$custom_loading_icon = null;
 
 	if(isset($options['loading-image']['id'])){
-		$custom_loading_icon = ' .portfolio-loading, #ajax-loading-screen .loading-icon, .loading-icon, .pp_loaderIcon { background-image: url("'.nectar_options_img($options["loading-image"]).'"); } ';
+		$custom_loading_icon = ' .portfolio-loading, #ajax-loading-screen .loading-icon, .loading-icon, .pp_loaderIcon { background-image: url("'.nectar_options_img( $options["loading-image"] ).'"); } ';
 	} else {
 		if (!empty($options['loading-image'])) { 
-		    $custom_loading_icon = ' .portfolio-loading, #ajax-loading-screen .loading-icon, .loading-icon, .pp_loaderIcon { background-image: url("'.$options["loading-image"].'"); } ';
+		    $custom_loading_icon = ' .portfolio-loading, #ajax-loading-screen .loading-icon, .loading-icon, .pp_loaderIcon { background-image: url("'. $options["loading-image"] .'"); } ';
 		} 
 	}
 
@@ -255,8 +255,8 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 	
 	
 	//header nav bar related
-	if(!empty($options['transparent-header']) && $options['transparent-header'] == '1') {
-		global $post;
+	global $post;
+	if(!empty($options['transparent-header']) && $options['transparent-header'] == '1' && isset($post->ID) ) {
 		$activate_transparency = using_page_header($post->ID); 
 	} else {
 		$activate_transparency = false;
@@ -773,7 +773,7 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 		}
 	}
 
-	echo $custom_loading_icon;
+	echo $custom_loading_icon; // WPCS: XSS ok.
 	 
 	 
 	 //nectar slider font calcs

@@ -3,70 +3,58 @@
 
 $nectar_get_template_directory_uri = get_template_directory_uri();
 
-add_action( 'vc_load_default_templates_action','custom_studio_templates_for_vc' ); 
+add_action( 'vc_load_default_templates_action','nectar_custom_studio_templates_for_vc' ); 
 
-function custom_studio_templates_for_vc() {
+function nectar_custom_studio_templates_for_vc() {
 
 $cat_display_names = array(
-	'about' => __('About', 'salient'),
-	'blog' => __('Blog', 'salient'),
-	'cta' => __('Call To Action', 'salient'),
-	'counters' => __('Counters', 'salient'),
-	'general' => __('General', 'salient'),
-	'icons' => __('Icons', 'salient'),
-	'hero_section' => __('Hero Section', 'salient'),
-	'google_map' => __('Map', 'salient'),
-	'portfolio' => __('Project', 'salient'),
-	'pricing' => __('Pricing', 'salient'),
-	'services' => __('Services', 'salient'),
-	'team' => __('Team', 'salient'),
-	'testimonials' => __('Testimonials', 'salient'),
-	'shop' => __('Shop', 'salient')
+	'about' => esc_html__('About', 'salient'),
+	'blog' => esc_html__('Blog', 'salient'),
+	'cta' => esc_html__('Call To Action', 'salient'),
+	'counters' => esc_html__('Counters', 'salient'),
+	'general' => esc_html__('General', 'salient'),
+	'icons' => esc_html__('Icons', 'salient'),
+	'hero_section' => esc_html__('Hero Section', 'salient'),
+	'google_map' => esc_html__('Map', 'salient'),
+	'portfolio' => esc_html__('Project', 'salient'),
+	'pricing' => esc_html__('Pricing', 'salient'),
+	'services' => esc_html__('Services', 'salient'),
+	'team' => esc_html__('Team', 'salient'),
+	'testimonials' => esc_html__('Testimonials', 'salient'),
+	'shop' => esc_html__('Shop', 'salient')
 );
 
 
 global $nectar_get_template_directory_uri;
 
 $data = array();
-$data['name'] = __( 'SVG Draw Animation Icons', 'js_composer' );
+$data['name'] = esc_html__( 'SVG Draw Animation Icons', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['icons']  .', '. $cat_display_names['general'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/svg_icon_draw.jpg' ); 
 $data['content'] = <<<CONTENT
-[vc_row type="full_width_background" bg_position="left top" bg_repeat="no-repeat" parallax_bg_speed="slow" bg_color="#3a6ee8" scene_position="center" text_color="light" text_align="center" top_padding="16%" bottom_padding="5%"][vc_column width="1/6"][vc_column_text][icon color="Extra-Color-3" enable_animation="true" animation_speed="Fast" icon_size="" animation_delay="0" image="software_transform_bezier.svg"]
-<h3></h3>
-[/vc_column_text][vc_row_inner][vc_column_inner width="1/1" enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all"][vc_column_text]
+[vc_row type="full_width_background" full_screen_row_position="middle" bg_color="#3a6ee8" scene_position="center" text_color="light" text_align="center" top_padding="16%" bottom_padding="5%" overlay_strength="0.3" shape_divider_position="bottom"][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/6" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Extra-Color-3" icon_padding="0px" icon_linea="icon-software-transform-bezier" icon_size="60"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid"][vc_column_text]
 <h6>Sexy Design</h6>
-[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column width="1/6"][vc_column_text][icon color="Extra-Color-3" enable_animation="true" animation_speed="Fast" icon_size="" animation_delay="500" image="basic_pencil_ruler.svg"]
-<h3></h3>
-[/vc_column_text][vc_row_inner][vc_column_inner width="1/1" enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" delay="500"][vc_column_text]
+[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/6" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Extra-Color-3" icon_padding="0px" icon_linea="icon-basic-mixer2" icon_size="60" animation_delay="500"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid" delay="500"][vc_column_text]
 <h6>True Power</h6>
-[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column width="1/6"][vc_column_text][icon color="Extra-Color-3" enable_animation="true"  animation_speed="Fast" icon_size="" animation_delay="1000" image="weather_wind_fullmoon.svg"]
-<h3></h3>
-[/vc_column_text][vc_row_inner][vc_column_inner width="1/1" enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" delay="1000"][vc_column_text]
+[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/6" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Extra-Color-3" icon_padding="0px" icon_linea="icon-weather-wind-fullmoon" icon_size="60" animation_delay="1000"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid" delay="1000"][vc_column_text]
 <h6>Icon Paradise</h6>
-[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column width="1/6"][vc_column_text][icon color="Extra-Color-3" animation_speed="Fast" enable_animation="true"  icon_size="" animation_delay="1500" image="software_layout_header_complex.svg"]
-<h3></h3>
-[/vc_column_text][vc_row_inner][vc_column_inner width="1/1" enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" delay="1500"][vc_column_text]
+[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/6" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Extra-Color-3" icon_padding="0px" icon_linea="icon-software-layout-header-complex" icon_size="60" animation_delay="1500"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid" delay="1500"][vc_column_text]
 <h6>Page Builder</h6>
-[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column width="1/6"][vc_column_text][icon color="Extra-Color-3" animation_speed="Fast" enable_animation="true"  icon_size="" animation_delay="2000" image="ecommerce_diamond.svg"]
-<h3></h3>
-[/vc_column_text][vc_row_inner][vc_column_inner width="1/1" enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" delay="2000"][vc_column_text]
+[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/6" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Extra-Color-3" icon_padding="0px" icon_linea="icon-ecommerce-diamond" icon_size="60" animation_delay="2000"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid" delay="2000"][vc_column_text]
 <h6>Top Quality</h6>
-[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column width="1/6"][vc_column_text][icon color="Extra-Color-3" enable_animation="true"  animation_speed="Fast" icon_size="" animation_delay="2500" image="software_paintroller.svg"]
-<h3></h3>
-[/vc_column_text][vc_row_inner][vc_column_inner width="1/1" enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" delay="2500"][vc_column_text]
+[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/6" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Extra-Color-3" icon_padding="0px" icon_linea="icon-software-paintroller" icon_size="60" animation_delay="2500"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid" delay="2500"][vc_column_text]
 <h6>Customizable</h6>
-[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][/vc_row][vc_row type="full_width_background" bg_position="left top" bg_repeat="no-repeat" parallax_bg_speed="slow" bg_color="#3a6ee8" scene_position="center" text_color="light" text_align="left" bottom_padding="17%"][vc_column width="1/2" animation="fade-in" column_padding="padding-1-percent" column_padding_position="left-right" background_color_opacity="1" enable_animation="true" background_hover_color_opacity="1"][vc_column_text]
+[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][/vc_row][vc_row type="full_width_background" full_screen_row_position="middle" bg_color="#3a6ee8" scene_position="center" text_color="light" text_align="left" bottom_padding="17%" overlay_strength="0.3" shape_divider_position="bottom"][vc_column enable_animation="true" animation="fade-in" column_padding="padding-1-percent" column_padding_position="left-right" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/2" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][vc_column_text]
 <h3 style="text-align: right;">Hello. We're Salient, A Creative Agency Located In New York City. Take A Look Around &amp; Don't Be Shy.</h3>
-[/vc_column_text][/vc_column][vc_column width="1/2" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" font_color="#cdf4f4" enable_animation="true" background_hover_color_opacity="1"][vc_row_inner][vc_column_inner width="1/2" animation="none" column_padding="padding-1-percent" column_padding_position="all"][vc_column_text]Phasellus enim libero, blandit vel sapien vitae, condimentum ultricies magna et. Quisque euismod orci ut et lobortis aliquam.[/vc_column_text][/vc_column_inner][vc_column_inner width="1/2" animation="none" column_padding="padding-1-percent" column_padding_position="all"][vc_column_text]Phasellus enim libero, blandit vel sapien vitae, condimentum ultricies magna et. Quisque euismod orci ut et lobortis aliquam.[/vc_column_text][/vc_column_inner][/vc_row_inner][vc_row_inner][vc_column_inner width="1/2" animation="none" column_padding="padding-1-percent" column_padding_position="all"][vc_column_text]Phasellus enim libero, blandit vel sapien vitae, condimentum ultricies magna et. Quisque euismod orci ut et lobortis aliquam.[/vc_column_text][/vc_column_inner][vc_column_inner width="1/2" animation="none" column_padding="padding-1-percent" column_padding_position="all"][vc_column_text]Phasellus enim libero, blandit vel sapien vitae, condimentum ultricies magna et. Quisque euismod orci ut et lobortis aliquam.[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][/vc_row]
+[/vc_column_text][/vc_column][vc_column enable_animation="true" animation="fade-in" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" font_color="#cdf4f4" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/2" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/2" tablet_width_inherit="default" column_border_width="none" column_border_style="solid"][vc_column_text]Phasellus enim libero, blandit vel sapien vitae, condimentum ultricies magna et. Quisque euismod orci ut et lobortis aliquam.[/vc_column_text][/vc_column_inner][vc_column_inner column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/2" tablet_width_inherit="default" column_border_width="none" column_border_style="solid"][vc_column_text]Phasellus enim libero, blandit vel sapien vitae, condimentum ultricies magna et. Quisque euismod orci ut et lobortis aliquam.[/vc_column_text][/vc_column_inner][/vc_row_inner][vc_row_inner column_margin="default" text_align="left"][vc_column_inner column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/2" tablet_width_inherit="default" column_border_width="none" column_border_style="solid"][vc_column_text]Phasellus enim libero, blandit vel sapien vitae, condimentum ultricies magna et. Quisque euismod orci ut et lobortis aliquam.[/vc_column_text][/vc_column_inner][vc_column_inner column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/2" tablet_width_inherit="default" column_border_width="none" column_border_style="solid"][vc_column_text]Phasellus enim libero, blandit vel sapien vitae, condimentum ultricies magna et. Quisque euismod orci ut et lobortis aliquam.[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][/vc_row]
 CONTENT;
 
 vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Mouse Based Parallax', 'js_composer' );
+$data['name'] = esc_html__( 'Mouse Based Parallax', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'] .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'about hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/mouse_parallax.jpg' ); 
@@ -78,7 +66,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fondly Simple Service List', 'js_composer' );
+$data['name'] = esc_html__( 'Fondly Simple Service List', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['icons'] .', '. $cat_display_names['services'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'icons services general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/services-icons.jpg' ); 
@@ -96,7 +84,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Restaurant CTA', 'js_composer' );
+$data['name'] = esc_html__( 'Restaurant CTA', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/eat-with-us.jpg' ); 
@@ -111,7 +99,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Tour Schedule Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Tour Schedule Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-tour.jpg' ); 
@@ -127,7 +115,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Awesome Shape Divider Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Awesome Shape Divider Hero', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/corporate-2-landing.jpg' ); 
@@ -145,7 +133,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Color Changing Client Rows', 'js_composer' );
+$data['name'] = esc_html__( 'Color Changing Client Rows', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/clients-hover-color.jpg' ); 
@@ -159,7 +147,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Delightful Service Blocks', 'js_composer' );
+$data['name'] = esc_html__( 'Delightful Service Blocks', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'];
 $data['custom_class'] = 'services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/colorful-services.jpg' ); 
@@ -187,7 +175,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Quick FAQ & Overflowing Image', 'js_composer' );
+$data['name'] = esc_html__( 'Quick FAQ & Overflowing Image', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/quick-faq-and-image.jpg' ); 
@@ -203,7 +191,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Monotone Milestones', 'js_composer' );
+$data['name'] = esc_html__( 'Monotone Milestones', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['counters'];
 $data['custom_class'] = 'counters';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/minimal-milestones.jpg' ); 
@@ -219,7 +207,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Auto Masonry Recent Posts', 'js_composer' );
+$data['name'] = esc_html__( 'Auto Masonry Recent Posts', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/auto-masonry-recent-posts.jpg' ); 
@@ -234,7 +222,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Rounded Box Over Shape Divider', 'js_composer' );
+$data['name'] = esc_html__( 'Rounded Box Over Shape Divider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/color-box-cta.jpg' ); 
@@ -248,7 +236,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Impactful Header Text', 'js_composer' );
+$data['name'] = esc_html__( 'Impactful Header Text', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'general hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/impactful-header.jpg' ); 
@@ -264,7 +252,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Testimonial Popout', 'js_composer' );
+$data['name'] = esc_html__( 'Testimonial Popout', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/testimonial-popout.jpg' ); 
@@ -277,7 +265,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Team Overlapping Section Below', 'js_composer' );
+$data['name'] = esc_html__( 'Team Overlapping Section Below', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['team'];
 $data['custom_class'] = 'team';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/team-overlap-milestones.jpg' ); 
@@ -291,7 +279,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Overflowing Testimonials & Text Snippet', 'js_composer' );
+$data['name'] = esc_html__( 'Overflowing Testimonials & Text Snippet', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/testimonial-carousel-with-text.jpg' ); 
@@ -309,7 +297,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Info/Contact Box Overlapping Map', 'js_composer' );
+$data['name'] = esc_html__( 'Info/Contact Box Overlapping Map', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/contact-box-overlaying-map.jpg' ); 
@@ -329,7 +317,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Company Values & Quote Section', 'js_composer' );
+$data['name'] = esc_html__( 'Company Values & Quote Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials']  .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/header-overlapping-quote.jpg' ); 
@@ -357,7 +345,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Overflowing Team Members & Text Snippet', 'js_composer' );
+$data['name'] = esc_html__( 'Overflowing Team Members & Text Snippet', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['team'];
 $data['custom_class'] = 'team';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-carousel-fixed-content.jpg' ); 
@@ -374,7 +362,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Team About Us Blurb', 'js_composer' );
+$data['name'] = esc_html__( 'Team About Us Blurb', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'];
 $data['custom_class'] = 'about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-us-row.jpg' ); 
@@ -393,7 +381,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fancy Box Hover Color Effect', 'js_composer' );
+$data['name'] = esc_html__( 'Fancy Box Hover Color Effect', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'];
 $data['custom_class'] = 'services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/fancy-box-hover-color.jpg' ); 
@@ -420,7 +408,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Two Rounded Color Boxes Over Shape Divider', 'js_composer' );
+$data['name'] = esc_html__( 'Two Rounded Color Boxes Over Shape Divider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dual-color-boxes.jpg' ); 
@@ -435,7 +423,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Creative Header With Shape Divider', 'js_composer' );
+$data['name'] = esc_html__( 'Creative Header With Shape Divider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/creative-header.jpg' ); 
@@ -453,7 +441,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Clever Overlapping Quote', 'js_composer' );
+$data['name'] = esc_html__( 'Clever Overlapping Quote', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/overlapping-quote.jpg' ); 
@@ -468,7 +456,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fancy Box Fullwidth Parallax', 'js_composer' );
+$data['name'] = esc_html__( 'Fancy Box Fullwidth Parallax', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/parallax-fancy-box.jpg' ); 
@@ -495,7 +483,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Gradient Header And Text', 'js_composer' );
+$data['name'] = esc_html__( 'Gradient Header And Text', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gradient-header-and-text.jpg' ); 
@@ -509,7 +497,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fancy Box Color Hover Gradient', 'js_composer' );
+$data['name'] = esc_html__( 'Fancy Box Color Hover Gradient', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general']  .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gradient-fancy-box-color-hover.jpg' ); 
@@ -533,7 +521,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Row of Featured Posts', 'js_composer' );
+$data['name'] = esc_html__( 'Row of Featured Posts', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-blog-featured-3.jpg' ); 
@@ -549,7 +537,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Posts Slider Right Nav', 'js_composer' );
+$data['name'] = esc_html__( 'Posts Slider Right Nav', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-slider-right-nav.jpg' ); 
@@ -563,7 +551,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Overlapping Posts Slider & Masonry Blog', 'js_composer' );
+$data['name'] = esc_html__( 'Overlapping Posts Slider & Masonry Blog', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-slider-masonry-overlap.jpg' ); 
@@ -577,7 +565,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Sticky Sidebar & Left Featured Image Posts', 'js_composer' );
+$data['name'] = esc_html__( 'Sticky Sidebar & Left Featured Image Posts', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/fixed-sidebar-featured-left.jpg' ); 
@@ -591,7 +579,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Multiple Visible Recent Post Slider', 'js_composer' );
+$data['name'] = esc_html__( 'Multiple Visible Recent Post Slider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-multple-vis.jpg' ); 
@@ -605,7 +593,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Random Posts Featured Top Row', 'js_composer' );
+$data['name'] = esc_html__( 'Random Posts Featured Top Row', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-featured-top-row.jpg' ); 
@@ -621,7 +609,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Cool Dark Auto Masonry Blog & Featured Top Post', 'js_composer' );
+$data['name'] = esc_html__( 'Cool Dark Auto Masonry Blog & Featured Top Post', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/auto-masonry-blog-overlap-featured.jpg' ); 
@@ -634,7 +622,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Pretty Dark CTA Gradient Button', 'js_composer' );
+$data['name'] = esc_html__( 'Pretty Dark CTA Gradient Button', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-cta.jpg' ); 
@@ -648,7 +636,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Two Recent Posts Dark Background', 'js_composer' );
+$data['name'] = esc_html__( 'Two Recent Posts Dark Background', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/two-recent-posts-dark.jpg' ); 
@@ -663,7 +651,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Bottom Navigation Recent Post Slider', 'js_composer' );
+$data['name'] = esc_html__( 'Bottom Navigation Recent Post Slider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-bottom-nav.jpg' ); 
@@ -676,7 +664,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Pricing Gradient Boxes', 'js_composer' );
+$data['name'] = esc_html__( 'Pricing Gradient Boxes', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['pricing'];
 $data['custom_class'] = 'pricing';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/pricing-table-gradient.jpg' ); 
@@ -711,7 +699,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Simple Single Quote', 'js_composer' );
+$data['name'] = esc_html__( 'Simple Single Quote', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general']  .', '. $cat_display_names['testimonials'];
 $data['custom_class'] = 'general testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/simple-quote.jpg' ); 
@@ -724,7 +712,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Material Masonry Blog Posts', 'js_composer' );
+$data['name'] = esc_html__( 'Material Masonry Blog Posts', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/material-blog.jpg' ); 
@@ -737,7 +725,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Posts With Featured Row & Sticky Sidebar', 'js_composer' );
+$data['name'] = esc_html__( 'Posts With Featured Row & Sticky Sidebar', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/featured-row-recent-posts-sticky-sidebar.jpg' ); 
@@ -750,7 +738,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Four Boxes And Text With Dark Image BG ', 'js_composer' );
+$data['name'] = esc_html__( 'Four Boxes And Text With Dark Image BG ', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/four-cols-right.jpg' ); 
@@ -776,7 +764,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Grid Based Testimonials Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Grid Based Testimonials Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/separate-testimonials.jpg' ); 
@@ -794,7 +782,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Dark Pricing Gradient Boxes', 'js_composer' );
+$data['name'] = esc_html__( 'Dark Pricing Gradient Boxes', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['pricing'];
 $data['custom_class'] = 'pricing';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/pricing-table-gradient-dark.jpg' ); 
@@ -829,7 +817,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Service Boxes Dark Gradient Coloring', 'js_composer' );
+$data['name'] = esc_html__( 'Service Boxes Dark Gradient Coloring', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'];
 $data['custom_class'] = 'services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/text-gradient-hover-boxes.jpg' ); 
@@ -855,7 +843,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Excellent Hero With BG Image', 'js_composer' );
+$data['name'] = esc_html__( 'Excellent Hero With BG Image', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/bg-landing-hero.jpg' ); 
@@ -877,7 +865,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Simple Client Carousel', 'js_composer' );
+$data['name'] = esc_html__( 'Simple Client Carousel', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/clients-carousel.jpg' ); 
@@ -891,7 +879,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Shape Divider Hero Solid Color', 'js_composer' );
+$data['name'] = esc_html__( 'Shape Divider Hero Solid Color', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/blue-hero-shape-divider.jpg' ); 
@@ -908,7 +896,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image And Text With Dark Image BG', 'js_composer' );
+$data['name'] = esc_html__( 'Image And Text With Dark Image BG', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/image-and-text-btn.jpg' ); 
@@ -923,7 +911,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Pricing Table 4 Column Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Pricing Table 4 Column Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['pricing'];
 $data['custom_class'] = 'pricing';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/4-col-pricing.jpg' ); 
@@ -965,7 +953,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'FAQ Toggles And Image', 'js_composer' );
+$data['name'] = esc_html__( 'FAQ Toggles And Image', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/faq-and-img.jpg' ); 
@@ -980,7 +968,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Huge Image Transition Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Huge Image Transition Hero', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/image-trans.jpg' ); 
@@ -994,7 +982,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Layout Text Block Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Layout Text Block Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-text-block.jpg' ); 
@@ -1008,7 +996,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal Pricing Table', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal Pricing Table', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['pricing'];
 $data['custom_class'] = 'pricing';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/minimal_pricing.jpg' ); 
@@ -1019,7 +1007,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Team Members Full Width Meta Overlaid', 'js_composer' );
+$data['name'] = esc_html__( 'Team Members Full Width Meta Overlaid', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['team'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'team about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-meta-overlaid.jpg' ); 
@@ -1031,7 +1019,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Incisive Text Columns', 'js_composer' );
+$data['name'] = esc_html__( 'Incisive Text Columns', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/three-cols.jpg' ); 
@@ -1049,7 +1037,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Enhanced Recent Posts', 'js_composer' );
+$data['name'] = esc_html__( 'Enhanced Recent Posts', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent_posts.jpg' ); 
@@ -1061,7 +1049,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Youtube Video Background Row With Video Lightbox', 'js_composer' );
+$data['name'] = esc_html__( 'Youtube Video Background Row With Video Lightbox', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/youtube-video-bg.jpg' ); 
@@ -1073,7 +1061,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image Overflowing Left Of Screen & Gradient Header', 'js_composer' );
+$data['name'] = esc_html__( 'Image Overflowing Left Of Screen & Gradient Header', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/img-overflow-left.jpg' ); 
@@ -1093,7 +1081,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Flip Box Carousel', 'js_composer' );
+$data['name'] = esc_html__( 'Flip Box Carousel', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/flipbox-carousel.jpg' ); 
@@ -1128,7 +1116,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Pricing Table Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Pricing Table Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['pricing'];
 $data['custom_class'] = 'pricing';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-pricing.jpg' ); 
@@ -1176,7 +1164,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image Overflowing Right Of Screen & Numerical Icon List', 'js_composer' );
+$data['name'] = esc_html__( 'Image Overflowing Right Of Screen & Numerical Icon List', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/img-overflow-right.jpg' ); 
@@ -1188,7 +1176,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Simple Text Columns', 'js_composer' );
+$data['name'] = esc_html__( 'Simple Text Columns', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/text-columns.jpg' ); 
@@ -1206,7 +1194,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Testimonial Slider Parallax', 'js_composer' );
+$data['name'] = esc_html__( 'Testimonial Slider Parallax', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/parallax-testimonial.jpg' ); 
@@ -1218,7 +1206,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Practical Map & Contact Info Split', 'js_composer' );
+$data['name'] = esc_html__( 'Practical Map & Contact Info Split', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['google_map'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'general map';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/map-color-split.jpg' ); 
@@ -1242,7 +1230,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Map & Contact Info Split', 'js_composer' );
+$data['name'] = esc_html__( 'Map & Contact Info Split', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['google_map'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'general map';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/map-split-light.jpg' ); 
@@ -1266,7 +1254,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'The Awards Section Dark', 'js_composer' );
+$data['name'] = esc_html__( 'The Awards Section Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-awards.jpg' ); 
@@ -1280,7 +1268,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Well-made Intro Section Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Well-made Intro Section Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-text-section.jpg' ); 
@@ -1296,7 +1284,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fullscreen Recent Project Slider', 'js_composer' );
+$data['name'] = esc_html__( 'Fullscreen Recent Project Slider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['portfolio'] .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'portfolio hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-proj-slider.jpg' ); 
@@ -1308,7 +1296,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal Dark About Section', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal Dark About Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'];
 $data['custom_class'] = 'about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-about.jpg' ); 
@@ -1320,7 +1308,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Video Background Testimonial Slider Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Video Background Testimonial Slider Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'testimonials about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/video-bg-testimonials.jpg' ); 
@@ -1333,7 +1321,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Restaurant Food Menu (Tabbed)', 'js_composer' );
+$data['name'] = esc_html__( 'Restaurant Food Menu (Tabbed)', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['pricing'];
 $data['custom_class'] = 'pricing';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/food-menu.jpg' ); 
@@ -1379,7 +1367,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Enticing Dual Fancy Box', 'js_composer' );
+$data['name'] = esc_html__( 'Enticing Dual Fancy Box', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'tgeneral about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dual-fancy-box.jpg' ); 
@@ -1398,7 +1386,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Innovative Gradient Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Innovative Gradient Hero', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'hero_section about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gradient-header.jpg' ); 
@@ -1411,7 +1399,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Modern Recent Posts Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Modern Recent Posts Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-parallax.jpg' ); 
@@ -1423,7 +1411,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Weather Animated Icon Columns', 'js_composer' );
+$data['name'] = esc_html__( 'Weather Animated Icon Columns', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['icons'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'icons about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/weather-icons.jpg' ); 
@@ -1443,7 +1431,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Exciting Services', 'js_composer' );
+$data['name'] = esc_html__( 'Exciting Services', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'services icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/services.jpg' ); 
@@ -1463,7 +1451,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Gradient Testimonials With Star Ratings', 'js_composer' );
+$data['name'] = esc_html__( 'Gradient Testimonials With Star Ratings', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/new-testimonials.jpg' ); 
@@ -1475,7 +1463,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal Dark Testimonials', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal Dark Testimonials', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-testimonials.jpg' ); 
@@ -1487,7 +1475,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'About Me - Fullscreen vCard', 'js_composer' );
+$data['name'] = esc_html__( 'About Me - Fullscreen vCard', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['counters'];
 $data['custom_class'] = 'about counters';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-me.jpg' ); 
@@ -1499,7 +1487,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Section CTA', 'js_composer' );
+$data['name'] = esc_html__( 'Section CTA', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/cta-alt-see-through-btn.jpg' ); 
@@ -1511,7 +1499,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Intense Colorful CTA Section', 'js_composer' );
+$data['name'] = esc_html__( 'Intense Colorful CTA Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'].', '. $cat_display_names['cta'];
 $data['custom_class'] = 'hero_section cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/cta-green.jpg' ); 
@@ -1528,7 +1516,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Motion Blur Milestone', 'js_composer' );
+$data['name'] = esc_html__( 'Motion Blur Milestone', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['counters'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'general counters';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/milestone-motion-blur.jpg' ); 
@@ -1547,7 +1535,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Modern Service List', 'js_composer' );
+$data['name'] = esc_html__( 'Modern Service List', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'icons services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/basic-services.jpg' ); 
@@ -1571,7 +1559,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Three Fullwidth Columns', 'js_composer' );
+$data['name'] = esc_html__( 'Three Fullwidth Columns', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/three-col-fullwidth.jpg' ); 
@@ -1589,7 +1577,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Interesting Milestones', 'js_composer' );
+$data['name'] = esc_html__( 'Interesting Milestones', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['counters'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'counters about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/milestone-interesting.jpg' ); 
@@ -1601,7 +1589,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Alternating Split Sections', 'js_composer' );
+$data['name'] = esc_html__( 'Alternating Split Sections', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/alt-split.jpg' ); 
@@ -1614,7 +1602,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Flawless Business Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Flawless Business Hero', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'hero_section about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/business-hero.jpg' ); 
@@ -1639,7 +1627,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Phone & Icon List', 'js_composer' );
+$data['name'] = esc_html__( 'Phone & Icon List', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/phone-icons.jpg' ); 
@@ -1659,7 +1647,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Cascading Image & Text Section', 'js_composer' );
+$data['name'] = esc_html__( 'Cascading Image & Text Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'];
 $data['custom_class'] = 'about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/image-highlight.jpg' ); 
@@ -1673,7 +1661,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Gradient Pricing Columns', 'js_composer' );
+$data['name'] = esc_html__( 'Gradient Pricing Columns', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['pricing'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'pricing services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gradient-pricing.jpg' ); 
@@ -1694,7 +1682,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fullscreen Pricing Grid', 'js_composer' );
+$data['name'] = esc_html__( 'Fullscreen Pricing Grid', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['pricing'];
 $data['custom_class'] = 'pricing';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gradient-pricing-2.jpg' ); 
@@ -1712,7 +1700,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Full Width Parallax Posts Slider', 'js_composer' );
+$data['name'] = esc_html__( 'Full Width Parallax Posts Slider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-slider-full.jpg' ); 
@@ -1724,7 +1712,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal Color CTA Section', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal Color CTA Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/color-cta.jpg' ); 
@@ -1736,7 +1724,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Video Lightbox  Inline With Text', 'js_composer' );
+$data['name'] = esc_html__( 'Video Lightbox  Inline With Text', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/video-cta.jpg' ); 
@@ -1747,7 +1735,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Layout Text Block', 'js_composer' );
+$data['name'] = esc_html__( 'Layout Text Block', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/text-block.jpg' ); 
@@ -1761,7 +1749,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Imaginative Video CTA Section', 'js_composer' );
+$data['name'] = esc_html__( 'Imaginative Video CTA Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['cta'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'cta general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/right-gradient-section.jpg' ); 
@@ -1776,7 +1764,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Parallax Posts Slider', 'js_composer' );
+$data['name'] = esc_html__( 'Parallax Posts Slider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-slider.jpg' ); 
@@ -1788,7 +1776,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Moving CTA Section', 'js_composer' );
+$data['name'] = esc_html__( 'Moving CTA Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/image-cta.jpg' ); 
@@ -1800,7 +1788,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Sweet Hero Section', 'js_composer' );
+$data['name'] = esc_html__( 'Sweet Hero Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/hero-inline-video-link.jpg' ); 
@@ -1815,7 +1803,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Recent Posts Dark Color Scheme', 'js_composer' );
+$data['name'] = esc_html__( 'Recent Posts Dark Color Scheme', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent_posts_dark.jpg' ); 
@@ -1827,7 +1815,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Features With Background Color Overlay', 'js_composer' );
+$data['name'] = esc_html__( 'Features With Background Color Overlay', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['services'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'about services icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/features.jpg' ); 
@@ -1847,7 +1835,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Creative Hero With Device', 'js_composer' );
+$data['name'] = esc_html__( 'Creative Hero With Device', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/ipad-bottom-dark.jpg' ); 
@@ -1862,7 +1850,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Hot Hero Tablet Section', 'js_composer' );
+$data['name'] = esc_html__( 'Hot Hero Tablet Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/ipad-bottom.jpg' ); 
@@ -1876,7 +1864,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Direct Minimal Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Direct Minimal Hero', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'].', '. $cat_display_names['general'];
 $data['custom_class'] = 'hero_section general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/light-video-minimal-hero.jpg' ); 
@@ -1890,7 +1878,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fancy Hero Section', 'js_composer' );
+$data['name'] = esc_html__( 'Fancy Hero Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/hero-video.jpg' ); 
@@ -1902,7 +1890,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Wireframe Structure Of A Fixed Page Submenu', 'js_composer' );
+$data['name'] = esc_html__( 'Wireframe Structure Of A Fixed Page Submenu', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/page-submenu.jpg' ); 
@@ -1914,7 +1902,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Simple Hero With Gradient CTA Button', 'js_composer' );
+$data['name'] = esc_html__( 'Simple Hero With Gradient CTA Button', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'].', '. $cat_display_names['cta'];
 $data['custom_class'] = 'hero_section cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/simple-hero.jpg' ); 
@@ -1928,7 +1916,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Project With Video Player', 'js_composer' );
+$data['name'] = esc_html__( 'Project With Video Player', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/basic-video-project.jpg' ); 
@@ -1952,7 +1940,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Overlapping Testimonial Section', 'js_composer' );
+$data['name'] = esc_html__( 'Overlapping Testimonial Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'testimonials about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/overlapping-testimonial.jpg' ); 
@@ -1965,7 +1953,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Split Large Icon Column & Animated Titles', 'js_composer' );
+$data['name'] = esc_html__( 'Split Large Icon Column & Animated Titles', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/animated-titles.jpg' ); 
@@ -1977,7 +1965,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal Jumbo Button With 3D Hover Effect', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal Jumbo Button With 3D Hover Effect', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['portfolio'].', '. $cat_display_names['cta'];
 $data['custom_class'] = 'about cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/jumbo-3d-button.jpg' ); 
@@ -1989,7 +1977,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Icon Sections, Dual With Gradient Coloring', 'js_composer' );
+$data['name'] = esc_html__( 'Icon Sections, Dual With Gradient Coloring', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['icons'] .', '. $cat_display_names['services'].', '. $cat_display_names['cta'];
 $data['custom_class'] = 'icons services cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/fullwidth-icons.jpg' ); 
@@ -2005,7 +1993,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Split Line Heading & Video Background', 'js_composer' );
+$data['name'] = esc_html__( 'Split Line Heading & Video Background', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'about general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/animated-split-line-heading.jpg' ); 
@@ -2020,7 +2008,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Section With Cascading Images', 'js_composer' );
+$data['name'] = esc_html__( 'Section With Cascading Images', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'about general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/cascading-imgs.jpg' ); 
@@ -2035,7 +2023,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fullscreen Biography On Click Team Members', 'js_composer' );
+$data['name'] = esc_html__( 'Fullscreen Biography On Click Team Members', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['team'];
 $data['custom_class'] = 'about team';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-fullscreen.jpg' ); 
@@ -2046,7 +2034,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Fulfilling Recent Blog Posts', 'js_composer' );
+$data['name'] = esc_html__( 'Fulfilling Recent Blog Posts', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-alt.jpg' ); 
@@ -2058,7 +2046,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image Overflowing Sections', 'js_composer' );
+$data['name'] = esc_html__( 'Image Overflowing Sections', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'services general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/image-overflowing.jpg' ); 
@@ -2070,7 +2058,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image Gallery Project', 'js_composer' );
+$data['name'] = esc_html__( 'Image Gallery Project', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio gallery';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/image-gallery-project.jpg' ); 
@@ -2092,7 +2080,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal CTA Section With Flip In Animation', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal CTA Section With Flip In Animation', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['cta'];
 $data['custom_class'] = 'about cta hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/3d-cta.jpg' ); 
@@ -2107,7 +2095,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Well-made Intro Section', 'js_composer' );
+$data['name'] = esc_html__( 'Well-made Intro Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'about general hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gradient-text.jpg' ); 
@@ -2123,7 +2111,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Red(ish) Background Milestones', 'js_composer' );
+$data['name'] = esc_html__( 'Red(ish) Background Milestones', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['counters'];
 $data['custom_class'] = 'counters';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/milestone-red.jpg' ); 
@@ -2135,7 +2123,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Flip Box Services', 'js_composer' );
+$data['name'] = esc_html__( 'Flip Box Services', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'];
 $data['custom_class'] = 'services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/flipbox-services.jpg' ); 
@@ -2163,7 +2151,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Minimal Testimonial Slider', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal Testimonial Slider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/minimal-testimonial-slider.jpg' ); 
@@ -2176,7 +2164,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Three Columns With Icons & Text Block', 'js_composer' );
+$data['name'] = esc_html__( 'Three Columns With Icons & Text Block', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'services icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/3-col-icons.jpg' ); 
@@ -2194,7 +2182,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Single Project Simple', 'js_composer' );
+$data['name'] = esc_html__( 'Single Project Simple', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['portfolio'];
 $data['custom_class'] = 'about portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/green-proj.jpg' ); 
@@ -2223,7 +2211,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Single Project With Gallery Slider', 'js_composer' );
+$data['name'] = esc_html__( 'Single Project With Gallery Slider', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/project-with-slider.jpg' ); 
@@ -2247,7 +2235,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Info Boxes Bordered & Heading', 'js_composer' );
+$data['name'] = esc_html__( 'Info Boxes Bordered & Heading', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'about services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/three-info-boxes.jpg' ); 
@@ -2261,7 +2249,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Info Box Right Animated & Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Info Box Right Animated & Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'about hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/info-box-right-dark.jpg' ); 
@@ -2276,7 +2264,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Touch Enabled Gallery With Arrows', 'js_composer' );
+$data['name'] = esc_html__( 'Touch Enabled Gallery With Arrows', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio gallery';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gallery-arrows.jpg' ); 
@@ -2288,7 +2276,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Services & Company Gradient Intro Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Services & Company Gradient Intro Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'about services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-services-gradient.jpg' ); 
@@ -2312,30 +2300,22 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Icons With SVG Draw Animation 4 Columns', 'js_composer' );
+$data['name'] = esc_html__( 'Icons With SVG Draw Animation 4 Columns', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['icons']  .', '. $cat_display_names['general'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/svg_icon_draw_2.jpg' ); 
 $data['content'] = <<<CONTENT
-[vc_row type="full_width_background" full_screen_row_position="middle" bg_color="#ffffff" scene_position="center" text_color="dark" text_align="left" top_padding="8%" bottom_padding="4%" overlay_strength="0.3"][vc_column centered_text="true" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" width="1/1" tablet_text_alignment="default" phone_text_alignment="default"][vc_column_text]
+[vc_row type="full_width_background" full_screen_row_position="middle" bg_color="#ffffff" scene_position="center" text_color="dark" text_align="left" top_padding="8%" bottom_padding="4%" overlay_strength="0.3" shape_divider_position="bottom"][vc_column centered_text="true" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/1" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][vc_column_text]
 <h2>Stunning Looks &amp; Functionality</h2>
 <h5><span style="color: #bbbbbb;">Eliminate your website building stress by using Salient</span></h5>
-[/vc_column_text][/vc_column][/vc_row][vc_row type="full_width_background" full_screen_row_position="middle" bg_color="#ffffff" scene_position="center" text_color="dark" text_align="left" bottom_padding="8%" overlay_strength="1"][vc_column enable_animation="true" animation="none" centered_text="true" column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" width="1/4" tablet_text_alignment="default" phone_text_alignment="default"][vc_column_text][icon enable_animation="true" color="Accent-Color" animation_speed="Fast" icon_size="" animation_delay="" image="ecommerce_diamond.svg"]
-<h5></h5>
-[/vc_column_text][vc_row_inner text_align="left"][vc_column_inner enable_animation="true" animation="fade-in-from-bottom" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" width="1/1"][vc_column_text]
+[/vc_column_text][/vc_column][/vc_row][vc_row type="full_width_background" full_screen_row_position="middle" bg_color="#ffffff" scene_position="center" text_color="dark" text_align="left" bottom_padding="8%" overlay_strength="1" shape_divider_position="bottom"][vc_column enable_animation="true" animation="none" centered_text="true" column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/4" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Accent-Color" icon_padding="0px" icon_linea="icon-ecommerce-diamond" icon_size="60"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in-from-bottom" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid"][vc_column_text]
 <h5>Hot Looks</h5>
-<span style="color: #a3a3a3;">Ut elit tellus, luctus nec magna mattis et, pulvinar dapibus lorem leo ultricies et vitae enim.</span>[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column centered_text="true" column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" width="1/4" tablet_text_alignment="default" phone_text_alignment="default"][vc_column_text][icon enable_animation="true" color="Accent-Color" animation_speed="Fast" icon_size="" animation_delay="400" image="basic_compass.svg"]
-<h5></h5>
-[/vc_column_text][vc_row_inner text_align="left"][vc_column_inner enable_animation="true" animation="fade-in-from-bottom" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" width="1/1" delay="400"][vc_column_text]
+<span style="color: #a3a3a3;">Ut elit tellus, luctus nec magna mattis et, pulvinar dapibus lorem leo ultricies et vitae enim.</span>[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column centered_text="true" column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/4" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Accent-Color" icon_padding="0px" icon_linea="icon-basic-compass" animation_delay="400" icon_size="60"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in-from-bottom" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid" delay="400"][vc_column_text]
 <h5>Easy Interface</h5>
-<span style="color: #a3a3a3;">Ut elit tellus, luctus nec magna mattis et, pulvinar dapibus lorem leo ultricies et vitae enim.</span>[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column centered_text="true" column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" width="1/4" tablet_text_alignment="default" phone_text_alignment="default"][vc_column_text][icon enable_animation="true" color="Accent-Color" animation_speed="Fast" icon_size="" animation_delay="800" image="software_layers2.svg"]
-<h5></h5>
-[/vc_column_text][vc_row_inner text_align="left"][vc_column_inner enable_animation="true" animation="fade-in-from-bottom" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" width="1/1" delay="800"][vc_column_text]
+<span style="color: #a3a3a3;">Ut elit tellus, luctus nec magna mattis et, pulvinar dapibus lorem leo ultricies et vitae enim.</span>[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column centered_text="true" column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/4" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Accent-Color" icon_padding="0px" icon_linea="icon-software-layers2" animation_delay="800" icon_size="60"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in-from-bottom" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid" delay="800"][vc_column_text]
 <h5>True Power</h5>
 <span style="color: #a3a3a3;">Ut elit tellus, luctus nec magna mattis et, pulvinar dapibus lorem leo ultricies et vitae enim.</span>
-[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column centered_text="true" column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" width="1/4" tablet_text_alignment="default" phone_text_alignment="default"][vc_column_text][icon enable_animation="true" color="Accent-Color" animation_speed="Fast"  icon_size="" animation_delay="1200" image="basic_anchor.svg"]
-<h5></h5>
-[/vc_column_text][vc_row_inner text_align="left"][vc_column_inner enable_animation="true" animation="fade-in-from-bottom" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" width="1/1" delay="1200"][vc_column_text]
+[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column centered_text="true" column_padding="padding-1-percent" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/4" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][nectar_icon icon_family="linea" enable_animation="true" animation_speed="fast" icon_style="default" icon_color="Accent-Color" icon_padding="0px" icon_linea="icon-basic-anchor" animation_delay="1200" icon_size="60"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner enable_animation="true" animation="fade-in-from-bottom" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" tablet_width_inherit="default" column_border_width="none" column_border_style="solid" delay="1200"][vc_column_text]
 <h5>Solid Code</h5>
 <span style="color: #a3a3a3;">Ut elit tellus, luctus nec magna mattis et, pulvinar dapibus lorem leo ultricies et vitae enim.</span>[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][/vc_row]
 CONTENT;
@@ -2344,7 +2324,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Services With BG Hover', 'js_composer' );
+$data['name'] = esc_html__( 'Services With BG Hover', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['services'];
 $data['custom_class'] = 'services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/minimal_services.jpg' ); 
@@ -2364,7 +2344,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Before & After', 'js_composer' );
+$data['name'] = esc_html__( 'Before & After', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/before_after.jpg' ); 
@@ -2382,7 +2362,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Hero Gradient Overlay With Video Lightbox', 'js_composer' );
+$data['name'] = esc_html__( 'Hero Gradient Overlay With Video Lightbox', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/hero_video_lightbox.jpg' ); 
@@ -2398,7 +2378,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Bold Touch Enabled Testimonials', 'js_composer' );
+$data['name'] = esc_html__( 'Bold Touch Enabled Testimonials', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/flickity_testimonials.jpg' ); 
@@ -2410,7 +2390,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Light Cascading Images', 'js_composer' );
+$data['name'] = esc_html__( 'Light Cascading Images', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/cascading-imgs-light.jpg' ); 
@@ -2425,7 +2405,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Dark Cascading Images', 'js_composer' );
+$data['name'] = esc_html__( 'Dark Cascading Images', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'general hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-cascading-images.jpg' ); 
@@ -2440,7 +2420,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Colorful Blocks', 'js_composer' );
+$data['name'] = esc_html__( 'Colorful Blocks', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'] .', '. $cat_display_names['general'] .', '. $cat_display_names['portfolio'];
 $data['custom_class'] = 'about general portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/colorful-blocks.jpg' ); 
@@ -2452,7 +2432,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Testimonials With Color Background', 'js_composer' );
+$data['name'] = esc_html__( 'Testimonials With Color Background', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['testimonials'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/testimonial-blue.jpg' ); 
@@ -2466,7 +2446,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Video Lightbox With Preview Image', 'js_composer' );
+$data['name'] = esc_html__( 'Video Lightbox With Preview Image', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['portfolio'];
 $data['custom_class'] = 'general portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/project-video.jpg' ); 
@@ -2480,7 +2460,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Trusty Milestones With Dark Background', 'js_composer' );
+$data['name'] = esc_html__( 'Trusty Milestones With Dark Background', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['counters'];
 $data['custom_class'] = 'counters';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-milestones.jpg' ); 
@@ -2492,7 +2472,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Colors Used In Case Study', 'js_composer' );
+$data['name'] = esc_html__( 'Colors Used In Case Study', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/colors-used.jpg' ); 
@@ -2514,7 +2494,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fonts & Colors Used In Case Study', 'js_composer' );
+$data['name'] = esc_html__( 'Fonts & Colors Used In Case Study', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/colors-used4.jpg' ); 
@@ -2529,7 +2509,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Project Header With Gradient', 'js_composer' );
+$data['name'] = esc_html__( 'Project Header With Gradient', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/project-header-3.jpg' ); 
@@ -2562,7 +2542,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Project Colors & Fonts Used Alternative', 'js_composer' );
+$data['name'] = esc_html__( 'Project Colors & Fonts Used Alternative', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/colors-used3.jpg' ); 
@@ -2585,7 +2565,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Project Colors & Fonts Used', 'js_composer' );
+$data['name'] = esc_html__( 'Project Colors & Fonts Used', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/colors-used2.jpg' ); 
@@ -2609,7 +2589,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Project Header', 'js_composer' );
+$data['name'] = esc_html__( 'Project Header', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['portfolio'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'portfolio general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/project-header.jpg' ); 
@@ -2643,7 +2623,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Project Header Dark Background', 'js_composer' );
+$data['name'] = esc_html__( 'Project Header Dark Background', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/project-header-4.jpg' ); 
@@ -2677,7 +2657,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Milestone With Icons Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Milestone With Icons Hero', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['icons'] .', '. $cat_display_names['hero_section'] .', '. $cat_display_names['counters'];
 $data['custom_class'] = 'icons hero_section counters';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/milestone-hero.jpg' ); 
@@ -2692,7 +2672,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal Header With CTA', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal Header With CTA', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'].', '. $cat_display_names['cta'];
 $data['custom_class'] = 'general cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/minimal-header.jpg' ); 
@@ -2706,7 +2686,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Parallax Video Lightbox Row Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Parallax Video Lightbox Row Dark', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'general hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/parallax-video-lightbox.jpg' ); 
@@ -2722,7 +2702,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Project Header Alternative', 'js_composer' );
+$data['name'] = esc_html__( 'Project Header Alternative', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/project-header-2.jpg' ); 
@@ -2736,7 +2716,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Google Map Flat', 'js_composer' );
+$data['name'] = esc_html__( 'Google Map Flat', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['google_map'];
 $data['custom_class'] = 'map';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/ultra-flat-map-2.jpg' ); 
@@ -2749,7 +2729,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Four Visible, Touch Enabled Gallery', 'js_composer' );
+$data['name'] = esc_html__( 'Four Visible, Touch Enabled Gallery', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['portfolio'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'portfolio gallery general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/image-gallery-phones.jpg' ); 
@@ -2761,7 +2741,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Three Visible, Touch Enabled Gallery Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Three Visible, Touch Enabled Gallery Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['portfolio'];
 $data['custom_class'] = 'portfolio gallery';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/touch-enabled-3.jpg' ); 
@@ -2773,7 +2753,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Nifty Hero With Bottom Columns & Gradient Overlay', 'js_composer' );
+$data['name'] = esc_html__( 'Nifty Hero With Bottom Columns & Gradient Overlay', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['hero_section'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'hero_section about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/hero-bottom-cols.jpg' ); 
@@ -2794,7 +2774,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fresh Background Hero Full Height Section', 'js_composer' );
+$data['name'] = esc_html__( 'Fresh Background Hero Full Height Section', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/purple_hero.jpg' ); 
@@ -2805,7 +2785,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Simple Google Map', 'js_composer' );
+$data['name'] = esc_html__( 'Simple Google Map', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['google_map'];
 $data['custom_class'] = 'map';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/google-map.jpg' ); 
@@ -2818,7 +2798,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Milestones', 'js_composer' );
+$data['name'] = esc_html__( 'Milestones', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['counters'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'counters general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/project-stats.jpg' ); 
@@ -2832,7 +2812,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Flat Dark Scheme Map', 'js_composer' );
+$data['name'] = esc_html__( 'Flat Dark Scheme Map', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['google_map'];
 $data['custom_class'] = 'map';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/ultra-flat-map.jpg' ); 
@@ -2844,7 +2824,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Map Section Dark Scheme', 'js_composer' );
+$data['name'] = esc_html__( 'Map Section Dark Scheme', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['google_map'];
 $data['custom_class'] = 'map';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-map.jpg' ); 
@@ -2858,7 +2838,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Gradient Icons Dark Background', 'js_composer' );
+$data['name'] = esc_html__( 'Gradient Icons Dark Background', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['icons'] .', '. $cat_display_names['services'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'icons services about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gradient-icons.jpg' ); 
@@ -2882,7 +2862,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Team Member Carousel (Classic Style)', 'js_composer' );
+$data['name'] = esc_html__( 'Team Member Carousel (Classic Style)', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['team'];
 $data['custom_class'] = 'team';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/team-member-carousel.jpg' ); 
@@ -2894,7 +2874,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Two Info Boxes', 'js_composer' );
+$data['name'] = esc_html__( 'Two Info Boxes', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'about services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/two-color-boxes.jpg' ); 
@@ -2910,7 +2890,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Misty Background Info Boxes', 'js_composer' );
+$data['name'] = esc_html__( 'Misty Background Info Boxes', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/two-color-boxes-2.jpg' ); 
@@ -2922,7 +2902,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Side Area With Toggle Panels', 'js_composer' );
+$data['name'] = esc_html__( 'Side Area With Toggle Panels', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/toggles.jpg' ); 
@@ -2934,7 +2914,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Full Height Split Section', 'js_composer' );
+$data['name'] = esc_html__( 'Full Height Split Section', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/full-height.jpg' ); 
@@ -2946,7 +2926,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Brilliant Animated Hero Section', 'js_composer' );
+$data['name'] = esc_html__( 'Brilliant Animated Hero Section', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['hero_section'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'hero_section about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/hero-video-2.jpg' ); 
@@ -2961,7 +2941,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Icon List', 'js_composer' );
+$data['name'] = esc_html__( 'Icon List', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['icons'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'icons services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/icon-list.jpg' ); 
@@ -2973,7 +2953,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Professional Info & Icon List ', 'js_composer' );
+$data['name'] = esc_html__( 'Professional Info & Icon List ', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['icons'] .', '. $cat_display_names['services'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'icons services general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/icons-right.jpg' ); 
@@ -2991,7 +2971,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Mighty Split - Gradient Icons & Info ', 'js_composer' );
+$data['name'] = esc_html__( 'Mighty Split - Gradient Icons & Info ', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['icons'] .', '. $cat_display_names['services'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'icons services general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/icons-left.jpg' ); 
@@ -3010,7 +2990,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Info Boxes & Testimonial', 'js_composer' );
+$data['name'] = esc_html__( 'Info Boxes & Testimonial', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['icons'] .', '. $cat_display_names['testimonials'];
 $data['custom_class'] = 'icons testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/testimonial-text-columns.jpg' ); 
@@ -3028,7 +3008,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Hero With Video, Testimonial & Info Columns', 'js_composer' );
+$data['name'] = esc_html__( 'Hero With Video, Testimonial & Info Columns', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'] .', '. $cat_display_names['hero_section'] .', '. $cat_display_names['testimonials'];
 $data['custom_class'] = 'about hero_section testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/video-testimonial-hero.jpg' ); 
@@ -3047,7 +3027,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Image Overflowing Left Dark Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Image Overflowing Left Dark Hero', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'] .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'about hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/dark-overflow.jpg' ); 
@@ -3067,7 +3047,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image Overflowing Right Dark Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Image Overflowing Right Dark Hero', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'] .', '. $cat_display_names['hero_section'];
 $data['custom_class'] = 'about hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/ipad-right-dark.jpg' ); 
@@ -3087,7 +3067,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Parallax Image Background', 'js_composer' );
+$data['name'] = esc_html__( 'Parallax Image Background', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/parallax-bg-img.jpg' ); 
@@ -3100,7 +3080,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal CTA Strip', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal CTA Strip', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'].', '. $cat_display_names['cta'];
 $data['custom_class'] = 'general cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/call-to-action.jpg' ); 
@@ -3112,7 +3092,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Device Video Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Device Video Hero', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/device_video.jpg' ); 
@@ -3130,7 +3110,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Pristine Team', 'js_composer' );
+$data['name'] = esc_html__( 'Pristine Team', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['team'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'team about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/non-fullwidth-team.jpg' ); 
@@ -3142,7 +3122,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Pie Chart Three Columns', 'js_composer' );
+$data['name'] = esc_html__( 'Pie Chart Three Columns', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['counters'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'counters about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/piechart.jpg' ); 
@@ -3154,7 +3134,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal CTA Strip Alt', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal CTA Strip Alt', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'].', '. $cat_display_names['cta'];
 $data['custom_class'] = 'general cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/call-to-action-2.jpg' ); 
@@ -3165,7 +3145,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'vCard Minimal Colorful', 'js_composer' );
+$data['name'] = esc_html__( 'vCard Minimal Colorful', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'];
 $data['custom_class'] = 'about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-minimal-2.jpg' ); 
@@ -3191,7 +3171,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'vCard Minimal', 'js_composer' );
+$data['name'] = esc_html__( 'vCard Minimal', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'];
 $data['custom_class'] = 'about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-minimal.jpg' ); 
@@ -3217,7 +3197,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Personal Story', 'js_composer' );
+$data['name'] = esc_html__( 'Personal Story', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'];
 $data['custom_class'] = 'about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/personal_story.jpg' ); 
@@ -3241,7 +3221,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fancy Horizontal Tabbed Section', 'js_composer' );
+$data['name'] = esc_html__( 'Fancy Horizontal Tabbed Section', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'].', '. $cat_display_names['services'];
 $data['custom_class'] = 'general services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/fancy_tabs.jpg' ); 
@@ -3311,7 +3291,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Video Player Lightbox', 'js_composer' );
+$data['name'] = esc_html__( 'Video Player Lightbox', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['portfolio'];
 $data['custom_class'] = 'general portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/video-player-lightbox.jpg' ); 
@@ -3326,7 +3306,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Recent Posts Grid Minimal ', 'js_composer' );
+$data['name'] = esc_html__( 'Recent Posts Grid Minimal ', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent_post_grid.jpg' ); 
@@ -3339,7 +3319,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Video Lightboxes', 'js_composer' );
+$data['name'] = esc_html__( 'Video Lightboxes', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['portfolio'];
 $data['custom_class'] = 'general portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/video-lightboxes.jpg' ); 
@@ -3361,7 +3341,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Product Specifications Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Product Specifications Dark', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['portfolio'];
 $data['custom_class'] = 'general portfolio';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/specifications.jpg' ); 
@@ -3385,7 +3365,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Hotspot Tooltips', 'js_composer' );
+$data['name'] = esc_html__( 'Hotspot Tooltips', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/hotspots.jpg' ); 
@@ -3408,7 +3388,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Toggles - FAQ Section', 'js_composer' );
+$data['name'] = esc_html__( 'Toggles - FAQ Section', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/minimal-toggles.jpg' ); 
@@ -3424,7 +3404,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Cascading Images With Animated Icons', 'js_composer' );
+$data['name'] = esc_html__( 'Cascading Images With Animated Icons', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/app-features.jpg' ); 
@@ -3444,7 +3424,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Clean Company Intro', 'js_composer' );
+$data['name'] = esc_html__( 'Clean Company Intro', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['about'] .', '. $cat_display_names['services'];
 $data['custom_class'] = 'about services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/interesting-text.jpg' ); 
@@ -3502,7 +3482,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Feelgood Image & Text Blocks', 'js_composer' );
+$data['name'] = esc_html__( 'Feelgood Image & Text Blocks', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/image-text.jpg' ); 
@@ -3519,7 +3499,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image Background Dual CTA', 'js_composer' );
+$data['name'] = esc_html__( 'Image Background Dual CTA', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['cta'];
 $data['custom_class'] = 'general cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/cta-imgs.jpg' ); 
@@ -3531,7 +3511,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fervent Intro Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Fervent Intro Hero', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-header.jpg' ); 
@@ -3547,7 +3527,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Career Table', 'js_composer' );
+$data['name'] = esc_html__( 'Career Table', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'about general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/career-table.jpg' ); 
@@ -3560,7 +3540,7 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Parallax Cascading Images', 'js_composer' );
+$data['name'] = esc_html__( 'Parallax Cascading Images', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['about'] .', '. $cat_display_names['general'];
 $data['custom_class'] = 'about general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/cascading-img-modern.jpg' ); 
@@ -3575,7 +3555,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Daring CTA Morphing Outline Buttons', 'js_composer' );
+$data['name'] = esc_html__( 'Daring CTA Morphing Outline Buttons', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['services'] .', '. $cat_display_names['cta'];
 $data['custom_class'] = 'services cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/morphing-outline.jpg' ); 
@@ -3592,20 +3572,12 @@ CONTENT;
 vc_add_default_templates( $data );
 
 $data = array();
-$data['name'] = __( 'Icons With Text & Column BG Hover', 'js_composer' );
+$data['name'] = esc_html__( 'Icons With Text & Column BG Hover', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/icon_with_text_1.jpg' ); 
 $data['content'] = <<<CONTENT
-[vc_row type="full_width_content" full_screen_row_position="middle" bg_image="https://source.unsplash.com/HrUwIKrmPm0" bg_position="center center" bg_repeat="no-repeat" parallax_bg="true" parallax_bg_speed="fast" bg_color="#4e475c" scene_position="center" text_color="light" text_align="center" color_overlay="#4e475c" overlay_strength="0.95"][vc_column centered_text="true" column_padding="padding-4-percent" column_padding_position="all" background_color_opacity="1" background_color_hover="#0a0a0a" background_hover_color_opacity="0.2" column_shadow="none" width="1/4" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][divider line_type="No Line" custom_height="75"][vc_column_text][icon color="Accent-Color" animation_speed="Slow" icon_size="60" animation_delay="" image="basic_heart.svg"]
-<h4>Unique Design</h4>
-[/vc_column_text][divider line_type="No Line" custom_height="15"][vc_column_text] Take full control of the power Salient has to offer with our new exciting page builder. You’ll be grinning in delight when you see just how easy it is to create stunning layouts with little effort.[/vc_column_text][divider line_type="No Line" custom_height="75"][/vc_column][vc_column column_padding="padding-4-percent" column_padding_position="all" background_color_opacity="1" background_color_hover="#0a0a0a" background_hover_color_opacity="0.2" column_shadow="none" width="1/4" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][divider line_type="No Line" custom_height="75"][vc_column_text][icon color="Accent-Color" animation_speed="Slow" icon_size="60" animation_delay="" image="basic_mouse.svg"]
-<h4>Page Builder</h4>
-[/vc_column_text][divider line_type="No Line" custom_height="15"][vc_column_text] Take full control of the power Salient has to offer with our new exciting page builder. You’ll be grinning in delight when you see just how easy it is to create stunning layouts with little effort.[/vc_column_text][divider line_type="No Line" custom_height="75"][/vc_column][vc_column column_padding="padding-4-percent" column_padding_position="all" background_color_opacity="1" background_color_hover="#0a0a0a" background_hover_color_opacity="0.2" column_shadow="none" width="1/4" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][divider line_type="No Line" custom_height="75"][vc_column_text][icon color="Accent-Color" animation_speed="Slow" icon_size="60" animation_delay="" image="arrows_rotate_dashed.svg"]
-<h4>Continual Updates</h4>
-[/vc_column_text][divider line_type="No Line" custom_height="15"][vc_column_text] Take full control of the power Salient has to offer with our new exciting page builder. You’ll be grinning in delight when you see just how easy it is to create stunning layouts with little effort.[/vc_column_text][divider line_type="No Line" custom_height="75"][/vc_column][vc_column column_padding="padding-4-percent" column_padding_position="all" background_color_opacity="1" background_color_hover="#0a0a0a" background_hover_color_opacity="0.2" column_shadow="none" width="1/4" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][divider line_type="No Line" custom_height="75"][vc_column_text][icon color="Accent-Color" animation_speed="Slow" icon_size="60" animation_delay="" image="basic_video.svg"]
-<h4>Video Tutorials</h4>
-[/vc_column_text][divider line_type="No Line" custom_height="15"][vc_column_text] Take full control of the power Salient has to offer with our new exciting page builder. You’ll be grinning in delight when you see just how easy it is to create stunning layouts with little effort.[/vc_column_text][divider line_type="No Line" custom_height="75"][/vc_column][/vc_row]
+[vc_row type="full_width_content" full_screen_row_position="middle" bg_image="https://source.unsplash.com/HrUwIKrmPm0" bg_position="center center" bg_repeat="no-repeat" parallax_bg="true" parallax_bg_speed="fast" bg_color="#4e475c" scene_position="center" text_color="light" text_align="center" color_overlay="#4e475c" overlay_strength="0.95" shape_divider_position="bottom"][vc_column centered_text="true" column_padding="padding-4-percent" column_padding_position="all" background_color_opacity="1" background_color_hover="#0a0a0a" background_hover_color_opacity="0.2" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/4" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][divider line_type="No Line" custom_height="75"][nectar_icon icon_family="linea" icon_style="default" icon_color="Accent-Color" icon_padding="10px" icon_linea="icon-basic-heart" icon_size="60"][divider line_type="No Line" custom_height="15"][vc_column_text] Take full control of the power Salient has to offer with our new exciting page builder. You’ll be grinning in delight when you see just how easy it is to create stunning layouts with little effort.[/vc_column_text][divider line_type="No Line" custom_height="75"][/vc_column][vc_column column_padding="padding-4-percent" column_padding_position="all" background_color_opacity="1" background_color_hover="#0a0a0a" background_hover_color_opacity="0.2" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/4" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][divider line_type="No Line" custom_height="75"][nectar_icon icon_family="linea" icon_style="default" icon_color="Accent-Color" icon_padding="10px" icon_linea="icon-basic-mouse" icon_size="60"][divider line_type="No Line" custom_height="15"][vc_column_text] Take full control of the power Salient has to offer with our new exciting page builder. You’ll be grinning in delight when you see just how easy it is to create stunning layouts with little effort.[/vc_column_text][divider line_type="No Line" custom_height="75"][/vc_column][vc_column column_padding="padding-4-percent" column_padding_position="all" background_color_opacity="1" background_color_hover="#0a0a0a" background_hover_color_opacity="0.2" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/4" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][divider line_type="No Line" custom_height="75"][nectar_icon icon_family="linea" icon_style="default" icon_color="Accent-Color" icon_padding="10px" icon_linea="icon-arrows-rotate" icon_size="60"][divider line_type="No Line" custom_height="15"][vc_column_text] Take full control of the power Salient has to offer with our new exciting page builder. You’ll be grinning in delight when you see just how easy it is to create stunning layouts with little effort.[/vc_column_text][divider line_type="No Line" custom_height="75"][/vc_column][vc_column column_padding="padding-4-percent" column_padding_position="all" background_color_opacity="1" background_color_hover="#0a0a0a" background_hover_color_opacity="0.2" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/4" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][divider line_type="No Line" custom_height="75"][nectar_icon icon_family="linea" icon_style="default" icon_color="Accent-Color" icon_padding="10px" icon_linea="icon-basic-video" icon_size="60"][divider line_type="No Line" custom_height="15"][vc_column_text] Take full control of the power Salient has to offer with our new exciting page builder. You’ll be grinning in delight when you see just how easy it is to create stunning layouts with little effort.[/vc_column_text][divider line_type="No Line" custom_height="75"][/vc_column][/vc_row]
 CONTENT;
 
 vc_add_default_templates( $data );
@@ -3613,7 +3585,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Soft Color Icons And Text Blocks', 'js_composer' );
+$data['name'] = esc_html__( 'Soft Color Icons And Text Blocks', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/soft-color-icon-boxes.jpg' ); 
@@ -3638,7 +3610,7 @@ vc_add_default_templates( $data );
 if(version_compare(WPB_VC_VERSION,'5.5','>=')) {
 	
 $data = array();
-$data['name'] = __( 'Easy Wide Broken Image Grid', 'js_composer' );
+$data['name'] = esc_html__( 'Easy Wide Broken Image Grid', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/broken-image-grid-3.jpg' ); 
@@ -3654,7 +3626,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Clear Hero Section', 'js_composer' );
+$data['name'] = esc_html__( 'Clear Hero Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'];
 $data['custom_class'] = 'hero_section';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/landing-video-right.jpg' ); 
@@ -3669,7 +3641,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Great Image Overflow Hero', 'js_composer' );
+$data['name'] = esc_html__( 'Great Image Overflow Hero', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'hero_section icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/left-overflow-img-hero.jpg' ); 
@@ -3692,7 +3664,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Great Image Overflow Hero #2', 'js_composer' );
+$data['name'] = esc_html__( 'Great Image Overflow Hero #2', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['hero_section'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'hero_section icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/right-overflow-img-hero.jpg' ); 
@@ -3716,7 +3688,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Four Columns With Soft Color Icons', 'js_composer' );
+$data['name'] = esc_html__( 'Four Columns With Soft Color Icons', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/4-col-soft-icon-text.jpg' ); 
@@ -3739,7 +3711,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Light Color Gradient Overlay Information Section', 'js_composer' );
+$data['name'] = esc_html__( 'Light Color Gradient Overlay Information Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'] .', '. $cat_display_names['hero_section']  .', '. $cat_display_names['about'];
 $data['custom_class'] = 'testimonials hero_section about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-gradient.jpg' ); 
@@ -3756,12 +3728,12 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Cool Gradient Overlay Information Section Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Cool Gradient Overlay Information Section Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'] .', '. $cat_display_names['hero_section']  .', '. $cat_display_names['about'];
 $data['custom_class'] = 'testimonials hero_section about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/about-gradient-dark.jpg' ); 
 $data['content'] = <<<CONTENT
-[vc_row type="full_width_background" full_screen_row_position="middle" bg_image="https://source.unsplash.com/PhD8mPJBdTE/1600x1200" bg_position="left center" bg_repeat="no-repeat" parallax_bg="true" parallax_bg_speed="fast" scene_position="center" text_color="light" text_align="left" top_padding="10%" bottom_padding="10%" enable_gradient="true" color_overlay="#263336" gradient_direction="left_to_right" overlay_strength="1" shape_divider_position="bottom" shape_type=""][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="5/12" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" column_border_width="none" column_border_style="solid"][nectar_video_lightbox link_style="play_button" video_url="https://www.youtube.com/watch?v=6oTurM7gESE"][vc_column_text css=".vc_custom_1531925847334{margin-top: 40px !important;margin-bottom: 5px !important;}"]
+[vc_row type="full_width_background" full_screen_row_position="middle" bg_image="https://source.unsplash.com/1500x1000/daily/?city" bg_position="left center" bg_repeat="no-repeat" parallax_bg="true" parallax_bg_speed="fast" scene_position="center" text_color="light" text_align="left" top_padding="10%" bottom_padding="10%" enable_gradient="true" color_overlay="#263336" gradient_direction="left_to_right" overlay_strength="1" shape_divider_position="bottom" shape_type=""][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="5/12" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid"][vc_row_inner column_margin="default" text_align="left"][vc_column_inner column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_shadow="none" column_border_radius="none" column_link_target="_self" width="1/1" column_border_width="none" column_border_style="solid"][nectar_video_lightbox link_style="play_button" video_url="https://www.youtube.com/watch?v=6oTurM7gESE"][vc_column_text css=".vc_custom_1531925847334{margin-top: 40px !important;margin-bottom: 5px !important;}"]
 <h5>Look Inside</h5>
 [/vc_column_text][nectar_highlighted_text highlight_color="#ff1053" style="half_text"]
 <h2>Why We're The Most <em>Awesome</em> eCommerce Business</h2>
@@ -3775,7 +3747,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Gradient Tabbed Section', 'js_composer' );
+$data['name'] = esc_html__( 'Gradient Tabbed Section', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/gradient-tabs.jpg' ); 
@@ -3808,7 +3780,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fun Image Arrangement With Color Strip BG', 'js_composer' );
+$data['name'] = esc_html__( 'Fun Image Arrangement With Color Strip BG', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/broken-image-grid-1.jpg' ); 
@@ -3821,7 +3793,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image Arrangement', 'js_composer' );
+$data['name'] = esc_html__( 'Image Arrangement', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/broken-image-grid-2.jpg' ); 
@@ -3833,7 +3805,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Blog Category Grid', 'js_composer' );
+$data['name'] = esc_html__( 'Blog Category Grid', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/blog-categories.jpg' ); 
@@ -3847,7 +3819,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Single Word Text Highlight', 'js_composer' );
+$data['name'] = esc_html__( 'Single Word Text Highlight', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/highlight-text-half.jpg' ); 
@@ -3862,7 +3834,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Interesting Dark Instagram Link', 'js_composer' );
+$data['name'] = esc_html__( 'Interesting Dark Instagram Link', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/insta-link.jpg' ); 
@@ -3878,7 +3850,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Key Points With Soft Color Icons', 'js_composer' );
+$data['name'] = esc_html__( 'Key Points With Soft Color Icons', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/key-points.jpg' ); 
@@ -3902,7 +3874,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Minimal Underlined Heading', 'js_composer' );
+$data['name'] = esc_html__( 'Minimal Underlined Heading', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/light-underlined-text.jpg' ); 
@@ -3916,7 +3888,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Heading With Underlined Link Dark', 'js_composer' );
+$data['name'] = esc_html__( 'Heading With Underlined Link Dark', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['general'] .', '. $cat_display_names['cta'];
 $data['custom_class'] = 'general cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/underlined-cta-dark.jpg' ); 
@@ -3933,7 +3905,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image BG Simple CTA', 'js_composer' );
+$data['name'] = esc_html__( 'Image BG Simple CTA', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/bg-img-cta.jpg' ); 
@@ -3949,7 +3921,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Even Columns With Buttons', 'js_composer' );
+$data['name'] = esc_html__( 'Even Columns With Buttons', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general']  .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/text-content-and-buttons.jpg' ); 
@@ -3974,7 +3946,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Creative Testimonials With Shape Divider', 'js_composer' );
+$data['name'] = esc_html__( 'Creative Testimonials With Shape Divider', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['testimonials'];
 $data['custom_class'] = 'testimonials';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/sweet-testimonials.jpg' ); 
@@ -3991,7 +3963,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Light Gradient Call To Action', 'js_composer' );
+$data['name'] = esc_html__( 'Light Gradient Call To Action', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/light-cta.jpg' ); 
@@ -4005,7 +3977,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Modern Vertical Tabbed Section', 'js_composer' );
+$data['name'] = esc_html__( 'Modern Vertical Tabbed Section', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/vertical-tabs-material.jpg' ); 
@@ -4020,7 +3992,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Leaflet Interactive Map', 'js_composer' );
+$data['name'] = esc_html__( 'Leaflet Interactive Map', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['google_map'];
 $data['custom_class'] = 'map';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/leaflet-map.jpg' ); 
@@ -4035,7 +4007,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Wonderful Product Collection Parallax', 'js_composer' );
+$data['name'] = esc_html__( 'Wonderful Product Collection Parallax', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['hero_section']  .', '. $cat_display_names['shop'];
 $data['custom_class'] = 'hero_section shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/featured-collections.jpg' ); 
@@ -4060,7 +4032,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Shop Sale Section', 'js_composer' );
+$data['name'] = esc_html__( 'Shop Sale Section', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general']  .', '. $cat_display_names['shop'];
 $data['custom_class'] = 'general shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/shop-sale-col.jpg' ); 
@@ -4075,7 +4047,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Overflowing Title Gradient CTA', 'js_composer' );
+$data['name'] = esc_html__( 'Overflowing Title Gradient CTA', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['cta'];
 $data['custom_class'] = 'cta';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/cta-overlap-box.jpg' ); 
@@ -4093,7 +4065,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Blog Post Carousel Split Color BG', 'js_composer' );
+$data['name'] = esc_html__( 'Blog Post Carousel Split Color BG', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/blog-split-bg.jpg' ); 
@@ -4107,7 +4079,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Recent Posts Split Parallax BG', 'js_composer' );
+$data['name'] = esc_html__( 'Recent Posts Split Parallax BG', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/recent-posts-overlap.jpg' ); 
@@ -4128,7 +4100,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Image And Text Overlapping', 'js_composer' );
+$data['name'] = esc_html__( 'Image And Text Overlapping', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/overlap-img-alt.jpg' ); 
@@ -4142,7 +4114,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Horizontal List Items', 'js_composer' );
+$data['name'] = esc_html__( 'Horizontal List Items', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general']  .', '. $cat_display_names['icons']  .', '. $cat_display_names['services'];
 $data['custom_class'] = 'general icons services';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/hor-list-items-light.jpg' ); 
@@ -4158,7 +4130,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Pink Color Overlay With Video & Testimonials', 'js_composer' );
+$data['name'] = esc_html__( 'Pink Color Overlay With Video & Testimonials', 'js_composer' );
 $data['cat_display_name'] =  $cat_display_names['testimonials'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'testimonials about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/video-bg-testimonials-2.jpg' ); 
@@ -4175,7 +4147,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Distinct Company Image And Bottom Contact Box', 'js_composer' );
+$data['name'] = esc_html__( 'Distinct Company Image And Bottom Contact Box', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/contact-row.jpg' ); 
@@ -4192,7 +4164,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Other Office Locations Row', 'js_composer' );
+$data['name'] = esc_html__( 'Other Office Locations Row', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/other-locations.jpg' ); 
@@ -4220,7 +4192,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Paragraphs With Large Headings', 'js_composer' );
+$data['name'] = esc_html__( 'Paragraphs With Large Headings', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['about'];
 $data['custom_class'] = 'general about';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/basic-about-text.jpg' ); 
@@ -4237,7 +4209,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Product Features With Colorful Background', 'js_composer' );
+$data['name'] = esc_html__( 'Product Features With Colorful Background', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/colorful-features.jpg' ); 
@@ -4250,7 +4222,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Split Contact FAQ', 'js_composer' );
+$data['name'] = esc_html__( 'Split Contact FAQ', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/split-contact.jpg' ); 
@@ -4268,7 +4240,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Three Fancy Boxes with Borders', 'js_composer' );
+$data['name'] = esc_html__( 'Three Fancy Boxes with Borders', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'];
 $data['custom_class'] = 'general';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/3-col-fancy-box.jpg' ); 
@@ -4291,7 +4263,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Recent Posts With BG Image', 'js_composer' );
+$data['name'] = esc_html__( 'Recent Posts With BG Image', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['blog'];
 $data['custom_class'] = 'blog';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/blog-recent-dark.jpg' ); 
@@ -4307,7 +4279,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Icon List Horizontal With BG', 'js_composer' );
+$data['name'] = esc_html__( 'Icon List Horizontal With BG', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['general'] .', '. $cat_display_names['icons'];
 $data['custom_class'] = 'general icons';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/icon-list-horizontal-bg.jpg' ); 
@@ -4321,10 +4293,41 @@ vc_add_default_templates( $data );
 
 
 
+
+$data = array();
+$data['name'] = esc_html__( 'Colorful BG Hero', 'js_composer' );
+$data['cat_display_name'] = $cat_display_names['hero_section'];
+$data['custom_class'] = 'hero_section';
+$data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/colorful-bg-hero.jpg' ); 
+$data['content'] = <<<CONTENT
+[vc_row type="full_width_background" full_screen_row_position="middle" bg_image="https://source.unsplash.com/XgeZu2jBaVI" bg_position="center center" bg_repeat="no-repeat" bg_color="#3452ff" scene_position="center" text_color="light" text_align="left" top_padding="16%" bottom_padding="16%" color_overlay="#0c0c0c" overlay_strength="0.3" shape_divider_position="bottom" shape_divider_height="350" bg_image_animation="none" shape_type="mountains"][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/6" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid" bg_image_animation="none"][/vc_column][vc_column centered_text="true" column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="2/3" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid" bg_image_animation="none" enable_animation="true" animation="zoom-out"][vc_custom_heading text="Salient Front End Editing Is Here" font_container="tag:h4|font_size:20|text_align:center|color:rgba(255%2C255%2C255%2C0.7)|line_height:36px" google_fonts="font_family:Roboto%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C700%2C700italic%2C900%2C900italic|font_style:500%20bold%20regular%3A500%3Anormal" css=".vc_custom_1544016696269{padding-right: 20% !important;padding-left: 20% !important;}"][vc_custom_heading text="WordPress Design As It Should Be" font_container="tag:h1|font_size:93px|text_align:center|line_height:98px" google_fonts="font_family:Playfair%20Display%3Aregular%2Citalic%2C700%2C700italic%2C900%2C900italic|font_style:400%20regular%3A400%3Anormal" css=".vc_custom_1544056620410{padding-right: 6% !important;padding-bottom: 30px !important;padding-left: 6% !important;}"][nectar_btn size="jumbo" button_style="regular" button_color_2="Accent-Color" color_override="#000000" icon_family="default_arrow" url="#discover" text="Explore More Now" margin_top="40" margin_right="20" margin_left="20"][/vc_column][vc_column column_padding="no-extra-padding" column_padding_position="all" background_color_opacity="1" background_hover_color_opacity="1" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/6" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid" bg_image_animation="none"][/vc_column][/vc_row]
+CONTENT;
+	
+vc_add_default_templates( $data );
+
+
+
+
+$data = array();
+$data['name'] = esc_html__( 'Huge Triple Section', 'js_composer' );
+$data['cat_display_name'] = $cat_display_names['services'];
+$data['custom_class'] = 'services';
+$data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/triple-fullscreen-cols.jpg' ); 
+$data['content'] = <<<CONTENT
+[vc_row type="full_width_content" full_screen_row_position="middle" equal_height="yes" content_placement="middle" full_height="yes" columns_placement="stretch" scene_position="center" text_color="light" text_align="left" overlay_strength="0.3" shape_divider_position="bottom" bg_image_animation="none" shape_type=""][vc_column centered_text="true" column_padding="padding-8-percent" column_padding_position="all" background_color="#2d2d2d" background_color_opacity="0.6" background_hover_color_opacity="0.6" background_image="https://source.unsplash.com/daily/?smartphone" enable_bg_scale="true" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/3" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid" bg_image_animation="none" enable_animation="true" animation="grow-in"][vc_custom_heading text="Heavily Awarded" font_container="tag:h5|text_align:center|color:rgba(255%2C255%2C255%2C0.7)" use_theme_fonts="yes"][vc_custom_heading text="We only do excellent work" font_container="tag:h3|text_align:center" use_theme_fonts="yes"][nectar_btn size="large" button_style="see-through-2" hover_text_color_override="#ffffff" icon_family="none" url="#" text="See our portfolio" margin_top="25"][/vc_column][vc_column centered_text="true" column_padding="padding-8-percent" column_padding_position="all" background_color="#0a0a0a" background_color_opacity="0.3" background_color_hover="#0a0a0a" background_hover_color_opacity="0.3" background_image="https://source.unsplash.com/daily/?underwater" enable_bg_scale="true" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/3" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid" bg_image_animation="none" enable_animation="true" animation="grow-in" delay="50"][vc_custom_heading text="Here For You" font_container="tag:h5|text_align:center|color:rgba(255%2C255%2C255%2C0.7)" use_theme_fonts="yes"][vc_custom_heading text="Useful Innovation" font_container="tag:h3|text_align:center" use_theme_fonts="yes"][nectar_btn size="large" button_style="see-through-2" hover_text_color_override="#ffffff" icon_family="none" url="#" text="Explore Now" margin_top="25"][/vc_column][vc_column centered_text="true" column_padding="padding-8-percent" column_padding_position="all" background_color="#2d2d2d" background_color_opacity="0.7" background_hover_color_opacity="0.7" background_image="https://source.unsplash.com/daily/?city" enable_bg_scale="true" column_link_target="_self" column_shadow="none" column_border_radius="none" width="1/3" tablet_width_inherit="default" tablet_text_alignment="default" phone_text_alignment="default" column_border_width="none" column_border_style="solid" bg_image_animation="none" enable_animation="true" animation="grow-in" delay="100"][vc_custom_heading text="We care about skill" font_container="tag:h5|text_align:center|color:rgba(255%2C255%2C255%2C0.7)" use_theme_fonts="yes"][vc_custom_heading text="Great minds work here" font_container="tag:h3|text_align:center" use_theme_fonts="yes"][nectar_btn size="large" button_style="see-through-2" hover_text_color_override="#ffffff" icon_family="none" url="#" text="Meet The Team" margin_top="25"][/vc_column][/vc_row]
+CONTENT;
+	
+vc_add_default_templates( $data );
+
+
+
+
+
+
 /* WooCommerce specific templates */
 
 $data = array();
-$data['name'] = __( 'Tabbed Product Display', 'js_composer' );
+$data['name'] = esc_html__( 'Tabbed Product Display', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/tabbed-products.jpg' ); 
@@ -4337,7 +4340,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Modern Product Category Grid: Four Column Based', 'js_composer' );
+$data['name'] = esc_html__( 'Modern Product Category Grid: Four Column Based', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/category-grid.jpg' ); 
@@ -4349,7 +4352,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fullwidth Product Carousel With Split Color BG', 'js_composer' );
+$data['name'] = esc_html__( 'Fullwidth Product Carousel With Split Color BG', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/woo-carousel.jpg' ); 
@@ -4362,7 +4365,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Dual Section Products And Image', 'js_composer' );
+$data['name'] = esc_html__( 'Dual Section Products And Image', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/woo-2-products.jpg' ); 
@@ -4378,7 +4381,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Flush Product Category Grid: Three Column Based', 'js_composer' );
+$data['name'] = esc_html__( 'Flush Product Category Grid: Three Column Based', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/woo-cat-grid-2.jpg' ); 
@@ -4392,7 +4395,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Product Carousel Split', 'js_composer' );
+$data['name'] = esc_html__( 'Product Carousel Split', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/woo-2-products-carousel.jpg' ); 
@@ -4408,7 +4411,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Normal Product Carousel', 'js_composer' );
+$data['name'] = esc_html__( 'Normal Product Carousel', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/container-product-carousel.jpg' ); 
@@ -4421,7 +4424,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Fullwidth Custom Product Section', 'js_composer' );
+$data['name'] = esc_html__( 'Fullwidth Custom Product Section', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/single-product-block-1.jpg' ); 
@@ -4436,7 +4439,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Creative Fullwidth Custom Product Display', 'js_composer' );
+$data['name'] = esc_html__( 'Creative Fullwidth Custom Product Display', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/modern-full-width-product-display.jpg' ); 
@@ -4455,7 +4458,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Vertical Fullwidth Custom Product Display', 'js_composer' );
+$data['name'] = esc_html__( 'Vertical Fullwidth Custom Product Display', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/modern-full-width-product-display-2.jpg' ); 
@@ -4474,7 +4477,7 @@ vc_add_default_templates( $data );
 
 
 $data = array();
-$data['name'] = __( 'Three Column Basic Fullwidth Category Grid', 'js_composer' );
+$data['name'] = esc_html__( 'Three Column Basic Fullwidth Category Grid', 'js_composer' );
 $data['cat_display_name'] = $cat_display_names['shop'];
 $data['custom_class'] = 'shop';
 $data['image_path'] = preg_replace( '/\s/', '%20', $nectar_get_template_directory_uri .'/nectar/nectar-vc-addons/img/templates/full-width-3-col-product-cats.jpg' ); 

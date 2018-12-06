@@ -116,9 +116,11 @@ if($pagination == '1') {
 	if(!empty($product_type) && $product_type == 'best_selling') {
 		$shortcode_attrs .= 'best_selling ';
 	}
-	
-	if(!empty($product_type) && $product_type == 'sale') {
+	elseif(!empty($product_type) && $product_type == 'sale') {
 		$shortcode_attrs .= 'on_sale ';
+	}
+	elseif(!empty($product_type) && $product_type == 'featured') {
+		$shortcode_attrs .= 'visibility="featured" ';
 	}
 	
 	if(!empty($per_page)) {
@@ -145,6 +147,15 @@ if($pagination == '1') {
 	echo do_shortcode('[products paginate="true" '.$shortcode_attrs.']');
 	
 } else {
+	
+	if( isset($_GET['vc_editable']) ) {
+		$nectar_using_VC_front_end_editor = sanitize_text_field($_GET['vc_editable']);
+		$nectar_using_VC_front_end_editor = ($nectar_using_VC_front_end_editor == 'true') ? true : false;
+		//imit script choices on front end editor
+		if($nectar_using_VC_front_end_editor && $script != 'flickity') {
+			$script = 'flickity';
+		}
+	}
 
 	ob_start();
 
@@ -159,11 +170,11 @@ if($pagination == '1') {
 	if ( $products->have_posts() ) : ?>
 		
 		<?php if($carousel == '1' && $script == 'carouFredSel') { ?> 
-			<div class="carousel-wrap products-carousel" data-controls="<?php echo $controls_on_hover; ?>"> 
+			<div class="carousel-wrap products-carousel" data-controls="<?php echo esc_attr( $controls_on_hover ); ?>"> 
 		<?php	} ?>
 		
 		<?php if($carousel == '1' && $script == 'flickity') { ?>
-			<div class="nectar-woo-flickity" data-autorotate="<?php echo $autorotate; ?>" data-autorotate-speed="<?php echo $autorotation_speed; ?>" data-item-shadow="<?php echo $item_shadow; ?>" data-controls="<?php echo $flickity_controls; ?>"> 
+			<div class="nectar-woo-flickity" data-autorotate="<?php echo esc_attr( $autorotate ); ?>" data-autorotate-speed="<?php echo esc_attr( $autorotation_speed ); ?>" data-item-shadow="<?php echo esc_attr( $item_shadow ); ?>" data-controls="<?php echo esc_attr( $flickity_controls ); ?>"> 
 				
 		<?php 
 				if($flickity_controls == 'arrows-and-text') {

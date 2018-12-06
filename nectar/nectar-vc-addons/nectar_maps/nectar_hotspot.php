@@ -1,7 +1,7 @@
 <?php 
 
 return array(
-		  "name" => __("Nectar Hotspot", "js_composer"),
+		  "name" => esc_html__("Nectar Hotspot", "js_composer"),
 		  "base" => "nectar_hotspot",
 		  "allowed_container_element" => 'vc_row',
 		  "content_element" => false,
@@ -20,19 +20,19 @@ return array(
 			)),
 		    array(
 		      "type" => "textfield",
-		      "heading" => __("Left", "js_composer"),
+		      "heading" => esc_html__("Left", "js_composer"),
 		      "param_name" => "left"
 		    ),
 		    array(
 		      "type" => "textfield",
-		      "heading" => __("Top", "js_composer"),
+		      "heading" => esc_html__("Top", "js_composer"),
 		      "param_name" => "top"
 		    ),
 		    array(
 		      "type" => "textarea_html",
-		      "heading" => __("Content", "js_composer"),
+		      "heading" => esc_html__("Content", "js_composer"),
 		      "param_name" => "content",
-		      "description" => __("", "js_composer"),
+		      "description" => '',
 		    )
 		  )
 		

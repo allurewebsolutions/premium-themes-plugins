@@ -82,9 +82,7 @@
                 //*****************************************************************
                 Redux_CDN::register_style(
                     'select2-css',
-                    /*nectar addition - local load */
-                    'select2.css',
-                    /*nectar addition end  */
+                    '//cdn.jsdelivr.net/select2/3.5.2/select2.css',
                     array(),
                     '3.5.2',//$this->timestamp,
                     'all'
@@ -222,9 +220,7 @@
                 
                 Redux_CDN::register_script(
                     'select2-js',
-                    /*nectar addition - local load */
-                    'select2' . $this->min . '.js',
-                    /*nectar addition end */
+                    '//cdn.jsdelivr.net/select2/3.5.2/select2' . $this->min . '.js',
                     array( 'jquery', 'redux-select2-sortable-js' ),
                     '3.5.2',
                     true

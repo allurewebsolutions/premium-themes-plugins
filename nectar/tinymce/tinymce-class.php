@@ -9,20 +9,12 @@ function enqueue_generator_scripts(){
 
 	wp_enqueue_style('tinymce',get_template_directory_uri() . '/nectar/tinymce/shortcode_generator/css/tinymce.css'); 
 	wp_enqueue_style('chosen',get_template_directory_uri() . '/nectar/tinymce/shortcode_generator/css/chosen/chosen.css'); 
-	
-	/*
-	wp_enqueue_style('simple-slider',get_template_directory_uri() . '/nectar/tinymce/shortcode_generator/css/simple_slider/simple-slider.css'); 
-	wp_enqueue_style('simple-slider-volume',get_template_directory_uri() . '/nectar/tinymce/shortcode_generator/css/simple_slider/simple-slider-volume.css'); */
-	
 	wp_enqueue_style('font-awesome',get_template_directory_uri() . '/css/font-awesome.min.css'); 
 	wp_enqueue_style('steadysets', get_template_directory_uri() . '/css/steadysets.css');
 	wp_enqueue_style('linecon', get_template_directory_uri() . '/css/linecon.css');
 	wp_enqueue_style('linea', get_template_directory_uri() . '/css/fonts/svg/font/style.css');
 	wp_enqueue_style('iconsmind', get_template_directory_uri() . '/css/iconsmind.css');
-		 
 	wp_enqueue_script('chosen',get_template_directory_uri() . '/nectar/tinymce/shortcode_generator/js/chosen/chosen.jquery.min.js','jquery','1.0 ', TRUE);
-	
-	/*wp_enqueue_script('simple-slider',get_template_directory_uri() . '/nectar/tinymce/shortcode_generator/js/simple_slider/simple-slider.min.js','jquery','1.0 ', TRUE); */
 	
 	wp_enqueue_style('magnific',get_template_directory_uri() . '/nectar/tinymce/shortcode_generator/css/magnific-popup.css'); 
 	wp_enqueue_script('magnific',get_template_directory_uri() . '/nectar/tinymce/shortcode_generator/js/magnific-popup.js','jquery','0.9.7 ', TRUE);
@@ -36,10 +28,10 @@ add_action('admin_enqueue_scripts','enqueue_generator_scripts');
 
 
  
-add_action('admin_footer','content_display');
+add_action('admin_footer','nectar_shortcode_content_display');
 
 
-function content_display(){
+function nectar_shortcode_content_display() {
 		
 //Shortcodes Definitions
 #-----------------------------------------------------------------
@@ -49,20 +41,20 @@ function content_display(){
 //Half
 $nectar_shortcodes['header_1'] = array( 
 	'type'=>'heading', 
-	'title'=>__('Columns', 'salient')
+	'title'=>esc_html__('Columns', 'salient')
 );
 
 $nectar_shortcodes['one_half'] = array( 
 	'type'=>'checkbox', 
-	'title'=>__('One Half (1/2)', 'salient' ), 
+	'title'=>esc_html__('One Half (1/2)', 'salient' ), 
 	'attr'=>array( 
-		'boxed'=>array('type'=>'custom', 'title'=>__('Boxed Column','salient')),
-		'centered_text'=>array('type'=>'custom', 'title'=>__('Centered Text','salient')),
-		'last'=>array( 'type'=>'custom', 'title'=>__('Last Column','salient'), 'desc' => __('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
+		'boxed'=>array('type'=>'custom', 'title'=>esc_html__('Boxed Column','salient')),
+		'centered_text'=>array('type'=>'custom', 'title'=>esc_html__('Centered Text','salient')),
+		'last'=>array( 'type'=>'custom', 'title'=>esc_html__('Last Column','salient'), 'desc' => esc_html__('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
 		'animation'=>array(
 			'type'=>'select', 
 			'half_width' => 'true',
-			'title'  => __('Animation','salient'),
+			'title'  => esc_html__('Animation','salient'),
 			'values' => array(
 			     "none" => "None",
 			     "fade-in" => "Fade In",
@@ -75,8 +67,8 @@ $nectar_shortcodes['one_half'] = array(
 		'delay'=>array(
 			'type'=>'text', 
 			'second_half_width' => 'true',
-			'title'=>__('Animation Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Animation Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		)
 	)
 );
@@ -85,58 +77,58 @@ $nectar_shortcodes['one_half'] = array(
 //Thirds
 $nectar_shortcodes['one_third'] = array( 
 	'type'=>'checkbox', 
-	'title'=>__('One Third Column (1/3)', 'salient' ), 
+	'title'=>esc_html__('One Third Column (1/3)', 'salient' ), 
 	'attr'=>array( 
-		'boxed'=>array('type'=>'custom', 'title'=>__('Boxed Column','salient')),
-		'centered_text'=>array('type'=>'custom', 'title'=>__('Centered Text','salient')),
-		'last'=>array( 'type'=>'custom', 'title'=>__('Last Column','salient'), 'desc' => __('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
+		'boxed'=>array('type'=>'custom', 'title'=>esc_html__('Boxed Column','salient')),
+		'centered_text'=>array('type'=>'custom', 'title'=>esc_html__('Centered Text','salient')),
+		'last'=>array( 'type'=>'custom', 'title'=>esc_html__('Last Column','salient'), 'desc' => esc_html__('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
 		'animation'=>array(
 			'type'=>'select', 
 			'half_width' => 'true',
-			'title'  => __('Animation','salient'),
+			'title'  => esc_html__('Animation','salient'),
 			'values' => array(
-			     "none" => __("None",'salient'),
-			     "fade-in" => __("Fade In",'salient'),
-		  		 "fade-in-from-left" => __("Fade In From Left",'salient'),
-		  		 "fade-in-right" => __("Fade In From Right",'salient'),
-		  		 "fade-in-from-bottom" => __("Fade In From Bottom",'salient'),
-		  		 "grow-in" => __("Grow In",'salient')
+			     "none" => esc_html__("None",'salient'),
+			     "fade-in" => esc_html__("Fade In",'salient'),
+		  		 "fade-in-from-left" => esc_html__("Fade In From Left",'salient'),
+		  		 "fade-in-right" => esc_html__("Fade In From Right",'salient'),
+		  		 "fade-in-from-bottom" => esc_html__("Fade In From Bottom",'salient'),
+		  		 "grow-in" => esc_html__("Grow In",'salient')
 			)
 		),
 		'delay'=>array(
 			'type'=>'text', 
 			'second_half_width' => 'true',
-			'title'=>__('Animation Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Animation Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		)
 	)
 );
 
 $nectar_shortcodes['two_thirds'] = array( 
 	'type'=>'checkbox', 
-	'title'=>__('Two Thirds Column (2/3)', 'salient' ), 
+	'title'=>esc_html__('Two Thirds Column (2/3)', 'salient' ), 
 	'attr'=>array( 
-		'boxed'=>array('type'=>'custom', 'title'=>__('Boxed Column','salient')),
-		'centered_text'=>array('type'=>'custom', 'title'=>__('Centered Text','salient')),
-		'last'=>array( 'type'=>'custom', 'title'=>__('Last Column','salient'), 'desc' => __('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
+		'boxed'=>array('type'=>'custom', 'title'=>esc_html__('Boxed Column','salient')),
+		'centered_text'=>array('type'=>'custom', 'title'=>esc_html__('Centered Text','salient')),
+		'last'=>array( 'type'=>'custom', 'title'=>esc_html__('Last Column','salient'), 'desc' => esc_html__('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
 		'animation'=>array(
 			'type'=>'select', 
 			'half_width' => 'true',
-			'title'  => __('Animation','salient'),
+			'title'  => esc_html__('Animation','salient'),
 			'values' => array(
-			     "none" => __("None",'salient'),
-			     "fade-in" => __("Fade In",'salient'),
-		  		 "fade-in-from-left" => __("Fade In From Left",'salient'),
-		  		 "fade-in-right" => __("Fade In From Right",'salient'),
-		  		 "fade-in-from-bottom" => __("Fade In From Bottom",'salient'),
-		  		 "grow-in" => __("Grow In",'salient')
+			     "none" => esc_html__("None",'salient'),
+			     "fade-in" => esc_html__("Fade In",'salient'),
+		  		 "fade-in-from-left" => esc_html__("Fade In From Left",'salient'),
+		  		 "fade-in-right" => esc_html__("Fade In From Right",'salient'),
+		  		 "fade-in-from-bottom" => esc_html__("Fade In From Bottom",'salient'),
+		  		 "grow-in" => esc_html__("Grow In",'salient')
 			)
 		),
 		'delay'=>array(
 			'type'=>'text', 
 			'second_half_width' => 'true',
-			'title'=>__('Animation Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Animation Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		)
 	)
 );
@@ -145,58 +137,58 @@ $nectar_shortcodes['two_thirds'] = array(
 //Fourths
 $nectar_shortcodes['one_fourth'] = array( 
 	'type'=>'checkbox', 
-	'title'=>__('One Fourth Column (1/4)', 'salient' ), 
+	'title'=>esc_html__('One Fourth Column (1/4)', 'salient' ), 
 	'attr'=>array( 
-		'boxed'=>array('type'=>'custom', 'title'=>__('Boxed Column','salient')),
-		'centered_text'=>array('type'=>'custom', 'title'=>__('Centered Text','salient')),
-		'last'=>array( 'type'=>'custom', 'title'=>__('Last Column','salient'), 'desc' => __('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
+		'boxed'=>array('type'=>'custom', 'title'=>esc_html__('Boxed Column','salient')),
+		'centered_text'=>array('type'=>'custom', 'title'=>esc_html__('Centered Text','salient')),
+		'last'=>array( 'type'=>'custom', 'title'=>esc_html__('Last Column','salient'), 'desc' => esc_html__('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
 		'animation'=>array(
 			'type'=>'select', 
 			'half_width' => 'true',
-			'title'  => __('Animation','salient'),
+			'title'  => esc_html__('Animation','salient'),
 			'values' => array(
-			    "none" => __("None",'salient'),
-			     "fade-in" => __("Fade In",'salient'),
-		  		 "fade-in-from-left" => __("Fade In From Left",'salient'),
-		  		 "fade-in-right" => __("Fade In From Right",'salient'),
-		  		 "fade-in-from-bottom" => __("Fade In From Bottom",'salient'),
-		  		 "grow-in" => __("Grow In",'salient')
+			    "none" => esc_html__("None",'salient'),
+			     "fade-in" => esc_html__("Fade In",'salient'),
+		  		 "fade-in-from-left" => esc_html__("Fade In From Left",'salient'),
+		  		 "fade-in-right" => esc_html__("Fade In From Right",'salient'),
+		  		 "fade-in-from-bottom" => esc_html__("Fade In From Bottom",'salient'),
+		  		 "grow-in" => esc_html__("Grow In",'salient')
 			)
 		),
 		'delay'=>array(
 			'type'=>'text', 
 			'second_half_width' => 'true',
-			'title'=>__('Animation Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Animation Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		)
 	)
 );
 
 $nectar_shortcodes['three_fourths'] = array( 
 	'type'=>'checkbox', 
-	'title'=>__('Three Fourths Column (3/4)', 'salient' ), 
+	'title'=>esc_html__('Three Fourths Column (3/4)', 'salient' ), 
 	'attr'=>array( 
-		'boxed'=>array('type'=>'custom', 'title'=>__('Boxed Column','salient')),
-		'centered_text'=>array('type'=>'custom', 'title'=>__('Centered Text','salient')),
-		'last'=>array( 'type'=>'custom', 'title'=>__('Last Column','salient'), 'desc' => __('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
+		'boxed'=>array('type'=>'custom', 'title'=>esc_html__('Boxed Column','salient')),
+		'centered_text'=>array('type'=>'custom', 'title'=>esc_html__('Centered Text','salient')),
+		'last'=>array( 'type'=>'custom', 'title'=>esc_html__('Last Column','salient'), 'desc' => esc_html__('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
 		'animation'=>array(
 			'type'=>'select', 
 			'half_width' => 'true',
-			'title'  => __('Animation','salient'),
+			'title'  => esc_html__('Animation','salient'),
 			'values' => array(
-			    "none" => __("None",'salient'),
-			     "fade-in" => __("Fade In",'salient'),
-		  		 "fade-in-from-left" => __("Fade In From Left",'salient'),
-		  		 "fade-in-right" => __("Fade In From Right",'salient'),
-		  		 "fade-in-from-bottom" => __("Fade In From Bottom",'salient'),
-		  		 "grow-in" => __("Grow In",'salient')
+			    "none" => esc_html__("None",'salient'),
+			     "fade-in" => esc_html__("Fade In",'salient'),
+		  		 "fade-in-from-left" => esc_html__("Fade In From Left",'salient'),
+		  		 "fade-in-right" => esc_html__("Fade In From Right",'salient'),
+		  		 "fade-in-from-bottom" => esc_html__("Fade In From Bottom",'salient'),
+		  		 "grow-in" => esc_html__("Grow In",'salient')
 			)
 		),
 		'delay'=>array(
 			'type'=>'text', 
 			'second_half_width' => 'true',
-			'title'=>__('Animation Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Animation Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		)
 	)
 );
@@ -205,86 +197,86 @@ $nectar_shortcodes['three_fourths'] = array(
 //Sixths
 $nectar_shortcodes['one_sixth'] = array( 
 	'type'=>'checkbox', 
-	'title'=>__('One Sixth Column (1/6)', 'salient' ), 
+	'title'=>esc_html__('One Sixth Column (1/6)', 'salient' ), 
 	'attr'=>array( 
-		'boxed'=>array('type'=>'custom', 'title'=>__('Boxed Column','salient')),
-		'centered_text'=>array('type'=>'custom', 'title'=>__('Centered Text','salient')),
-		'last'=>array( 'type'=>'custom', 'title'=>__('Last Column','salient'), 'desc' => __('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
+		'boxed'=>array('type'=>'custom', 'title'=>esc_html__('Boxed Column','salient')),
+		'centered_text'=>array('type'=>'custom', 'title'=>esc_html__('Centered Text','salient')),
+		'last'=>array( 'type'=>'custom', 'title'=>esc_html__('Last Column','salient'), 'desc' => esc_html__('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
 		'animation'=>array(
 			'type'=>'select', 
 			'half_width' => 'true',
-			'title'  => __('Animation','salient'),
+			'title'  => esc_html__('Animation','salient'),
 			'values' => array(
-			    "none" => __("None",'salient'),
-			     "fade-in" => __("Fade In",'salient'),
-		  		 "fade-in-from-left" => __("Fade In From Left",'salient'),
-		  		 "fade-in-right" => __("Fade In From Right",'salient'),
-		  		 "fade-in-from-bottom" => __("Fade In From Bottom",'salient'),
-		  		 "grow-in" => __("Grow In",'salient')
+			    "none" => esc_html__("None",'salient'),
+			     "fade-in" => esc_html__("Fade In",'salient'),
+		  		 "fade-in-from-left" => esc_html__("Fade In From Left",'salient'),
+		  		 "fade-in-right" => esc_html__("Fade In From Right",'salient'),
+		  		 "fade-in-from-bottom" => esc_html__("Fade In From Bottom",'salient'),
+		  		 "grow-in" => esc_html__("Grow In",'salient')
 			)
 		),
 		'delay'=>array(
 			'type'=>'text', 
 			'second_half_width' => 'true',
-			'title'=>__('Animation Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Animation Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		)
 	)
 );
 
 $nectar_shortcodes['five_sixths'] = array( 
 	'type'=>'checkbox', 
-	'title'=>__('Five Sixths Column (5/6)', 'salient' ), 
+	'title'=>esc_html__('Five Sixths Column (5/6)', 'salient' ), 
 	'attr'=>array( 
-		'boxed'=>array('type'=>'custom', 'title'=>__('Boxed Column','salient')),
-		'centered_text'=>array('type'=>'custom', 'title'=>__('Centered Text','salient')),
-		'last'=>array( 'type'=>'custom', 'title'=>__('Last Column','salient'), 'desc' => __('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
+		'boxed'=>array('type'=>'custom', 'title'=>esc_html__('Boxed Column','salient')),
+		'centered_text'=>array('type'=>'custom', 'title'=>esc_html__('Centered Text','salient')),
+		'last'=>array( 'type'=>'custom', 'title'=>esc_html__('Last Column','salient'), 'desc' => esc_html__('Check this for the last column in a row. i.e. when the columns add up to 1.', 'salient')),
 		'animation'=>array(
 			'type'=>'select', 
 			'half_width' => 'true',
-			'title'  => __('Animation','salient'),
+			'title'  => esc_html__('Animation','salient'),
 			'values' => array(
-			     "none" => __("None",'salient'),
-			     "fade-in" => __("Fade In",'salient'),
-		  		 "fade-in-from-left" => __("Fade In From Left",'salient'),
-		  		 "fade-in-right" => __("Fade In From Right",'salient'),
-		  		 "fade-in-from-bottom" => __("Fade In From Bottom",'salient'),
-		  		 "grow-in" => __("Grow In",'salient')
+			     "none" => esc_html__("None",'salient'),
+			     "fade-in" => esc_html__("Fade In",'salient'),
+		  		 "fade-in-from-left" => esc_html__("Fade In From Left",'salient'),
+		  		 "fade-in-right" => esc_html__("Fade In From Right",'salient'),
+		  		 "fade-in-from-bottom" => esc_html__("Fade In From Bottom",'salient'),
+		  		 "grow-in" => esc_html__("Grow In",'salient')
 			)
 		),
 		'delay'=>array(
 			'type'=>'text', 
 			'second_half_width' => 'true',
-			'title'=>__('Animation Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Animation Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		)
 	)
 );
 
 $nectar_shortcodes['one_whole'] = array( 
 	'type'=>'checkbox', 
-	'title'=>__('One Whole Column (1/1)', 'salient' ), 
+	'title'=>esc_html__('One Whole Column (1/1)', 'salient' ), 
 	'attr'=>array( 
-		'boxed'=>array('type'=>'custom', 'title'=>__('Boxed Column','salient')),
-		'centered_text'=>array('type'=>'custom', 'title'=>__('Centered Text','salient')),
+		'boxed'=>array('type'=>'custom', 'title'=>esc_html__('Boxed Column','salient')),
+		'centered_text'=>array('type'=>'custom', 'title'=>esc_html__('Centered Text','salient')),
 		'animation'=>array(
 			'type'=>'select', 
 			'half_width' => 'true',
-			'title'  => __('Animation','salient'),
+			'title'  => esc_html__('Animation','salient'),
 			'values' => array(
-			     "none" => __("None",'salient'),
-			     "fade-in" => __("Fade In",'salient'),
-		  		 "fade-in-from-left" => __("Fade In From Left",'salient'),
-		  		 "fade-in-right" => __("Fade In From Right",'salient'),
-		  		 "fade-in-from-bottom" => __("Fade In From Bottom",'salient'),
-		  		 "grow-in" => __("Grow In",'salient')
+			     "none" => esc_html__("None",'salient'),
+			     "fade-in" => esc_html__("Fade In",'salient'),
+		  		 "fade-in-from-left" => esc_html__("Fade In From Left",'salient'),
+		  		 "fade-in-right" => esc_html__("Fade In From Right",'salient'),
+		  		 "fade-in-from-bottom" => esc_html__("Fade In From Bottom",'salient'),
+		  		 "grow-in" => esc_html__("Grow In",'salient')
 			)
 		),
 		'delay'=>array(
 			'type'=>'text', 
 			'second_half_width' => 'true',
-			'title'=>__('Animation Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Animation Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		)
 	)
 );
@@ -296,12 +288,12 @@ $nectar_shortcodes['one_whole'] = array(
 
 $nectar_shortcodes['header_6'] = array( 
 	'type'=>'heading', 
-	'title'=>__('Elements', 'salient' )
+	'title'=>esc_html__('Elements', 'salient' )
 ); 
 
 //nectar Slider
-global $options;
-$nectar_disable_nectar_slider = (!empty($options['disable_nectar_slider_pt']) && $options['disable_nectar_slider_pt'] == '1') ? true : false; 
+global $nectar_options;
+$nectar_disable_nectar_slider = (!empty($nectar_options['disable_nectar_slider_pt']) && $nectar_options['disable_nectar_slider_pt'] == '1') ? true : false; 
 	
 	if($nectar_disable_nectar_slider != true) {
 
@@ -315,50 +307,50 @@ $nectar_disable_nectar_slider = (!empty($options['disable_nectar_slider_pt']) &&
 		if (empty($locations)) {
 			$location_desc = 
 		      '<div class="alert">' .
-			 __('You currently don\'t have any Slider Locations setup. Please create some and add assign slides to them before using this!','salient'). 
+			 esc_html__('You currently don\'t have any Slider Locations setup. Please create some and add assign slides to them before using this!','salient'). 
 			'<br/><br/>
-			<a href="' . admin_url('edit.php?post_type=nectar_slider') . '">'. __('Link to Nectar Slider', 'salient') . '</a>
+			<a href="' . esc_url(admin_url('edit.php?post_type=nectar_slider')) . '">'. esc_html__('Link to Nectar Slider', 'salient') . '</a>
 			</div>';
 		} else { $location_desc = ''; }
 
 		$nectar_shortcodes['nectar_slider'] = array( 
 			'type'=>'regular', 
-			'title'=>__('Nectar Slider', 'salient' ), 
+			'title'=>esc_html__('Nectar Slider', 'salient' ), 
 			'attr'=>array( 
 				'location'=>array(
 					'type'=>'select', 
 					'desc' => $location_desc,
-					'title'  => __('Select Slider','salient'),
+					'title'  => esc_html__('Select Slider','salient'),
 					'values' => $locations
 				),
 				
 				'slider_height'=>array(
 					'type'=>'text', 
-					'title'=>__('Slider Height', 'salient'),
-					'desc' => __('Don\'nt include "px" in your string. e.g. 650', 'salient'),
+					'title'=>esc_html__('Slider Height', 'salient'),
+					'desc' => esc_html__('Don\'nt include "px" in your string. e.g. 650', 'salient'),
 				),
 				
-				'flexible_slider_height'=>array('type'=>'checkbox',  'desc' => 'Would you like the height of your slider to constantly scale in porportion to the screen size?', 'title'=>__('Flexible Slider Height', 'salient')),
-				'full_width'=>array('type'=>'checkbox',  'desc' => 'Would you like this slider to display the full width of the page?', 'title'=>__('Display Full Width?', 'salient')),
-				'arrow_navigation'=>array('type'=>'checkbox',  'desc' => 'Would you like this slider to display arrows on the right and left sides?', 'title'=>__('Display Arrow Navigation', 'salient')),
-				'bullet_navigation'=>array('type'=>'checkbox',  'desc' => 'Would you like this slider to display bullets on the bottom?', 'title'=>__('Display Bullet Navigation', 'salient')),
+				'flexible_slider_height'=>array('type'=>'checkbox',  'desc' => 'Would you like the height of your slider to constantly scale in porportion to the screen size?', 'title'=>esc_html__('Flexible Slider Height', 'salient')),
+				'full_width'=>array('type'=>'checkbox',  'desc' => 'Would you like this slider to display the full width of the page?', 'title'=>esc_html__('Display Full Width?', 'salient')),
+				'arrow_navigation'=>array('type'=>'checkbox',  'desc' => 'Would you like this slider to display arrows on the right and left sides?', 'title'=>esc_html__('Display Arrow Navigation', 'salient')),
+				'bullet_navigation'=>array('type'=>'checkbox',  'desc' => 'Would you like this slider to display bullets on the bottom?', 'title'=>esc_html__('Display Bullet Navigation', 'salient')),
 				'bullet_navigation_style'=>array(
 					'type'=>'select', 
 					'desc' => 'Please select your overall bullet navigation style here.',
-					'title'  => __('Bullet Navigation Style','salient'),
+					'title'  => esc_html__('Bullet Navigation Style','salient'),
 					'values' => array(
 						'See Through & Solid On Active' => 'see_through',
 						'Solid & Scale On Active' => 'scale'
 					)
 				),
-				'desktop_swipe'=>array('type'=>'checkbox',  'desc' => 'Would you like this slider to have swipe interaction on desktop?', 'title'=>__('Enable Swipe on Desktop?', 'salient')),
-				'parallax'=>array('type'=>'checkbox',  'desc' => 'will only activate if the slider is the <b>top level element</b> in the page', 'title'=>__('Parallax Slider?', 'salient')),
-				'loop'=>array('type'=>'checkbox',  'desc' => 'Would you like your slider to loop infinitely?', 'title'=>__('Loop Slider?', 'salient')),
-				'fullscreen'=>array('type'=>'checkbox',  'desc' => 'This will only become active when used in combination with the full width option', 'title'=>__('Fullscreen Slider?', 'salient')),
+				'desktop_swipe'=>array('type'=>'checkbox',  'desc' => 'Would you like this slider to have swipe interaction on desktop?', 'title'=>esc_html__('Enable Swipe on Desktop?', 'salient')),
+				'parallax'=>array('type'=>'checkbox',  'desc' => 'will only activate if the slider is the <b>top level element</b> in the page', 'title'=>esc_html__('Parallax Slider?', 'salient')),
+				'loop'=>array('type'=>'checkbox',  'desc' => 'Would you like your slider to loop infinitely?', 'title'=>esc_html__('Loop Slider?', 'salient')),
+				'fullscreen'=>array('type'=>'checkbox',  'desc' => 'This will only become active when used in combination with the full width option', 'title'=>esc_html__('Fullscreen Slider?', 'salient')),
 				'slider_transition'=>array(
 					'type'=>'select', 
 					'desc' => 'Please select your slider transition here',
-					'title'  => __('Slider Transition','salient'),
+					'title'  => esc_html__('Slider Transition','salient'),
 					'values' => array(
 						'slide' => 'slide',
 						'fade' => 'fade'
@@ -367,7 +359,7 @@ $nectar_disable_nectar_slider = (!empty($options['disable_nectar_slider_pt']) &&
 				'slider_button_styling'=>array(
 					'type'=>'select', 
 					'desc' => 'Slider Next/Prev Button Styling',
-					'title'  => __('Slider Transition','salient'),
+					'title'  => esc_html__('Slider Transition','salient'),
 					'values' => array(
 						'Standard With Slide Count On Hover' => 'btn_with_count',
 						'Next/Prev Slide Preview On Hover' => 'btn_with_preview'
@@ -376,14 +368,14 @@ $nectar_disable_nectar_slider = (!empty($options['disable_nectar_slider_pt']) &&
 				'button_sizing'=>array(
 					'type'=>'select', 
 					'desc' => 'Please select your desired button sizing',
-					'title'  => __('Button Sizing','salient'),
+					'title'  => esc_html__('Button Sizing','salient'),
 					'values' => array(
 						"regular" => "regular",
 						"large" => "large",
 						"jumbo" => "jumbo"
 					)
 				),
-				'autorotate'=>array('type'=>'text',  'desc' => 'If you would like this slider to autorotate, enter the rotation speed in <b>miliseconds</b> here. i.e 5000', 'title'=>__('Autorotate?', 'salient'))
+				'autorotate'=>array('type'=>'text',  'desc' => 'If you would like this slider to autorotate, enter the rotation speed in <b>miliseconds</b> here. i.e 5000', 'title'=>esc_html__('Autorotate?', 'salient'))
 			)
 		);
 
@@ -392,52 +384,52 @@ $nectar_disable_nectar_slider = (!empty($options['disable_nectar_slider_pt']) &&
 //Full Width Section
 $nectar_shortcodes['full_width_section'] = array( 
 	'type'=>'custom', 
-	'title'=>__('Full Width Section', 'salient' ), 
+	'title'=>esc_html__('Full Width Section', 'salient' ), 
 	'attr'=>array( 
-	    'color' =>array('type'=>'custom', 'title'  => __('Background Color','salient')),
-		'image'=>array('type'=>'custom', 'title'  => __('Background Image','salient')),
+	    'color' =>array('type'=>'custom', 'title'  => esc_html__('Background Color','salient')),
+		'image'=>array('type'=>'custom', 'title'  => esc_html__('Background Image','salient')),
 		'bg_pos'=>array(
 			'type'=>'select', 
-			'title'  => __('Background Position','salient'),
+			'title'  => esc_html__('Background Position','salient'),
 			'values' => array(
-			     "left top" => __("Left Top",'salient'),
-		  		 "left center" => __("Left Center",'salient'),
-		  		 "left bottom" => __("Left Bottom",'salient'),
-		  		 "center top" => __("Center Top",'salient'),
-		  		 "center center" => __("Center Center",'salient'),
-		  		 "center bottom" => __("Center Bottom",'salient'),
-		  		 "right top" => __("Right Top",'salient'),
-		  		 "right center" => __("Right Center",'salient'),
-		  		 "right bottom" => __("Right Bottom",'salient')
+			     "left top" => esc_html__("Left Top",'salient'),
+		  		 "left center" => esc_html__("Left Center",'salient'),
+		  		 "left bottom" => esc_html__("Left Bottom",'salient'),
+		  		 "center top" => esc_html__("Center Top",'salient'),
+		  		 "center center" => esc_html__("Center Center",'salient'),
+		  		 "center bottom" => esc_html__("Center Bottom",'salient'),
+		  		 "right top" => esc_html__("Right Top",'salient'),
+		  		 "right center" => esc_html__("Right Center",'salient'),
+		  		 "right bottom" => esc_html__("Right Bottom",'salient')
 			)
 		),
 		'bg_repeat'=>array(
 			'type'=>'select', 
-			'title'  => __('Background Repeat','salient'),
+			'title'  => esc_html__('Background Repeat','salient'),
 			'values' => array(
-			    "no-repeat" => __("No-Repeat",'salient'),
-		  		 "repeat" => __("Repeat",'salient')
+			    "no-repeat" => esc_html__("No-Repeat",'salient'),
+		  		 "repeat" => esc_html__("Repeat",'salient')
 			)
 		),
-		'parallax_bg'=>array('type'=>'checkbox', 'title'=>__('Parallax Background', 'salient')),
+		'parallax_bg'=>array('type'=>'checkbox', 'title'=>esc_html__('Parallax Background', 'salient')),
 		'text_color'=>array(
 			'type'=>'select', 
-			'title'  => __('Text Color','salient'),
+			'title'  => esc_html__('Text Color','salient'),
 			'values' => array(
-		  		 "light_text" => __("Light",'salient'),
-		  		 "dark_text" => __("Dark",'salient')
+		  		 "light_text" => esc_html__("Light",'salient'),
+		  		 "dark_text" => esc_html__("Dark",'salient')
 			)
 		),
 		
 		'top_padding'=>array(
 			'type'=>'text', 
-			'title'=>__('Top Padding', 'salient'),
-			'desc' => __('Don\'nt include "px" in your string. e.g. 40', 'salient'),
+			'title'=>esc_html__('Top Padding', 'salient'),
+			'desc' => esc_html__('Don\'nt include "px" in your string. e.g. 40', 'salient'),
 		),
 		'bottom_padding'=>array(
 			'type'=>'text', 
-			'title'=>__('Bottom Padding', 'salient'),
-			'desc' => __('Don\'nt include "px" in your string. e.g. 40', 'salient'),
+			'title'=>esc_html__('Bottom Padding', 'salient'),
+			'desc' => esc_html__('Don\'nt include "px" in your string. e.g. 40', 'salient'),
 		),
 		
 	)
@@ -447,24 +439,24 @@ $nectar_shortcodes['full_width_section'] = array(
 //Image with Animation
 $nectar_shortcodes['image_with_animation'] = array( 
 	'type'=>'custom', 
-	'title'=>__('Image With Animation', 'salient' ), 
+	'title'=>esc_html__('Image With Animation', 'salient' ), 
 	'attr'=>array( 
-		'image'=>array('type'=>'custom', 'title'  => __('Image','salient')),
+		'image'=>array('type'=>'custom', 'title'  => esc_html__('Image','salient')),
 		'animation'=>array(
 			'type'=>'select', 
-			'title'  => __('Image Animation','salient'),
+			'title'  => esc_html__('Image Animation','salient'),
 			'values' => array(
-			    "fade-in" => __("Fade In",'salient'),
-		  		 "fade-in-from-left" => __("Fade In From Left",'salient'),
-		  		 "fade-in-right" => __("Fade In From Right",'salient'),
-		  		 "fade-in-from-bottom" => __("Fade In From Bottom",'salient'),
-		  		 "grow-in" => __("Grow In",'salient')
+			    "fade-in" => esc_html__("Fade In",'salient'),
+		  		 "fade-in-from-left" => esc_html__("Fade In From Left",'salient'),
+		  		 "fade-in-right" => esc_html__("Fade In From Right",'salient'),
+		  		 "fade-in-from-bottom" => esc_html__("Fade In From Bottom",'salient'),
+		  		 "grow-in" => esc_html__("Grow In",'salient')
 			)
 		),
 		'delay'=>array(
 			'type'=>'text', 
-			'title'=>__('Delay', 'salient'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
+			'title'=>esc_html__('Delay', 'salient'),
+			'desc' => esc_html__('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'salient'),
 		),
 	)
 );
@@ -472,30 +464,30 @@ $nectar_shortcodes['image_with_animation'] = array(
 //Heading
 $nectar_shortcodes['heading'] = array( 
 	'type'=>'simple', 
-	'title'=>__('Centered Heading', 'salient' ), 
+	'title'=>esc_html__('Centered Heading', 'salient' ), 
 	'attr'=>array( 
-		'subtitle'=>array('type'=>'text', 'title'=>__('Subtitle', 'salient')) 
+		'subtitle'=>array('type'=>'text', 'title'=>esc_html__('Subtitle', 'salient')) 
 	)
 );
 
 //Divider
 $nectar_shortcodes['divider'] = array( 
 	'type'=>'regular', 
-	'title'=>__('Divider', 'salient' ), 
+	'title'=>esc_html__('Divider', 'salient' ), 
 	'attr'=>array( 
 		'line_type'=>array(
 			'type'=>'select', 
-			'title'  => __('Display Line?','salient'),
+			'title'  => esc_html__('Display Line?','salient'),
 			'values' => array(
-			     "no-line" => __("No Line",'salient'),
-		  		 "full-width" => __("Full Width Line",'salient'),
-		  		 "small" => __("Small Line",'salient')
+			     "no-line" => esc_html__("No Line",'salient'),
+		  		 "full-width" => esc_html__("Full Width Line",'salient'),
+		  		 "small" => esc_html__("Small Line",'salient')
 			)
 		),
 		'custom_height'=>array(
 			'type'=>'text', 
 			'desc' => 'If you would like to control the specifc number of pixels your divider is, enter it here. <b>Don\'t enter "px", just the numnber e.g. "20"</b>', 
-			'title'=>__('Custom Dividing Height', 'salient')
+			'title'=>esc_html__('Custom Dividing Height', 'salient')
 		)
 	)
 );
@@ -503,11 +495,11 @@ $nectar_shortcodes['divider'] = array(
 //Divider
 $nectar_shortcodes['nectar_dropcap'] = array( 
 	'type'=>'simple', 
-	'title'=>__('Dropcap', 'salient' ),
+	'title'=>esc_html__('Dropcap', 'salient' ),
 	'attr'=>array(
 		'text_color' =>array(
 			'type'=>'custom', 
-			'title'  => __('Color','salient')
+			'title'  => esc_html__('Color','salient')
 		)
 	)
 );
@@ -515,14 +507,14 @@ $nectar_shortcodes['nectar_dropcap'] = array(
 //Milestone 
 $nectar_shortcodes['milestone'] = array( 
 	'type'=>'regular', 
-	'title'=>__('Milestone', 'salient'), 
+	'title'=>esc_html__('Milestone', 'salient'), 
 	'attr'=>array( 
-		'number'=>array('type'=>'text', 'desc' => 'The number/count of your milestone e.g. "13"', 'title'=>__('Milestone Number', 'salient')),
-		'subject'=>array('type'=>'text', 'desc' => 'The subject of your milestones e.g. "Projects Completed"', 'title'=>__('Milestone Subject', 'salient')),
-		'symbol'=>array('type'=>'text', 'desc' => 'An optional symbol to place next to the number counted to. e.g. "%" or "+"', 'title'=>__('Milestone Symbol', 'salient')),
+		'number'=>array('type'=>'text', 'desc' => 'The number/count of your milestone e.g. "13"', 'title'=>esc_html__('Milestone Number', 'salient')),
+		'subject'=>array('type'=>'text', 'desc' => 'The subject of your milestones e.g. "Projects Completed"', 'title'=>esc_html__('Milestone Subject', 'salient')),
+		'symbol'=>array('type'=>'text', 'desc' => 'An optional symbol to place next to the number counted to. e.g. "%" or "+"', 'title'=>esc_html__('Milestone Symbol', 'salient')),
 		'symbol_position'=>array(
 			'type'=>'select', 
-			'title'  => __('Milestone Symbol Position','salient'),
+			'title'  => esc_html__('Milestone Symbol Position','salient'),
 			'values' => array(
 			    "after" => "after",
 		 		"before" => "before",
@@ -530,23 +522,23 @@ $nectar_shortcodes['milestone'] = array(
 		),
 		'color'=>array(
 			'type'=>'select', 
-			'title'  => __('Color','salient'),
+			'title'  => esc_html__('Color','salient'),
 			'values' => array(
 			     "default" => "Default",
-			     "accent-color" => __("Accent-Color",'salient'),
-		  		 "extra-color-1" => __("Extra-Color-1",'salient'),
-		  		 "extra-color-2" => __("Extra-Color-2",'salient'),
-		  		 "extra-color-3" => __("Extra-Color-3",'salient')
+			     "accent-color" => esc_html__("Accent-Color",'salient'),
+		  		 "extra-color-1" => esc_html__("Extra-Color-1",'salient'),
+		  		 "extra-color-2" => esc_html__("Extra-Color-2",'salient'),
+		  		 "extra-color-3" => esc_html__("Extra-Color-3",'salient')
 			)
 		),
-		'number_font_size'=>array('type'=>'text', 'desc' => 'Enter your size in pixels, the default is 62.', 'title'=>__('Milestone Number Font Size', 'salient')),
-		'symbol_font_size'=>array('type'=>'text', 'desc' => 'Enter your size in pixels', 'title'=>__('Milestone Symbol Font Size', 'salient')),
+		'number_font_size'=>array('type'=>'text', 'desc' => 'Enter your size in pixels, the default is 62.', 'title'=>esc_html__('Milestone Number Font Size', 'salient')),
+		'symbol_font_size'=>array('type'=>'text', 'desc' => 'Enter your size in pixels', 'title'=>esc_html__('Milestone Symbol Font Size', 'salient')),
 		'symbol_alignment'=>array(
 			'type'=>'select', 
-			'title'  => __('Color','salient'),
+			'title'  => esc_html__('Color','salient'),
 			'values' => array(
 			     "default" => "Default",
-			     "superscript" => __("Superscript",'salient')
+			     "superscript" => esc_html__("Superscript",'salient')
 			)
 		)
 	)
@@ -4230,30 +4222,30 @@ $linecons = array(
 		
 $nectar_shortcodes['icon'] = array( 
 	'type'=>'regular', 
-	'title'=>__('Icon', 'salient'), 
+	'title'=>esc_html__('Icon', 'salient'), 
 	'attr'=>array(
 		'size'=>array(
 			'type'=>'radio', 
-			'title'=>__('Icon Style', 'salient'), 
-			'desc' => __('Tiny is recommended to be used inline with regular text. <br/> Small is recommended to be used inline right before heading text. <br> Regular can be used in a variety of places. <br> Large is recommended to be used at the top of columns.', 'salient'),
+			'title'=>esc_html__('Icon Style', 'salient'), 
+			'desc' => esc_html__('Tiny is recommended to be used inline with regular text. Small is recommended to be used inline right before heading text. Regular can be used in a variety of places. Large is recommended to be used at the top of columns.', 'salient'),
 			'opt'=>array(
-				'tiny'=>__('Tiny','salient'),
-				'small'=>__('Small Circle','salient'),
-				'regular'=>__('Regular','salient'),
-				'large'=>__('Large Circle','salient'),
-				'large-2'=>__('Large Circle Alt','salient'),
+				'tiny'=>esc_html__('Tiny','salient'),
+				'small'=>esc_html__('Small Circle','salient'),
+				'regular'=>esc_html__('Regular','salient'),
+				'large'=>esc_html__('Large Circle','salient'),
+				'large-2'=>esc_html__('Large Circle Alt','salient'),
 			)
 		),
 		'color'=>array(
 			'type'=>'select', 
-			'title'  => __('Color','salient'),
+			'title'  => esc_html__('Color','salient'),
 			'values' => array(
-			     "accent-color" => __("Accent-Color",'salient'),
-		  		 "extra-color-1" => __("Extra-Color-1",'salient'),
-		  		 "extra-color-2" => __("Extra-Color-2",'salient'),
-		  		 "extra-color-3" => __("Extra-Color-3",'salient'),
-		  		 "extra-color-gradient-1" => __("Extra-Color-Gradient-1",'salient'),
-		  		 "extra-color-gradient-2" => __("Extra-Color-Gradient-2",'salient')
+			     "accent-color" => esc_html__("Accent-Color",'salient'),
+		  		 "extra-color-1" => esc_html__("Extra-Color-1",'salient'),
+		  		 "extra-color-2" => esc_html__("Extra-Color-2",'salient'),
+		  		 "extra-color-3" => esc_html__("Extra-Color-3",'salient'),
+		  		 "extra-color-gradient-1" => esc_html__("Extra-Color-Gradient-1",'salient'),
+		  		 "extra-color-gradient-2" => esc_html__("Extra-Color-Gradient-2",'salient')
 			)
 		),
 		'icons' => array(
@@ -4261,16 +4253,16 @@ $nectar_shortcodes['icon'] = array(
 			'title'=>'Icon', 
 			'values'=> $fa_icons
 		),
-		'icon_size'=>array('type'=>'text', 'title'=>__('Icon Size', 'salient'), 'desc' => __('Don\'nt include "px" in your string. e.g. 40 - the default is 64', 'salient')),  
-		'enable_animation'=>array('type'=>'checkbox', 'title'=>__('Enable Animation','salient'), 'desc' => __('This will cause the icon to appear to draw itself', 'salient')),
-		'animation_delay'=>array('type'=>'text', 'title'=>__('Animation Delay', 'salient'), 'desc' => __('Enter time in milliseconds e.g. 400', 'salient')),  
+		'icon_size'=>array('type'=>'text', 'title'=>esc_html__('Icon Size', 'salient'), 'desc' => esc_html__('Don\'nt include "px" in your string. e.g. 40 - the default is 64', 'salient')),  
+		'enable_animation'=>array('type'=>'checkbox', 'title'=>esc_html__('Enable Animation','salient'), 'desc' => esc_html__('This will cause the icon to appear to draw itself', 'salient')),
+		'animation_delay'=>array('type'=>'text', 'title'=>esc_html__('Animation Delay', 'salient'), 'desc' => esc_html__('Enter time in milliseconds e.g. 400', 'salient')),  
 		'animation_speed'=>array(
 			'type'=>'select', 
-			'title'  => __('Animation Speed','salient'),
+			'title'  => esc_html__('Animation Speed','salient'),
 			'values' => array(
-			     "slow" => __("Slow",'salient'),
-		  		 "medium" => __("Medium",'salient'),
-		  		 "fast" => __("Fast",'salient')
+			     "slow" => esc_html__("Slow",'salient'),
+		  		 "medium" => esc_html__("Medium",'salient'),
+		  		 "fast" => esc_html__("Fast",'salient')
 			)
 		),
 		'steadysets' => $steadysets_icons,
@@ -4285,17 +4277,17 @@ $nectar_shortcodes['icon'] = array(
 //Button
 $nectar_shortcodes['button'] = array( 
 	'type'=>'radios', 
-	'title'=>__('Button', 'salient'), 
+	'title'=>esc_html__('Button', 'salient'), 
 	'attr'=>array(
 		'size'=>array(
 			'type'=>'radio', 
-			'title'=>__('Size', 'salient'), 
+			'title'=>esc_html__('Size', 'salient'), 
 			'opt'=>array(
-				'small'=> __('Small', 'salient'), 
-				'medium'=> __('Medium', 'salient'), 
-				'large'=> __('Large', 'salient'),
-				'jumbo'=> __('Jumbo', 'salient'),
-				'extra_jumbo'=> __('Extra Jumbo', 'salient')
+				'small'=> esc_html__('Small', 'salient'), 
+				'medium'=> esc_html__('Medium', 'salient'), 
+				'large'=> esc_html__('Large', 'salient'),
+				'jumbo'=> esc_html__('Jumbo', 'salient'),
+				'extra_jumbo'=> esc_html__('Extra Jumbo', 'salient')
 			)
 		),
 		'url'=>array(
@@ -4304,36 +4296,36 @@ $nectar_shortcodes['button'] = array(
 		),
 		'text'=>array(
 			'type'=>'text', 
-			'title'=>__('Text', 'salient')
+			'title'=>esc_html__('Text', 'salient')
 		),
-		'open_new_tab'=>array('type'=>'checkbox', 'title'=>__('Open Link In New Tab?','salient')),
+		'open_new_tab'=>array('type'=>'checkbox', 'title'=>esc_html__('Open Link In New Tab?','salient')),
 		'color'=>array(
 			'type'=>'regular-select', 
-			'title'  => __('Style','salient'),
+			'title'  => esc_html__('Style','salient'),
 			'values' => array(
-			     "accent-color" => __("Regular + Accent Color", 'salient'), 
-		  		 "extra-color-1" => __("Regular + Extra Color-1", 'salient'), 
-		  		 "extra-color-2" => __("Regular + Extra Color-2", 'salient'), 
-		  		 "extra-color-3" => __("Regular + Extra Color-3", 'salient'), 
-		  		 "extra-color-gradient-1" => __("Regular + Color Gradient 1", 'salient'), 
-		  		 "extra-color-gradient-2" => __("Regular + Color Gradient 2", 'salient'), 
-		  		 "accent-color-tilt" => __("Regular W/ Tilt + Accent Color", 'salient'), 
-		  		 "extra-color-1-tilt" => __("Regular W/ Tilt + Extra Color 1", 'salient'), 
-		  		 "extra-color-2-tilt" => __("Regular W/ Tilt + Extra Color 2", 'salient'), 
-		  		 "extra-color-3-tilt" => __("Regular W/ Tilt + Extra Color 3", 'salient'), 
-		  		 "see-through" => __("See-Through", 'salient'), 
-		  		 "see-through-2" => __("See-Through + Solid On Hover", 'salient'),
-		  		 "see-through-3" => __("See-Through + Solid On Hover Alt", 'salient'),
-		  		 "see-through-extra-color-gradient-1" => __("See-Through + Color Gradient 1", 'salient'),
-		  		 "see-through-extra-color-gradient-2" => __("See-Through + Color Gradient 2", 'salient'),
-		  		 "see-through-3d" => __("See-Through + 3D On Hover", 'salient'), 
+			     "accent-color" => esc_html__("Regular + Accent Color", 'salient'), 
+		  		 "extra-color-1" => esc_html__("Regular + Extra Color-1", 'salient'), 
+		  		 "extra-color-2" => esc_html__("Regular + Extra Color-2", 'salient'), 
+		  		 "extra-color-3" => esc_html__("Regular + Extra Color-3", 'salient'), 
+		  		 "extra-color-gradient-1" => esc_html__("Regular + Color Gradient 1", 'salient'), 
+		  		 "extra-color-gradient-2" => esc_html__("Regular + Color Gradient 2", 'salient'), 
+		  		 "accent-color-tilt" => esc_html__("Regular W/ Tilt + Accent Color", 'salient'), 
+		  		 "extra-color-1-tilt" => esc_html__("Regular W/ Tilt + Extra Color 1", 'salient'), 
+		  		 "extra-color-2-tilt" => esc_html__("Regular W/ Tilt + Extra Color 2", 'salient'), 
+		  		 "extra-color-3-tilt" => esc_html__("Regular W/ Tilt + Extra Color 3", 'salient'), 
+		  		 "see-through" => esc_html__("See-Through", 'salient'), 
+		  		 "see-through-2" => esc_html__("See-Through + Solid On Hover", 'salient'),
+		  		 "see-through-3" => esc_html__("See-Through + Solid On Hover Alt", 'salient'),
+		  		 "see-through-extra-color-gradient-1" => esc_html__("See-Through + Color Gradient 1", 'salient'),
+		  		 "see-through-extra-color-gradient-2" => esc_html__("See-Through + Color Gradient 2", 'salient'),
+		  		 "see-through-3d" => esc_html__("See-Through + 3D On Hover", 'salient'), 
 			)
 		),
-		'color_override' =>array('type'=>'custom', 'title'  => __('Button Color Override','salient')),
-		'hover_color_override' =>array('type'=>'custom', 'title'  => __('Button Hover Color Override','salient')),
+		'color_override' =>array('type'=>'custom', 'title'  => esc_html__('Button Color Override','salient')),
+		'hover_color_override' =>array('type'=>'custom', 'title'  => esc_html__('Button Hover Color Override','salient')),
 		'hover_text_color_override'=>array(
 			'type'=>'regular-select', 
-			'title'  => __('Hover Text Color','salient'),
+			'title'  => esc_html__('Hover Text Color','salient'),
 			'values' => array(
 			     "#fff" => "Light",
 		  		 "#000" => "Dark",
@@ -4355,7 +4347,7 @@ $nectar_shortcodes['button'] = array(
 //Toggle
 $nectar_shortcodes['toggles'] = array( 
 	'type'=>'dynamic', 
-	'title'=>__('Toggle Panels', 'salient' ), 
+	'title'=>esc_html__('Toggle Panels', 'salient' ), 
 	'attr'=>array(
 		'toggles'=>array('type'=>'custom')
 	)
@@ -4364,7 +4356,7 @@ $nectar_shortcodes['toggles'] = array(
 //Tabbed Sections
 $nectar_shortcodes['tabbed_section'] = array( 
 	'type'=>'dynamic',  
-	'title'=>__('Tabbed Section', 'salient' ), 
+	'title'=>esc_html__('Tabbed Section', 'salient' ), 
 	'attr'=>array(
 		'tabs'=>array('type'=>'custom')
 	)
@@ -4374,7 +4366,7 @@ $nectar_shortcodes['tabbed_section'] = array(
 //Testimonial Slider
 $nectar_shortcodes['testimonial_slider'] = array( 
 	'type'=>'dynamic',  
-	'title'=>__('Testimonial Slider', 'salient' ), 
+	'title'=>esc_html__('Testimonial Slider', 'salient' ), 
 	'attr'=>array(
 		'testimonials'=>array('type'=>'custom')
 	)
@@ -4385,7 +4377,7 @@ $nectar_shortcodes['testimonial_slider'] = array(
 /*
 $nectar_shortcodes['bar_graph'] = array( 
 	'type'=>'dynamic', 
-	'title'=>__('Bar Graph', 'salient' ), 
+	'title'=>esc_html__('Bar Graph', 'salient' ), 
 	'attr'=>array(
 		'bar_graph'=>array('type'=>'custom')
 	)
@@ -4394,9 +4386,9 @@ $nectar_shortcodes['bar_graph'] = array(
 //Clients
 $nectar_shortcodes['clients'] = array( 
 	'type'=>'dynamic', 
-	'title'=>__('Clients', 'salient' ), 
+	'title'=>esc_html__('Clients', 'salient' ), 
 	'attr'=>array(
-		'clients'=>array('type'=>'custom', 'title'  => __('Image','salient'))
+		'clients'=>array('type'=>'custom', 'title'  => esc_html__('Image','salient'))
 	)
 );
  
@@ -4404,12 +4396,12 @@ $nectar_shortcodes['clients'] = array(
 //Pricing Table
 $nectar_shortcodes['pricing_table'] = array( 
 	'type'=>'direct_to_editor', 
-	'title'=>__('Pricing Table', 'salient' ), 
+	'title'=>esc_html__('Pricing Table', 'salient' ), 
 	'attr'=>array( 
 		'columns'=>array(
 			'type'=>'radio', 
-			'title'=>__('Columns', 'salient'), 
-			'desc' => __('How many columns would you like?', 'salient'),
+			'title'=>esc_html__('Columns', 'salient'), 
+			'desc' => esc_html__('How many columns would you like?', 'salient'),
 			'opt'=>array(
 				'2'=>'Two',
 				'3'=>'Three',
@@ -4423,16 +4415,16 @@ $nectar_shortcodes['pricing_table'] = array(
 //Team Member
 $nectar_shortcodes['team_member'] = array( 
 	'type'=>'regular', 
-	'title'=>__('Team Member', 'salient' ), 
+	'title'=>esc_html__('Team Member', 'salient' ), 
 	'attr'=>array( 
-		'image'=>array('type'=>'custom', 'title'  => __('Image','salient')),
-		'name'=>array('type'=>'text', 'title'=>__('Name', 'salient')),
-		'job_position'=>array('type'=>'text', 'title'=>__('Job Position', 'salient')),
-		'description'=>array('type'=>'textarea', 'title'=> __('Description', 'salient')),
-		'social'=>array('type'=>'textarea', 'title'=>__('Social Media', 'salient'), 'desc' => __('Enter any social media links with a comma separated list. e.g. Facebook,http://facebook.com, Twitter,http://twitter.com', 'salient')),  
+		'image'=>array('type'=>'custom', 'title'  => esc_html__('Image','salient')),
+		'name'=>array('type'=>'text', 'title'=>esc_html__('Name', 'salient')),
+		'job_position'=>array('type'=>'text', 'title'=>esc_html__('Job Position', 'salient')),
+		'description'=>array('type'=>'textarea', 'title'=> esc_html__('Description', 'salient')),
+		'social'=>array('type'=>'textarea', 'title'=>esc_html__('Social Media', 'salient'), 'desc' => esc_html__('Enter any social media links with a comma separated list. e.g. Facebook,http://facebook.com, Twitter,http://twitter.com', 'salient')),  
 		'link_element'=>array(
 			'type'=>'regular-select', 
-			'title'  => __('Team Member Link Type','salient'),
+			'title'  => esc_html__('Team Member Link Type','salient'),
 			'values' => array(
 			     "none" => "None",
 		  		 "image" => "Image",
@@ -4440,15 +4432,15 @@ $nectar_shortcodes['team_member'] = array(
 		  		 "both" => "Both"
 			)
 		),
-		'link_url'=>array('type'=>'text', 'title'=>__('Team Member Link URL', 'salient'),'desc' => __('Will only be used if Link Type is not set to "None".','salient')),
+		'link_url'=>array('type'=>'text', 'title'=>esc_html__('Team Member Link URL', 'salient'),'desc' => esc_html__('Will only be used if Link Type is not set to "None".','salient')),
 		'color'=>array(
 			'type'=>'select', 
-			'title'  => __('Link Color','salient'),
+			'title'  => esc_html__('Link Color','salient'),
 			'values' => array(
-			     "accent-color" => __("Accent-Color",'salient'),
-		  		 "extra-color-1" => __("Extra-Color-1",'salient'),
-		  		 "extra-color-2" => __("Extra-Color-2",'salient'),
-		  		 "extra-color-3" => __("Extra-Color-3",'salient')
+			     "accent-color" => esc_html__("Accent-Color",'salient'),
+		  		 "extra-color-1" => esc_html__("Extra-Color-1",'salient'),
+		  		 "extra-color-2" => esc_html__("Extra-Color-2",'salient'),
+		  		 "extra-color-3" => esc_html__("Extra-Color-3",'salient')
 			)
 		)
 	)
@@ -4457,25 +4449,25 @@ $nectar_shortcodes['team_member'] = array(
 //Carousel
 $nectar_shortcodes['carousel'] = array( 
 	'type'=>'direct_to_editor', 
-	'title'=>__('Carousel', 'salient' ), 
+	'title'=>esc_html__('Carousel', 'salient' ), 
 	'attr'=>array(
 		'carousel_title'=>array(
 			'type'=>'text', 
-			'title'=> __('Carousel Title', 'salient')
+			'title'=> esc_html__('Carousel Title', 'salient')
 		),
 		'scroll_speed'=>array(
 			'type'=>'text', 
-			'title'=> __('Scroll Speed', 'salient'),
-			'desc' => __('Enter in milliseconds (default is 700)', 'salient'),
+			'title'=> esc_html__('Scroll Speed', 'salient'),
+			'desc' => esc_html__('Enter in milliseconds (default is 700)', 'salient'),
 		),
 		'autorotate'=>array(
 			'type'=>'checkbox', 
-			'title'=> __('Autorotate', 'salient'),
-			'desc' => __('Would you like the carousel the transition automatically?', 'salient'),
+			'title'=> esc_html__('Autorotate', 'salient'),
+			'desc' => esc_html__('Would you like the carousel the transition automatically?', 'salient'),
 		),
 		'easing'=>array(
 			'type'=>'select', 
-			'title'=> __('Easing', 'salient'), 
+			'title'=> esc_html__('Easing', 'salient'), 
 			'values'=>array(
 				'linear'=>'linear',
 				'swing'=>'swing',
@@ -4510,7 +4502,7 @@ $nectar_shortcodes['carousel'] = array(
 				'easeOutBounce'=>'easeOutBounce',
 				'easeInOutBounce'=>'easeInOutBounce',
 			),
-			'desc' => '<a href="http://jqueryui.com/resources/demos/effect/easing.html" target="_blank">'. __("Click here",'salient') .'</a> ' . __("to see examples of these.", 'salient')
+			'desc' => '<a href="http://jqueryui.com/resources/demos/effect/easing.html" target="_blank">'. esc_html__("Click here",'salient') .'</a> ' . esc_html__("to see examples of these.", 'salient')
 		),
 	)
 );
@@ -4518,48 +4510,48 @@ $nectar_shortcodes['carousel'] = array(
 
 $nectar_shortcodes['social_buttons'] = array( 
 	'type'=>'regular', 
-	'title'=>__('Social Buttons', 'salient' ), 
+	'title'=>esc_html__('Social Buttons', 'salient' ), 
 	'attr'=>array( 
 		'full_width_icons'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Display full width?', 'salient'),
-			'desc' => __('This will make your social icons expand to fit edge to edge in whatever space they\'re placed.', 'salient')
+			'title'=>esc_html__('Display full width?', 'salient'),
+			'desc' => esc_html__('This will make your social icons expand to fit edge to edge in whatever space they\'re placed.', 'salient')
 		),
 		'hide_share_count'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Hide Share Count?', 'salient'),
-			'desc' => __('This will remove your share counts from displaying to the user', 'salient')
+			'title'=>esc_html__('Hide Share Count?', 'salient'),
+			'desc' => esc_html__('This will remove your share counts from displaying to the user', 'salient')
 		),
 
 		'nectar_love'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Nectar Love', 'salient'),
-			'desc' => __('Check to enable', 'salient')
+			'title'=>esc_html__('Nectar Love', 'salient'),
+			'desc' => esc_html__('Check to enable', 'salient')
 		),
 		'facebook'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Facebook', 'salient'),
-			'desc' => __('Check to enable', 'salient')
+			'title'=>esc_html__('Facebook', 'salient'),
+			'desc' => esc_html__('Check to enable', 'salient')
 		),
 		'twitter'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Twitter', 'salient'),
-			'desc' => __('Check to enable', 'salient')
+			'title'=>esc_html__('Twitter', 'salient'),
+			'desc' => esc_html__('Check to enable', 'salient')
 		),
 		'pinterest'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Pinterest', 'salient'),
-			'desc' => __('Check to enable', 'salient')
+			'title'=>esc_html__('Pinterest', 'salient'),
+			'desc' => esc_html__('Check to enable', 'salient')
 		),
 		'google_plus'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Google+', 'salient'),
-			'desc' => __('Check to enable', 'salient')
+			'title'=>esc_html__('Google+', 'salient'),
+			'desc' => esc_html__('Check to enable', 'salient')
 		),
 		'linkedin'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('LinkedIn', 'salient'),
-			'desc' => __('Check to enable', 'salient')
+			'title'=>esc_html__('LinkedIn', 'salient'),
+			'desc' => esc_html__('Check to enable', 'salient')
 		)
 	)
 );
@@ -4567,15 +4559,15 @@ $nectar_shortcodes['social_buttons'] = array(
 //Video
 $nectar_shortcodes['video'] = array(  
 	'type'=>'regular', 
-	'title'=>__('Video', 'salient' ),  
+	'title'=>esc_html__('Video', 'salient' ),  
 	'attr'=>array( 
-		  'mp4'=>array('type'=>'text', 'title'=>__('MP4 File URL', 'salient'), 'desc' => __('Only supply the formats you desire, this shortcode is just a shortcut to place the <a href="https://codex.wordpress.org/Video_Shortcode" target="_blank">default WordPress video player</a>.', 'salient') ),
-		  'webm'=>array('type'=>'text', 'title'=>__('WEBM File URL', 'salient')),
-			'ogv'=>array('type'=>'text', 'title'=>__('OGV FILE URL', 'salient')),
+		  'mp4'=>array('type'=>'text', 'title'=>esc_html__('MP4 File URL', 'salient'), 'desc' => esc_html__('Only supply the formats you desire, this shortcode is just a shortcut to place the default WordPress video player.', 'salient') ),
+		  'webm'=>array('type'=>'text', 'title'=>esc_html__('WEBM File URL', 'salient')),
+			'ogv'=>array('type'=>'text', 'title'=>esc_html__('OGV FILE URL', 'salient')),
 			'poster' => array(
 				'type'  =>'custom', 
-				'title' => __('Preview Image','salient'), 
-				'desc'  => __('The preview image should be the same dimensions as your video.','salient')
+				'title' => esc_html__('Preview Image','salient'), 
+				'desc'  => esc_html__('The preview image should be the same dimensions as your video.','salient')
 			)
 	 )
 );
@@ -4583,10 +4575,10 @@ $nectar_shortcodes['video'] = array(
 //Audio
 $nectar_shortcodes['audio'] = array( 
 	'type'=>'regular', 
-	'title'=>__('Audio', 'salient' ), 
+	'title'=>esc_html__('Audio', 'salient' ), 
 	'attr'=>array( 
-		'mp3'=>array('type'=>'text', 'title'=>__('MP3 File URL', 'salient')),
-		'ogg'=>array('type'=>'text', 'title'=>__('OGA File URL', 'salient'))
+		'mp3'=>array('type'=>'text', 'title'=>esc_html__('MP3 File URL', 'salient')),
+		'ogg'=>array('type'=>'text', 'title'=>esc_html__('OGA File URL', 'salient'))
 	)
 );
 
@@ -4598,7 +4590,7 @@ $nectar_shortcodes['audio'] = array(
 
 $nectar_shortcodes['header_7'] = array( 
 	'type'=>'heading', 
-	'title'=>__('Portfolio/Blog', 'salient' )
+	'title'=>esc_html__('Portfolio/Blog', 'salient' )
 );
 
 
@@ -4615,11 +4607,11 @@ foreach ($portfolio_types as $type) {
 
 $nectar_shortcodes['nectar_portfolio'] = array( 
 	'type'=>'regular', 
-	'title'=>__('Portfolio', 'salient' ), 
+	'title'=>esc_html__('Portfolio', 'salient' ), 
 	'attr'=>array( 
 		'layout'=>array(
 			'type'=>'radio', 
-			'title'=>__('Layout', 'salient'), 
+			'title'=>esc_html__('Layout', 'salient'), 
 			'opt'=>array(
 				'3'=>'3 Columns',
 				'4'=>'4 Columns',
@@ -4628,72 +4620,72 @@ $nectar_shortcodes['nectar_portfolio'] = array(
 		),
 		'constrain_max_cols'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Constrain Max Columns to 4?', 'salient'),
-			'desc' => __("This will change the max columns to 4 (default is 5 for fullwidth). Activating this will make it easier to create a grid with no empty spaces at the end of the list on all screen sizes.", 'salient')
+			'title'=>esc_html__('Constrain Max Columns to 4?', 'salient'),
+			'desc' => esc_html__("This will change the max columns to 4 (default is 5 for fullwidth). Activating this will make it easier to create a grid with no empty spaces at the end of the list on all screen sizes.", 'salient')
 		),
 		'category' => array(
 			'type' => 'multi-select',
-			'title' => __('Portfolio Categories','salient'),
-			'desc' => __('Please select the categories you would like to display for your portfolio. <br/>You can select multiple categories too (ctrl + click on PC and command + click on Mac).','salient'),
+			'title' => esc_html__('Portfolio Categories','salient'),
+			'desc' => esc_html__('Please select the categories you would like to display for your portfolio. You can select multiple categories too (ctrl + click on PC and command + click on Mac).','salient'),
 			'values' => $types_options
 		),
 		'starting_category' => array(
 			'type' => 'regular-select',
-			'title' => __('Starting Category','salient'),
-			'desc' => __('Please select the category you would like you\'re portfolio to start filtered on','salient'),
+			'title' => esc_html__('Starting Category','salient'),
+			'desc' => esc_html__('Please select the category you would like you\'re portfolio to start filtered on','salient'),
 			'values' => $types_options
 		),
 		'project_style' => array(
 			'type' => 'regular-select',
-			'title' => __('Project Style','salient'),
-			'desc' => __('Please select the style you would like your projects to display in.','salient'),
+			'title' => esc_html__('Project Style','salient'),
+			'desc' => esc_html__('Please select the style you would like your projects to display in.','salient'),
 			'values' => array(
-			   '1' => __('Meta below thumb w/ links on hover','salient'),
-			   '2' => __('Meta on hover + entire thumb link','salient'),
-			   '3' => __('Title overlaid w/ zoom effect on hover','salient'),
-			   '4' => __('Meta from bottom on hover + entire thumb link','salient')
+			   '1' => esc_html__('Meta below thumb w/ links on hover','salient'),
+			   '2' => esc_html__('Meta on hover + entire thumb link','salient'),
+			   '3' => esc_html__('Title overlaid w/ zoom effect on hover','salient'),
+			   '4' => esc_html__('Meta from bottom on hover + entire thumb link','salient')
 			)
 		),
 		
 		'masonry_style'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Masonry Style', 'salient'),
-			'desc' => __('This will allow your portfolio items to display in a masonry layout as opposed to a fixed grid. You can define your masonry sizes in each project. <br/> <br/>If using the full width layout, will only be active with the alternative project style.', 'salient')
+			'title'=>esc_html__('Masonry Style', 'salient'),
+			'desc' => esc_html__('This will allow your portfolio items to display in a masonry layout as opposed to a fixed grid. You can define your masonry sizes in each project. If using the full width layout, will only be active with the alternative project style.', 'salient')
 		),
 		
 		'enable_sortable'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Enable Sortable', 'salient'),
-			'desc' => __('Checking this box will allow your portfolio to display sortable filters', 'salient')
+			'title'=>esc_html__('Enable Sortable', 'salient'),
+			'desc' => esc_html__('Checking this box will allow your portfolio to display sortable filters', 'salient')
 		),
 
 		'horizontal_filters'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Horizontal Filters', 'salient'),
-			'desc' => __('This will allow your filters to display horizontally instead of in a dropdown. (Only used if you enable sortable above.)', 'salient')
+			'title'=>esc_html__('Horizontal Filters', 'salient'),
+			'desc' => esc_html__('This will allow your filters to display horizontally instead of in a dropdown. (Only used if you enable sortable above.)', 'salient')
 		),
 		'enable_pagination'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Enable Pagination', 'salient'),
-			'desc' => __('Would you like to enable pagination for this portfolio?', 'salient')
+			'title'=>esc_html__('Enable Pagination', 'salient'),
+			'desc' => esc_html__('Would you like to enable pagination for this portfolio?', 'salient')
 		),
 		'pagination_type'=>array(
 			'type'=>'regular-select', 
-			'title'=>__('Pagination Type', 'salient'), 
+			'title'=>esc_html__('Pagination Type', 'salient'), 
 			'values'=>array(
-				'default' => __('Default', 'salient'), 
-			    'infinite_scroll' => __('Infinite Scroll', 'salient')
+				'default' => esc_html__('Default', 'salient'), 
+			    'infinite_scroll' => esc_html__('Infinite Scroll', 'salient')
 			)
 		),
 		'projects_per_page'=>array(
 			'type'=>'text', 
-			'title'=>__('Projects Per Page', 'salient'),
-			'desc' => __('How many projects would you like to display per page? <br/> If pagination is not enabled, will simply show this number of projects <br/> Enter as a number example "20"', 'salient')
+			'title'=>esc_html__('Projects Per Page', 'salient'),
+			'desc' => esc_html__('How many projects would you like to display per page? If pagination is not enabled, will simply show this number of projects. Enter as a number example "20"', 'salient')
 		),
 		'lightbox_only'=>array( 
 			'type'=>'checkbox', 
-			'title'=>__('Lightbox Only?', 'salient'), 
-			'desc' => __('This will remove the single project page from being accessible thus rendering your portfolio into only a gallery.', 'salient')
+			'title'=>esc_html__('Lightbox Only?', 'salient'), 
+			'desc' => esc_html__('This will remove the single project page from being accessible thus rendering your portfolio into only a gallery.', 'salient')
 		)
 	)
 );
@@ -4704,60 +4696,60 @@ $nectar_shortcodes['nectar_portfolio'] = array(
 
 $nectar_shortcodes['recent_projects'] = array( 
 	'type'=>'direct_to_editor', 
-	'title'=>__('Recent Projects', 'salient' ), 
+	'title'=>esc_html__('Recent Projects', 'salient' ), 
 	'attr'=>array( 
 		'full_width'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Full Width Carousel?', 'salient'),
-			'desc' => __('This will make your carousel extend the full width of the page. Won\'t work in a column shortcode!', 'salient')
+			'title'=>esc_html__('Full Width Carousel?', 'salient'),
+			'desc' => esc_html__('This will make your carousel extend the full width of the page. Won\'t work in a column shortcode!', 'salient')
 		),
 		'heading'=>array(
 			'type'=>'text', 
-			'title'=>__('Heading Text', 'salient'),
-			'desc' => __('Enter any text you would like for the heading of your carousel', 'salient')
+			'title'=>esc_html__('Heading Text', 'salient'),
+			'desc' => esc_html__('Enter any text you would like for the heading of your carousel', 'salient')
 		),
 		'page_link_text'=>array(
 			'type'=>'text', 
-			'title'=>__('Page Link Text', 'salient'),
-			'desc' => __('This will be the text that is in a link leading users to your desired page <br/> (will be omitted for full width carousels and an icon will be used instead)', 'salient')
+			'title'=>esc_html__('Page Link Text', 'salient'),
+			'desc' => esc_html__('This will be the text that is in a link leading users to your desired page (will be omitted for full width carousels and an icon will be used instead)', 'salient')
 		),
 		'page_link_url'=>array(
 			'type'=>'text', 
-			'title'=>__('Page Link URL', 'salient'),
-			'desc' => __('Enter portfolio page URL you would like to link to. <br/> Remember to include "http://"!', 'salient')
+			'title'=>esc_html__('Page Link URL', 'salient'),
+			'desc' => esc_html__('Enter portfolio page URL you would like to link to. Remember to include "http://"!', 'salient')
 		),
 		
 		'hide_controls'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Hide Carousel Controls?', 'salient'),
-			'desc' => __('Checking this box will remove the controls from your carousel', 'salient')
+			'title'=>esc_html__('Hide Carousel Controls?', 'salient'),
+			'desc' => esc_html__('Checking this box will remove the controls from your carousel', 'salient')
 		),
 		
 		'number_to_display'=>array(
 			'type'=>'text', 
-			'title'=>__('Number of Projects To Show', 'salient'),
-			'desc' => __('Enter as a number example "6"', 'salient')
+			'title'=>esc_html__('Number of Projects To Show', 'salient'),
+			'desc' => esc_html__('Enter as a number example "6"', 'salient')
 		),
 		'category' => array(
 			'type' => 'multi-select',
-			'title' => __('Category To Display From','salient'),
+			'title' => esc_html__('Category To Display From','salient'),
 			'values' => $types_options
 		),
 		'project_style' => array(
 			'type' => 'regular-select',
-			'title' => __('Project Style','salient'),
-			'desc' => __('Please select the style you would like your projects to display in.','salient'),
+			'title' => esc_html__('Project Style','salient'),
+			'desc' => esc_html__('Please select the style you would like your projects to display in.','salient'),
 			'values' => array(
-			   '1' => __('Meta below thumb w/ links on hover','salient'),
-			   '2' => __('Meta on hover + entire thumb link','salient'),
-			   '3' => __('Title overlaid w/ zoom effect on hover','salient'),
-			   '4' => __('Meta from bottom on hover + entire thumb link','salient')
+			   '1' => esc_html__('Meta below thumb w/ links on hover','salient'),
+			   '2' => esc_html__('Meta on hover + entire thumb link','salient'),
+			   '3' => esc_html__('Title overlaid w/ zoom effect on hover','salient'),
+			   '4' => esc_html__('Meta from bottom on hover + entire thumb link','salient')
 			)
 		),
 		'lightbox_only'=>array( 
 			'type'=>'checkbox', 
-			'title'=>__('Lightbox Only?', 'salient'), 
-			'desc' => __('This will remove the single project page from being accessible thus rendering your portfolio into only a gallery.', 'salient')
+			'title'=>esc_html__('Lightbox Only?', 'salient'), 
+			'desc' => esc_html__('This will remove the single project page from being accessible thus rendering your portfolio into only a gallery.', 'salient')
 		)
 	)
 );
@@ -4777,42 +4769,42 @@ foreach ($blog_types as $type) {
 
 $nectar_shortcodes['nectar_blog'] = array( 
 	'type'=>'regular', 
-	'title'=>__('Blog', 'salient' ), 
+	'title'=>esc_html__('Blog', 'salient' ), 
 	'attr'=>array( 
 		'layout'=>array(
 			'type'=>'regular-select', 
-			'title'=>__('Layout', 'salient'), 
+			'title'=>esc_html__('Layout', 'salient'), 
 			'values'=>array(
-				'std-blog-sidebar' => __('Standard Blog W/ Sidebar', 'salient'), 
-			    'std-blog-fullwidth' => __('Standard Blog No Sidebar', 'salient'),
-			    'masonry-blog-sidebar' => __('Masonry Blog W/ Sidebar', 'salient'),
-			    'masonry-blog-fullwidth' => __('Masonry Blog No Sidebar', 'salient'),
-			    'masonry-blog-full-screen-width' => __('Masonry Blog Fullwidth', 'salient')
+				'std-blog-sidebar' => esc_html__('Standard Blog W/ Sidebar', 'salient'), 
+			    'std-blog-fullwidth' => esc_html__('Standard Blog No Sidebar', 'salient'),
+			    'masonry-blog-sidebar' => esc_html__('Masonry Blog W/ Sidebar', 'salient'),
+			    'masonry-blog-fullwidth' => esc_html__('Masonry Blog No Sidebar', 'salient'),
+			    'masonry-blog-full-screen-width' => esc_html__('Masonry Blog Fullwidth', 'salient')
 			)
 		),
 		'category' => array(
 			'type' => 'multi-select',
-			'title' => __('Blog Categories', 'salient'),
-			'desc' => __('Please select the categories you would like to display for your blog. <br/>You can select multiple categories too (ctrl + click on PC and command + click on Mac).', 'salient'),
+			'title' => esc_html__('Blog Categories', 'salient'),
+			'desc' => esc_html__('Please select the categories you would like to display for your blog. You can select multiple categories too (ctrl + click on PC and command + click on Mac).', 'salient'),
 			'values' => $blog_options
 		),
 		'enable_pagination'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Enable Pagination', 'salient'),
-			'desc' => __('Would you like to enable pagination?', 'salient')
+			'title'=>esc_html__('Enable Pagination', 'salient'),
+			'desc' => esc_html__('Would you like to enable pagination?', 'salient')
 		),
 		'pagination_type'=>array(
 			'type'=>'regular-select', 
-			'title'=>__('Pagination Type', 'salient'), 
+			'title'=>esc_html__('Pagination Type', 'salient'), 
 			'values'=>array(
-				'default' => __('Default', 'salient'), 
-			    'infinite_scroll' => __('Infinite Scroll', 'salient')
+				'default' => esc_html__('Default', 'salient'), 
+			    'infinite_scroll' => esc_html__('Infinite Scroll', 'salient')
 			)
 		),
 		'posts_per_page'=>array(
 			'type'=>'text', 
-			'title'=>__('Posts Per Page', 'salient'),
-			'desc' => __('How many posts would you like to display per page? <br/> If pagination is not enabled, will simply show this number of posts <br/>  Enter as a number example "10"', 'salient')
+			'title'=>esc_html__('Posts Per Page', 'salient'),
+			'desc' => esc_html__('How many posts would you like to display per page? If pagination is not enabled, will simply show this number of posts. Enter as a number example "10"', 'salient')
 		)
 	)
 );
@@ -4822,16 +4814,16 @@ $nectar_shortcodes['nectar_blog'] = array(
 
 $nectar_shortcodes['recent_posts'] = array( 
 	'type'=>'direct_to_editor', 
-	'title'=>__('Recent Posts', 'salient' ), 
+	'title'=>esc_html__('Recent Posts', 'salient' ), 
 	'attr'=>array( 
 		'title_labels'=>array(
 			'type'=>'checkbox', 
-			'title'=>__('Enable Title Labels?', 'salient'),
-			'desc' => __('These labels are defined by you in the "Blog Options" tab of your theme options panel.', 'salient')
+			'title'=>esc_html__('Enable Title Labels?', 'salient'),
+			'desc' => esc_html__('These labels are defined by you in the "Blog Options" tab of your theme options panel.', 'salient')
 		),
 		'category' => array(
 			'type' => 'multi-select',
-			'title' => __('Category To Display From', 'salient'),
+			'title' => esc_html__('Category To Display From', 'salient'),
 			'values' => $blog_options
 		)
 	)
@@ -4851,22 +4843,22 @@ $nectar_shortcodes['recent_posts'] = array(
 		    					
 			<div class="shortcode-content">
 				<div id="nectar-sc-header">
-					<div class="label"><strong>'.__('Nectar Shortcodes', 'salient').'</strong></div>			
-					<div class="content"><select id="nectar-shortcodes" data-placeholder="' . __("Choose a shortcode", 'salient') .'">
+					<div class="label"><strong>'.esc_html__('Nectar Shortcodes', 'salient').'</strong></div>			
+					<div class="content"><select id="nectar-shortcodes" data-placeholder="' . esc_html__("Choose a shortcode", 'salient') .'">
 				    <option></option>';
 					
-					foreach( $nectar_shortcodes as $shortcode => $options ){
+					foreach( $nectar_shortcodes as $shortcode => $nectar_options ){
 						
 						if(strpos($shortcode,'header') !== false) {
-							$shortcode_html .= '<optgroup label="'.$options['title'].'">';
+							$shortcode_html .= '<optgroup label="'.$nectar_options['title'].'">';
 						}
 						else {
-							$shortcode_html .= '<option value="'.$shortcode.'">'.$options['title'].'</option>';
-							$html_options .= '<div class="shortcode-options" id="options-'.$shortcode.'" data-name="'.$shortcode.'" data-type="'.$options['type'].'">';
+							$shortcode_html .= '<option value="'.$shortcode.'">'.$nectar_options['title'].'</option>';
+							$html_options .= '<div class="shortcode-options" id="options-'.$shortcode.'" data-name="'.$shortcode.'" data-type="'.$nectar_options['type'].'">';
 							
-							if( !empty($options['attr']) ){
-								 foreach( $options['attr'] as $name => $attr_option ){
-									$html_options .= nectar_option_element( $name, $attr_option, $options['type'], $shortcode );
+							if( !empty($nectar_options['attr']) ){
+								 foreach( $nectar_options['attr'] as $name => $attr_option ){
+									$html_options .= nectar_option_element( $name, $attr_option, $nectar_options['type'], $shortcode );
 								 }
 							}
 			
@@ -5040,7 +5032,7 @@ function nectar_option_element( $name, $attr_option, $type, $shortcode ){
 					<div class="content"><textarea class="shortcode-dynamic-item-text" type="text" name="" /></textarea></div>
 				</div>
 			</div>
-			<a href="#" class="btn blue remove-list-item">'.__('Remove Tab', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.__('Add Tab', 'salient' ).'</a>';
+			<a href="#" class="btn blue remove-list-item">'.esc_html__('Remove Tab', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.esc_html__('Add Tab', 'salient' ).'</a>';
 			
 		}
 
@@ -5071,7 +5063,7 @@ function nectar_option_element( $name, $attr_option, $type, $shortcode ){
 					</div>
 				</div>
 			</div>
-			<a href="#" class="btn blue remove-list-item">'.__('Remove Toggle', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.__('Add Toggle', 'salient' ).'</a>';
+			<a href="#" class="btn blue remove-list-item">'.esc_html__('Remove Toggle', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.esc_html__('Add Toggle', 'salient' ).'</a>';
 			
 		}  
 		
@@ -5094,7 +5086,7 @@ function nectar_option_element( $name, $attr_option, $type, $shortcode ){
 					</div>
 				</div>
 			</div>
-			<a href="#" class="btn blue remove-list-item">'.__('Remove Bar', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.__('Add Bar', 'salient' ).'</a>';
+			<a href="#" class="btn blue remove-list-item">'.esc_html__('Remove Bar', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.esc_html__('Add Bar', 'salient' ).'</a>';
 			
 		} 
 		
@@ -5120,7 +5112,7 @@ function nectar_option_element( $name, $attr_option, $type, $shortcode ){
 				</div>
 			</div>
 
-			<a href="#" class="btn blue remove-list-item">'.__('Remove Testimonial', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.__('Add Testimonial', 'salient' ).'</a>';
+			<a href="#" class="btn blue remove-list-item">'.esc_html__('Remove Testimonial', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.esc_html__('Add Testimonial', 'salient' ).'</a>';
 			
 		} 
 		
@@ -5132,8 +5124,8 @@ function nectar_option_element( $name, $attr_option, $type, $shortcode ){
 					
 					 <input type="hidden" id="options-item"  />
 			         <img class="redux-opts-screenshot" id="image_url" src="" />
-			         <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" rel-id="">' . __('Upload', 'salient') . '</a>
-			         <a href="javascript:void(0);" class="redux-opts-upload-remove" style="display: none;">' . __('Remove Upload', 'salient') . '</a>';
+			         <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" rel-id="">' . esc_html__('Upload', 'salient') . '</a>
+			         <a href="javascript:void(0);" class="redux-opts-upload-remove" style="display: none;">' . esc_html__('Remove Upload', 'salient') . '</a>';
 					
 					if(!empty($desc)) $option_element .= $desc;
 					
@@ -5150,8 +5142,8 @@ function nectar_option_element( $name, $attr_option, $type, $shortcode ){
 					
 					 <input type="hidden" id="options-item"  />
 			         <img class="redux-opts-screenshot" id="poster" src="" />
-			         <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" rel-id="">' . __('Upload', 'salient') . '</a>
-			         <a href="javascript:void(0);" class="redux-opts-upload-remove" style="display: none;">' . __('Remove Upload', 'salient') . '</a>';
+			         <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" rel-id="">' . esc_html__('Upload', 'salient') . '</a>
+			         <a href="javascript:void(0);" class="redux-opts-upload-remove" style="display: none;">' . esc_html__('Remove Upload', 'salient') . '</a>';
 					
 					if(!empty($desc)) $option_element .= $desc;
 					
@@ -5248,8 +5240,8 @@ function nectar_option_element( $name, $attr_option, $type, $shortcode ){
 					
 					 <input type="hidden" id="options-item"  />
 			         <img class="redux-opts-screenshot" id="redux-opts-screenshot-" src="" />
-			         <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" rel-id="">' . __('Upload', 'salient') . '</a>
-			         <a href="javascript:void(0);" class="redux-opts-upload-remove" style="display: none;">' . __('Remove Upload', 'salient') . '</a>
+			         <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary" rel-id="">' . esc_html__('Upload', 'salient') . '</a>
+			         <a href="javascript:void(0);" class="redux-opts-upload-remove" style="display: none;">' . esc_html__('Remove Upload', 'salient') . '</a>
 					
 					</div>
 					<div class="clear"></div>
@@ -5258,7 +5250,7 @@ function nectar_option_element( $name, $attr_option, $type, $shortcode ){
 					
 				</div>
 			</div>
-			<a href="#" class="btn blue remove-list-item">'.__('Remove Client', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.__('Add Client', 'salient' ).'</a>';
+			<a href="#" class="btn blue remove-list-item">'.esc_html__('Remove Client', 'salient' ). '</a> <a href="#" class="btn blue add-list-item">'.esc_html__('Add Client', 'salient' ).'</a>';
 			
 		} 
 		

@@ -1,5 +1,4 @@
 jQuery(function($) {
-	
 
 	 //add specific class if on device for better tablet tracking
 	 var using_mobile_browser = false;
@@ -218,11 +217,11 @@ jQuery(function($) {
 		if(!usingLogoImage) {
 			centeredLogoMargins();
 		}
-		else if(usingLogoImage && $('#header-outer[data-format="centered-logo-between-menu"]').length > 0 && $('header#top #logo img:first-child[src]').length > 0) {
+		else if(usingLogoImage && $('#header-outer[data-format="centered-logo-between-menu"]').length > 0 && $('header#top #logo img:first[src]').length > 0) {
 			
 			//fadein img on load
 			var tempLogoImg = new Image();
-			tempLogoImg.src = $('header#top #logo img:first-child').attr('src');
+			tempLogoImg.src = $('header#top #logo img:first').attr('src');
 	
 				tempLogoImg.onload = function() {
 					 centeredLogoMargins();
@@ -239,7 +238,8 @@ jQuery(function($) {
 	var $windowInnerWidth = window.innerWidth;
 	var $scrollBar = ($('#ascrail2000').length > 0 && $windowInnerWidth > 1000) ? -13 : 0;
 	var $bodyBorderWidth = ($('.body-border-right').length > 0 && $windowInnerWidth > 1000) ? parseInt($('.body-border-right').width())*2 : 0;
-
+  var $justOutOfSight;
+	
 	if($('#boxed').length == 1){
 		$justOutOfSight = ((parseInt($('.container-wrap').width()) - parseInt($('.main-content').width())) / 2) + 4;
 	} else {
@@ -258,7 +258,7 @@ jQuery(function($) {
 		}
 
 		
-		$contentWidth = parseInt($('.main-content').css('max-width'));
+		var $contentWidth = parseInt($('.main-content').css('max-width'));
 
 		//single post fullwidth
 		if($('body.single-post[data-ext-responsive="true"]').length > 0 && $('.container-wrap.no-sidebar').length > 0 ) {
@@ -318,11 +318,11 @@ jQuery(function($) {
 		$justOutOfSight = Math.ceil( (($windowWidth + $extResponsivePadding + $scrollBar - $contentWidth) / 2) )
 	}
 
-	$extraSpace = 0;
+	var $extraSpace = 0;
 	if( $(this).hasClass('carousel-wrap')) $extraSpace = 1;
 	if( $(this).hasClass('portfolio-items')) $extraSpace = 5;
 
-		$carouselWidth = ($('#boxed').length == 1) ? $mainContentWidth + parseInt($justOutOfSight*2) : $(window).width() - $leftHeaderSize - $bodyBorderWidth +$extraSpace  + $scrollBar ;
+		var $carouselWidth = ($('#boxed').length == 1) ? $mainContentWidth + parseInt($justOutOfSight*2) : $(window).width() - $leftHeaderSize - $bodyBorderWidth +$extraSpace  + $scrollBar ;
 
 		//when using gutter on portfolio don't add extra space
 		if($('#boxed').length == 0 && $(this).hasClass('portfolio-items') && $(this).is('[data-gutter*="px"]') && $(this).attr('data-gutter').length > 0 && $(this).attr('data-gutter') != 'none') {

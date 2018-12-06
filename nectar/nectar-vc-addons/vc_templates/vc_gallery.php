@@ -20,6 +20,7 @@ extract(shortcode_atts(array(
     'hide_arrow_navigation' => '',
     'bullet_navigation' => '',
     'masonry_style' => '',
+    'bypass_image_cropping' => '',
     "flickity_desktop_columns" => "1",
     "flickity_small_desktop_columns" => "1",
     "flickity_tablet_columns" => "1",
@@ -54,7 +55,7 @@ if(!function_exists('wp_get_attachment')) {
 				'alt' => get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ),
 				'caption' => $attachment->post_excerpt,
 				'description' => $attachment->post_content,
-				'href' => get_permalink( $attachment->ID ),
+				'href' => esc_url(get_permalink( $attachment->ID )),
 				'src' => $attachment->guid,
 				'title' => $attachment->post_title,
 				'masonry_image_sizing' => get_post_meta( $attachment->ID, 'nectar_image_gal_masonry_sizing', true ),
@@ -117,6 +118,17 @@ if ( $type == 'flexslider_style' ) {
 
   $autorotation_attr = ($disable_auto_rotate != 'true') ? 'data-autorotate="5500"' : '';
   
+  if( isset($_GET['vc_editable']) ) {
+  	$nectar_using_VC_front_end_editor = sanitize_text_field($_GET['vc_editable']);
+  	$nectar_using_VC_front_end_editor = ($nectar_using_VC_front_end_editor == 'true') ? true : false;
+  } else {
+  	$nectar_using_VC_front_end_editor = false;
+  }
+  
+  if($nectar_using_VC_front_end_editor) {
+    $autorotation_attr = '';
+  }
+  
 	$slides_wrap_start .= '<div class="nectar-slider-wrap" style="height: '.$slide_height.'px" data-flexible-height="'.$flexible_slider_height.'" data-fullscreen="false"  data-full-width="false" data-parallax="false" '.$autorotation_attr.' id="ns-id-'.uniqid().'">';
 	$slides_wrap_start .=	'<div class="swiper-container" style="height: '.$slide_height.'px"  data-loop="'.$bulk_param.'" data-height="'.$slide_height.'" data-bullets="'.$bullet_navigation.'" data-bullet_style="'.$bullet_navigation_style.'" '.$arrow_markup.' data-bullets="false" data-desktop-swipe="'.$bulk_param.'" data-settings="">';
 	$slides_wrap_start .=	'<div class="swiper-wrapper">';
@@ -143,16 +155,19 @@ if ( $type == 'flexslider_style' ) {
 
 	wp_enqueue_script('flickity');
 
-	$slides_wrap_start .= '<div class="nectar-flickity not-initialized" data-shadow="'.$flickity_box_shadow.'" data-autoplay="'.$flickity_autoplay.'" data-autoplay-dur="'.$flickity_autoplay_dur.'" data-free-scroll="'.$flickity_free_scroll.'" data-controls="'.$flickity_controls.'" data-desktop-columns="'.$flickity_desktop_columns.'" data-small-desktop-columns="'.$flickity_small_desktop_columns.'" data-tablet-columns="'.$flickity_tablet_columns.'">';
+	$slides_wrap_start .= '<div class="nectar-flickity not-initialized" data-shadow="'.$flickity_box_shadow.'" data-autoplay="'.$flickity_autoplay.'" data-autoplay-dur="'.$flickity_autoplay_dur.'" data-free-scroll="'.$flickity_free_scroll.'" data-controls="'.$flickity_controls.'" data-desktop-columns="'.$flickity_desktop_columns.'" data-small-desktop-columns="'.$flickity_small_desktop_columns.'" data-tablet-columns="'.$flickity_tablet_columns.'"><div class="flickity-viewport"> <div class="flickity-slider">';
 	
 
-	$slides_wrap_end .= '</div>';
+	$slides_wrap_end .= '</div></div></div>';
 
 } else if ( $type == 'image_grid' ) {
    
 	
 	//calculate cols
 	switch($layout){
+    case '2':
+			$cols = 'cols-2';
+			break; 
 		case '3':
 			$cols = 'cols-3';
 			break; 
@@ -168,6 +183,9 @@ if ( $type == 'flexslider_style' ) {
 	}
 		
 	switch($cols){
+    case 'cols-2':
+			$span_num = 'span_6';
+			break;
 		case 'cols-3':
 			$span_num = 'span_4';
 			break; 
@@ -183,8 +201,8 @@ if ( $type == 'flexslider_style' ) {
 
 	$constrain_col_class = (!empty($constrain_max_cols) && $constrain_max_cols == 'true') ? ' constrain-max-cols' : null ;
 	$masonry_layout = ($masonry_style == 'true') ? 'true' : 'false';
-	global $options;
-	$masonry_sizing_type = (!empty($options['portfolio_masonry_grid_sizing']) && $options['portfolio_masonry_grid_sizing'] == 'photography') ? 'photography' : 'default';
+	global $nectar_options;
+	$masonry_sizing_type = (!empty($nectar_options['portfolio_masonry_grid_sizing']) && $nectar_options['portfolio_masonry_grid_sizing'] == 'photography') ? 'photography' : 'default';
 
 	
 	ob_start(); ?>
@@ -194,7 +212,7 @@ if ( $type == 'flexslider_style' ) {
 			
 			<span class="portfolio-loading"></span>
 
-			<div class="row portfolio-items <?php if($masonry_layout == 'true') echo 'masonry-items'; else { echo 'no-masonry'; } if($layout == 'constrained_fullwidth') echo ' fullwidth-constrained '; ?> <?php echo $constrain_col_class; ?>" data-starting-filter="" data-gutter="<?php echo $item_spacing; ?>" data-masonry-type="<?php echo $masonry_sizing_type; ?>" data-ps="<?php echo $gallery_style; ?>" data-categories-to-show="" data-col-num="<?php echo $cols; ?>">
+			<div class="row portfolio-items <?php if($masonry_layout == 'true') echo 'masonry-items'; else { echo 'no-masonry'; } if($layout == 'constrained_fullwidth') echo ' fullwidth-constrained '; ?> <?php echo esc_attr( $constrain_col_class ); ?>" data-starting-filter="" data-gutter="<?php echo esc_attr( $item_spacing ); ?>" data-masonry-type="<?php echo esc_attr( $masonry_sizing_type ); ?>" data-bypass-cropping="<?php echo esc_attr( $bypass_image_cropping ); ?>"  data-ps="<?php echo esc_attr( $gallery_style ); ?>" data-categories-to-show="" data-col-num="<?php echo esc_attr( $cols ); ?>">
 				
 			
 		
@@ -498,9 +516,9 @@ foreach ( $images as $attach_id ) {
 
 							?>
 
-							<div class="col <?php echo $span_num .' '. $masonry_item_sizing; ?> element" data-project-cat="" data-default-color="true" data-title-color="" data-subtitle-color="">
+							<div class="col <?php echo esc_attr( $span_num ) .' '. esc_attr( $masonry_item_sizing ); ?> element" data-project-cat="" data-default-color="true" data-title-color="" data-subtitle-color="">
 
-							<div class="inner-wrap animated" data-animation="<?php echo $load_in_animation; ?>">
+							<div class="inner-wrap animated" data-animation="<?php echo esc_attr( $load_in_animation ); ?>">
 
 							<?php 
 
@@ -543,8 +561,10 @@ foreach ( $images as $attach_id ) {
 								}
 
 
-								if($masonry_layout == 'false' || $layout == '3' || $layout == '4') {
-									if($layout == '3') {
+								if($masonry_layout == 'false' || $layout == '3' || $layout == '4' || $layout == '2') {
+                  if($layout == '2') {
+										$image_sizes = 'sizes="(min-width: 1000px) 50vw, (min-width: 690px) 50vw, 100vw"';
+									} else if($layout == '3') {
 										$image_sizes = 'sizes="(min-width: 1000px) 33.3vw, (min-width: 690px) 50vw, 100vw"';
 									} else if($layout == '4') {
 										$image_sizes = 'sizes="(min-width: 1000px) 25vw, (min-width: 690px) 50vw, 100vw"';
@@ -553,10 +573,6 @@ foreach ( $images as $attach_id ) {
 									} else if($layout == 'fullwidth' && $constrain_max_cols == 'true') {
 										$image_sizes = 'sizes="(min-width: 1000px) 25vw, (min-width: 690px) 50vw, 100vw"';
 									}
-
-									/*
-									$regular_size = wp_get_attachment_image_src($attach_id, 'portfolio-thumb', array('title' => ''));
-									$small_size = wp_get_attachment_image_src($attach_id, 'portfolio-thumb_small', array('title' => ''));*/
 
 									$regular_size = ($regular_size) ? $regular_size[0] .' 600w' : null; 
 									$small_size = ($small_size) ? ', '. $small_size[0] .' 400w' : null; 
@@ -690,13 +706,29 @@ foreach ( $images as $attach_id ) {
 											$wp_img_alt_tag = get_post_meta( $attach_id, '_wp_attachment_image_alt', true );
 
 											$image_src = null;
-											$image_src = wp_get_attachment_image_src($attach_id, $masonry_item_sizing);
+                      
+                      if($bypass_image_cropping == 'true') {
+                        $image_src = wp_get_attachment_image_src( $attach_id, 'full');
+                        
+                        if (function_exists('wp_get_attachment_image_srcset')) {
+                          $image_srcset_values = wp_get_attachment_image_srcset($attach_id, 'full');
+                    			if($image_srcset_values) {
+                    				$image_srcset = 'srcset="';
+                    				$image_srcset .= $image_srcset_values;
+                    				$image_srcset .= '"';
+                    			}
+                        }
+                        
+                      } else {
+  											$image_src = wp_get_attachment_image_src($attach_id, $masonry_item_sizing);
+                      }
+                      
 											if(!empty($image_src)) $image_src = $image_src[0];
 
 											$post_thumbnail = array();
 								      	 	$post_thumbnail['thumbnail'] = '<img class="size-'.$masonry_item_sizing.'" src="'.$image_src.'" alt="'.$wp_img_alt_tag.'" height="'.$image_height.'" width="'.$image_width.'" ' .$image_srcset.' '.$image_sizes.' />';
 								        	$post_thumbnail['p_img_large'][0] = '';
-								        }
+								     }
 										else {
 											$post_thumbnail = wpb_getImageBySize(array( 'attach_id' => (int) $attach_id, 'thumb_size' => $img_size, 'class' => 'skip-lazy' ));
 
@@ -753,8 +785,8 @@ foreach ( $images as $attach_id ) {
 								
 								<div class="work-meta">
 									<?php if($attach_id > 0) {  ?>
-										<h4 class="title"><?php echo $attachment_meta['title']; ?></h4>
-										<p><?php echo $attachment_meta['caption']; ?></p>
+										<h4 class="title"><?php echo wp_kses_post( $attachment_meta['title'] ); ?></h4>
+										<p><?php echo wp_kses_post( $attachment_meta['caption'] ); ?></p>
 									<?php } ?>
 								</div>
 								
@@ -791,9 +823,9 @@ foreach ( $images as $attach_id ) {
 											<?php if($display_title_caption == 'true') { ?> 
 												
 												<?php if(!empty($attachment_meta['title'])) { ?>
-													<h3><?php echo $attachment_meta['title']; ?></h3> 
+													<h3><?php echo wp_kses_post( $attachment_meta['title'] ); ?></h3> 
 												<?php } ?>
-												<p><?php echo $attachment_meta['caption']; ?></p>
+												<p><?php echo wp_kses_post( $attachment_meta['caption'] ); ?></p>
 												
 											<?php } ?>
 										</div><!--/vert-center-->
@@ -829,9 +861,9 @@ foreach ( $images as $attach_id ) {
 											<?php if($display_title_caption == 'true') { ?> 
 												
 												<?php if(!empty($attachment_meta['title'])) { ?>
-													<h3><?php echo $attachment_meta['title']; ?></h3> 
+													<h3><?php echo wp_kses_post( $attachment_meta['title'] ); ?></h3> 
 												<?php } ?>
-												<p><?php echo $attachment_meta['caption']; ?></p>
+												<p><?php echo wp_kses_post( $attachment_meta['caption'] ); ?></p>
 												
 											<?php } ?>
 										</div><!--/vert-center-->
@@ -839,10 +871,10 @@ foreach ( $images as $attach_id ) {
 										<?php 
 										
 										if(!empty($attachment_meta['image_url'])) { ?>
-									   		 <a <?php echo 'href="'.$attachment_meta['image_url'].'"'; ?>></a>
+									   		 <a <?php echo 'href="'. esc_url( $attachment_meta['image_url'] ) .'"'; ?>></a>
 								   		<?php } else { ?>
-								   			 <a <?php echo 'href="'.$p_img_large[0].'"';
-								   			  if(!empty($attachment_meta['description'])) echo ' title="'.$attachment_meta['description'].'"';
+								   			 <a <?php echo 'href="'. esc_url( $p_img_large[0] ) .'"';
+								   			  if(!empty($attachment_meta['description'])) echo ' title="'. wp_kses_post( $attachment_meta['description'] ) .'"';
 								   			  echo ' class="pretty_photo"'; ?>></a>
 								   		<?php } ?>
 										
@@ -871,10 +903,10 @@ foreach ( $images as $attach_id ) {
 									    $attachment_meta = wp_get_attachment($attach_id); 
 
 									    if(!empty($attachment_meta['image_url'])) { ?>
-									   		 <a <?php echo 'href="'.$attachment_meta['image_url'].'"'; ?>></a>
+									   		 <a <?php echo 'href="'. esc_url ( $attachment_meta['image_url'] ) .'"'; ?>></a>
 								   		<?php } else { ?>
-								   			 <a <?php echo 'href="'.$p_img_large[0].'"';
-								   			  if(!empty($attachment_meta['description'])) echo ' title="'.$attachment_meta['description'].'"';
+								   			 <a <?php echo 'href="'. esc_url ( $p_img_large[0] ) .'"';
+								   			  if(!empty($attachment_meta['description'])) echo ' title="'. wp_kses_post( $attachment_meta['description'] ) .'"';
 								   			  echo ' class="pretty_photo"'; ?>></a>
 								   		<?php } ?>
 
@@ -882,9 +914,9 @@ foreach ( $images as $attach_id ) {
 											<?php if($display_title_caption == 'true') { ?> 
 												
 											<?php if(!empty($attachment_meta['title'])) { ?>
-												<h3><?php echo $attachment_meta['title']; ?></h3> 
+												<h3><?php echo wp_kses_post( $attachment_meta['title'] ); ?></h3> 
 											<?php } ?>
-											<p><?php echo $attachment_meta['caption']; ?></p>	 
+											<p><?php echo wp_kses_post( $attachment_meta['caption'] ); ?></p>	 
 											
 											<?php } ?>
 										</div><!--/bottom-meta-->
@@ -913,9 +945,9 @@ foreach ( $images as $attach_id ) {
 											<?php if($display_title_caption == 'true') { ?> 
 												
 												<?php if(!empty($attachment_meta['title'])) { ?>
-													<h3><?php echo $attachment_meta['title']; ?></h3> 
+													<h3><?php echo wp_kses_post( $attachment_meta['title'] ); ?></h3> 
 												<?php } ?> 
-												<p><?php echo $attachment_meta['caption']; ?></p>
+												<p><?php echo wp_kses_post( $attachment_meta['caption'] ); ?></p>
 												
 											<?php } ?>
 										<?php } ?>
@@ -926,10 +958,10 @@ foreach ( $images as $attach_id ) {
 									if($attach_id > 0) { 
 
 										if(!empty($attachment_meta['image_url'])) { ?>
-									   		 <a <?php echo 'href="'.$attachment_meta['image_url'].'"'; ?>></a>
+									   		 <a <?php echo 'href="'. esc_url( $attachment_meta['image_url'] ) .'"'; ?>></a>
 								   		<?php } else { ?>
-								   			 <a <?php echo 'href="'.$p_img_large[0].'"';
-								   			  if(!empty($attachment_meta['description'])) echo ' title="'.$attachment_meta['description'].'"';
+								   			 <a <?php echo 'href="'. esc_url( $p_img_large[0] ) .'"';
+								   			  if(!empty($attachment_meta['description'])) echo ' title="'. wp_kses_post( $attachment_meta['description'] ) .'"';
 								   			  echo ' class="pretty_photo"'; ?>></a>
 								   		<?php } ?>
 
@@ -957,10 +989,10 @@ foreach ( $images as $attach_id ) {
 
 										$attachment_meta = wp_get_attachment($attach_id); 
 										if(!empty($attachment_meta['image_url'])) { ?>
-									   		 <a <?php echo 'href="'.$attachment_meta['image_url'].'"'; ?>></a>
+									   		 <a <?php echo 'href="'. esc_url( $attachment_meta['image_url'] ) .'"'; ?>></a>
 								   		<?php } else { ?>
-								   			 <a <?php echo 'href="'.$p_img_large[0].'"';
-								   			  if(!empty($attachment_meta['description'])) echo ' title="'.$attachment_meta['description'].'"';
+								   			 <a <?php echo 'href="'. esc_url( $p_img_large[0] ) .'"';
+								   			  if(!empty($attachment_meta['description'])) echo ' title="'. wp_kses_post( $attachment_meta['description'] ) .'"';
 								   			 echo ' class="pretty_photo"'; ?>></a>
 								   		<?php } ?>
 			
@@ -968,9 +1000,9 @@ foreach ( $images as $attach_id ) {
 											<?php if($display_title_caption == 'true') { ?> 
 												
 												<?php if(!empty($attachment_meta['title'])) { ?>
-													<h3><?php echo $attachment_meta['title']; ?></h3> 
+													<h3><?php echo wp_kses_post( $attachment_meta['title'] ) ; ?></h3> 
 												<?php } ?> 
-												<p><?php echo $attachment_meta['caption']; ?></p>
+												<p><?php echo wp_kses_post( $attachment_meta['caption'] ) ; ?></p>
 												
 											<?php } ?>
 										</div><!--/vert-center-->
@@ -999,19 +1031,19 @@ foreach ( $images as $attach_id ) {
 
 										$attachment_meta = wp_get_attachment($attach_id); 
 										if(!empty($attachment_meta['image_url'])) { ?>
-									   		 <a <?php echo 'href="'.$attachment_meta['image_url'].'"'; ?>></a>
+									   		 <a <?php echo 'href="'. esc_url( $attachment_meta['image_url'] ) .'"'; ?>></a>
 								   		<?php } else { ?>
-								   			 <a <?php echo 'href="'.$p_img_large[0].'"';
-								   			  if(!empty($attachment_meta['description'])) echo ' title="'.$attachment_meta['description'].'"';
+								   			 <a <?php echo 'href="'. esc_url( $p_img_large[0] ) .'"';
+								   			  if(!empty($attachment_meta['description'])) echo ' title="'. wp_kses_post( $attachment_meta['description'] ) .'"';
 								   			 echo ' class="pretty_photo"'; ?>></a>
 								   		<?php } ?>
 			
 										<div class="vert-center">
 											<?php if($display_title_caption == 'true') { ?> 
 												
-												<p><?php echo $attachment_meta['caption']; ?></p>
+												<p><?php echo wp_kses_post( $attachment_meta['caption'] ); ?></p>
 												<?php if(!empty($attachment_meta['title'])) { ?>
-													<h3><?php echo $attachment_meta['title']; ?></h3> 
+													<h3><?php echo wp_kses_post( $attachment_meta['title'] ); ?></h3> 
 												<?php } ?> 
 												
 											<?php } ?>

@@ -173,15 +173,19 @@
                     } else {
                         $chmod = 0755;
                     }
-                    $res = $wp_filesystem->mkdir( $file );
+                    /* nectar addition */
+                    $res = false;
+                    /* nectar addition end */
                     if ( ! $res ) {
                         wp_mkdir_p( $file );
 
                         $res = file_exists( $file );
+                        /* nectar addition */
                         if ( ! $res ) {
-                            mkdir( $file, $chmod, true );
-                            $res = file_exists( $file );
+                            //mkdir( $file, $chmod, true );
+                            //$res = file_exists( $file );
                         }
+                        /* nectar addition end */
                     }
                 } elseif ( $action == 'rmdir' ) {
                     $res = $wp_filesystem->rmdir( $file, $recursive );

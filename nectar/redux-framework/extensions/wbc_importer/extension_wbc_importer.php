@@ -74,8 +74,9 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
             }
             
 
+
             if ( empty( $this->extension_dir ) ) {
-                $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+                $this->extension_dir = get_template_directory() . '/nectar/redux-framework/extensions/wbc_importer/';
                 $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
                 $this->demo_data_dir = apply_filters( "wbc_importer_dir_path", $this->extension_dir . 'demo-data/' );
             }
@@ -252,7 +253,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
                     include $this->extension_dir.'inc/init-installer.php';
                     $installer = new Radium_Theme_Demo_Data_Importer( $this, $this->parent );
                 }else {
-                    echo esc_html__( "Demo Already Imported", 'framework' );
+                    echo esc_html__( "Demo Already Imported", 'salient' );
                 }
 
                 die();
@@ -278,14 +279,14 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
                 }
             }
 
-            $wbc_importer_label = trim( esc_html( apply_filters( 'wbc_importer_label', __( 'Demo Importer', 'framework' ) ) ) );
+            $wbc_importer_label = trim( esc_html( apply_filters( 'wbc_importer_label', __( 'Demo Importer', 'salient' ) ) ) );
 
-            $wbc_importer_label = ( !empty( $wbc_importer_label ) ) ? $wbc_importer_label : __( 'Demo Importer', 'framework' );
+            $wbc_importer_label = ( !empty( $wbc_importer_label ) ) ? $wbc_importer_label : __( 'Demo Importer', 'salient' );
 
             $this->parent->sections[] = array(
                 'id'     => 'wbc_importer_section',
                 'title'  => $wbc_importer_label,
-                'desc'   => '<p class="description">'. apply_filters( 'wbc_importer_description', esc_html__( 'Works best to import on a new install of WordPress.  If you\'re not using a fresh install, make sure you backup your current theme options as they will be overwritten.', 'framework' ) ).'</p>',
+                'desc'   => '<p class="description">'. apply_filters( 'wbc_importer_description', esc_html__( 'Works best to import on a new install of WordPress.  If you\'re not using a fresh install, make sure you backup your current theme options as they will be overwritten.', 'salient' ) ).'</p>',
                 'icon'   => 'el-icon-website',
                 'fields' => array(
                     array(

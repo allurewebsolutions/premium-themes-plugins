@@ -2,7 +2,7 @@
 
 extract(shortcode_atts(array("alignment" => "center", "sticky" => "false", "bg_color" => '#ffffff', "link_color" => '#000000'), $atts));
 
-global $options;
+global $nectar_options;
 
 $wrapping_class = ($alignment != 'center') ?  'full-width-section' : 'full-width-content';
 

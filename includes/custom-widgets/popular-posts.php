@@ -13,10 +13,10 @@ class Nectar_Popular_Posts extends WP_Widget {
 
 		$widget_ops = array(
 			'classname'   => 'nectar_popular_posts_widget',
-			'description' => __( 'Display your most popular posts.', 'salient' ),
+			'description' => esc_html__('Display your most popular posts.', 'salient' ),
 		);
 
-		parent::__construct( 'nectar_popular_posts', __('Nectar Popular Posts', 'salient'), $widget_ops );
+		parent::__construct( 'nectar_popular_posts', esc_html__('Nectar Popular Posts', 'salient'), $widget_ops );
 
 	}
 
@@ -50,10 +50,10 @@ class Nectar_Popular_Posts extends WP_Widget {
 		}
 
 		
-		echo $before_widget;
+		echo $before_widget; // WPCS: XSS ok.
 
 		if ( $title ) {
-			echo $before_title . $title . $after_title;
+			echo $before_title . $title . $after_title; // WPCS: XSS ok.
 		}
 		
 		if($orderby == 'Highest Views') {
@@ -84,7 +84,7 @@ class Nectar_Popular_Posts extends WP_Widget {
 
 		$popular_post_query = new WP_Query( $query_args );
 
-		echo '<ul class="nectar_blog_posts_popular nectar_widget" data-style="'. $post_style .'">';
+		echo '<ul class="nectar_blog_posts_popular nectar_widget" data-style="'. esc_attr( $post_style ) .'">';
 		if ( $popular_post_query->have_posts() ) :
 		    while ( $popular_post_query->have_posts() ) : $popular_post_query->the_post();
 
@@ -108,7 +108,7 @@ class Nectar_Popular_Posts extends WP_Widget {
 				
 				
 				$post_border_circle = ($post_style == 'minimal-counter') ? '<div class="arrow-circle"> <svg width="38" height="38"> <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="19" cy="19" r="18"></circle> </svg>  </div>' : null;
-				echo '<li '.$post_featured_img_class.'><a href="'. get_permalink() .'"> '.$post_featured_img. $post_border_circle. '<span class="meta-wrap"><span class="post-title">' . get_the_title() . '</span> <span class="post-date">' . get_the_date() . '</span></span></a></li>';
+				echo '<li '.$post_featured_img_class.'><a href="'. esc_url(get_permalink()) .'"> '.$post_featured_img. $post_border_circle. '<span class="meta-wrap"><span class="post-title">' . get_the_title() . '</span> <span class="post-date">' . get_the_date() . '</span></span></a></li>'; // WPCS: XSS ok.
 
 		    endwhile;
 		endif;
@@ -118,7 +118,7 @@ class Nectar_Popular_Posts extends WP_Widget {
 
 		
 
-		echo $after_widget;
+		echo $after_widget; // WPCS: XSS ok.
 
 	}
 
@@ -155,17 +155,17 @@ class Nectar_Popular_Posts extends WP_Widget {
 
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_attr_e( 'Title:', 'salient' ); ?></label>
-			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'salient' ); ?></label>
+			<input type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'number_of_posts' ); ?>"><?php esc_attr_e( 'Number Of Posts:', 'salient' ); ?></label>
-			<input type="text" style="width: 33px;" id="<?php echo $this->get_field_id( 'number_of_posts' ); ?>" name="<?php echo $this->get_field_name( 'number_of_posts' ); ?>" value="<?php echo $instance['number_of_posts']; ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'number_of_posts' ) ); ?>"><?php esc_attr_e( 'Number Of Posts:', 'salient' ); ?></label>
+			<input type="text" style="width: 33px;" id="<?php echo esc_attr( $this->get_field_id( 'number_of_posts' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'number_of_posts' ) ); ?>" value="<?php echo esc_attr( $instance['number_of_posts'] ); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php esc_attr_e( 'Style:', 'salient' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>" class="widefat" style="width:100%;">	
+			<label for="<?php echo esc_attr( $this->get_field_id( 'style' ) ); ?>"><?php esc_attr_e( 'Style:', 'salient' ); ?></label>
+			<select id="<?php echo esc_attr( $this->get_field_id( 'style' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'style' ) ); ?>" class="widefat" style="width:100%;">	
 				<option <?php if ( esc_attr__( 'Hover Featured Image', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Hover Featured Image', 'salient' ); ?></option>
 				<option <?php if ( esc_attr__( 'Hover Featured Image Gradient And Counter', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Hover Featured Image Gradient And Counter', 'salient' ); ?></option>
 				<option <?php if ( esc_attr__( 'Minimal Counter', 'salient' ) == $instance['style'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Minimal Counter', 'salient' ); ?></option>
@@ -173,8 +173,8 @@ class Nectar_Popular_Posts extends WP_Widget {
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'timeline' ); ?>"><?php esc_attr_e( 'Timeline:', 'salient' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'timeline' ); ?>" name="<?php echo $this->get_field_name( 'timeline' ); ?>" class="widefat" style="width:100%;">	
+			<label for="<?php echo esc_attr( $this->get_field_id( 'timeline' ) ); ?>"><?php esc_attr_e( 'Timeline:', 'salient' ); ?></label>
+			<select id="<?php echo esc_attr( $this->get_field_id( 'timeline' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'timeline' ) ); ?>" class="widefat" style="width:100%;">	
 				<option <?php if ( esc_attr__( 'All Time', 'salient' ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'All Time', 'salient' ); ?></option>
 				<option <?php if ( esc_attr__( 'Posts Published Within 7 Days', 'salient' ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Posts Published Within 7 Days', 'salient' ); ?></option>
 				<option <?php if ( esc_attr__( 'Posts Published Within 30 Days', 'salient' ) == $instance['timeline'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Posts Published Within 30 Days', 'salient' ); ?></option>
@@ -182,8 +182,8 @@ class Nectar_Popular_Posts extends WP_Widget {
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php esc_attr_e( 'Popular Posts Order By:', 'salient' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'orderby' ); ?>" name="<?php echo $this->get_field_name( 'orderby' ); ?>" class="widefat" style="width:100%;">	
+			<label for="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>"><?php esc_attr_e( 'Popular Posts Order By:', 'salient' ); ?></label>
+			<select id="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'orderby' ) ); ?>" class="widefat" style="width:100%;">	
 				<option <?php if ( esc_attr__( 'Highest Views', 'salient' ) == $instance['orderby'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Highest Views', 'salient' ); ?></option>
 				<option <?php if ( esc_attr__( 'Highest Comments', 'salient' ) == $instance['orderby'] ) { echo 'selected="selected"'; } ?>><?php esc_attr_e( 'Highest Comments', 'salient' ); ?></option>
 			</select>

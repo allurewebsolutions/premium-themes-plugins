@@ -1,7 +1,7 @@
 <?php 
 
 return array(
-	  "name" => __("Icon", "js_composer"),
+	  "name" => esc_html__("Icon", "js_composer"),
 	  "base" => "nectar_icon",
 	  "icon" => "icon-wpb-icons",
 	  "category" => __('Nectar Elements', 'js_composer'),
@@ -24,65 +24,65 @@ return array(
 		),
 		array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_fontawesome",
 	      "settings" => array( "iconsPerPage" => 4000),
 	      "dependency" => array('element' => "icon_family", 'emptyIcon' => false, 'value' => 'fontawesome'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_iconsmind",
 	      "settings" => array( 'type' => 'iconsmind', 'emptyIcon' => false, "iconsPerPage" => 4000),
 	      "dependency" => array('element' => "icon_family", 'value' => 'iconsmind'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_linea",
 	      "settings" => array( 'type' => 'linea', "emptyIcon" => true, "iconsPerPage" => 4000),
 	      "dependency" => Array('element' => "icon_family", 'value' => 'linea'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_linecons",
 	      "settings" => array( 'type' => 'linecons', 'emptyIcon' => false, "iconsPerPage" => 4000),
 	      "dependency" => array('element' => "icon_family", 'value' => 'linecons'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_steadysets",
 	      "settings" => array( 'type' => 'steadysets', 'emptyIcon' => false, "iconsPerPage" => 4000),
 	      "dependency" => array('element' => "icon_family", 'value' => 'steadysets'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Icon Size", "js_composer"),
+	      "heading" => esc_html__("Icon Size", "js_composer"),
 	      "param_name" => "icon_size",
-	      "description" => __("Don't include \"px\" in your string. e.g. 40 - the default is 50" , "js_composer")
+	      "description" => esc_html__("Don't include \"px\" in your string. e.g. 40 - the default is 50" , "js_composer")
 	    ),
 	    array(
 			"type" => "checkbox",
 			"class" => "",
-			"heading" => __("Enable Animation", "js_composer"),
+			"heading" => esc_html__("Enable Animation", "js_composer"),
 	     	"param_name" => "enable_animation",
-			"value" => array(__("Yes", "js_composer") => 'true'),
+			"value" => array(esc_html__("Yes", "js_composer") => 'true'),
 			 "dependency" => array('element' => "icon_family", 'value' => 'linea'),
 			"description" => "This will cause the icon to appear to draw itself. <strong>Will not activate when using a gradient color.</strong>"
 		),
 		 array(
 	      "type" => "textfield",
-	      "heading" => __("Animation Delay", "js_composer"),
+	      "heading" => esc_html__("Animation Delay", "js_composer"),
 	      "param_name" => "animation_delay",
 	      "dependency" => array('element' => "enable_animation", 'not_empty' => true),
-	      "description" => __("Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in \"one by one\" effect.", "js_composer")
+	      "description" => esc_html__("Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in \"one by one\" effect.", "js_composer")
 	    ),
 		 array(
 		 	'type' => 'dropdown',
@@ -141,21 +141,21 @@ return array(
 			),
 			'save_always' => true,
 			'param_name' => 'icon_color',
-			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
 		),
 		 array(
 	      "type" => "textfield",
-	      "heading" => __("Link URL", "js_composer"),
+	      "heading" => esc_html__("Link URL", "js_composer"),
 	      "param_name" => "url",
-	      "description" => __("The link for your button." , "js_composer")
+	      "description" => esc_html__("The link for your button." , "js_composer")
 	    ),
 	    
 	    array(
 			"type" => "checkbox",
 			"class" => "",
-			"heading" => __("Open Link In New Tab?", "js_composer"),
+			"heading" => esc_html__("Open Link In New Tab?", "js_composer"),
 	     	"param_name" => "open_new_tab",
-			"value" => Array(__("Yes", "js_composer") => 'true'),
+			"value" => Array(esc_html__("Yes", "js_composer") => 'true'),
 			"description" => ""
 		),
 		array(
@@ -179,31 +179,31 @@ return array(
 		),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Margin <span>Top</span>", "js_composer"),
+	      "heading" => esc_html__("Margin", "js_composer") . "<span>" . esc_html__("Top", "js_composer") . "</span>",
 	      "param_name" => "margin_top",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 		 array(
 	      "type" => "textfield",
-	      "heading" => __("<span>Right</span>", "js_composer"),
+	      "heading" => "<span>" . esc_html__("Right", "js_composer") . "</span>",
 	      "param_name" => "margin_right",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 		array(
 	      "type" => "textfield",
-	      "heading" => __("<span>Bottom</span>", "js_composer"),
+	      "heading" => "<span>" . esc_html__("Bottom", "js_composer") . "</span>",
 	      "param_name" => "margin_bottom",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("<span>Left</span>", "js_composer"),
+	      "heading" => "<span>" . esc_html__("Left", "js_composer") . "</span>",
 	      "param_name" => "margin_left",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 	  )
 	);

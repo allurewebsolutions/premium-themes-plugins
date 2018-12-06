@@ -6,17 +6,17 @@
 	$tab_id_2 = time().'-2-'.rand(0, 100);
 
 	return array(
-	  "name"  => __("Clients Display", "js_composer"),
+	  "name"  => esc_html__("Clients Display", "js_composer"),
 	  "base" => "clients",
 	  "show_settings_on_create" => false,
 	  "is_container" => true,
 	  "icon" => "icon-wpb-clients",
-	  "category" => __('Nectar Elements', 'js_composer'),
-	  "description" => __('Show off your clients!', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
+	  "description" => esc_html__('Show off your clients!', 'js_composer'),
 	  "params" => array(
 	    array(
 	      "type" => "dropdown",
-	      "heading" => __("Columns", "js_composer"),
+	      "heading" => esc_html__("Columns", "js_composer"),
 	      "param_name" => "columns",
 	      "value" => array(
 				"Two" => "2",
@@ -26,22 +26,22 @@
 				"Six" => "6"
 			),
 	      'save_always' => true,
-	      "description" => __("Please select how many columns you would like..", "js_composer")
+	      "description" => esc_html__("Please select how many columns you would like..", "js_composer")
 	    ),
 			array(
 			 "type" => "dropdown",
-			 "heading" => __("Hover Effect", "js_composer"),
+			 "heading" => esc_html__("Hover Effect", "js_composer"),
 			 "param_name" => "hover_effect",
 			 "value" => array(
 			 "Opacity Change" => "opacity",
 			 "Greyscale to Color" => "greyscale_to_color",	
 		 ),
 			 'save_always' => true,
-			 "description" => __("Select your desired hover effect", "js_composer")
+			 "description" => esc_html__("Select your desired hover effect", "js_composer")
 		 ),
 		 array(
 			 "type" => "dropdown",
-			 "heading" => __("Additional Logo Padding", "js_composer"),
+			 "heading" => esc_html__("Additional Logo Padding", "js_composer"),
 			 "param_name" => "additional_padding",
 			 "value" => array(
 			 "None" => "none",
@@ -50,7 +50,7 @@
 			 "A lot" => "4",
 		 ),
 			 'save_always' => true,
-			 "description" => __("Please select if you would like any additional padding between your client logos", "js_composer")
+			 "description" => esc_html__("Please select if you would like any additional padding between your client logos", "js_composer")
 		 ),
 	    array(
 	      "type" => "checkbox",
@@ -86,8 +86,8 @@
 	  </div>'
 	  ,
 	  'default_content' => '
-	  [client title="'.__('Client','js_composer').'" id="'.$tab_id_1.'"] Click the edit button to add your testimonial. [/client]
-	  [client title="'.__('Client','js_composer').'" id="'.$tab_id_2.'"] Click the edit button to add your testimonial. [/client]
+	  [client title="'.esc_html__('Client','js_composer').'" id="'.$tab_id_1.'"] Click the edit button to add your testimonial. [/client]
+	  [client title="'.esc_html__('Client','js_composer').'" id="'.$tab_id_2.'"] Click the edit button to add your testimonial. [/client]
 	  ',
 	  "js_view" => ($vc_is_wp_version_3_6_more ? 'VcTabsView' : 'VcTabsView35')
 	);

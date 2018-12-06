@@ -202,7 +202,7 @@
                                 redux_pointer_options = $.extend(
                                     redux_pointer_options, {
                                         buttons: function( event, t ) {
-                                            button = jQuery( '<a id="pointer-close" style="margin-left:5px" class="button-secondary">' + '<?php echo $button1; ?>' + '</a>' );
+                                            button = jQuery( '<a id="pointer-close" style="margin-left:5px" class="button-secondary">' + '<?php echo esc_html( $button1 ); //nectar addition ?>' + '</a>' );
                                             button.bind(
                                                 'click.pointer', function() {
                                                     t.element.pointer( 'close' );
@@ -217,9 +217,9 @@
                                 );
 
                                 setup = function() {
-                                    $( '<?php echo $selector; ?>' ).pointer( redux_pointer_options ).pointer( 'open' );
+                                    $( '<?php echo esc_html( $selector ); //nectar addition ?>' ).pointer( redux_pointer_options ).pointer( 'open' );
                                     <?php if ($button2) { ?>
-                                    jQuery( '#pointer-close' ).after( '<a id="pointer-primary" class="button-primary">' + '<?php echo $button2; ?>' + '</a>' );
+                                    jQuery( '#pointer-close' ).after( '<a id="pointer-primary" class="button-primary">' + '<?php echo esc_html( $button2 ); //nectar addition ?>' + '</a>' );
                                     jQuery( '#pointer-primary' ).click(
                                         function() {
                                             <?php echo $button2_function; ?>

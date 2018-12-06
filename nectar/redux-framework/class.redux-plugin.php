@@ -407,8 +407,12 @@
              * @return      array The modified array of links
              */
             public function plugin_metalinks( $links, $file ) {
-                if ( strpos( $file, 'redux-framework.php' ) !== false && is_plugin_active( $file ) ) {
-
+              
+                return;
+                
+                /*nectar addition */
+                if ( strpos( $file, 'redux-framework.php' ) !== false ) {
+                /*nectar addition end */
                     $new_links = array(
                         '<a href="' . 'http://' . 'docs.reduxframework.com/" target="_blank">' . __( 'Docs', 'redux-framework' ) . '</a>',
                         '<a href="' . 'https://' . 'github.com/ReduxFramework/redux-framework" target="_blank">' . __( 'Repo', 'redux-framework' ) . '</a>',

@@ -68,12 +68,13 @@ if($icon_family == 'linea' && $enable_animation == 'true' && $icon != '' && strl
 	$converted_icon = str_replace('-', '_', $icon);
 	$converted_icon = str_replace('icon_', '', $converted_icon);
 	$icon_markup = '<span class="svg-icon-holder" data-size="'. $icon_size . '" data-animation-speed="'.$animation_speed.'" data-animation="'.$enable_animation.'" data-animation-delay="'.$animation_delay.'" data-color="'.strtolower($icon_color) .'"><span>';
-	//ob_start();
-	//var_dump(get_template_directory_uri() .'/css/fonts/svg/'. $converted_icon .'.svg');
-	$icon_markup .= file_get_contents(get_template_directory() .'/css/fonts/svg/'. $converted_icon .'.svg');
+	ob_start();
 	
-	//$icon_markup .=  ob_get_contents();
-	//ob_end_clean();
+	//$icon_markup .= file_get_contents(get_template_directory() .'/css/fonts/svg/'. $converted_icon .'.svg');
+	get_template_part( 'css/fonts/svg/'. $converted_icon .'.svg' );
+	
+	$icon_markup .=  ob_get_contents();
+	ob_end_clean();
 	
 	$icon_markup .= '</span></span>';
 } 

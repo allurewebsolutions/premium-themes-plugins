@@ -7,7 +7,7 @@ return array(
 				"is_container" => true,
 		 		"icon" => "icon-wpb-row",
 		 		"show_settings_on_create" => false,
-				"category" => __('Nectar Elements', 'js_composer'),
+				"category" => esc_html__('Nectar Elements', 'js_composer'),
 				'js_view' => 'VcRowView',
 				"content_element" => false,
 			    'default_content' => '[vc_column width="1/1"]%content%[/vc_column]',

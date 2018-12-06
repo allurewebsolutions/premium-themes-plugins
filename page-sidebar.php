@@ -1,8 +1,15 @@
-<?php 
+<?php
 /*template name: Sidebar*/
-get_header(); ?>
 
-<?php nectar_page_header($post->ID); ?>
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+get_header();
+
+nectar_page_header( $post->ID );
+?>
 
 <div class="container-wrap">
 	
@@ -11,17 +18,21 @@ get_header(); ?>
 		<div class="row">
 			
 			<div class="post-area col span_9">
-				<?php 
-				
-				//breadcrumbs
-				if ( function_exists( 'yoast_breadcrumb' ) && !is_home() && !is_front_page() ){ yoast_breadcrumb('<p id="breadcrumbs">','</p>'); } 
+				<?php
 
-				
-				if(have_posts()) : while(have_posts()) : the_post(); ?>
-					
-					<?php the_content(); ?>
-	
-				<?php endwhile; endif; ?>
+				// breadcrumbs
+				if ( function_exists( 'yoast_breadcrumb' ) && ! is_home() && ! is_front_page() ) {
+					yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); }
+
+				if ( have_posts() ) :
+					while ( have_posts() ) :
+
+						the_post();
+						the_content();
+
+					endwhile;
+				endif;
+				?>
 				
 			</div><!--/span_9-->
 			
@@ -36,4 +47,3 @@ get_header(); ?>
 </div><!--/container-wrap-->
 
 <?php get_footer(); ?>
-

@@ -13,14 +13,14 @@
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 3.3.2
+ * @version 3.5.1
  */
 
 defined( 'ABSPATH' ) || exit;
 
-global $post, $product, $woocommerce, $options;
+global $post, $product, $woocommerce, $nectar_options;
 
-$product_gallery_style = (!empty($options['single_product_gallery_type'])) ? $options['single_product_gallery_type'] : 'default';
+$product_gallery_style = (!empty($nectar_options['single_product_gallery_type'])) ? $nectar_options['single_product_gallery_type'] : 'default';
 
 if($product_gallery_style == 'left_thumb_sticky') { wp_enqueue_script('stickykit'); }
 
@@ -42,11 +42,11 @@ if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thu
 	?>
 
 
-    <div class="images" data-has-gallery-imgs="<?php echo $has_gallery_imgs; ?>">
+    <div class="images" data-has-gallery-imgs="<?php echo esc_attr( $has_gallery_imgs ); ?>">
 
     	<div class="flickity product-slider woocommerce-product-gallery">
 
-			<div class="slider">
+			<div class="slider generate-markup">
 
 				<?php if (has_post_thumbnail()) { 
 
@@ -71,14 +71,14 @@ if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thu
              
         <div class="slide">
         	<div data-thumb="<?php echo get_the_post_thumbnail_url( $post->ID, 'shop_thumbnail' ); ?>" class="woocommerce-product-gallery__image easyzoom">
-          	<a href="<?php echo $img_link; ?>" class="no-ajaxy">
+          	<a href="<?php echo esc_url( $img_link ); ?>" class="no-ajaxy">
           		<?php echo get_the_post_thumbnail( $post->ID, 'shop_single', $attributes ); ?>
           	</a>
           </div>
         </div>
 				
 				<?php } else { 
-					echo '<div class="slide">'.apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID ) .'</div>';
+					echo '<div class="slide">'.apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src( 'woocommerce_single' ), __( 'Placeholder', 'woocommerce' ) ), $post->ID ) .'</div>';
 				}
 
 				if ( $product_attach_ids ) {
@@ -93,6 +93,7 @@ if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thu
 							
 							$full_size_image   = wp_get_attachment_image_src( $product_attach_id, 'full' );
 							$attributes = array(
+								'data-caption'            => get_post_field( 'post_excerpt', $product_attach_id ),
 								'data-src'                => $full_size_image[0],
 								'data-large_image'        => $full_size_image[0],
 								'data-large_image_width'  => $full_size_image[1],
@@ -118,7 +119,7 @@ if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thu
 	<?php if ( $product_attach_ids ) {  ?>
         
       <div class="flickity product-thumbs">
-			<div class ="slider">
+			<div class ="slider generate-markup">
 				
             <?php 	
             if ( has_post_thumbnail() ) { ?>
@@ -176,10 +177,10 @@ else { ?>
 			<figure class="woocommerce-product-gallery__wrapper">
 				<?php
 				if ( has_post_thumbnail() ) {
-					$html  = wc_get_gallery_image_html( $post_thumbnail_id, true );
+					$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
 				} else {
 					$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-					$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src() ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
+					$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
 					$html .= '</div>';
 				}
 
@@ -228,7 +229,7 @@ else { ?>
 					$html .= '</a></div>';
 				} else {
 					$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-					$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src() ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
+					$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
 					$html .= '</div>';
 				}
 
@@ -264,7 +265,7 @@ else { ?>
 					$post->ID
 				);
 			} else {
-				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
+				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src( 'woocommerce_single' ), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
 			}
 		?>
 

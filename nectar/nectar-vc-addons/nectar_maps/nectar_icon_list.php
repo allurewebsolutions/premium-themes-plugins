@@ -6,13 +6,13 @@
 	$tab_id_2 = time().'-2-'.rand(0, 100);
 
 	return array(
-	  "name"  => __("Icon List", "js_composer"),
+	  "name"  => esc_html__("Icon List", "js_composer"),
 	  "base" => "nectar_icon_list",
 	  "show_settings_on_create" => false,
 	  "is_container" => true,
 	  "icon" => "icon-wpb-fancy-ul",
-	  "category" => __('Nectar Elements', 'js_composer'),
-	  "description" => __('Create an icon list', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
+	  "description" => esc_html__('Create an icon list', 'js_composer'),
 	  "params" => array(
 	   
 	    array(
@@ -38,22 +38,22 @@
 				"Color Gradient 2" => "extra-color-gradient-2"
 			),
 			'save_always' => true,
-			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 		array(
 			"type" => "dropdown",
-			"heading" => __("Direction", "js_composer"),
+			"heading" => esc_html__("Direction", "js_composer"),
 			"param_name" => "direction",
 			"value" => array(
 				"Vertical" => "vertical",
 				"Horizontal" => "horizontal"
 			),
 			'save_always' => true,
-			"description" => __("Please select the direction you would like your list items to display in", "js_composer")
+			"description" => esc_html__("Please select the direction you would like your list items to display in", "js_composer")
 		),
 		array(
 			"type" => "dropdown",
-			"heading" => __("Columns", "js_composer"),
+			"heading" => esc_html__("Columns", "js_composer"),
 			"param_name" => "columns",
 			"value" => array(
 				"Default (3)" => "default",
@@ -65,12 +65,12 @@
 			),
 			"dependency" => array('element' => "direction", 'value' => 'horizontal'),
 			'save_always' => true,
-			"description" => __("Please select the column number you desire for your icon list items", "js_composer")
+			"description" => esc_html__("Please select the column number you desire for your icon list items", "js_composer")
 		),
 		
 	    array(
 	      "type" => "dropdown",
-	      "heading" => __("Icon Size", "js_composer"),
+	      "heading" => esc_html__("Icon Size", "js_composer"),
 	      "param_name" => "icon_size",
 	      "value" => array(
 				"Small" => "small",
@@ -78,19 +78,19 @@
 				"Large" => "large"
 			),
 	      'save_always' => true,
-	      "description" => __("Please select the size you would like your list item icons to display in", "js_composer")
+	      "description" => esc_html__("Please select the size you would like your list item icons to display in", "js_composer")
 	    ),
 
 	    array(
 	      "type" => "dropdown",
-	      "heading" => __("Icon Style", "js_composer"),
+	      "heading" => esc_html__("Icon Style", "js_composer"),
 	      "param_name" => "icon_style",
 	      "value" => array(
 				"Icon Colored W/ BG" => "border",
 				"Icon Colored No BG" => "no-border"
 			),
 	      'save_always' => true,
-	      "description" => __("Please select the style you would like your list item icons to display in", "js_composer")
+	      "description" => esc_html__("Please select the style you would like your list item icons to display in", "js_composer")
 	    ),
 
 	  ),
@@ -102,8 +102,8 @@
 	  </div>'
 	  ,
 	  'default_content' => '
-	  [nectar_icon_list_item title="'.__('List Item','js_composer').'" id="'.$tab_id_1.'"]  [/nectar_icon_list_item]
-	  [nectar_icon_list_item title="'.__('List Item','js_composer').'" id="'.$tab_id_2.'"] [/nectar_icon_list_item]
+	  [nectar_icon_list_item title="'.esc_html__('List Item','js_composer').'" id="'.$tab_id_1.'"]  [/nectar_icon_list_item]
+	  [nectar_icon_list_item title="'.esc_html__('List Item','js_composer').'" id="'.$tab_id_2.'"] [/nectar_icon_list_item]
 	  ',
 	  "js_view" => ($vc_is_wp_version_3_6_more ? 'VcTabsView' : 'VcTabsView35')
 	);

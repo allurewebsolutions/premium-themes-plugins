@@ -100,7 +100,10 @@
 
                         $is_plugin = false;
                         foreach ( get_plugins() as $key => $value ) {
-                            if ( is_plugin_active( $key ) && strpos( $key, 'redux-framework.php' ) !== false ) {
+                          /*nectar addition */
+                            //if ( is_plugin_active( $key ) && strpos( $key, 'redux-framework.php' ) !== false ) {
+                            if ( strpos( $key, 'redux-framework.php' ) !== false ) {
+                          /*nectar addition end */
                                 self::$_dir = trailingslashit( Redux_Helpers::cleanFilePath( WP_CONTENT_DIR . '/plugins/' . plugin_dir_path( $key ) . 'ReduxCore/' ) );
                                 $is_plugin  = true;
                             }
@@ -404,7 +407,7 @@
                             $this,
                             'save_network_page'
                         ), 10, 0 );
-                        add_action( 'admin_bar_menu', array( $this, 'network_admin_bar' ), 999 );
+                        /*nectar addition - remove action for network_admin_bar - nectar addition end*/
                     }
                     // Ajax saving!!!
                     add_action( "wp_ajax_" . $this->args['opt_name'] . '_ajax_save', array( $this, "ajax_save" ) );
@@ -1496,7 +1499,7 @@
              * @global      $menu , $submenu, $wp_admin_bar
              * @return      void
              */
-            public function _admin_bar_menu() {
+            public function _admin_bar_menu() { //not used in Salient
                 global $menu, $submenu, $wp_admin_bar;
 
                 $ct         = wp_get_theme();
@@ -1584,7 +1587,7 @@
                     $wp_admin_bar->add_node( $nodeargs );
                 }
             }
-            // _admin_bar_menu()
+        
 
             /**
              * Output dynamic CSS at bottom of HEAD

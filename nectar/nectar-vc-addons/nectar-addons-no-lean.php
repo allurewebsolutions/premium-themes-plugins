@@ -1,6 +1,6 @@
 <?php 
 
-global $options;
+global $nectar_options;
 $vc_is_wp_version_3_6_more = version_compare(preg_replace('/^([\d\.]+)(\-.*$)/', '$1', get_bloginfo('version')), '3.6') >= 0;
 
 function nectar_set_vc_as_theme() {
@@ -32,8 +32,8 @@ add_action('vc_before_init', 'nectar_set_vc_as_theme');
 
 
 
-add_filter( 'vc_load_default_templates', 'my_custom_template_modify_array' ); // Hook in
-function my_custom_template_modify_array( $data ) {
+add_filter( 'vc_load_default_templates', 'nectar_custom_template_modify_array' ); // Hook in
+function nectar_custom_template_modify_array( $data ) {
     return array(); 
 }
 
@@ -225,7 +225,7 @@ add_action('vc_before_init', 'nectar_custom_maps');
 function nectar_custom_maps() {
 
 	$vc_is_wp_version_3_6_more = version_compare(preg_replace('/^([\d\.]+)(\-.*$)/', '$1', get_bloginfo('version')), '3.6') >= 0;
-	global $options;
+	global $nectar_options;
 	$is_admin = is_admin();
 
 	vc_map( array(
@@ -753,7 +753,7 @@ function nectar_custom_maps() {
 
 
 
-	if(!empty($options['header-inherit-row-color']) && $options['header-inherit-row-color'] == '1') {
+	if(!empty($nectar_options['header-inherit-row-color']) && $nectar_options['header-inherit-row-color'] == '1') {
 		vc_add_param("vc_row", array(
 			"type" => "checkbox",
 			"class" => "",
@@ -1347,48 +1347,7 @@ function nectar_custom_maps() {
 
 	class WPBakeryShortCode_Full_Width_Section extends WPBakeryShortCode_VC_Row {
 			
-				
-		public function contentAdmin($atts, $content = null) {
-	        $width = $el_class = '';
-	        extract(shortcode_atts($this->predefined_atts, $atts));
 
-	        $output = '';
-
-	        $column_controls = $this->getColumnControls($this->settings('controls'));
-
-	        for ( $i=0; $i < count($width); $i++ ) {
-	            $output .= '<div'.$this->customAdminBockParams().' data-element_type="vc_row" class="'.$this->settings['base'].' wpb_vc_row wpb_sortable">';
-	            $output .= str_replace("%column_size%", 1, $column_controls);
-	            $output .= '<div class="wpb_element_wrapper">';
-	            $output .= '<div class="vc_row-fluid vc_row wpb_row_container vc_container_for_children">';
-	            if($content=='' && !empty($this->settings["default_content_in_template"])) {
-	                $output .= do_shortcode( shortcode_unautop($this->settings["default_content_in_template"]) );
-	            } else {
-	                $output .= do_shortcode( shortcode_unautop($content) );
-
-	            }
-	            $output .= '</div>';
-	            if ( isset($this->settings['params']) ) {
-	                $inner = '';
-	                foreach ($this->settings['params'] as $param) {
-	                    $param_value = isset($$param['param_name']) ? $$param['param_name'] : '';
-	                    if ( is_array($param_value)) {
-	                        // Get first element from the array
-	                        reset($param_value);
-	                        $first_key = key($param_value);
-	                        $param_value = $param_value[$first_key];
-	                    }
-	                    $inner .= $this->singleParamHtmlHolder($param, $param_value);
-	                }
-	                $output .= $inner;
-	            }
-	            $output .= '</div>';
-	            $output .= '</div>';
-	        }
-
-	        return $output;
-	    }	
-		
 	}
 		vc_map( array(
 				"name" => "Full Width Section",
@@ -1491,7 +1450,7 @@ function nectar_custom_maps() {
 		));
 
 
-		if(!empty($options['header-inherit-row-color']) && $options['header-inherit-row-color'] == '1') {
+		if(!empty($nectar_options['header-inherit-row-color']) && $nectar_options['header-inherit-row-color'] == '1') {
 			vc_add_param("full_width_section", array(
 				"type" => "checkbox",
 				"class" => "",
@@ -1645,7 +1604,7 @@ function nectar_custom_maps() {
 	vc_remove_param("vc_column_text", "css_animation");
 
 
-	$nectar_disable_nectar_slider = (!empty($options['disable_nectar_slider_pt']) && $options['disable_nectar_slider_pt'] == '1') ? true : false; 
+	$nectar_disable_nectar_slider = (!empty($nectar_options['disable_nectar_slider_pt']) && $nectar_options['disable_nectar_slider_pt'] == '1') ? true : false; 
 	if($nectar_disable_nectar_slider != true) {
 
 		if(nectar_has_shortcode('nectar_slider')) { 
@@ -1931,7 +1890,7 @@ function nectar_custom_maps() {
 			      "holder" => "div",
 			      "heading" => __("Text Content", "js_composer"),
 			      "param_name" => "content",
-			      "value" => __("", "js_composer"),
+			      "value" => '',
 			      "description" => __("Each Line of this editor will be animated separately. Separate text with the Enter or Return key on your Keyboard.", "js_composer"),
 			      "admin_label" => false
 			    ),
@@ -3321,7 +3280,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 	      "holder" => "div",
 	      "heading" => __("Heading", "js_composer"),
 	      "param_name" => "content",
-	      "value" => __("", "js_composer")
+	      "value" => ''
 	    ), 
 	    array(
 	      "type" => "textfield",
@@ -4133,21 +4092,21 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 		      "heading" => __("<span>Right</span>", "js_composer"),
 		      "param_name" => "margin_right",
 		      "edit_field_class" => "col-md-2",
-		      "description" => __("" , "js_composer")
+		      "description" => ''
 		    ),
 			array(
 		      "type" => "textfield",
 		      "heading" => __("<span>Bottom</span>", "js_composer"),
 		      "param_name" => "margin_bottom",
 		      "edit_field_class" => "col-md-2",
-		      "description" => __("" , "js_composer")
+		      "description" => ''
 		    ),
 		    array(
 		      "type" => "textfield",
 		      "heading" => __("<span>Left</span>", "js_composer"),
 		      "param_name" => "margin_left",
 		      "edit_field_class" => "col-md-2",
-		      "description" => __("" , "js_composer")
+		      "description" => ''
 		    ),
 		 	 
 		  )
@@ -4185,21 +4144,9 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 		      "type" => "textarea_html",
 		      "heading" => __("Hotspots", "js_composer"),
 		      "param_name" => "content",
-		      "description" => __("", "js_composer"),
+		      "description" => '',
 		    ),	 
 
-			/*array(
-			"type" => "dropdown",
-			"class" => "",
-			'save_always' => true,
-			"group" => "Style",
-			"heading" => "Hotspot Style",
-			"param_name" => "style",
-			"description" => __("Select the overall style of your hotspots here", "js_composer"),
-			"value" => array(
-				"Color Pulse" => "color_pulse",
-				"Transparent + Border" => "border"
-			)),*/
 			array(
 			"type" => "dropdown",
 			"class" => "",
@@ -4216,19 +4163,6 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 				"Extra-Color-2" => "Extra-Color-2",	
 				"Extra-Color-3" => "Extra-Color-3"
 			)),
-			/*array(
-			"type" => "dropdown",
-			"class" => "",
-			'save_always' => true,
-			"group" => "Style",
-			"heading" => "Color",
-			"param_name" => "color_2",
-			"description" => __("Choose the color which the hotspot will use", "js_composer"),
-			"dependency" => array('element' => "style", 'value' => 'border'),
-			"value" => array(
-				"Light" => "light",
-				"Dark" => "dark",
-			)),*/
 			array(
 			"type" => "dropdown",
 			"class" => "",
@@ -4242,19 +4176,6 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 				"Plus Sign" => "plus_sign",
 				"Numerical" => "numerical"
 			)),
-			/*array(
-			"type" => "dropdown",
-			"class" => "",
-			'save_always' => true,
-			"group" => "Style",
-			"heading" => "Hotspot Size",
-			"param_name" => "size",
-			"description" => __("Select the size of your hotspots here", "js_composer"),
-			"value" => array(
-				"Small" => "small",
-				"Medium" => "medium",
-				"Large" => "large"
-			)),*/
 			array(
 			"type" => "dropdown",
 			"class" => "",
@@ -4324,7 +4245,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 		      "type" => "textarea_html",
 		      "heading" => __("Content", "js_composer"),
 		      "param_name" => "content",
-		      "description" => __("", "js_composer"),
+		      "description" => '',
 		    )
 		  )
 		
@@ -5291,7 +5212,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 	      "holder" => "div",
 	      "heading" => __("Text Content", "js_composer"),
 	      "param_name" => "content",
-	      "value" => __("", "js_composer")
+	      "value" => ''
 	    )
 	  ),
 	  'js_view' => ($vc_is_wp_version_3_6_more ? 'VcTabView' : 'VcTabView35')
@@ -5348,7 +5269,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 			),
 			"edit_field_class" => "col-md-2 vc_column",
 			"dependency" => array('element' => "script", 'value' => 'owl_carousel'),
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 	   array(
 			"type" => "dropdown",
@@ -5369,7 +5290,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 			),
 			"edit_field_class" => "col-md-2 vc_column",
 			"dependency" => array('element' => "script", 'value' => 'owl_carousel'),
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 	    array(
 			"type" => "dropdown",
@@ -5388,7 +5309,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 			),
 			"edit_field_class" => "col-md-2 vc_column",
 			"dependency" => array('element' => "script", 'value' => 'owl_carousel'),
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 	    array(
 			"type" => "dropdown",
@@ -5405,7 +5326,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 			),
 			"dependency" => array('element' => "script", 'value' => 'owl_carousel'),
 			"edit_field_class" => "col-md-2 vc_column",
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 	   array(
 	      "type" => "textfield",
@@ -6769,7 +6690,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 	      "holder" => "div",
 	      "heading" => __("Text Content", "js_composer"),
 	      "param_name" => "content",
-	      "value" => __("", "js_composer")
+	      "value" => ''
 	    )
 	  )
 	));
@@ -6845,7 +6766,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 	      "holder" => "div",
 	      "heading" => __("Text Content", "js_composer"),
 	      "param_name" => "content",
-	      "value" => __("", "js_composer"),
+	      "value" => '',
 	      "description" => "Please use the Unordered List button <img src='".get_template_directory_uri() ."/nectar/assets/img/icons/ul.png' alt='unordered list' /> on the editor to create the points of your fancy list."
 	    )
 	  )
@@ -6867,7 +6788,7 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 			      "holder" => "div",
 			      "heading" => __("Text Content", "js_composer"),
 			      "param_name" => "content",
-			      "value" => __("", "js_composer"),
+			      "value" => '',
 			      "description" => __("Enter the text that will be wrapped here", "js_composer"),
 			      "admin_label" => false
 			    ),
@@ -7086,21 +7007,21 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 	      "heading" => __("<span>Right</span>", "js_composer"),
 	      "param_name" => "margin_right",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 		array(
 	      "type" => "textfield",
 	      "heading" => __("<span>Bottom</span>", "js_composer"),
 	      "param_name" => "margin_bottom",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 	    array(
 	      "type" => "textfield",
 	      "heading" => __("<span>Left</span>", "js_composer"),
 	      "param_name" => "margin_left",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 	  )
 	));
@@ -7292,21 +7213,21 @@ class WPBakeryShortCode_Nectar_Cascading_Images extends WPBakeryShortCode {}
 	      "heading" => __("<span>Right</span>", "js_composer"),
 	      "param_name" => "margin_right",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 		array(
 	      "type" => "textfield",
 	      "heading" => __("<span>Bottom</span>", "js_composer"),
 	      "param_name" => "margin_bottom",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 	    array(
 	      "type" => "textfield",
 	      "heading" => __("<span>Left</span>", "js_composer"),
 	      "param_name" => "margin_left",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 	  )
 	));

@@ -1,7 +1,7 @@
 <?php 
 
 return array(
-	  "name" => __("Section", "js_composer"),
+	  "name" => esc_html__("Section", "js_composer"),
 	  "base" => "toggle",
 	  "allowed_container_element" => 'vc_row',
 	  "is_container" => true,
@@ -9,13 +9,13 @@ return array(
 	  "params" => array(
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Title", "js_composer"),
+	      "heading" => esc_html__("Title", "js_composer"),
 	      "param_name" => "title",
-	      "description" => __("Accordion section title.", "js_composer")
+	      "description" => esc_html__("Accordion section title.", "js_composer")
 	    ),
 	     array(
 		  "type" => "dropdown",
-		  "heading" => __("Color", "js_composer"),
+		  "heading" => esc_html__("Color", "js_composer"),
 		  "param_name" => "color",
 		  "admin_label" => true,
 		  "value" => array(
@@ -26,7 +26,7 @@ return array(
 			 "Extra Color 3" => "Extra-Color-3"
 		   ),
 		  'save_always' => true,
-		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		)
 	  ),
 	  'js_view' => 'VcAccordionTabView'

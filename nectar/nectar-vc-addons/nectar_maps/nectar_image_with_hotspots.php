@@ -1,12 +1,12 @@
 <?php 
 
 return array(
-		  "name" => __("Image With Hotspots", "js_composer"),
+		  "name" => esc_html__("Image With Hotspots", "js_composer"),
 		  "base" => "nectar_image_with_hotspots",
 		  "weight" => 2,
-		  "icon" => "icon-wpb-single-image",
-		  "category" => __('Nectar Elements', 'js_composer'),
-		  "description" => __('Add Hotspots On Your Image', 'js_composer'),
+		  "icon" => "icon-wpb-nectar-image-withhotspots",
+		  "category" => esc_html__('Nectar Elements', 'js_composer'),
+		  "description" => esc_html__('Add Hotspots On Your Image', 'js_composer'),
 		  "params" => array(
 
 		  	array(
@@ -19,30 +19,18 @@ return array(
 			),
 			array(
 		      "type" => "hotspot_image_preview",
-		      "heading" => __("Preview", "js_composer"),
+		      "heading" => esc_html__("Preview", "js_composer"),
 		      "param_name" => "preview",
-		      "description" => __("Click to add - Drag to move - Edit content below <br/><br/> Note: this preview will not reflect hotspot style choices or show tooltips. <br/>This is only used as a visual guide for positioning. <br/><strong>Requires Salient VC 4.12 or higher</strong>", "js_composer"),
+		      "description" => esc_html__("Click to add - Drag to move - Edit content below. Note: this preview will not reflect hotspot style choices or show tooltips. This is only used as a visual guide for positioning. Requires Salient VC 4.12 or higher.", "js_composer"),
 		      "value" => ''
 		    ),	
 			 array(
 		      "type" => "textarea_html",
-		      "heading" => __("Hotspots", "js_composer"),
+		      "heading" => esc_html__("Hotspots", "js_composer"),
 		      "param_name" => "content",
-		      "description" => __("", "js_composer"),
+		      "description" => '',
 		    ),	 
 
-			/*array(
-			"type" => "dropdown",
-			"class" => "",
-			'save_always' => true,
-			"group" => "Style",
-			"heading" => "Hotspot Style",
-			"param_name" => "style",
-			"description" => __("Select the overall style of your hotspots here", "js_composer"),
-			"value" => array(
-				"Color Pulse" => "color_pulse",
-				"Transparent + Border" => "border"
-			)),*/
 			array(
 			"type" => "dropdown",
 			"class" => "",
@@ -51,7 +39,7 @@ return array(
 			"heading" => "Color",
 			"admin_label" => true,
 			"param_name" => "color_1",
-			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 			/*"dependency" => array('element' => "style", 'value' => 'color_pulse'),*/
 			"value" => array(
 				"Accent Color" => "Accent-Color",
@@ -78,7 +66,7 @@ return array(
 			'save_always' => true,
 			"group" => "Style",
 			"heading" => "Hotspot Icon",
-			"description" => __("The icon that will be shown on the hotspots", "js_composer"),
+			"description" => esc_html__("The icon that will be shown on the hotspots", "js_composer"),
 			"param_name" => "hotspot_icon",
 			"admin_label" => true,
 			"value" => array(
@@ -92,7 +80,7 @@ return array(
 			"group" => "Style",
 			"heading" => "Hotspot Size",
 			"param_name" => "size",
-			"description" => __("Select the size of your hotspots here", "js_composer"),
+			"description" => esc_html__("Select the size of your hotspots here", "js_composer"),
 			"value" => array(
 				"Small" => "small",
 				"Medium" => "medium",
@@ -105,7 +93,7 @@ return array(
 			"group" => "Style",
 			"heading" => "Tooltip Functionality",
 			"param_name" => "tooltip",
-			"description" => __("Select how you want your tooltips to display to the user", "js_composer"),
+			"description" => esc_html__("Select how you want your tooltips to display to the user", "js_composer"),
 			"value" => array(
 				"Show On Hover" => "hover",
 				"Show On Click" => "click",
@@ -118,16 +106,16 @@ return array(
 			"group" => "Style",
 			"heading" => "Tooltip Shadow",
 			"param_name" => "tooltip_shadow",
-			"description" => __("Select the shadow size for your tooltip", "js_composer"),
-			"value" => array(__("None", "js_composer") => "none", __("Small Depth", "js_composer") => "small_depth", __("Medium Depth", "js_composer") => "medium_depth", __("Large Depth", "js_composer") => "large_depth"),
+			"description" => esc_html__("Select the shadow size for your tooltip", "js_composer"),
+			"value" => array(esc_html__("None", "js_composer") => "none", esc_html__("Small Depth", "js_composer") => "small_depth", esc_html__("Medium Depth", "js_composer") => "medium_depth", esc_html__("Large Depth", "js_composer") => "large_depth"),
 			),
 			array(
 		      "type" => 'checkbox',
-		      "heading" => __("Enable Animation", "js_composer"),
+		      "heading" => esc_html__("Enable Animation", "js_composer"),
 		      "param_name" => "animation",
 		      "group" => "Style",
-		      "description" => __("Turning this on will make your hotspots animate in when the user scrolls to the element", "js_composer"),
-		      "value" => Array(__("Yes, please", "js_composer") => 'true')
+		      "description" => esc_html__("Turning this on will make your hotspots animate in when the user scrolls to the element", "js_composer"),
+		      "value" => Array(esc_html__("Yes, please", "js_composer") => 'true')
 		    )
 		  )
 		);

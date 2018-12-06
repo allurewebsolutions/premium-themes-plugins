@@ -112,7 +112,7 @@ jQuery(document).ready(function($){
 
 
 
-$('body').on('click','.nectar-quick-view-box-backdrop, .nectar-quick-view-box #close',function(e){
+$('body').on('click','.nectar-quick-view-box-backdrop, .nectar-quick-view-box .close',function(e){
   e.preventDefault();
   if( $('.nectar-quick-view-box.fully-open').length > 0 ) {
      quickView($('.product.open-nectar-quick-view'),'close');

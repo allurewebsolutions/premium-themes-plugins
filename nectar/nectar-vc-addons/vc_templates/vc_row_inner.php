@@ -205,7 +205,7 @@
     	$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
     	
         echo'
-    	<div id="'.$row_id.'" data-midnight="'.strtolower($text_color).'" data-column-margin="'.$column_margin.'" data-bg-mobile-hidden="'.$background_image_mobile_hidden.'" class="wpb_row vc_row-fluid vc_row '. $main_class . $equal_height_class . $parallax_class . ' ' .  $css_class . ' '. $vertically_center_class . ' '. $class . ' " '.$using_custom_text_color.' style="'.$style.'">';
+    	<div id="'.$row_id.'" data-midnight="'.strtolower($text_color).'" data-column-margin="'.$column_margin.'" data-bg-mobile-hidden="'.$background_image_mobile_hidden.'" class="wpb_row vc_row-fluid vc_row inner_row '. $main_class . $equal_height_class . $parallax_class . ' ' .  $css_class . ' '. $vertically_center_class . ' '. $class . ' " '.$using_custom_text_color.' style="'.$style.'">';
     	
     	//row bg 
     	echo '<div class="row-bg-wrap"> <div class="row-bg '.$using_image_class . ' ' . $using_bg_color_class . ' '. $etxra_class.'" '.$parallax_speed.' style="'.$bg_props.'"></div> </div>';
@@ -273,10 +273,10 @@
             }
             echo '</ul>';
 
-            global $options;
-            $loading_animation = (!empty($options['loading-image-animation']) && !empty($options['loading-image'])) ? $options['loading-image-animation'] : null; 
-    		$default_loader = (empty($options['loading-image']) && !empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') ? '<span class="default-loading-icon spin"></span>' : null;
-    		$default_loader_class = (empty($options['loading-image']) && !empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') ? 'default-loader' : null;
+            global $nectar_options;
+            $loading_animation = (!empty($nectar_options['loading-image-animation']) && !empty($nectar_options['loading-image'])) ? $nectar_options['loading-image-animation'] : null; 
+    		$default_loader = (empty($nectar_options['loading-image']) && !empty($nectar_options['theme-skin']) && $nectar_options['theme-skin'] == 'ascend') ? '<span class="default-loading-icon spin"></span>' : null;
+    		$default_loader_class = (empty($nectar_options['loading-image']) && !empty($nectar_options['theme-skin']) && $nectar_options['theme-skin'] == 'ascend') ? 'default-loader' : null;
 
             echo '<div class="nectar-slider-loading '.$default_loader_class.'"> <span class="loading-icon '.$loading_animation.'"> '.$default_loader.'  </span> </div>';
     	}

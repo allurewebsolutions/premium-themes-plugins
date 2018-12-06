@@ -18,7 +18,7 @@ function nectar_create_meta_box( $post, $meta_box )
 	$count = 0;
 	
 	foreach( $meta_box['fields'] as $field ){
-
+		
 		$meta = get_post_meta( $post->ID, $field['id'], true );
 		
 		$inline = null;
@@ -68,8 +68,8 @@ function nectar_create_meta_box( $post, $meta_box )
 				echo '<td><input type="hidden" id="' . $field['id'] . '" name="nectar_meta[' . $field['id'] . ']" value="' . ($meta ? $meta : $field['std']) . '" />';
 		        echo '<img class="redux-opts-screenshot" id="redux-opts-screenshot-' . $field['id'] . '" src="' . ($meta ? $meta : $field['std']) . '" />';
 		        if( ($meta ? $meta : $field['std']) == '') {$remove = ' style="display:none;"'; $upload = ''; } else {$remove = ''; $upload = ' style="display:none;"'; }
-		        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary"' . $upload . ' rel-id="' . $field['id'] . '">' . __('Upload', 'salient') . '</a>';
-		        echo ' <a href="javascript:void(0);" class="redux-opts-upload-remove"' . $remove . ' rel-id="' . $field['id'] . '">' . __('Remove Upload', 'salient') . '</a></td>';
+		        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary"' . $upload . ' rel-id="' . $field['id'] . '">' . esc_html__('Upload', 'salient') . '</a>';
+		        echo ' <a href="javascript:void(0);" class="redux-opts-upload-remove"' . $remove . ' rel-id="' . $field['id'] . '">' . esc_html__('Remove Upload', 'salient') . '</a></td>';
 		        
 				break;
 				
@@ -110,8 +110,8 @@ function nectar_create_meta_box( $post, $meta_box )
 				 
 				echo '<td><input type="text" class="file_display_text" id="' . $field['id'] . '" name="nectar_meta[' . $field['id'] . ']" value="' . ($meta ? $meta : $field['std']) . '" />';
 		        if( ($meta ? $meta : $field['std']) == '') {$remove = ' style="display:none;"'; $upload = ''; } else {$remove = ''; $upload = ' style="display:none;"'; }
-		        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-media-upload button-secondary"' . $upload . ' rel-id="' . $field['id'] . '">' . __('Add Media', 'salient') . '</a>';
-		        echo ' <a href="javascript:void(0);" class="redux-opts-upload-media-remove"' . $remove . ' rel-id="' . $field['id'] . '">' . __('Remove Media', 'salient') . '</a></td>';
+		        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-media-upload button-secondary"' . $upload . ' rel-id="' . $field['id'] . '">' . esc_html__('Add Media', 'salient') . '</a>';
+		        echo ' <a href="javascript:void(0);" class="redux-opts-upload-media-remove"' . $remove . ' rel-id="' . $field['id'] . '">' . esc_html__('Remove Media', 'salient') . '</a></td>';
 		        
 				break;
 				
@@ -458,11 +458,19 @@ function nectar_save_meta_box( $post_id ) {
 		if ( !current_user_can( 'edit_post', $post_id ) ) return;
 	}
  
-	foreach( $_POST['nectar_meta'] as $key=>$val ){
-		update_post_meta( $post_id, $key, $val );
-	}
-
-}
+	foreach( $_POST['nectar_meta'] as $key=>$val ) {
+		//skip processing editor fields
+		if($key == '_nectar_portfolio_extra_content' || $key == '_nectar_portfolio_custom_grid_item_content') {
+			update_post_meta( $post_id, $key, $val );
+		}
+		else {
+			$val = wp_kses_post( $val );
+			update_post_meta( $post_id, $key, $val );
+		}
+		
+	} // loop.
+	
+} //end nectar_save_meta_box.
 
 add_action( 'save_post', 'nectar_save_meta_box' );
 

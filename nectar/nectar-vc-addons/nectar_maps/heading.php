@@ -1,24 +1,24 @@
 <?php 
 
 return array(
-	  "name" => __("Centered Heading", "js_composer"),
+	  "name" => esc_html__("Centered Heading", "js_composer"),
 	  "base" => "heading",
 	  "icon" => "icon-wpb-centered-heading",
-	  "category" => __('Nectar Elements', 'js_composer'),
-	  "description" => __('Simple heading', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
+	  "description" => esc_html__('Simple heading', 'js_composer'),
 	  "params" => array(
 	    array(
 	      "type" => "textarea_html",
 	      "holder" => "div",
-	      "heading" => __("Heading", "js_composer"),
+	      "heading" => esc_html__("Heading", "js_composer"),
 	      "param_name" => "content",
-	      "value" => __("", "js_composer")
+	      "value" => ''
 	    ), 
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Subtitle", "js_composer"),
+	      "heading" => esc_html__("Subtitle", "js_composer"),
 	      "param_name" => "subtitle",
-	      "description" => __("The subtitle text under the main title", "js_composer")
+	      "description" => esc_html__("The subtitle text under the main title", "js_composer")
 	    )
 	  )
 	);

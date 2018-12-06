@@ -38,9 +38,9 @@ $product_hide_sku = (!empty($options['woo_hide_product_sku'])) ? $options['woo_h
 ?>
 
 <?php if( function_exists('wc_product_class') ) { ?>
-	<div itemscope data-project-style="<?php echo $product_style; ?>" data-hide-product-sku="<?php echo $product_hide_sku; ?>" data-gallery-style="<?php echo $product_gallery_style; ?>" data-tab-pos="<?php echo (!empty($options['product_tab_position'])) ? $options['product_tab_position'] : 'default'; ?>" id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
+	<div itemscope data-project-style="<?php echo esc_attr($product_style); ?>" data-hide-product-sku="<?php echo esc_attr($product_hide_sku); ?>" data-gallery-style="<?php echo esc_attr($product_gallery_style); ?>" data-tab-pos="<?php echo (!empty($options['product_tab_position'])) ? esc_attr($options['product_tab_position']) : 'default'; ?>" id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
 <?php } else { ?>
-	<div itemscope data-project-style="<?php echo $product_style; ?>" data-hide-product-sku="<?php echo $product_hide_sku; ?>" data-gallery-style="<?php echo $product_gallery_style; ?>" data-tab-pos="<?php echo (!empty($options['product_tab_position'])) ? $options['product_tab_position'] : 'default'; ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<div itemscope data-project-style="<?php echo esc_attr($product_style); ?>" data-hide-product-sku="<?php echo esc_attr($product_hide_sku); ?>" data-gallery-style="<?php echo esc_attr($product_gallery_style); ?>" data-tab-pos="<?php echo (!empty($options['product_tab_position'])) ? esc_attr($options['product_tab_position']) : 'default'; ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php } ?>
 
 	<?php

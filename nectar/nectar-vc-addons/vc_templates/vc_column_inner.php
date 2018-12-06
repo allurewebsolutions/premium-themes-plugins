@@ -19,6 +19,7 @@ extract(shortcode_atts(array(
     'background_hover_color_opacity' => '1',
     'background_color_opacity' => '1',
     'background_image' => '',
+    'bg_image_animation' => 'none',
     'enable_bg_scale' => '',
     'column_link' => '',
     'column_link_target' => '_self',
@@ -30,7 +31,12 @@ extract(shortcode_atts(array(
     'border_animation_delay' => '',
     'column_shadow' => 'none',
     'column_border_radius' => 'none',
-    'tablet_width_inherit' => 'default'
+    'tablet_width_inherit' => 'default',
+    'video_bg'=> '', 
+	  'video_webm'=> '', 
+	  'video_mp4'=> '', 
+	  'video_ogv'=> '', 
+	  'video_image'=> ''
 ), $atts));
 
 //var init
@@ -53,18 +59,29 @@ if(!empty($background_color)) {
 	$background_color_string .= $background_color;	
     $has_bg_color = 'true';
 }
+
+//img bg
+$image_bg_markup = null;
+$image_style     = null;
+
 if(!empty($background_image)) {
 	
-      if(!preg_match('/^\d+$/',$background_image)){
+    if(!preg_match('/^\d+$/',$background_image)){
                     
-        $style .= 'background-image: url('.$background_image . '); ';
+        $image_style .= 'background-image: url('.$background_image . '); ';
     
     } else {
 
     	$bg_image_src = wp_get_attachment_image_src($background_image, 'full');
-    	$style .= ' background-image: url(\''.$bg_image_src[0].'\'); ';
+    	$image_style .= ' background-image: url(\''.$bg_image_src[0].'\'); ';
     }
+    
+    $image_bg_markup = '<div class="column-image-bg-wrap" data-bg-animation="'.$bg_image_animation.'"><div class="inner-wrap">';
+    $image_bg_markup .= '<div class="column-image-bg" style="'.$image_style.'"></div>';
+    $image_bg_markup .= '</div></div>';
+
 }
+
 $using_custom_font_color = null;
 if(!empty($font_color)) { 
     $style .= ' color: '.$font_color.';';
@@ -166,10 +183,48 @@ if(!empty($background_color_string)) {
 }
 
 
+//video bg
+$video_markup = null;
+if($video_bg) {
+  
+
+  //parse video image
+  if(strpos($video_image, "http://") !== false){
+    $video_image_src = $video_image;
+  } else {
+    $video_image_src = wp_get_attachment_image_src($video_image, 'full');
+    $video_image_src = $video_image_src[0];
+  }
+  
+  $poster_markup = null;
+
+  
+  //forced
+  $muted_video = 'muted playsinline';
+     
+  $video_markup .= '
+  
+  <div class="mobile-video-image column-video" style="background-image: url('. esc_url( $video_image_src ) .')"></div>
+  <div class="nectar-video-wrap column-video">';
+      
+      $video_markup .= '
+      <video class="nectar-video-bg" width="1800" height="700" '.$poster_markup.' preload="auto" loop autoplay '.$muted_video.'>';
+  
+          if(!empty($video_webm)) { $video_markup .= '<source src="'. esc_url( $video_webm ) .'" type="video/webm">'; }
+          if(!empty($video_mp4)) { $video_markup .= '<source src="'. esc_url( $video_mp4 ) .'"  type="video/mp4">'; }
+          if(!empty($video_ogv)) { $video_markup .= '<source src="'. esc_url( $video_ogv ) .'" type="video/ogg">'; }
+        
+       $video_markup .='</video>';
+    
+
+   $video_markup .= '</div>';
+
+}
+
 $column_link_html = (!empty($column_link)) ? '<a class="column-link" target="'.$column_link_target.'" href="'.$column_link.'"></a>' : null;
 $column_bg_color_html = (!empty($column_link)) ? '<a class="column-link" target="'.$column_link_target.'" href="'.$column_link.'"></a>' : null;
 $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $width . $el_class . vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
-$output .= "\n\t".'<div '.$style.' class="'.$css_class.'" '.$using_custom_font_color.' '.$using_bg.' data-t-w-inherits="'. $tablet_width_inherit .'" data-shadow="'.$column_shadow.'" data-border-radius="'.$column_border_radius.'" data-border-animation="'.$enable_border_animation.'" data-border-animation-delay="'.$border_animation_delay.'" data-border-width="'.$column_border_width.'" data-border-style="'.$column_border_style.'" data-border-color="'.$column_border_color.'" data-bg-cover="'.$enable_bg_scale.'" data-padding-pos="'. $column_padding_position .'" data-has-bg-color="'.$has_bg_color.'" data-bg-color="'.$background_color_string.'" data-bg-opacity="'.$background_color_opacity.'" data-hover-bg="'.$background_color_hover.'" data-hover-bg-opacity="'.$background_hover_color_opacity.'" data-animation="'.strtolower($parsed_animation).'" data-delay="'.$delay.'">' . $column_link_html . $border_html;
+$output .= "\n\t".'<div '.$style.' class="'.$css_class.'" '.$using_custom_font_color.' '.$using_bg.' data-t-w-inherits="'. $tablet_width_inherit .'" data-shadow="'.$column_shadow.'" data-border-radius="'.$column_border_radius.'" data-border-animation="'.$enable_border_animation.'" data-border-animation-delay="'.$border_animation_delay.'" data-border-width="'.$column_border_width.'" data-border-style="'.$column_border_style.'" data-border-color="'.$column_border_color.'" data-bg-cover="'.$enable_bg_scale.'" data-padding-pos="'. $column_padding_position .'" data-has-bg-color="'.$has_bg_color.'" data-bg-color="'.$background_color_string.'" data-bg-opacity="'.$background_color_opacity.'" data-hover-bg="'.$background_color_hover.'" data-hover-bg-opacity="'.$background_hover_color_opacity.'" data-animation="'.strtolower($parsed_animation).'" data-delay="'.$delay.'">' . $column_link_html . $border_html . $image_bg_markup . $video_markup;
 $output .= '<div class="column-bg-overlay"'.$column_overlay_style.'></div>';
 if($using_reveal_animation == true) { $output .= "\n\t\t".'<div class="column-inner-wrap"><div '.$style2.' data-bg-cover="'.$enable_bg_scale.'" class="column-inner '.$column_padding.'">'; }
 else { $output .= "\n\t\t".'<div class="vc_column-inner">'; }

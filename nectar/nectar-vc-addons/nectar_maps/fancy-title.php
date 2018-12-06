@@ -1,11 +1,11 @@
 <?php 
 
 return array(
-		  "name" => __("Animated Title", "js_composer"),
+		  "name" => esc_html__("Animated Title", "js_composer"),
 		  "base" => "nectar_animated_title",
 		  "icon" => "icon-wpb-nectar-gradient-text",
-		  "category" => __('Nectar Elements', 'js_composer'),
-		  "description" => __('Add a title with animation', 'js_composer'),
+		  "category" => esc_html__('Nectar Elements', 'js_composer'),
+		  "description" => esc_html__('Add a title with animation', 'js_composer'),
 		  "params" => array(
 		  	array(
 			"type" => "dropdown",
@@ -47,7 +47,7 @@ return array(
 					"Extra Color 2" => "Extra-Color-2",	
 					"Extra Color 3" => "Extra-Color-3"
 				),
-				'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+				'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 			),
 			array(
 				"type" => "colorpicker",
@@ -59,10 +59,10 @@ return array(
 			),
 			array(
 		      "type" => "textfield",
-		      "heading" => __("Text Content", "js_composer"),
+		      "heading" => esc_html__("Text Content", "js_composer"),
 		      "param_name" => "text",
 		      "admin_label" => true,
-		      "description" => __("Enter your fancy title text here", "js_composer")
+		      "description" => esc_html__("Enter your fancy title text here", "js_composer")
 		    )
 		 	 
 		  )

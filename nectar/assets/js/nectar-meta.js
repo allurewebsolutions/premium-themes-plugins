@@ -155,15 +155,39 @@ jQuery(document).ready(function($){
 	/*----------------------------------------------------------------------------------*/
 	
 	function portfolioDisplaySettings(){
-		if($('select#page_template').val() == 'template-portfolio.php'){
-			$('#nectar-metabox-portfolio-display').show();
+		//gutenberg
+		if($('.post-type-page .components-panel .editor-page-attributes__template select').length > 0) {
+
+			if($('.post-type-page .components-panel .editor-page-attributes__template select').val() == 'template-portfolio.php'){
+				$('#nectar-metabox-portfolio-display').show();
+			} else {
+				$('#nectar-metabox-portfolio-display').hide();
+			}
+			
 		} else {
-			$('#nectar-metabox-portfolio-display').hide();
-		}
+			
+			if($('select#page_template').val() == 'template-portfolio.php'){
+				$('#nectar-metabox-portfolio-display').show();
+			} else {
+				$('#nectar-metabox-portfolio-display').hide();
+			}
+			
+		} //non gutenberg
 	}
 	
-	$('select#page_template').change(portfolioDisplaySettings);
-	portfolioDisplaySettings();
+	setTimeout(function(){
+		
+
+		//gutenberg
+		if($('.post-type-page .components-panel .editor-page-attributes__template select').length > 0) {
+			$('.post-type-page .components-panel .editor-page-attributes__template select').change(portfolioDisplaySettings);
+		} else {
+			$('select#page_template').change(portfolioDisplaySettings);
+		} //non gutenberg
+		
+		portfolioDisplaySettings();
+	
+	},200);
 	
     
     /*----------------------------------------------------------------------------------*/
@@ -614,20 +638,21 @@ jQuery(document).ready(function($){
 
      //salient studio scrolling pointer events
      if($('.vc_edit-form-tab[data-tab="default_templates"] > .vc_col-sm-12').length > 0) {
-	     var studioScrollTimer;
-	     var $studioScrollPanel = $('.vc_edit-form-tab[data-tab="default_templates"] > .vc_col-sm-12');
+			 
+     var studioScrollTimer;
+     var $studioScrollPanel = $('.vc_edit-form-tab[data-tab="default_templates"] > .vc_col-sm-12');
+			 /*
+			$studioScrollPanel.on('scroll',function(){
 
-		$studioScrollPanel.on('scroll',function(){
-
-			 clearTimeout(studioScrollTimer);
-			  if(!$studioScrollPanel.hasClass('nectar-disable-hover')) {
-			    $studioScrollPanel.addClass('nectar-disable-hover')
-			  }
-			  
-			  studioScrollTimer = setTimeout(function(){
-			    $studioScrollPanel.removeClass('nectar-disable-hover')
-			  },400);
-		});
+				 clearTimeout(studioScrollTimer);
+				  if(!$studioScrollPanel.hasClass('nectar-disable-hover')) {
+				    $studioScrollPanel.addClass('nectar-disable-hover')
+				  }
+				  
+				  studioScrollTimer = setTimeout(function(){
+				    $studioScrollPanel.removeClass('nectar-disable-hover')
+				  },400);
+			}); */
 	}
 
 
@@ -642,16 +667,18 @@ jQuery(document).ready(function($){
 	//metabox switch 
 	
 	////checkbox
-		$('.postbox-container .switch-options.salient').find( ".cb-enable" ).click(function(){
-			
+		$('body').on('click','.postbox-container .switch-options.salient .cb-enable, fieldset[id*="salient_redux"] .switch-options .cb-enable',function(){
+
 			var parent = $( this ).parents( '.switch-options' );
 
 			$( '.cb-disable', parent ).removeClass( 'selected' );
 			$( this ).addClass( 'selected' );
 
 			$(this).parent().addClass( 'activated');
-
-			$( 'input[type="checkbox"]', parent ).val( 'on' ).attr('checked','checked').trigger('change');
+			
+			if($(this).parents('.postbox-container').length > 0) {
+				$( 'input[type="checkbox"]', parent ).val( 'on' ).attr('checked','checked').trigger('change');
+			}
 			
 			//item specific triggers
 			if($(this).parent().find('#_nectar_header_box_roll').length > 0) {
@@ -669,7 +696,7 @@ jQuery(document).ready(function($){
 			
 		});
 		
-		$('.postbox-container .switch-options.salient').find( ".cb-disable" ).click(function(){
+		$('body').on('click', '.postbox-container .switch-options.salient .cb-disable, fieldset[id*="salient_redux"] .switch-options .cb-disable', function(){
 			
 			var parent = $( this ).parents( '.switch-options' );
 
@@ -678,13 +705,23 @@ jQuery(document).ready(function($){
 			/*nectar addition*/
 			$(this).parent().removeClass( 'activated');
 			/*nectar addition end*/
-			$( 'input[type="checkbox"]', parent ).val( 'off' ).removeAttr('checked').trigger('change');
+			if($(this).parents('.postbox-container').length > 0) {
+				$( 'input[type="checkbox"]', parent ).val( 'off' ).removeAttr('checked').trigger('change');
+			}
 			
 			//item specific triggers
 			if($(this).parent().find('#_nectar_header_fullscreen').length > 0) {
 				fullscreenHeight();
 			}
 			
+		});
+		
+		
+		////start activated 
+		$('fieldset[id*="salient_redux"] .switch-options').each(function(){
+			if( $(this).find('.cb-enable.selected').length > 0 ) {
+				$(this).addClass( 'activated');
+			}
 		});
 
 });

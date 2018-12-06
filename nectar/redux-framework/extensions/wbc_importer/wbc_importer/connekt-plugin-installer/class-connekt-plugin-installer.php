@@ -52,7 +52,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
    		   foreach($plugins as $plugin) :
 
                $button_classes = 'install button';
-               $button_text = __('Install Now', 'framework');
+               $button_text = __('Install Now', 'salient');
                
 
                if(isset($plugin['source'])) {
@@ -87,16 +87,19 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 					if ( !is_wp_error( $api ) ) { // confirm error free
 
 	               $main_plugin_file = Connekt_Plugin_Installer::get_plugin_file($plugin['slug']); // Get main plugin file
-	               //echo $main_plugin_file;
+                 
 	               if(self::check_file_extension($main_plugin_file)){ // check file extension
-	   	            if(is_plugin_active($main_plugin_file)){
+                   
+                  /*nectar addition */ 
+	   	            if(self::nectar_check_plugin_active($plugin['slug'])){
+                  /*nectar addition end */ 
 	      	            // plugin activation, confirmed!
 	                  	$button_classes = 'button disabled';
-	                  	$button_text = __('Activated', 'framework');
+	                  	$button_text = __('Activated', 'salient');
 	                  } else {
 	                     // It's installed, let's activate it
 	                  	$button_classes = 'activate button button-primary';
-	                  	$button_text = __('Activate', 'framework');
+	                  	$button_text = __('Activate', 'salient');
 	                  }
 	               }
 
@@ -112,8 +115,50 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
       }
 
 
-
-
+    /*nectar addition*/
+    public static function nectar_check_plugin_active($plugin_slug) {
+      
+      switch($plugin_slug) {
+        
+         case 'js_composer_salient':
+           if( class_exists('WPBakeryVisualComposerAbstract') && defined( 'SALIENT_VC_ACTIVE') ) {
+             return true;
+           } else {
+             return false;
+           }
+           break;
+           
+           
+         case 'woocommerce':
+          if( class_exists('WooCommerce') ) {
+            return true;
+          } else {
+            return false;
+          }
+          break;
+          
+          
+         case 'yith-woocommerce-ajax-navigation':
+           if( class_exists('YITH_WCAN') ) {
+             return true;
+           } else {
+             return false;
+           }
+           break;
+           
+           
+         case 'popup-maker':
+           if( class_exists('Popup_Maker') ) {
+             return true;
+           } else {
+             return false;
+           }
+           break;
+      }
+      
+    }  
+    /*nectar addition end*/
+    
 		/*
       * render_template
       * Render display template for each plugin.
@@ -133,16 +178,16 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
            
            <div class="plugin">
   		      <div class="plugin-wrap">
-                 <h4 data-slug="<?php echo $plugin['slug']; ?>"><?php echo $plugin['name']; ?></h4>
+                 <h4 data-slug="<?php echo esc_attr($plugin['slug']); ?>"><?php echo esc_html($plugin['name']); ?></h4>
   			   </div>
   			   <ul class="activation-row">
                  <li>
-                    <a class="<?php echo $button_classes; ?>"
-                    	data-slug="<?php echo $plugin['slug']; ?>"
-                      data-source="<?php echo $plugin['source']; ?>"
-                      data-name="<?php echo $plugin['name']; ?>"
-  									href="<?php echo get_admin_url(); ?>/update.php?action=install-plugin&amp;plugin=<?php echo $plugin['slug']; ?>&amp;_wpnonce=<?php echo wp_create_nonce('install-plugin_'. $plugin['slug']) ?>">
-  							<?php echo $button_text; ?>
+                    <a class="<?php echo esc_attr($button_classes); ?>"
+                    	data-slug="<?php echo esc_attr($plugin['slug']); ?>"
+                      data-source="<?php echo esc_attr($plugin['source']); ?>"
+                      data-name="<?php echo esc_attr($plugin['name']); ?>"
+  									href="<?php echo get_admin_url(); ?>/update.php?action=install-plugin&amp;plugin=<?php echo esc_attr($plugin['slug']); ?>&amp;_wpnonce=<?php echo wp_create_nonce('install-plugin_'. $plugin['slug']) ?>">
+  							<?php echo esc_html($button_text); ?>
                     </a>
                  </li>
                  <li>
@@ -153,15 +198,15 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
          <?php } else { ?>
          <div class="plugin">
 		      <div class="plugin-wrap">
-               <h4 data-slug="<?php echo $api->slug; ?>"><?php echo $api->name; ?></h4>
+               <h4 data-slug="<?php echo esc_attr($api->slug); ?>"><?php echo esc_attr($api->name); ?></h4>
 			   </div>
 			   <ul class="activation-row">
                <li>
-                  <a class="<?php echo $button_classes; ?>"
-                  	data-slug="<?php echo $api->slug; ?>"
-                    data-name="<?php echo $api->name; ?>"
-									href="<?php echo get_admin_url(); ?>/update.php?action=install-plugin&amp;plugin=<?php echo $api->slug; ?>&amp;_wpnonce=<?php echo wp_create_nonce('install-plugin_'. $api->slug) ?>">
-							<?php echo $button_text; ?>
+                  <a class="<?php echo esc_attr($button_classes); ?>"
+                  	data-slug="<?php echo esc_attr($api->slug); ?>"
+                    data-name="<?php echo esc_attr($api->name); ?>"
+									href="<?php echo get_admin_url(); ?>/update.php?action=install-plugin&amp;plugin=<?php echo esc_attr($api->slug); ?>&amp;_wpnonce=<?php echo wp_create_nonce('install-plugin_'. $api->slug) ?>">
+							<?php echo esc_html($button_text); ?>
                   </a>
                </li>
                <li>
@@ -187,7 +232,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 		public function cnkt_plugin_installer(){
 
 			if ( ! current_user_can('install_plugins') )
-				wp_die( __( 'Sorry, you are not allowed to install plugins on this site.', 'framework' ) );
+				wp_die( __( 'Sorry, you are not allowed to install plugins on this site.', 'salient' ) );
 
 			$nonce = $_POST["nonce"];
 			$plugin = $_POST["plugin"];
@@ -196,7 +241,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 
 			// Check our nonce, if they don't match then bounce!
 			if (! wp_verify_nonce( $nonce, 'cnkt_installer_nonce' ))
-				wp_die( __( 'Error - unable to verify nonce, please try again.', 'framework') );
+				wp_die( __( 'Error - unable to verify nonce, please try again.', 'salient') );
 
 
          // Include required libs for installation
@@ -278,7 +323,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
       */
 		public function cnkt_plugin_activation(){
 			if ( ! current_user_can('install_plugins') )
-				wp_die( __( 'Sorry, you are not allowed to activate plugins on this site.', 'framework' ) );
+				wp_die( __( 'Sorry, you are not allowed to activate plugins on this site.', 'salient' ) );
 
 			$nonce = $_POST["nonce"];
 			$plugin = $_POST["plugin"];
@@ -287,7 +332,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
       
 			// Check our nonce, if they don't match then bounce!
 			if (! wp_verify_nonce( $nonce, 'cnkt_installer_nonce' ))
-				die( __( 'Error - unable to verify nonce, please try again.', 'framework' ) );
+				die( __( 'Error - unable to verify nonce, please try again.', 'salient' ) );
 
 
          // Include required libs for activation
@@ -443,10 +488,10 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 			wp_localize_script( 'plugin-installer', 'cnkt_installer_localize', array(
                'ajax_url' => admin_url('admin-ajax.php'),
                'admin_nonce' => wp_create_nonce('cnkt_installer_nonce'),
-               'install_now' => __('Are you sure you want to install this plugin?', 'framework'),
-               'install_btn' => __('Install Now', 'framework'),
-               'activate_btn' => __('Activate', 'framework'),
-               'installed_btn' => __('Activated', 'framework')
+               'install_now' => __('Are you sure you want to install this plugin?', 'salient'),
+               'install_btn' => __('Install Now', 'salient'),
+               'activate_btn' => __('Activate', 'salient'),
+               'installed_btn' => __('Activated', 'salient')
             ));
 		 
          wp_enqueue_style( 'plugin-installer', CNKT_INSTALLER_PATH. 'assets/installer.css');

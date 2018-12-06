@@ -3,6 +3,7 @@
    extract(shortcode_atts(array(
 	  "type" => 'in_container',
 	  'bg_image'=> '', 
+    'bg_image_animation' => 'none',
 	  'background_image_mobile_hidden' => '',
 	  'bg_position'=> '', 
 	  'bg_repeat' => '', 
@@ -106,6 +107,9 @@
 	$using_image_class = null;
 	$using_bg_color_class = null;
 	$using_custom_text_color = null;
+  
+  $nectar_using_VC_front_end_editor = (isset($_GET['vc_editable'])) ? sanitize_text_field($_GET['vc_editable']) : '';
+  $nectar_using_VC_front_end_editor = ($nectar_using_VC_front_end_editor == 'true') ? true : false;
 
 	//force full width BG if using shape divider and in container
 	if($enable_shape_divider == 'true' && $type == 'in_container') {
@@ -272,7 +276,7 @@
 		}
 
 		//equal height
-		if($equal_height == 'yes')
+		if($equal_height == 'yes' || $nectar_using_VC_front_end_editor && strtolower($vertically_center_columns) == 'true')
 			$equal_height_class = ' vc_row-o-equal-height vc_row-flex ';
 		else 
 		 	$equal_height_class = '';
@@ -310,7 +314,7 @@
 		if($page_full_screen_rows == 'on') echo '<div class="full-page-inner-wrap-outer"><div class="full-page-inner-wrap" data-name="'.$row_name.'" data-content-pos="'.$full_screen_row_position.'"><div class="full-page-inner">';
 
 		//row bg 
-		echo '<div class="row-bg-wrap"><div class="inner-wrap">';
+		echo '<div class="row-bg-wrap" data-bg-animation="'.$bg_image_animation.'"><div class="inner-wrap '.$using_image_class.'">';
     echo '<div class="row-bg '.$using_image_class . ' ' . $using_bg_color_class . ' '. $disable_ken_burns_class . ' '. $etxra_class.'" '.$parallax_speed.' style="'.$bg_props.'"></div>';
     echo '</div>';
     
@@ -471,10 +475,10 @@
 	        }
 	        echo '</ul>';
 
-	        global $options;
-	        $loading_animation = (!empty($options['loading-image-animation']) && !empty($options['loading-image'])) ? $options['loading-image-animation'] : null; 
-			$default_loader = (empty($options['loading-image']) && !empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') ? '<span class="default-loading-icon spin"></span>' : null;
-			$default_loader_class = (empty($options['loading-image']) && !empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') ? 'default-loader' : null;
+	        global $nectar_options;
+	        $loading_animation = (!empty($nectar_options['loading-image-animation']) && !empty($nectar_options['loading-image'])) ? $nectar_options['loading-image-animation'] : null; 
+			$default_loader = (empty($nectar_options['loading-image']) && !empty($nectar_options['theme-skin']) && $nectar_options['theme-skin'] == 'ascend') ? '<span class="default-loading-icon spin"></span>' : null;
+			$default_loader_class = (empty($nectar_options['loading-image']) && !empty($nectar_options['theme-skin']) && $nectar_options['theme-skin'] == 'ascend') ? 'default-loader' : null;
 
 	        //echo '<div class="nectar-slider-loading '.$default_loader_class.'"> <span class="loading-icon '.$loading_animation.'"> '.$default_loader.'  </span> </div>';
 		}
@@ -506,16 +510,16 @@
 			$poster_markup = null;
 			$video_markup = null;
 			
-			if($enable_video_color_overlay != 'true') $video_overlay_color = null;
-			$video_markup .=  '<div class="video-color-overlay" data-color="'.$video_overlay_color.'"></div>';
+			if($enable_video_color_overlay != 'true') { $video_overlay_color = null; }
+			$video_markup .=  '<div class="video-color-overlay" data-color="'. esc_attr( $video_overlay_color ) .'"></div>';
 			
       //forced
 			$muted_video = 'muted playsinline';
 				 
 			$video_markup .= '
 			
-			<div class="mobile-video-image" style="background-image: url('.$video_image_src.')"></div>
-			<div class="nectar-video-wrap" data-bg-alignment="'.$bg_position.'">';
+			<div class="mobile-video-image" style="background-image: url('. esc_url( $video_image_src ) .')"></div>
+			<div class="nectar-video-wrap" data-bg-alignment="'. esc_attr( $bg_position ) .'">';
 					
 				if(!empty($video_external) && vc_extract_youtube_id( $video_external )) {
 					wp_enqueue_script( 'vc_youtube_iframe_api_js' );
@@ -524,16 +528,16 @@
 					$video_markup .= '
 					<video class="nectar-video-bg" width="1800" height="700" '.$poster_markup.' preload="auto" loop autoplay '.$muted_video.'>';
 			
-					    if(!empty($video_webm)) { $video_markup .= '<source src="'.$video_webm.'" type="video/webm">'; }
-					    if(!empty($video_mp4)) { $video_markup .= '<source src="'.$video_mp4.'"  type="video/mp4">'; }
-					    if(!empty($video_ogv)) { $video_markup .= '<source src="'. $video_ogv.'" type="video/ogg">'; }
+					    if(!empty($video_webm)) { $video_markup .= '<source src="'. esc_url( $video_webm ) .'" type="video/webm">'; }
+					    if(!empty($video_mp4)) { $video_markup .= '<source src="'. esc_url( $video_mp4 ) .'"  type="video/mp4">'; }
+					    if(!empty($video_ogv)) { $video_markup .= '<source src="'. esc_url( $video_ogv ) .'" type="video/ogg">'; }
 					  
 				   $video_markup .='</video>';
 				}
 		
 			 $video_markup .= '</div>';
 			
-			echo $video_markup;
+			echo $video_markup; // WPCS: XSS ok.
 		}
 		
 		
@@ -576,7 +580,7 @@
         }
         
         $no_bg_color_class = (empty($shape_divider_color)) ? 'no-color ': '';
-   			$shape_divider_markup .= '<div class="nectar-shape-divider-wrap '.$no_bg_color_class.'" '. $shape_divider_height_val .' '.$using_percent_shape_divider_attr.' data-front="'.$shape_divider_bring_to_front.'" data-style="'.$shape_type.'" data-position="'. $shape_divider_pos[$i] .'" >';
+   			$shape_divider_markup .= '<div class="nectar-shape-divider-wrap '.$no_bg_color_class.'" '. $shape_divider_height_val .' '.$using_percent_shape_divider_attr.' data-front="'. esc_attr( $shape_divider_bring_to_front ).'" data-style="'. esc_attr( $shape_type ).'" data-position="'. esc_attr( $shape_divider_pos[$i] ) .'" >';
         
   			switch($shape_type) {
   				case 'curve' : 
@@ -639,7 +643,7 @@
       } // top or bottom loop
 			
 		}
-    echo $shape_divider_markup;
+    echo $shape_divider_markup; // WPCS: XSS ok.
 
 	  echo $extra_container_div.'<div class="col span_12 '.strtolower($text_color).' '.$text_align.'">'.do_shortcode($content).'</div></div>'.$extra_container_div_closing;
 		

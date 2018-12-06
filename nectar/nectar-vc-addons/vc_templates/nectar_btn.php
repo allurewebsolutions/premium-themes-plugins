@@ -1,10 +1,10 @@
 <?php 
 
-extract(shortcode_atts(array("size" => 'small', "url" => '#', 'button_style' => '', 'button_color_2' => '', 'button_color' => '', 'color_override' => '', 'hover_color_override' => '', 'hover_text_color_override' => '#fff', "text" => 'Button Text', 'icon_family' => '', 'icon_fontawesome' => '', 'icon_linecons' => '', 'icon_iconsmind' => '', 'icon_steadysets' => '', 'open_new_tab' => '0', 
+extract(shortcode_atts(array("size" => 'small', "url" => '#', 'button_style' => '', 'button_color_2' => '', 'button_color' => '', 'color_override' => '', 'solid_text_color_override' => '', 'hover_color_override' => '', 'hover_text_color_override' => '#fff', "text" => 'Button Text', 'icon_family' => '', 'icon_fontawesome' => '', 'icon_linecons' => '', 'icon_iconsmind' => '', 'icon_steadysets' => '', 'open_new_tab' => '0', 
 	'margin_top' => '','margin_right' => '','margin_bottom' => '', 'margin_left' => '', 'css_animation' => '', 'el_class' => ''), $atts));
 
 
-global $options;
+global $nectar_options;
  
 $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 	
@@ -30,9 +30,14 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 			break;
 	}
 	
-
+	
+	$starting_custom_icon_color = '';
+	if(!empty($solid_text_color_override) && $button_style == 'regular' || !empty($solid_text_color_override) && $button_style == 'regular-tilt') {
+		$starting_custom_icon_color = 'style="color: '.$solid_text_color_override.';" ';
+	}
+	
 	if(!empty($icon_family) && $icon_family != 'none') {
-		$button_icon = '<i class="' . $icon .'"></i>'; $has_icon = ' has-icon'; 
+		$button_icon = '<i '.$starting_custom_icon_color.' class="' . $icon .'"></i>'; $has_icon = ' has-icon'; 
 	} 
 	else {
 		$button_icon = null; $has_icon = null;
@@ -58,8 +63,8 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 
 	
 	//stop regular grad class for material skin 
-	$theme_skin = ( !empty($options['theme-skin']) ) ? $options['theme-skin'] : 'original';
-	$headerFormat = (!empty($options['header_format'])) ? $options['header_format'] : 'default';
+	$theme_skin = ( !empty($nectar_options['theme-skin']) ) ? $nectar_options['theme-skin'] : 'original';
+	$headerFormat = (!empty($nectar_options['header_format'])) ? $nectar_options['header_format'] : 'default';
 	if($headerFormat == 'centered-menu-bottom-bar') $theme_skin = 'material';
 	
 	if($theme_skin == 'material' && $color == 'extra-color-gradient-1') {
@@ -88,21 +93,25 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 		$margins .= 'margin-left: '.intval($margin_left).'px;';
 	}
 	
+	$starting_custom_color = '';
+	if(!empty($solid_text_color_override) && $button_style == 'regular' || !empty($solid_text_color_override) && $button_style == 'regular-tilt') {
+		$starting_custom_color = 'color: '.$solid_text_color_override.'; ';
+	}
+	
 	if(!empty($color_override)) {
 		$color_or = 'data-color-override="'. $color_override.'" ';	
 		
 		if($button_style == 'see-through' || $button_style == 'see-through-2') {
-			$starting_custom_color = 'border-color: '.$color_override.'; color: '.$color_override.';';
+			$starting_custom_color .= 'border-color: '.$color_override.'; color: '.$color_override.';';
 		} 
 		else if($button_style == 'see-through-3') {
-			$starting_custom_color = 'border-color: '.$color_override.';';
+			$starting_custom_color .= 'border-color: '.$color_override.';';
 		} else {
-			$starting_custom_color = 'background-color: '.$color_override.';';
+			$starting_custom_color .= 'background-color: '.$color_override.';';
 		}
 
 	} else {
 		$color_or = 'data-color-override="false" ';	
-		$starting_custom_color = '';
 	}
 		
 	switch ($size) {

@@ -18,7 +18,7 @@ class Nectar_Woo_Quickview {
   
   function enqueue_scripts() {
     
-    wp_register_script('nectar_woo_quick_view_js', get_template_directory_uri() . '/nectar/woo/js/quick_view_actions.js', array('jquery'), '1.0', true);
+    wp_register_script('nectar_woo_quick_view_js', get_template_directory_uri() . '/nectar/woo/js/quick_view_actions.js', array('jquery'), '1.1', true);
     wp_enqueue_script( 'wc-add-to-cart-variation' );
     wp_enqueue_script('nectar_woo_quick_view_js');
     wp_enqueue_script('flickity');
@@ -26,9 +26,9 @@ class Nectar_Woo_Quickview {
   
   public function nectar_woo_add_quick_view_button() {
     
-    global $options;
+    global $nectar_options;
 		global $post;
-    $product_style = (!empty($options['product_style'])) ? $options['product_style'] : 'classic';
+    $product_style = (!empty($nectar_options['product_style'])) ? $nectar_options['product_style'] : 'classic';
     $button_class = ($product_style == 'classic') ? 'button' : '';
     $button_icon = ($product_style != 'material') ? '<i class="normal icon-salient-m-eye"></i>' : '';
     
@@ -37,21 +37,20 @@ class Nectar_Woo_Quickview {
     if($get_product->is_type( 'grouped' ) || $get_product->is_type( 'external' ) ) { return; }
     
     echo '<a class="nectar_quick_view no-ajaxy '.$button_class.'" data-product-id="'.$post->ID.'"> '.$button_icon.'
-    <span>' . __('Quick View', 'salient') . '</span></a>';
+    <span>' . esc_html__('Quick View', 'salient') . '</span></a>';
     
 	}
   
   public function nectar_quick_view_markup() {
     
-    global $options;
-    //$quick_view_sizing = (!empty($options['product_quick_view_image_sizing'])) ? $options['product_quick_view_image_sizing'] : 'default';
+    global $nectar_options;
     $quick_view_sizing = 'cropped';
     
 		echo '<div class="nectar-quick-view-box-backdrop"></div>
     <div class="nectar-quick-view-box" data-image-sizing="'.$quick_view_sizing.'">
     <div class="inner-wrap">
     
-    <div id="close">
+    <div class="close">
       <a href="#" class="no-ajaxy">
         <span class="close-wrap"> <span class="close-line close-line1"></span> <span class="close-line close-line2"></span> </span>		     	
       </a>
@@ -134,7 +133,7 @@ class Nectar_Woo_Quickview {
                          global $product;
                          if ( has_post_thumbnail() ) { ?>
                           <div class="images"> 
-                          <div class="nectar-product-slider">
+                          <div class="nectar-product-slider generate-markup">
                              
                            <div class="carousel-cell woocommerce-product-gallery__image">
            	                	<a href="#">
@@ -175,7 +174,7 @@ class Nectar_Woo_Quickview {
  	                                <div class="summary-content">   
                                        <?php
                                        
-                                       echo '<div class="nectar-full-product-link"><a href="'.get_permalink().'"><span>'. __('More Information', 'salient') .'</span></a></div>';
+                                       echo '<div class="nectar-full-product-link"><a href="'.esc_url(get_permalink()).'"><span>'. esc_html__('More Information', 'salient') .'</span></a></div>';
                                        
                                        do_action('nectar_quick_view_summary_content');
       

@@ -1,15 +1,15 @@
 <?php 
 
 return array(
-	  "name" => __("Video Lightbox", "js_composer"),
+	  "name" => esc_html__("Video Lightbox", "js_composer"),
 	  "base" => "nectar_video_lightbox",
 	  "icon" => "icon-wpb-video-lightbox",
-	  "category" => __('Nectar Elements', 'js_composer'),
-	  "description" => __('Add a video lightbox link', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
+	  "description" => esc_html__('Add a video lightbox link', 'js_composer'),
 	  "params" => array(
 	  	array(
 		  "type" => "dropdown",
-		  "heading" => __("Link Style", "js_composer"),
+		  "heading" => esc_html__("Link Style", "js_composer"),
 		  "param_name" => "link_style",
 		  "value" => array(
 		     "Play Button" => "play_button",
@@ -19,18 +19,18 @@ return array(
 		   ),
 		  'save_always' => true,
 		  "admin_label" => true,
-		  "description" => __("Please select your link style", "js_composer")	  
+		  "description" => esc_html__("Please select your link style", "js_composer")	  
 		),
 		array(
 	      "type" => "textfield",
-	      "heading" => __("Video URL", "js_composer"),
+	      "heading" => esc_html__("Video URL", "js_composer"),
 	      "param_name" => "video_url",
 	      "admin_label" => false,
-	      "description" => __("The URL to your video on Youtube or Vimeo e.g. <br/> https://vimeo.com/118023315 <br/> https://www.youtube.com/watch?v=6oTurM7gESE", "js_composer")
+	      "description" => esc_html__("The URL to your video on Youtube or Vimeo e.g. https://vimeo.com/118023315 or https://www.youtube.com/watch?v=6oTurM7gESE etc.", "js_composer")
 	    ),
 	    array(
 		  "type" => "dropdown",
-		  "heading" => __("Play Button Color", "js_composer"),
+		  "heading" => esc_html__("Play Button Color", "js_composer"),
 		  "param_name" => "nectar_play_button_color",
 		  "value" => array(
 			 "Accent Color" => "Default-Accent-Color",
@@ -40,65 +40,65 @@ return array(
 		   ),
 		  'save_always' => true,
 		  "dependency" => array('element' => "link_style", 'value' => array("play_button_2","play_button_with_text")),
-		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 	    array(
 	      "type" => "fws_image",
-	      "heading" => __("Video Preview Image", "js_composer"),
+	      "heading" => esc_html__("Video Preview Image", "js_composer"),
 	      "param_name" => "image_url",
 	      "value" => "",
 	      "dependency" => array('element' => "link_style", 'value' => "play_button_2"),
-	      "description" => __("Select image from media library.", "js_composer")
+	      "description" => esc_html__("Select image from media library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "dropdown",
 	      "dependency" => array('element' => "link_style", 'value' => "play_button_2"),
-	      "heading" => __("Hover Effect", "js_composer"),
+	      "heading" => esc_html__("Hover Effect", "js_composer"),
 	      'save_always' => true,
 	      "param_name" => "hover_effect",
-	      "value" => array(__("Zoom BG Image", "js_composer") => "defaut", __("Zoom Button", "js_composer") => "zoom_button"),
-	      "description" => __("Select your desired hover effect", "js_composer")
+	      "value" => array(esc_html__("Zoom BG Image", "js_composer") => "defaut", esc_html__("Zoom Button", "js_composer") => "zoom_button"),
+	      "description" => esc_html__("Select your desired hover effect", "js_composer")
 	    ),
 	    array(
 	      "type" => "dropdown",
 	      "dependency" => array('element' => "link_style", 'value' => "play_button_2"),
-	      "heading" => __("Box Shadow", "js_composer"),
+	      "heading" => esc_html__("Box Shadow", "js_composer"),
 	      'save_always' => true,
 	      "param_name" => "box_shadow",
-	      "value" => array(__("None", "js_composer") => "none", __("Small Depth", "js_composer") => "small_depth", __("Medium Depth", "js_composer") => "medium_depth", __("Large Depth", "js_composer") => "large_depth", __("Very Large Depth", "js_composer") => "x_large_depth"),
-	      "description" => __("Select your desired image box shadow", "js_composer")
+	      "value" => array(esc_html__("None", "js_composer") => "none", esc_html__("Small Depth", "js_composer") => "small_depth", esc_html__("Medium Depth", "js_composer") => "medium_depth", esc_html__("Large Depth", "js_composer") => "large_depth", esc_html__("Very Large Depth", "js_composer") => "x_large_depth"),
+	      "description" => esc_html__("Select your desired image box shadow", "js_composer")
 	    ),
 			array(
 					"type" => "dropdown",
-					"heading" => __("Border Radius", "js_composer"),
+					"heading" => esc_html__("Border Radius", "js_composer"),
 					'save_always' => true,
 					"dependency" => array('element' => "link_style", 'value' => "play_button_2"),
 					"param_name" => "border_radius",
 					"value" => array(
-						__("0px", "js_composer") => "none",
-						__("3px", "js_composer") => "3px",
-						__("5px", "js_composer") => "5px", 
-						__("10px", "js_composer") => "10px", 
-						__("15px", "js_composer") => "15px", 
-						__("20px", "js_composer") => "20px"),
+						esc_html__("0px", "js_composer") => "none",
+						esc_html__("3px", "js_composer") => "3px",
+						esc_html__("5px", "js_composer") => "5px", 
+						esc_html__("10px", "js_composer") => "10px", 
+						esc_html__("15px", "js_composer") => "15px", 
+						esc_html__("20px", "js_composer") => "20px"),
 				),	
 				array(
 						"type" => "dropdown",
-						"heading" => __("Play Button Size", "js_composer"),
+						"heading" => esc_html__("Play Button Size", "js_composer"),
 						'save_always' => true,
 						"dependency" => array('element' => "link_style", 'value' => "play_button_2"),
 						"param_name" => "play_button_size",
 						"value" => array(
-							__("Default", "js_composer") => "default",
-							__("Larger", "js_composer") => "larger")
+							esc_html__("Default", "js_composer") => "default",
+							esc_html__("Larger", "js_composer") => "larger")
 					),	
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Link Text", "js_composer"),
+	      "heading" => esc_html__("Link Text", "js_composer"),
 	      "param_name" => "link_text",
 	      "admin_label" => false,
 	      "dependency" => array('element' => "link_style", 'value' => array("nectar-button","play_button_with_text")),
-	      "description" => __("The text that will be displayed for your link", "js_composer")
+	      "description" => esc_html__("The text that will be displayed for your link", "js_composer")
 	    ),
 	   	array(
 			"type" => "dropdown",
@@ -106,7 +106,7 @@ return array(
 			'save_always' => true,
 			"heading" => "Text Font Style",
 			"dependency" => array('element' => "link_style", 'value' => array("play_button_with_text")),
-			"description" => __("Choose what element your link text will inherit styling from", "js_composer"),
+			"description" => esc_html__("Choose what element your link text will inherit styling from", "js_composer"),
 			"param_name" => "font_style",
 			"value" => array(
 				"Paragraph" => "p",
@@ -120,7 +120,7 @@ return array(
 
 	     array(
 		  "type" => "dropdown",
-		  "heading" => __("Color", "js_composer"),
+		  "heading" => esc_html__("Color", "js_composer"),
 		  "param_name" => "nectar_button_color",
 		  "value" => array(
 			 "Accent Color" => "Default-Accent-Color",
@@ -134,7 +134,7 @@ return array(
 		   ),
 		  'save_always' => true,
 		  "dependency" => array('element' => "link_style", 'value' => "nectar-button"),
-		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+		  'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 
 	  )

@@ -2,12 +2,12 @@
 
 
 return array(
-	  "name" => __("Button", "js_composer"),
+	  "name" => esc_html__("Button", "js_composer"),
 	  "base" => "nectar_btn",
 	  "icon" => "icon-wpb-btn",
-	  "category" => __('Nectar Elements', 'js_composer'),
+	  "category" => esc_html__('Nectar Elements', 'js_composer'),
 	  "weight" => 1,
-	  "description" => __('Add a button', 'js_composer'),
+	  "description" => esc_html__('Add a button', 'js_composer'),
 	  "params" => array(
 
 	  	array(
@@ -26,23 +26,23 @@ return array(
 		),
 		array(
 	      "type" => "textfield",
-	      "heading" => __("Link URL", "js_composer"),
+	      "heading" => esc_html__("Link URL", "js_composer"),
 	      "param_name" => "url",
-	      "description" => __("The link for your button." , "js_composer")
+	      "description" => esc_html__("The link for your button." , "js_composer")
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Text", "js_composer"),
+	      "heading" => esc_html__("Text", "js_composer"),
 	      "param_name" => "text",
 	      "admin_label" => true,
-	      "description" => __("The text for your button." , "js_composer")
+	      "description" => esc_html__("The text for your button." , "js_composer")
 	    ),
 	    array(
 			"type" => "checkbox",
 			"class" => "",
-			"heading" => __("Open Link In New Tab?", "js_composer"),
+			"heading" => esc_html__("Open Link In New Tab?", "js_composer"),
 	     	"param_name" => "open_new_tab",
-			"value" => Array(__("Yes", "js_composer") => 'true'),
+			"value" => Array(esc_html__("Yes", "js_composer") => 'true'),
 			"description" => ""
 		),
 		array(
@@ -75,7 +75,7 @@ return array(
 			),
 			'save_always' => true,
 			'param_name' => 'button_color',
-			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 		array(
 			'type' => 'dropdown',
@@ -94,16 +94,24 @@ return array(
 				'value' => array('regular','see-through'),
 			),
 			'param_name' => 'button_color_2',
-			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. admin_url() .'?page=Salient&tab=6"> ' . __('globally defined color scheme','salient') . '</a>',
+			'description' => __( 'Choose a color from your','salient') . ' <a target="_blank" href="'. esc_url(admin_url()) .'?page=Salient&tab=6"> ' . esc_html__('globally defined color scheme','salient') . '</a>',
 		),
 		array(
 				"type" => "colorpicker",
 				"class" => "",
-				"heading" => "Color Override",
+				"heading" => "Button Color Override",
 				"param_name" => "color_override",
 				"value" => "",
 				"description" => "won't take effect on gradient colored btns",	
 			),
+			array(
+					"type" => "colorpicker",
+					"class" => "",
+					"heading" => "Button Text Color Override",
+					"param_name" => "solid_text_color_override",
+					"dependency" => array('element' => "button_style", 'value' => array('regular','regular-tilt')),
+					"value" => ""
+				),
 		array(
 				"type" => "colorpicker",
 				"class" => "",
@@ -148,63 +156,63 @@ return array(
 		),
 		array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_fontawesome",
 	      "settings" => array( "iconsPerPage" => 4000),
 	      "dependency" => array('element' => "icon_family", 'emptyIcon' => false, 'value' => 'fontawesome'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_iconsmind",
 	      "settings" => array( 'type' => 'iconsmind', 'emptyIcon' => false, "iconsPerPage" => 4000),
 	      "dependency" => array('element' => "icon_family", 'value' => 'iconsmind'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_linecons",
 	      "settings" => array( 'type' => 'linecons', 'emptyIcon' => false, "iconsPerPage" => 4000),
 	      "dependency" => array('element' => "icon_family", 'value' => 'linecons'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "iconpicker",
-	      "heading" => __("Icon", "js_composer"),
+	      "heading" => esc_html__("Icon", "js_composer"),
 	      "param_name" => "icon_steadysets",
 	      "settings" => array( 'type' => 'steadysets', 'emptyIcon' => false, "iconsPerPage" => 4000),
 	      "dependency" => array('element' => "icon_family", 'value' => 'steadysets'),
-	      "description" => __("Select icon from library.", "js_composer")
+	      "description" => esc_html__("Select icon from library.", "js_composer")
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("Margin <span>Top</span>", "js_composer"),
+	      "heading" => esc_html__("Margin", "js_composer") . "<span>" . esc_html__("Top", "js_composer") . "</span>",
 	      "param_name" => "margin_top",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 		 array(
 	      "type" => "textfield",
-	      "heading" => __("<span>Right</span>", "js_composer"),
+	      "heading" => "<span>" . esc_html__("Right", "js_composer") . "</span>",
 	      "param_name" => "margin_right",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 		array(
 	      "type" => "textfield",
-	      "heading" => __("<span>Bottom</span>", "js_composer"),
+	      "heading" => "<span>" . esc_html__("Bottom", "js_composer") . "</span>",
 	      "param_name" => "margin_bottom",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 	    array(
 	      "type" => "textfield",
-	      "heading" => __("<span>Left</span>", "js_composer"),
+	      "heading" => "<span>" . esc_html__("Left", "js_composer") . "</span>",
 	      "param_name" => "margin_left",
 	      "edit_field_class" => "col-md-2",
-	      "description" => __("" , "js_composer")
+	      "description" => ''
 	    ),
 	    array(
 			"type" => "textfield",

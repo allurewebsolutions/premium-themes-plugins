@@ -85,6 +85,11 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 	$nectar_h6_tablet = ( !empty($options['h6-tablet-font-size']) && $using_custom_responsive_sizing) ? intval($options['h6-tablet-font-size'])/100 : 1;
 	$nectar_h6_phone = ( !empty($options['h6-phone-font-size']) && $using_custom_responsive_sizing) ? intval($options['h6-phone-font-size'])/100 : 1;
 	$nectar_h6_default_size = 14;
+	
+	$nectar_body_small_desktop = ( !empty($options['body-small-desktop-font-size']) && $using_custom_responsive_sizing) ? intval($options['body-small-desktop-font-size'])/100 : 1;
+	$nectar_body_tablet = ( !empty($options['body-tablet-font-size']) && $using_custom_responsive_sizing) ? intval($options['body-tablet-font-size'])/100 : 1;
+	$nectar_body_phone = ( !empty($options['body-phone-font-size']) && $using_custom_responsive_sizing) ? intval($options['body-phone-font-size'])/100 : 1;
+	$nectar_body_default_size = 14;
 
 
 	/*-------------------------------------------------------------------------*/
@@ -147,8 +152,36 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 		 echo '.nectar-fancy-ul ul li .icon-default-style[class^="icon-"] {'; 
 			if(!empty($the_line_height)) echo 'line-height:' . $the_line_height .'!important;';
 		 echo '}'; 
+		 
+		 
+		
+			 $defined_font_size = (!empty($options['body_font_size']) && $options['body_font_size'] != '-') ? intval($options['body_font_size']) : $nectar_body_default_size;
+			 $defined_line_height = (!empty($the_line_height)) ? intval($the_line_height) : intval($nectar_body_default_size) * 1.8;
+		 ?>
+
+		 @media only screen and (max-width: 1300px) and (min-width: 1000px) {
+			 body {
+				 font-size: <?php echo esc_html( ceil($defined_font_size*$nectar_body_small_desktop) ) . 'px'; ?>;
+				 line-height: <?php echo esc_html( ceil($defined_line_height*$nectar_body_small_desktop) ) . 'px'; ?>;
+			 }
+		 }
+		 @media only screen and (max-width: 1000px) and (min-width: 690px) {
+			 body {
+				 font-size: <?php echo esc_html( ceil($defined_font_size*$nectar_body_tablet) ) . 'px'; ?>;
+				 line-height: <?php echo esc_html( ceil($defined_line_height*$nectar_body_tablet) ) . 'px'; ?>;
+			 }
+			 
+		 }
+		 @media only screen and (max-width: 690px) {
+			 body {
+				 font-size: <?php echo esc_html( ceil($defined_font_size*$nectar_body_phone) ) . 'px'; ?>;
+				 line-height: <?php echo esc_html( ceil($defined_line_height*$nectar_body_phone) ) . 'px'; ?>;
+			 }
+
+		 }
+		 
 	 
- } //attrs in use ?>
+ <?php } //attrs in use ?>
 	
 	<?php 
 	/*-------------------------------------------------------------------------*/
@@ -340,35 +373,35 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 
 			@media only screen and (max-width: 1300px) and (min-width: 1000px) {
 				body .row .col.section-title h1, body h1, .full-width-content .recent-post-container .inner-wrap h2 {
-					font-size: <?php echo $defined_font_size*$nectar_h1_small_desktop . 'px'; ?>;
-					line-height: <?php echo ($defined_line_height*$nectar_h1_small_desktop) . 'px'; ?>;
+					font-size: <?php echo esc_html( $defined_font_size*$nectar_h1_small_desktop ) . 'px'; ?>;
+					line-height: <?php echo esc_html( $defined_line_height*$nectar_h1_small_desktop ) . 'px'; ?>;
 				}
 			}
 			@media only screen and (max-width: 1000px) and (min-width: 690px) {
 				body .row .col.section-title h1, body h1, html body .row .col.section-title.span_12 h1, .full-width-content .nectar-recent-posts-slider .recent-post-container .inner-wrap h2 {
-					font-size: <?php echo $defined_font_size*$nectar_h1_tablet . 'px'; ?>;
-					line-height: <?php echo ($defined_line_height*$nectar_h1_tablet) . 'px'; ?>;
+					font-size: <?php echo esc_html( $defined_font_size*$nectar_h1_tablet ) . 'px'; ?>;
+					line-height: <?php echo esc_html( $defined_line_height*$nectar_h1_tablet ) . 'px'; ?>;
 				}
 				.full-width-content .recent-post-container .inner-wrap h2 {
-					font-size: <?php echo $defined_font_size*$nectar_h1_tablet . 'px'; ?>;
-					line-height: <?php echo ($defined_line_height*$nectar_h1_tablet) . 'px'; ?>;
+					font-size: <?php echo esc_html( $defined_font_size*$nectar_h1_tablet ) . 'px'; ?>;
+					line-height: <?php echo esc_html( $defined_line_height*$nectar_h1_tablet ) . 'px'; ?>;
 				}
 				
 				.wpb_wrapper h1.vc_custom_heading {
-					font-size: <?php echo $defined_font_size*$nectar_h1_tablet . 'px!important'; ?>;
-					line-height: <?php echo ($defined_line_height*$nectar_h1_tablet) . 'px!important'; ?>;
+					font-size: <?php echo esc_html( $defined_font_size*$nectar_h1_tablet ) . 'px!important'; ?>;
+					line-height: <?php echo esc_html( $defined_line_height*$nectar_h1_tablet ) . 'px!important'; ?>;
 				}
 				
 			}
 			@media only screen and (max-width: 690px) {
 				body .row .col.section-title h1, body h1, html body .row .col.section-title.span_12 h1, .full-width-content .nectar-recent-posts-slider .recent-post-container .inner-wrap h2 {
-					font-size: <?php echo $defined_font_size*$nectar_h1_phone . 'px'; ?>;
-					line-height: <?php echo ($defined_line_height*$nectar_h1_phone) . 'px'; ?>;
+					font-size: <?php echo esc_html( $defined_font_size*$nectar_h1_phone ) . 'px'; ?>;
+					line-height: <?php echo esc_html( $defined_line_height*$nectar_h1_phone ) . 'px'; ?>;
 				}
 				
 				.wpb_wrapper h1.vc_custom_heading {
-					font-size: <?php echo $defined_font_size*$nectar_h1_phone . 'px!important'; ?>;
-					line-height: <?php echo ($defined_line_height*$nectar_h1_phone) . 'px!important'; ?>;
+					font-size: <?php echo esc_html( $defined_font_size*$nectar_h1_phone ) . 'px!important'; ?>;
+					line-height: <?php echo esc_html( $defined_line_height*$nectar_h1_phone ) . 'px!important'; ?>;
 				}
 
 			}
@@ -444,36 +477,36 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 		
 		@media only screen and (max-width: 1300px) and (min-width: 1000px) {
 		 	body h2, .single-product div.product h1.product_title {
-		 		font-size: <?php echo $defined_font_size*$nectar_h2_small_desktop . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h2_small_desktop) . 'px'; ?>;
+		 		font-size: <?php echo esc_html( $defined_font_size*$nectar_h2_small_desktop ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h2_small_desktop ) . 'px'; ?>;
 			}
 			.row .span_2 h2, .row .span_3 h2, .row .span_4 h2, .row .vc_col-sm-2 h2, .row .vc_col-sm-3 h2, .row .vc_col-sm-4 h2 { 
-				font-size: <?php echo $defined_font_size*0.7 . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*0.7) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*0.7 ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*0.7 ) . 'px'; ?>;
 			}
 			
 		}
 
 		@media only screen and (max-width: 1000px) and (min-width: 690px) {
 		.col h2, h2, .single-product div.product h1.product_title, .woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control {
-				font-size: <?php echo $defined_font_size*$nectar_h2_tablet . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h2_tablet) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h2_tablet ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h2_tablet ) . 'px'; ?>;
 			}
 			.wpb_wrapper h2.vc_custom_heading {
-				font-size: <?php echo $defined_font_size*$nectar_h2_tablet . 'px!important'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h2_tablet) . 'px!important'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h2_tablet ) . 'px!important'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h2_tablet ) . 'px!important'; ?>;
 			}
 			
 		}
 
 		@media only screen and (max-width: 690px) {
 		.col h2, h2, .single-product div.product h1.product_title, .woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control {
-				font-size: <?php echo $defined_font_size*$nectar_h2_phone . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h2_phone) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h2_phone ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h2_phone ) . 'px'; ?>;
 			}
 			.wpb_wrapper h2.vc_custom_heading {
-				font-size: <?php echo $defined_font_size*$nectar_h2_phone . 'px!important'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h2_phone) . 'px!important'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h2_phone ) . 'px!important'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h2_phone ) . 'px!important'; ?>;
 			}
 		}
 		
@@ -564,30 +597,30 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 
 	@media only screen and (max-width: 1300px) and (min-width: 1000px) {
 		.row .span_2 h3, .row .span_3 h3, .row .span_4 h3, .row .vc_col-sm-2 h3, .row .vc_col-sm-3 h3, .row .vc_col-sm-4 h3, .row .col h3, body h3 {
-			font-size: <?php echo $defined_font_size*$nectar_h3_small_desktop . 'px'; ?>;
-			line-height: <?php echo ($defined_line_height*$nectar_h3_small_desktop) . 'px'; ?>;
+			font-size: <?php echo esc_html( $defined_font_size*$nectar_h3_small_desktop ) . 'px'; ?>;
+			line-height: <?php echo esc_html( $defined_line_height*$nectar_h3_small_desktop ) . 'px'; ?>;
 		}
 	}
 
 	@media only screen and (max-width: 1000px) and (min-width: 690px) {
 		.row .span_2 h3, .row .span_3 h3, .row .span_4 h3, .row .vc_col-sm-2 h3, .row .vc_col-sm-3 h3, .row .vc_col-sm-4 h3, .row .col h3, body h3 {
-			font-size: <?php echo $defined_font_size*$nectar_h3_tablet . 'px'; ?>;
-			line-height: <?php echo ($defined_line_height*$nectar_h3_tablet) . 'px'; ?>;
+			font-size: <?php echo esc_html( $defined_font_size*$nectar_h3_tablet ) . 'px'; ?>;
+			line-height: <?php echo esc_html( $defined_line_height*$nectar_h3_tablet ) . 'px'; ?>;
 		}
 		.wpb_wrapper h3.vc_custom_heading {
-			font-size: <?php echo $defined_font_size*$nectar_h3_tablet . 'px!important'; ?>;
-			line-height: <?php echo ($defined_line_height*$nectar_h3_tablet) . 'px!important'; ?>;
+			font-size: <?php echo esc_html( $defined_font_size*$nectar_h3_tablet ) . 'px!important'; ?>;
+			line-height: <?php echo esc_html( $defined_line_height*$nectar_h3_tablet ) . 'px!important'; ?>;
 		}
 	}
 
 	@media only screen and (max-width: 690px) {
 		.row .span_2 h3, .row .span_3 h3, .row .span_4 h3, .row .vc_col-sm-2 h3, .row .vc_col-sm-3 h3, .row .vc_col-sm-4 h3, .row .col h3, body h3 {
-			font-size: <?php echo $defined_font_size*$nectar_h3_phone . 'px'; ?>;
-			line-height: <?php echo ($defined_line_height*$nectar_h3_phone) . 'px'; ?>;
+			font-size: <?php echo esc_html( $defined_font_size*$nectar_h3_phone ) . 'px'; ?>;
+			line-height: <?php echo esc_html( $defined_line_height*$nectar_h3_phone ) . 'px'; ?>;
 		}
 		.wpb_wrapper h3.vc_custom_heading {
-			font-size: <?php echo $defined_font_size*$nectar_h3_phone . 'px!important'; ?>;
-			line-height: <?php echo ($defined_line_height*$nectar_h3_phone) . 'px!important'; ?>;
+			font-size: <?php echo esc_html( $defined_font_size*$nectar_h3_phone ) . 'px!important'; ?>;
+			line-height: <?php echo esc_html( $defined_line_height*$nectar_h3_phone ) . 'px!important'; ?>;
 		}
 	}
 
@@ -671,22 +704,22 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 
 		@media only screen and (max-width: 1300px) and (min-width: 1000px) {
 			.row .col h4, body h4 {
-				font-size: <?php echo $defined_font_size*$nectar_h4_small_desktop . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h4_small_desktop) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h4_small_desktop ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h4_small_desktop ) . 'px'; ?>;
 			}
 		}
 
 		@media only screen and (max-width: 1000px) and (min-width: 690px) {
 			.row .col h4, body h4 {
-				font-size: <?php echo $defined_font_size*$nectar_h4_tablet . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h4_tablet) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h4_tablet ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h4_tablet ) . 'px'; ?>;
 			}
 		}
 
 		@media only screen and (max-width: 690px) {
 			.row .col h4, body h4 {
-				font-size: <?php echo $defined_font_size*$nectar_h4_phone . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h4_phone) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h4_phone ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h4_phone ) . 'px'; ?>;
 			}
 		}
 		
@@ -759,22 +792,22 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 
 		@media only screen and (max-width: 1300px) and (min-width: 1000px) {
 			.row .col h5, body h5 {
-				font-size: <?php echo $defined_font_size*$nectar_h5_small_desktop . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h5_small_desktop) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h5_small_desktop ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h5_small_desktop ) . 'px'; ?>;
 			}
 		}
 
 		@media only screen and (max-width: 1000px) and (min-width: 690px) {
 			.row .col h5, body h5 {
-				font-size: <?php echo $defined_font_size*$nectar_h5_tablet . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h5_tablet) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h5_tablet ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h5_tablet ) . 'px'; ?>;
 			}
 		}
 
 		@media only screen and (max-width: 690px) {
 			.row .col h5, body h5 {
-				font-size: <?php echo $defined_font_size*$nectar_h5_phone . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h5_phone) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h5_phone ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h5_phone ) . 'px'; ?>;
 			}
 		}
 	
@@ -843,22 +876,22 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 
 		@media only screen and (max-width: 1300px) and (min-width: 1000px) {
 			.row .col h6, body h6 {
-				font-size: <?php echo $defined_font_size*$nectar_h6_small_desktop . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h6_small_desktop) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h6_small_desktop ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h6_small_desktop ) . 'px'; ?>;
 			}
 		}
 
 		@media only screen and (max-width: 1000px) and (min-width: 690px) {
 			.row .col h6, body h6 {
-				font-size: <?php echo $defined_font_size*$nectar_h6_tablet . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h6_tablet) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h6_tablet ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h6_tablet ) . 'px'; ?>;
 			}
 		}
 
 		@media only screen and (max-width: 690px) {
 			.row .col h6, body h6 {
-				font-size: <?php echo $defined_font_size*$nectar_h6_phone . 'px'; ?>;
-				line-height: <?php echo ($defined_line_height*$nectar_h6_phone) . 'px'; ?>;
+				font-size: <?php echo esc_html( $defined_font_size*$nectar_h6_phone ) . 'px'; ?>;
+				line-height: <?php echo esc_html( $defined_line_height*$nectar_h6_phone ) . 'px'; ?>;
 			}
 		}
 	
@@ -1529,15 +1562,15 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 
 			@media only screen and (min-width: 690px) and (max-width: 1000px) {
 				#slide-out-widget-area .menuwrapper li small {
-					font-size: <?php if(!empty($options['off_canvas_nav_subtext_font_size']) && $options['off_canvas_nav_subtext_font_size'] != '-') echo $options['off_canvas_nav_subtext_font_size']*0.9 . 'px!important' ?>;
-					line-height: <?php if($the_line_height) echo ($the_line_height*0.9) . 'px!important' ?>;
+					font-size: <?php if(!empty($options['off_canvas_nav_subtext_font_size']) && $options['off_canvas_nav_subtext_font_size'] != '-') echo esc_html( $options['off_canvas_nav_subtext_font_size']*0.9 ) . 'px!important' ?>;
+					line-height: <?php if($the_line_height) echo esc_html( $the_line_height*0.9 ) . 'px!important' ?>;
 				}
 			}
 
 			@media only screen and (max-width: 690px) {
 				#slide-out-widget-area .menuwrapper li small {
-					font-size: <?php if(!empty($options['off_canvas_nav_subtext_font_size']) && $options['off_canvas_nav_subtext_font_size'] != '-') echo $options['off_canvas_nav_subtext_font_size']*0.7 . 'px!important' ?>;
-					line-height: <?php if($the_line_height) echo ($the_line_height*0.7) . 'px!important' ?>;
+					font-size: <?php if(!empty($options['off_canvas_nav_subtext_font_size']) && $options['off_canvas_nav_subtext_font_size'] != '-') echo esc_html( $options['off_canvas_nav_subtext_font_size']*0.7 ) . 'px!important' ?>;
+					line-height: <?php if($the_line_height) echo esc_html( $the_line_height*0.7 ) . 'px!important' ?>;
 				}
 			}
 			
@@ -1689,8 +1722,8 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 				.nectar-slider-wrap[data-full-width="true"] .swiper-slide .content p, 
 				.nectar-slider-wrap[data-full-width="boxed-full-width"] .swiper-slide .content p, 
 				.full-width-content .vc_span12 .swiper-slide .content p {
-					font-size: <?php if(!empty($options['home_slider_caption_font_size']) && $options['home_slider_caption_font_size'] != '-') echo $options['home_slider_caption_font_size']*0.8 . 'px!important' ?>;
-					line-height: <?php if($the_line_height) echo ($the_line_height*0.8) . 'px!important' ?>;
+					font-size: <?php if(!empty($options['home_slider_caption_font_size']) && $options['home_slider_caption_font_size'] != '-') echo esc_html( $options['home_slider_caption_font_size']*0.8 ) . 'px!important' ?>;
+					line-height: <?php if($the_line_height) echo esc_html( $the_line_height*0.8 ) . 'px!important' ?>;
 				}
 			}
 
@@ -1698,8 +1731,8 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 				.nectar-slider-wrap[data-full-width="true"] .swiper-slide .content p, 
 				.nectar-slider-wrap[data-full-width="boxed-full-width"] .swiper-slide .content p, 
 				.full-width-content .vc_span12 .swiper-slide .content p {
-					font-size: <?php if(!empty($options['home_slider_caption_font_size']) && $options['home_slider_caption_font_size'] != '-') echo $options['home_slider_caption_font_size']*0.7 . 'px!important' ?>;
-					line-height: <?php if($the_line_height) echo ($the_line_height*0.7) . 'px!important' ?>;
+					font-size: <?php if(!empty($options['home_slider_caption_font_size']) && $options['home_slider_caption_font_size'] != '-') echo esc_html( $options['home_slider_caption_font_size']*0.7 ) . 'px!important' ?>;
+					line-height: <?php if($the_line_height) echo esc_html( $the_line_height*0.7 ) . 'px!important' ?>;
 				}
 			}
 
@@ -1707,8 +1740,8 @@ $external_dynamic = (!empty($options['external-dynamic-css']) && $options['exter
 				body .nectar-slider-wrap[data-full-width="true"] .swiper-slide .content p, 
 				body .nectar-slider-wrap[data-full-width="boxed-full-width"] .swiper-slide .content p, 
 				body .full-width-content .vc_span12 .swiper-slide .content p {
-					font-size: <?php if(!empty($options['home_slider_caption_font_size']) && $options['home_slider_caption_font_size'] != '-') echo $options['home_slider_caption_font_size']*0.7 . 'px!important' ?>;
-					line-height: <?php if($the_line_height) echo ($the_line_height*0.7) . 'px!important' ?>;
+					font-size: <?php if(!empty($options['home_slider_caption_font_size']) && $options['home_slider_caption_font_size'] != '-') echo esc_html( $options['home_slider_caption_font_size']*0.7 ) . 'px!important' ?>;
+					line-height: <?php if($the_line_height) echo esc_html( $the_line_height*0.7 ) . 'px!important' ?>;
 				}
 			}
 

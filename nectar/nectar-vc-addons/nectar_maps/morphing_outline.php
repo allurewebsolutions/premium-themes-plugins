@@ -5,16 +5,16 @@ return array(
 			"base" => "morphing_outline",
 			"icon" => "icon-wpb-morphing-outline",
 			"allowed_container_element" => 'vc_row',
-			"category" => __('Nectar Elements', 'js_composer'),
-			"description" => __('Wrap some text in a unqiue way to grab attention', 'js_composer'),
+			"category" => esc_html__('Nectar Elements', 'js_composer'),
+			"description" => esc_html__('Wrap some text in a unqiue way to grab attention', 'js_composer'),
 			"params" => array(
 				array(
 			      "type" => "textarea",
 			      "holder" => "div",
-			      "heading" => __("Text Content", "js_composer"),
+			      "heading" => esc_html__("Text Content", "js_composer"),
 			      "param_name" => "content",
-			      "value" => __("", "js_composer"),
-			      "description" => __("Enter the text that will be wrapped here", "js_composer"),
+			      "value" => '',
+			      "description" => esc_html__("Enter the text that will be wrapped here", "js_composer"),
 			      "admin_label" => false
 			    ),
 				array(

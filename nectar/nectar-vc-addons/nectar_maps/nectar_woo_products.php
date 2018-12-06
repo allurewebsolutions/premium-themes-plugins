@@ -36,16 +36,16 @@ if($is_admin) {
 
 ////recent products
 return array(
-  "name" => __("WooCommerce Products", "js_composer"),
+  "name" => esc_html__("WooCommerce Products", "js_composer"),
   "base" => "nectar_woo_products",
   "weight" => 8,
   "icon" => "icon-wpb-recent-products",
-  "category" => __('Nectar Elements', 'js_composer'),
-  "description" => __('Display your products', 'js_composer'),
+  "category" => esc_html__('Nectar Elements', 'js_composer'),
+  "description" => esc_html__('Display your products', 'js_composer'),
   "params" => array(
   	array(
 	  "type" => "dropdown",
-	  "heading" => __("Product Type", "js_composer"),
+	  "heading" => esc_html__("Product Type", "js_composer"),
 	  "param_name" => "product_type",
 	  "value" => array(
 	  	'All' => 'all',
@@ -54,20 +54,20 @@ return array(
 	  	'Best Selling Only' => 'best_selling'
 	  ),
 	  'save_always' => true,
-	  "description" => __("Please select the type of products you would like to display.", "js_composer")
+	  "description" => esc_html__("Please select the type of products you would like to display.", "js_composer")
 	),
 	array(
 	  "type" => "dropdown_multi",
-	  "heading" => __("Product Categories", "js_composer"),
+	  "heading" => esc_html__("Product Categories", "js_composer"),
 	  "param_name" => "category",
 	  "admin_label" => true,
 	  "value" => $woo_options,
 	  'save_always' => true,
-	  "description" => __("Please select the categories you would like to display in your products. <br/> You can select multiple categories too (ctrl + click on PC and command + click on Mac).", "js_composer")
+	  "description" => esc_html__("Please select the categories you would like to display in your products. You can select multiple categories too (ctrl + click on PC and command + click on Mac).", "js_composer")
 	),
 	array(
 	  "type" => "dropdown",
-	  "heading" => __("Number Of Columns", "js_composer"),
+	  "heading" => esc_html__("Number Of Columns", "js_composer"),
 	  "param_name" => "columns",
 	  "value" => array(
 	  	'4' => '4',
@@ -76,15 +76,16 @@ return array(
 	  	'1' => '1',
 			'Dynamic' => 'dynamic',
 	  ),
+		'std' => '4',
 	  'save_always' => true,
-	  "description" => __("Please select the number of columns you would like to display. <br/> \"Dynamic\" will only be used on flickity full width carousels", "js_composer")
+	  "description" => esc_html__("Please select the number of columns you would like to display. \"Dynamic\" will only be used on flickity full width carousels", "js_composer")
 	),
 	array(
       "type" => "textfield",
-      "heading" => __("Number Of Products", "js_composer"),
+      "heading" => esc_html__("Number Of Products", "js_composer"),
       "param_name" => "per_page",
        "admin_label" => true,
-      "description" => __("How many posts would you like to display? <br/> Enter as a number example \"4\"", "js_composer")
+      "description" => esc_html__("How many posts would you like to display? Enter as a number example \"4\"", "js_composer")
     ),
 		array(
 			'type' => 'dropdown',
@@ -108,18 +109,18 @@ return array(
 		),
 		array(
       "type" => 'checkbox',
-      "heading" => __("Enable Pagination", "js_composer"),
+      "heading" => esc_html__("Enable Pagination", "js_composer"),
       "param_name" => "pagination",
-      "description" => __("Would you like to enable pagination for this product display? (requires WooCommerce 3.2+)", "js_composer"),
-      "value" => Array(__("Yes, please", "js_composer") => true),
+      "description" => esc_html__("Would you like to enable pagination for this product display? (requires WooCommerce 3.2+)", "js_composer"),
+      "value" => Array(esc_html__("Yes, please", "js_composer") => true),
     ),
 		
     array(
       "type" => 'checkbox',
-      "heading" => __("Enable Carousel Display", "js_composer"),
+      "heading" => esc_html__("Enable Carousel Display", "js_composer"),
       "param_name" => "carousel",
-      "description" => __("This will override your column choice - <b>Will not be used when Enable Pagination is on.</b>", "js_composer"),
-      "value" => Array(__("Yes, please", "js_composer") => true),
+      "description" => esc_html__("This will override your column choice - Will not be used when Enable Pagination is on.", "js_composer"),
+      "value" => Array(esc_html__("Yes, please", "js_composer") => true),
     ),
 		array(
 			"type" => "dropdown",
@@ -132,7 +133,7 @@ return array(
 				"Flickity" => "flickity"
 			),
 			"dependency" => array('element' => "carousel", 'value' => "1"),
-			"description" => __("Flickity is reccomended over carouFredSel - however carouFredSel is still available for legacy users who prefer it." , "js_composer")
+			"description" => esc_html__("Flickity is reccomended over carouFredSel - however carouFredSel is still available for legacy users who prefer it." , "js_composer")
 		),
 		array(
 			"type" => "dropdown",
@@ -145,31 +146,31 @@ return array(
 				"Next/Prev Arrows and Text" => "arrows-and-text"
 			),
 			"dependency" => Array('element' => "script", 'value' => "flickity"),
-			"description" => __("" , "js_composer")
+			"description" => ''
 		),
 		array(
 			"type" => "checkbox",
 			"class" => "",
-			"heading" => __("Autorotate?", "js_composer"),
+			"heading" => esc_html__("Autorotate?", "js_composer"),
 			"param_name" => "autorotate",
-			"value" => Array(__("Yes", "js_composer") => 'true'),
+			"value" => Array(esc_html__("Yes", "js_composer") => 'true'),
 			"dependency" => Array('element' => "script", 'value' => "flickity"),
 			"description" => ""
 		),
 	array(
 			"type" => "textfield",
-			"heading" => __("Autorotation Speed", "js_composer"),
+			"heading" => esc_html__("Autorotation Speed", "js_composer"),
 			"param_name" => "autorotation_speed",
 			"dependency" => Array('element' => "autorotate", 'not_empty' => true),
-			"description" => __("Enter in milliseconds (default is 5000)" , "js_composer")
+			"description" => esc_html__("Enter in milliseconds (default is 5000)" , "js_composer")
 		),
 		array(
 			"admin_label" => true,
 			"type" => "textfield",
-			"heading" => __("Carousel Heading Text", "js_composer"),
+			"heading" => esc_html__("Carousel Heading Text", "js_composer"),
 			"param_name" => "flickity_heading_text",
 			"dependency" => Array('element' => "flickity_controls", 'value' => "arrows-and-text"),
-			"description" => __("Enter the heading text here.", "js_composer")
+			"description" => esc_html__("Enter the heading text here.", "js_composer")
 		),
 		array(
 		"type" => "dropdown",
@@ -188,34 +189,34 @@ return array(
 		array(
 			"admin_label" => false,
 			"type" => "textfield",
-			"heading" => __("Carousel Link Text", "js_composer"),
+			"heading" => esc_html__("Carousel Link Text", "js_composer"),
 			"param_name" => "flickity_link_text",
 			"dependency" => Array('element' => "flickity_controls", 'value' => "arrows-and-text"),
-			"description" => __("If you'd like a link to be displayed under your heading text, enter the text for it here.", "js_composer")
+			"description" => esc_html__("If you'd like a link to be displayed under your heading text, enter the text for it here.", "js_composer")
 		),
 		array(
 			"admin_label" => false,
 			"type" => "textfield",
-			"heading" => __("Carousel Link URL", "js_composer"),
+			"heading" => esc_html__("Carousel Link URL", "js_composer"),
 			"param_name" => "flickity_link_url",
 			"dependency" => Array('element' => "flickity_controls", 'value' => "arrows-and-text"),
-			"description" => __("Enter the URL for your optional link.", "js_composer")
+			"description" => esc_html__("Enter the URL for your optional link.", "js_composer")
 		),
 		array(
       "type" => 'checkbox',
-      "heading" => __("Add Item Shadow", "js_composer"),
+      "heading" => esc_html__("Add Item Shadow", "js_composer"),
       "param_name" => "item_shadow",
       "dependency" => Array('element' => "script", 'value' => "flickity"),
-      "description" => __("This will add a small shadow to each item within the carousel", "js_composer"),
-      "value" => Array(__("Yes, please", "js_composer") => true),
+      "description" => esc_html__("This will add a small shadow to each item within the carousel", "js_composer"),
+      "value" => Array(esc_html__("Yes, please", "js_composer") => true),
     ),
     array(
       "type" => 'checkbox',
-      "heading" => __("Enable Controls On Hover", "js_composer"),
+      "heading" => esc_html__("Enable Controls On Hover", "js_composer"),
       "param_name" => "controls_on_hover",
       "dependency" => Array('element' => "script", 'value' => "carouFredSel"),
-      "description" => __("This will add buttons for additional user control over your product carousel", "js_composer"),
-      "value" => Array(__("Yes, please", "js_composer") => true),
+      "description" => esc_html__("This will add buttons for additional user control over your product carousel", "js_composer"),
+      "value" => Array(esc_html__("Yes, please", "js_composer") => true),
     )
   )
 );
