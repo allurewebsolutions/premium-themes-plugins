@@ -16,6 +16,7 @@ jQuery( window ).on( 'YoastSEO:ready', function () {
 		}
 		/*nectar addition end*/
 		
+		
 		data = _.reduce( relevantData, function ( memo, value, key ) {
 			if ( value.html ) {
 				memo = memo.replace( '"' + value.text + '"', value.html );

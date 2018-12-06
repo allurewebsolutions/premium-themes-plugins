@@ -274,3 +274,4 @@ Class WPBakeryShortCode_Toggle extends WPBakeryShortCode_VC_Tab {
 }
 
 /* nectar addition end */ 
+

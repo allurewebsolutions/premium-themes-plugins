@@ -42,6 +42,7 @@ function vc_pages_group_build( $slug, $title, $tab = '' ) {
 	            ->setActivePage( $page )
 	            ->setTemplatePath( 'pages/vc-welcome/index.php' ); */
   /* nectar addition end */ 
+
 	return $pages_group;
 }
 

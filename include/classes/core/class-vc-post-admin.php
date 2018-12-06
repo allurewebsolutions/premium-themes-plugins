@@ -42,7 +42,13 @@ class Vc_Post_Admin {
 			// post_status
 			if ( isset( $_POST['content'] ) ) {
 				$post = get_post( $post_id );
-				$post->post_content = stripslashes( vc_post_param( 'content' ) );
+				/*nectar addition*/
+				if( vc_post_param( 'nectar_post_type' ) == 'portfolio' ) {
+						update_post_meta( $post_id, '_nectar_portfolio_extra_content', stripslashes( vc_post_param( 'content' ) ) );
+				} else {
+						$post->post_content = stripslashes( vc_post_param( 'content' ) );
+				}
+				/*nectar addition end*/
 				$post_status = vc_post_param( 'post_status' );
 				$post_title = vc_post_param( 'post_title' );
 				if ( null !== $post_title ) {

@@ -373,6 +373,7 @@ class Vc_Base {
 		 * vc_filter: vc_base_build_shortcodes_custom_css
 		 * @since 4.4
 		 */
+		 
 		 /* nectar addition */ 
  		$portfolio_extra_content = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_portfolio_extra_content', true) : '';
  		
@@ -382,6 +383,7 @@ class Vc_Base {
  			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $post->post_content ) );
  		}
  		/* nectar addition end */ 
+		
 		if ( empty( $css ) ) {
 			delete_post_meta( $post_id, '_wpb_shortcodes_custom_css' );
 		} else {
@@ -528,10 +530,11 @@ class Vc_Base {
 		$front_css_file = vc_asset_url( 'css/js_composer.min.css' );
 		$upload_dir = wp_upload_dir();
 		$vc_upload_dir = vc_upload_dir();
+		/* nectar addition
 		if ( '1' === vc_settings()->get( 'use_custom' ) && is_file( $upload_dir['basedir'] . '/' . $vc_upload_dir . '/js_composer_front_custom.css' ) ) {
 			$front_css_file = $upload_dir['baseurl'] . '/' . $vc_upload_dir . '/js_composer_front_custom.css';
 			$front_css_file = vc_str_remove_protocol( $front_css_file );
-		}
+		} nectar addition end */
 		wp_register_style( 'js_composer_front', $front_css_file, array(), WPB_VC_VERSION );
 
 		$custom_css_path = $upload_dir['basedir'] . '/' . $vc_upload_dir . '/custom.css';
@@ -585,6 +588,7 @@ class Vc_Base {
 		/*
 		wp_register_script( 'isotope', vc_asset_url( 'lib/bower/isotope/dist/isotope.pkgd.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		*/
+
 		wp_register_script( 'twbs-pagination', vc_asset_url( 'lib/bower/twbs-pagination/jquery.twbsPagination.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		wp_register_script( 'nivo-slider', vc_asset_url( 'lib/bower/nivoslider/jquery.nivo.slider.pack.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		wp_register_script( 'flexslider', vc_asset_url( 'lib/bower/flexslider/jquery.flexslider-min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
@@ -714,22 +718,22 @@ class Vc_Base {
 	 *
 	 * @return string
 	 */
-	 public function excerptFilter( $output ) {
- 	 global $post;
- 	 /* nectar addition */ 
- 	 if ( empty( $output ) && ! empty( $post->post_content ) ) {
- 		 $post_content =  preg_replace ('/\[recent_posts[^\]]*\]/', ' ', $post->post_content);
- 		 $text = strip_tags( do_shortcode($post_content ));
- 		 $options = get_option('salient');
- 		 $the_excerpt_length = (!empty($options['blog_excerpt_length'])) ? intval($options['blog_excerpt_length']) : 30; 
- 		 $excerpt_length = apply_filters('excerpt_length', $the_excerpt_length);
- 		 $excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
- 		 $text = wp_trim_words( $text, $the_excerpt_length, $excerpt_more );
- 		 return $text;
- 	 }
- 	 /* nectar addition end */ 
- 	 return $output;
-  }
+	public function excerptFilter( $output ) {
+		global $post;
+		/* nectar addition */ 
+		if ( empty( $output ) && ! empty( $post->post_content ) ) {
+			$post_content =  preg_replace ('/\[recent_posts[^\]]*\]/', ' ', $post->post_content);
+			$text = strip_tags( do_shortcode($post_content ));
+			$options = get_option('salient');
+			$the_excerpt_length = (!empty($options['blog_excerpt_length'])) ? intval($options['blog_excerpt_length']) : 30; 
+			$excerpt_length = apply_filters('excerpt_length', $the_excerpt_length);
+			$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
+			$text = wp_trim_words( $text, $the_excerpt_length, $excerpt_more );
+			return $text;
+		}
+		/* nectar addition end */ 
+		return $output;
+	}
 
 	/**
 	 * Remove unwanted wraping with p for content.
@@ -778,11 +782,10 @@ class Vc_Base {
 			'add_images' => __( 'Add Images', 'js_composer' ),
 			'settings' => __( 'Settings', 'js_composer' ),
 			'main_button_title' => __( 'WPBakery Page Builder', 'js_composer' ),
-			/* nectar addition */ 
-			'main_button_title_backend_editor' => __( 'Page Builder', 'js_composer' ),
-			/* nectar addition end */ 
+			'main_button_title_backend_editor' => __( 'Backend Editor', 'js_composer' ),
 			'main_button_title_frontend_editor' => __( 'Frontend Editor', 'js_composer' ),
 			'main_button_title_revert' => __( 'Classic Mode', 'js_composer' ),
+			'main_button_title_gutenberg' => __( 'Gutenberg Editor', 'js_composer' ),
 			'please_enter_templates_name' => __( 'Enter template name you want to save.', 'js_composer' ),
 			'confirm_deleting_template' => __( 'Confirm deleting "{template_name}" template, press Cancel to leave. This action cannot be undone.', 'js_composer' ),
 			'press_ok_to_delete_section' => __( 'Press OK to delete section, Cancel to leave', 'js_composer' ),

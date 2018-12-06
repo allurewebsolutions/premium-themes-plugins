@@ -27,9 +27,7 @@ function vc_backend_editor_register_pointer( $pointers ) {
 					'options' => array(
 						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
 							__( 'Welcome to WPBakery Page Builder', 'js_composer' ),
-							/*nectar addition*/
-							__( 'Use this to switch between the Page Builder & Standard WordPress Editor.', 'js_composer' )
-							/*nectar addition end*/
+							__( 'Choose Backend or Frontend editor.', 'js_composer' )
 						),
 						'position' => array(
 							'edge' => 'left',
@@ -39,7 +37,9 @@ function vc_backend_editor_register_pointer( $pointers ) {
 					),
 				),
 				array(
+					/*nectar addition*/
 					'target' => '.vc_templates-button.salient-studio-templates, #vc-templatera-editor-button',
+					/*nectar addition end*/
 					'options' => array(
 						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
 							__( 'Add Elements', 'js_composer' ),

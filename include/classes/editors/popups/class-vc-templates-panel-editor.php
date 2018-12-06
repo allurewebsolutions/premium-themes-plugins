@@ -633,7 +633,10 @@ HTML;
 		}
 
 		if ( ! is_array( $this->default_templates ) ) {
-			require_once vc_path_dir( 'CONFIG_DIR', 'templates.php' );
+			/*nectar addition*/
+			//require_once vc_path_dir( 'CONFIG_DIR', 'templates.php' );
+			require_once locate_template('/nectar/nectar-vc-addons/salient-studio-templates.php');
+			/*nectar addition end*/
 			$templates = apply_filters( 'vc_load_default_templates', $this->default_templates );
 			$this->default_templates = $templates;
 			do_action( 'vc_load_default_templates_action' );
@@ -862,7 +865,7 @@ HTML;
 		$template_name_lower = esc_attr( vc_slugify( $template_name ) );
 		$template_type = esc_attr( isset( $template['type'] ) ? $template['type'] : 'custom' );
 		$custom_class = esc_attr( isset( $template['custom_class'] ) ? $template['custom_class'] : '' );
-   
+
 		/*nectar addition - adding in preview img*/
 		$preview_img = esc_attr( isset( $template['image'] ) &&  $template['image'] != '' ? $template['image'] : get_template_directory_uri() .'/nectar/nectar-vc-addons/img/templates/no-img.jpg'  );
 		$cat_display_name = esc_attr( isset( $template['cat_display_name'] ) ? $template['cat_display_name'] : '' );
@@ -899,7 +902,7 @@ HTML;
 	$this->template_count++;
 
 	/*nectar addition end*/
-	
+
 		return $output;
 	}
 

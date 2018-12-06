@@ -3,7 +3,7 @@
 Plugin Name: Salient WPBakery Page Builder
 Plugin URI: http://wpbakery.com
 Description: Drag and drop page builder for WordPress. Take full control over your WordPress site, build any layout you can imagine – no programming knowledge required.
-Version: 5.5.2
+Version: 5.6
 Author: Michael M - WPBakery.com | Modified by ThemeNectar
 Author URI: http://wpbakery.com
 */
@@ -19,7 +19,7 @@ if ( ! defined( 'WPB_VC_VERSION' ) ) {
 	/**
 	 *
 	 */
-	define( 'WPB_VC_VERSION', '5.5.2' );
+	define( 'WPB_VC_VERSION', '5.6' );
 }
 
 /*nectar addition*/
@@ -501,7 +501,7 @@ class Vc_Manager {
 	public function setEditorDefaultPostTypes( array $type ) {
 		/*nectar addition */
 		//$this->editor_default_post_types = $type;
-		global $options;
+		$options = get_option( 'salient_redux' );
 		$nectar_vc_post_types = (!empty($options['product_tab_position']) && $options['product_tab_position'] == 'fullwidth') ? array('page','post','portfolio','product') : array('page','post','portfolio');
 		$nectar_vc_post_types = $type;
 		/*nectar addition end */
@@ -517,7 +517,7 @@ class Vc_Manager {
 	 */
 	public function editorDefaultPostTypes() {
 		/*nectar addition */
-		global $options;
+		$options = get_option( 'salient_redux' );
 		$nectar_vc_post_types = (!empty($options['product_tab_position']) && $options['product_tab_position'] == 'fullwidth') ? array('page','post','portfolio','product') : array('page','post','portfolio');
 		return $nectar_vc_post_types;
 		/*nectar addition end */

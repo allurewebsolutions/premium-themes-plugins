@@ -21,7 +21,11 @@ require_once( $editor->adminFile( 'admin-header.php' ) );
 vc_include_template( 'editors/partials/access-manager-js.tpl.php' );
 
 ?>
-	<div id="vc_preloader"></div>
+	<div id="vc_preloader">
+		<!-- nectar addition -->
+			<div class="wpbakery-logo-and-salient"><span><?php include( vc_path_dir( 'ASSETS_DIR', 'images/salient.svg' ) ); ?></span></div>
+		<!-- nectar addition end -->
+	</div>
 	<div id="vc_overlay_spinner" class="vc_ui-wp-spinner vc_ui-wp-spinner-dark vc_ui-wp-spinner-lg" style="display:none;"></div>
 	<script type="text/javascript">
 		document.getElementById( 'vc_preloader' ).style.height = window.screen.availHeight;

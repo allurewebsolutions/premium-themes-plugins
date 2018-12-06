@@ -234,7 +234,14 @@ class Vc_Frontend_Editor implements Vc_Editor_Interface {
 			remove_filter( 'the_content', 'wpautop' );
 			do_action( 'vc_load_shortcode' );
 			ob_start();
-			$this->getPageShortcodesByContent( $post->post_content );
+			/*nectar addition*/
+			if( is_singular( 'portfolio' ) ) {
+				$portfolio_extra_content = get_post_meta( $post->ID, '_nectar_portfolio_extra_content', true );
+				$this->getPageShortcodesByContent( $portfolio_extra_content );
+			} else {
+				$this->getPageShortcodesByContent( $post->post_content );
+			}
+			/*nectar addition end*/
 			vc_include_template( 'editors/partials/vc_welcome_block.tpl.php' );
 			$post_content = ob_get_clean();
 
@@ -725,7 +732,7 @@ class Vc_Frontend_Editor implements Vc_Editor_Interface {
 		wp_register_script( 'wpb_json-js', vc_asset_url( 'lib/bower/json-js/json2.min.js' ), array(), WPB_VC_VERSION, true );
 		// used in post settings editor
 		wp_register_script( 'ace-editor', vc_asset_url( 'lib/bower/ace-builds/src-min-noconflict/ace.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
-		wp_register_script( 'webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js' ); // Google Web Font CDN
+		wp_register_script( 'webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js' ); // Google Web Font CDN
 		wp_register_script( 'wpb_scrollTo_js', vc_asset_url( 'lib/bower/scrollTo/jquery.scrollTo.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		wp_register_script( 'vc_accordion_script', vc_asset_url( 'lib/vc_accordion/vc-accordion.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		wp_register_script( 'vc-frontend-editor-min-js', vc_asset_url( 'js/dist/frontend-editor.min.js' ), array(), WPB_VC_VERSION, true );
