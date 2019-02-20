@@ -531,6 +531,16 @@ class GFFormDetail {
 			<input type="text" id="field_label" class="fieldwidth-3" size="35" />
 		</li>
         <?php
+        do_action( 'gform_field_standard_settings', 5, $form_id );
+        ?>
+        <li class="checkbox_label_setting field_setting">
+            <label for="field_checkbox_label" class="section_label">
+                <?php esc_html_e( 'Checkbox Label', 'gravityforms' ); ?>
+                <?php gform_tooltip( 'form_field_checkbox_label' ) ?>
+            </label>
+            <input type="text" id="field_checkbox_label" class="fieldwidth-3" />
+        </li>
+        <?php
 		do_action( 'gform_field_standard_settings', 10, $form_id );
 		?>
 		<li class="description_setting field_setting">
@@ -1946,13 +1956,10 @@ class GFFormDetail {
 						$label_placement_form_setting_label = __( 'Top aligned', 'gravityforms' );
 				}
 
-				$enable_label_visiblity_settings = apply_filters( 'gform_enable_field_label_visibility_settings', false );
-
 				$description_placement_form_setting       = rgar( $form, 'descriptionPlacement' );
 				$description_placement_form_setting_label = $description_placement_form_setting == 'above' ? $description_placement_form_setting_label = __( 'Above inputs', 'gravityforms' ) : $description_placement_form_setting_label = __( 'Below inputs', 'gravityforms' );
 				?>
 				<li class="label_placement_setting field_setting">
-					<?php if ( $enable_label_visiblity_settings ) : ?>
 					<label for="field_label_placement" class="section_label">
 						<?php esc_html_e( 'Field Label Visibility', 'gravityforms' ); ?>
 						<?php gform_tooltip( 'form_field_label_placement' ) ?>
@@ -1961,7 +1968,6 @@ class GFFormDetail {
 						<option value=""><?php printf( __( 'Visible (%s)', 'gravityforms' ), esc_html( $label_placement_form_setting_label ) ); ?></option>
 						<option value="hidden_label"><?php esc_html_e( 'Hidden', 'gravityforms' ); ?></option>
 					</select>
-					<?php endif ?>
 					<div id="field_description_placement_container" style="display:none; padding-top:10px;">
 						<label for="field_description_placement" class="section_label">
 							<?php esc_html_e( 'Description Placement', 'gravityforms' ); ?>
@@ -1994,10 +2000,7 @@ class GFFormDetail {
 							value=""><?php printf( __( 'Use Form Setting (%s)', 'gravityforms' ), esc_html( $sub_label_placement_form_setting_label ) ); ?></option>
 						<option value="below"><?php esc_html_e( 'Below inputs', 'gravityforms' ); ?></option>
 						<option value="above"><?php esc_html_e( 'Above inputs', 'gravityforms' ); ?></option>
-						<?php if ( $enable_label_visiblity_settings ) : ?>
 						<option value="hidden_label"><?php esc_html_e( 'Hidden', 'gravityforms' ); ?></option>
-						<?php endif; ?>
-
 					</select>
 				</li>
 
@@ -2605,7 +2608,7 @@ class GFFormDetail {
 				'value'     => GFCommon::get_field_type_title( 'creditcard' )
 			);
 		}
-		
+
 		/**
 		 * Modify the field groups before fields are added.
 		 *
@@ -2936,12 +2939,6 @@ class GFFormDetail {
 			// Trim form meta values.
 			$form_meta = GFFormsModel::trim_form_meta_values( $form_meta );
 
-			// Save form meta.
-			GFFormsModel::update_form_meta( $id, $form_meta );
-
-			// Update form title.
-			GFAPI::update_form_property( $id, 'title', $form_meta['title'] );
-
 			// Delete fields.
 			if ( ! empty( $deleted_fields ) ) {
 
@@ -2949,24 +2946,42 @@ class GFFormDetail {
 				foreach ( $deleted_fields as $deleted_field ) {
 
 					// Delete field.
-					GFFormsModel::delete_field( $id, $deleted_field );
+					$form_meta = GFFormsModel::delete_field( $form_meta, $deleted_field, false );
 
 				}
 
 			}
 
+			// Save form meta.
+			GFFormsModel::update_form_meta( $id, $form_meta );
+
+			// Update form title.
+			GFAPI::update_form_property( $id, 'title', $form_meta['title'] );
+
 			// Get form meta.
 			$form_meta = RGFormsModel::get_form_meta( $id );
+
+			if ( ! empty( $deleted_fields ) ) {
+				// Remove logic/routing rules based on deleted fields from confirmations and notifications.
+				foreach ( $deleted_fields as $deleted_field ) {
+					$form_meta = GFFormsModel::delete_field_from_confirmations( $form_meta, $deleted_field );
+					$form_meta = GFFormsModel::delete_field_from_notifications( $form_meta, $deleted_field );
+				}
+			}
 
             /**
              * Fires after a form is saved
              *
              * Used to run additional actions after the form is saved
              *
-             * @param array $form_meta The form meta
-             * @param bool  false      Returns false if the form ID already exists.
+             * @since 2.4.6.1 Added the $deleted_fields param.
+             * @since unknown
+             *
+             * @param array $form_meta      The form meta
+             * @param bool  false           Returns false if the form ID already exists.
+             * @param array $deleted_fields The IDs of any fields which have been deleted.
              */
-			do_action( 'gform_after_save_form', $form_meta, false );
+			do_action( 'gform_after_save_form', $form_meta, false, $deleted_fields );
 
 			return array( 'status' => $id, 'meta' => $form_meta );
 
@@ -3023,10 +3038,14 @@ class GFFormDetail {
              *
              * Used to run additional actions after the form is saved
              *
-             * @param array $form_meta The form meta
-             * @param bool  true       Returns true if this is a new form.
+             * @since 2.4.6.1 Added the $deleted_fields param.
+             * @since unknown
+             *
+             * @param array $form_meta      The form meta
+             * @param bool  true            Returns true if this is a new form.
+             * @param array $deleted_fields The IDs of any fields which have been deleted.
              */
-			do_action( 'gform_after_save_form', $form_meta, true );
+			do_action( 'gform_after_save_form', $form_meta, true, array() );
 
 			return array( 'status' => $id * - 1, 'meta' => $form_meta );
 		}
