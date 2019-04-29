@@ -541,7 +541,8 @@ if ( ! function_exists( 'wpb_debug' ) ) {
  */
 function js_composer_body_class( $classes ) {
 	$classes[] = 'wpb-js-composer js-comp-ver-' . WPB_VC_VERSION;
-	$disable_responsive = vc_settings()->get( 'not_responsive_css' );
+	//nectar addition
+	$disable_responsive = '0';
 	if ( '1' !== $disable_responsive ) {
 		$classes[] = 'vc_responsive';
 	} else {
@@ -1396,7 +1397,8 @@ function vc_stringify_attributes( $attributes ) {
 }
 
 function vc_is_responsive_disabled() {
-	$disable_responsive = vc_settings()->get( 'not_responsive_css' );
+	//nectar addition
+	$disable_responsive = '0';
 
 	return '1' === $disable_responsive;
 }

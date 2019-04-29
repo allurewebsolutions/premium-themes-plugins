@@ -708,7 +708,8 @@ class Vc_Frontend_Editor implements Vc_Editor_Interface {
 		// @todo check vc_inline-shortcode-edit-form class looks like incorrect place
 		$string .= ( strlen( $string ) > 0 ? ' ' : '' ) . 'vc_editor vc_inline-shortcode-edit-form';
 		if ( '1' === vc_settings()->get( 'not_responsive_css' ) ) {
-			$string .= ' vc_responsive_disabled';
+			//nectar addition
+			//$string .= ' vc_responsive_disabled';
 		}
 
 		return $string;

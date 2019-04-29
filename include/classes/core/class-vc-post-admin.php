@@ -163,29 +163,29 @@ class Vc_Post_Admin {
 	/**
 	 * @param $post_id
 	 */
-	protected function setPostMeta( $post_id ) {
-		if ( ! vc_user_access()->wpAny( array(
-			'edit_post',
-			$post_id,
-		) )->get() ) {
-			return;
-		}
-		$this->setJsStatus( $post_id );
-		if ( ! ( isset( $_POST['wp-preview'] ) && 'dopreview' === $_POST['wp-preview'] ) ) {
+	 protected function setPostMeta( $post_id ) {
+ 		if ( ! vc_user_access()->wpAny( array(
+ 			'edit_post',
+ 			$post_id,
+ 		) )->get() ) {
+ 			return;
+ 		}
+ 		$this->setJsStatus( $post_id );
+ 		if ( ! ( isset( $_POST['wp-preview'] ) && 'dopreview' === $_POST['wp-preview'] ) ) {
 
-			$this->setSettings( $post_id );
-		}
-		/**
-		 * vc_filter: vc_base_save_post_custom_css
-		 * @since 4.4
-		 */
-		$post_custom_css = apply_filters( 'vc_base_save_post_custom_css', vc_post_param( 'vc_post_custom_css' ) );
-		if ( null !== $post_custom_css && empty( $post_custom_css ) ) {
-			delete_post_meta( $post_id, '_wpb_post_custom_css' );
-		} elseif ( null !== $post_custom_css ) {
-			$post_custom_css = strip_tags( $post_custom_css );
-			update_post_meta( $post_id, '_wpb_post_custom_css', $post_custom_css );
-		}
-		visual_composer()->buildShortcodesCustomCss( $post_id );
-	}
+ 			$this->setSettings( $post_id );
+ 		}
+ 		/**
+ 		 * vc_filter: vc_base_save_post_custom_css
+ 		 * @since 4.4
+ 		 */
+ 		$post_custom_css = apply_filters( 'vc_base_save_post_custom_css', vc_post_param( 'vc_post_custom_css' ), $post_id );
+ 		if ( null !== $post_custom_css && empty( $post_custom_css ) ) {
+ 			delete_metadata( 'post', $post_id, '_wpb_post_custom_css' );
+ 		} elseif ( null !== $post_custom_css ) {
+ 			$post_custom_css = strip_tags( $post_custom_css );
+ 			update_metadata( 'post', $post_id, '_wpb_post_custom_css', $post_custom_css );
+ 		}
+ 		visual_composer()->buildShortcodesCustomCss( $post_id );
+ 	}
 }

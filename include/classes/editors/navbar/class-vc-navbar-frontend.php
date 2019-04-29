@@ -51,7 +51,8 @@ class Vc_Navbar_Frontend extends Vc_Navbar {
 	 * @return string
 	 */
 	public function getControlScreenSize() {
-		$disable_responsive = vc_settings()->get( 'not_responsive_css' );
+		//nectar addition
+		$disable_responsive = '0';
 		if ( '1' !== $disable_responsive ) {
 			$screen_sizes = array(
 				array(

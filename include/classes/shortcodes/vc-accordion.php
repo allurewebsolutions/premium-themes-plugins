@@ -61,8 +61,8 @@ class WPBakeryShortCode_VC_Accordion extends WPBakeryShortCode {
 }
 
 
-/* nectar addition */ 
 
+/* nectar addition */ 
 class WPBakeryShortCode_Toggles extends WPBakeryShortCode {
 	protected $controls_css_settings = 'out-tc vc_controls-content-widget';
 	public function __construct( $settings ) {
@@ -103,9 +103,8 @@ class WPBakeryShortCode_Toggles extends WPBakeryShortCode {
 			}
 			$inner .= $this->singleParamHtmlHolder( $param, $param_value );
 		}
-		//$elem = str_ireplace('%wpb_element_content%', $iner, $elem);
+
 		$tmp = '';
-		// $template = '<div class="wpb_template">'.do_shortcode('[vc_accordion_tab title="New Section"][/vc_accordion_tab]').'</div>';
 
 		if ( isset( $this->settings["custom_markup"] ) && $this->settings["custom_markup"] != '' ) {
 			if ( $content != '' ) {
@@ -115,7 +114,7 @@ class WPBakeryShortCode_Toggles extends WPBakeryShortCode {
 			} else {
 				$custom_markup = str_ireplace( "%content%", '', $this->settings["custom_markup"] );
 			}
-			//$output .= do_shortcode($this->settings["custom_markup"]);
+
 			$inner .= do_shortcode( $custom_markup );
 		}
 		$elem = str_ireplace( '%wpb_element_content%', $inner, $elem );
@@ -124,10 +123,10 @@ class WPBakeryShortCode_Toggles extends WPBakeryShortCode {
 		return $output;
 	}
 
-	//added to modify the class - needs wpb_vc_accordion to function properly
+
 	public function getElementHolder( $width ) {
 			$output = '';
-            $column_controls = $this->getColumnControlsModular();
+      $column_controls = $this->getColumnControlsModular();
 			$css_class = 'wpb_' . $this->settings["base"] . '  wpb_vc_accordion wpb_content_element wpb_sortable' . ( ! empty( $this->settings["class"] ) ? ' ' . $this->settings["class"] : '' );
 			$output .= '<div data-element_type="' . $this->settings["base"] . '" class="' . $css_class . '">';
 			$output .= str_replace( "%column_size%", wpb_translateColumnWidthToFractional( $width ), $column_controls );

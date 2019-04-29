@@ -29,7 +29,15 @@ vc_lean_map( 'vc_icon', null, $vc_config_path . '/content/shortcode-vc-icon.php'
 vc_lean_map( 'vc_zigzag', null, $vc_config_path . '/content/shortcode-vc-zigzag.php' );
 
 
-/* nectar addition
+/* nectar addition */
+
+if( ! defined( 'NECTAR_THEME_NAME' ) ) {
+	vc_lean_map( 'vc_row', null, $vc_config_path . '/containers/shortcode-vc-row.php' );
+	vc_lean_map( 'vc_column', null, $vc_config_path . '/containers/shortcode-vc-column.php' );
+	vc_lean_map( 'vc_column_inner', null, $vc_config_path . '/containers/shortcode-vc-column-inner.php' );
+}
+
+/*
 vc_lean_map( 'vc_row', null, $vc_config_path . '/containers/shortcode-vc-row.php' );
 vc_lean_map( 'vc_row_inner', null, $vc_config_path . '/containers/shortcode-vc-row-inner.php' );
 vc_lean_map( 'vc_column', null, $vc_config_path . '/containers/shortcode-vc-column.php' );

@@ -378,16 +378,16 @@ class Vc_Base {
  		$portfolio_extra_content = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_portfolio_extra_content', true) : '';
  		
  		if(!empty($portfolio_extra_content)) {
- 			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $portfolio_extra_content ) );
+ 			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $portfolio_extra_content ), $post_id  );
  		} else {
- 			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $post->post_content ) );
+ 			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $post->post_content ), $post_id  );
  		}
  		/* nectar addition end */ 
 		
 		if ( empty( $css ) ) {
-			delete_post_meta( $post_id, '_wpb_shortcodes_custom_css' );
+			delete_metadata( 'post', $post_id, '_wpb_shortcodes_custom_css' );
 		} else {
-			update_post_meta( $post_id, '_wpb_shortcodes_custom_css', $css );
+			update_metadata( 'post', $post_id, '_wpb_shortcodes_custom_css', $css );
 		}
 	}
 
@@ -441,25 +441,30 @@ class Vc_Base {
 	 *
 	 * @param int $id
 	 */
-	public function addPageCustomCss( $id = null ) {
-		if ( is_front_page() || is_home() ) {
-			$id = get_queried_object_id();
-		} else if ( is_singular() ) {
-			if ( ! $id ) {
-				$id = get_the_ID();
-			}
-		}
+	 public function addPageCustomCss( $id = null ) {
+ 		if ( is_front_page() || is_home() ) {
+ 			$id = get_queried_object_id();
+ 		} else if ( is_singular() ) {
+ 			if ( ! $id ) {
+ 				$id = get_the_ID();
+ 			}
+ 		}
 
-		if ( $id ) {
-			$post_custom_css = get_post_meta( $id, '_wpb_post_custom_css', true );
-			if ( ! empty( $post_custom_css ) ) {
-				$post_custom_css = strip_tags( $post_custom_css );
-				echo '<style type="text/css" data-type="vc_custom-css">';
-				echo $post_custom_css;
-				echo '</style>';
-			}
-		}
-	}
+ 		if ( $id ) {
+ 			if ( isset( $_GET['preview'] ) && 'true' === $_GET['preview'] ) {
+ 				$latest_revision = wp_get_post_revisions( $id );
+ 				$array_values = array_values( $latest_revision );
+ 				$id = $array_values[0]->ID;
+ 			}
+ 			$post_custom_css = get_metadata( 'post', $id, '_wpb_post_custom_css', true );
+ 			if ( ! empty( $post_custom_css ) ) {
+ 				$post_custom_css = strip_tags( $post_custom_css );
+ 				echo '<style type="text/css" data-type="vc_custom-css">';
+ 				echo $post_custom_css;
+ 				echo '</style>';
+ 			}
+ 		}
+ 	}
 
 	/**
 	 * Hooked class method by wp_footer WP action to output shortcodes css editor settings from page meta data.
@@ -474,23 +479,28 @@ class Vc_Base {
 	 *
 	 */
 	public function addShortcodesCustomCss( $id = null ) {
-		if ( ! is_singular() ) {
-			return;
-		}
-		if ( ! $id ) {
-			$id = get_the_ID();
-		}
+ 		if ( ! is_singular() ) {
+ 			return;
+ 		}
+ 		if ( ! $id ) {
+ 			$id = get_the_ID();
+ 		}
 
-		if ( $id ) {
-			$shortcodes_custom_css = get_post_meta( $id, '_wpb_shortcodes_custom_css', true );
-			if ( ! empty( $shortcodes_custom_css ) ) {
-				$shortcodes_custom_css = strip_tags( $shortcodes_custom_css );
-				echo '<style type="text/css" data-type="vc_shortcodes-custom-css">';
-				echo $shortcodes_custom_css;
-				echo '</style>';
-			}
-		}
-	}
+ 		if ( $id ) {
+ 			if ( isset( $_GET['preview'] ) && 'true' === $_GET['preview'] ) {
+ 				$latest_revision = wp_get_post_revisions( $id );
+ 				$array_values = array_values( $latest_revision );
+ 				$id = $array_values[0]->ID;
+ 			}
+ 			$shortcodes_custom_css = get_metadata( 'post', $id, '_wpb_shortcodes_custom_css', true );
+ 			if ( ! empty( $shortcodes_custom_css ) ) {
+ 				$shortcodes_custom_css = strip_tags( $shortcodes_custom_css );
+ 				echo '<style type="text/css" data-type="vc_shortcodes-custom-css">';
+ 				echo $shortcodes_custom_css;
+ 				echo '</style>';
+ 			}
+ 		}
+ 	}
 
 	/**
 	 * Add css styles for current page and elements design options added w\ editor.

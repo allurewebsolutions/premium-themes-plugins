@@ -635,7 +635,9 @@ HTML;
 		if ( ! is_array( $this->default_templates ) ) {
 			/*nectar addition*/
 			//require_once vc_path_dir( 'CONFIG_DIR', 'templates.php' );
-			require_once locate_template('/nectar/nectar-vc-addons/salient-studio-templates.php');
+			if( defined('NECTAR_THEME_NAME') ) {
+				require_once locate_template('/nectar/nectar-vc-addons/salient-studio-templates.php');
+			}
 			/*nectar addition end*/
 			$templates = apply_filters( 'vc_load_default_templates', $this->default_templates );
 			$this->default_templates = $templates;

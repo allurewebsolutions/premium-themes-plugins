@@ -144,7 +144,8 @@ function vc_column_offset_form_field( $settings, $value ) {
 function vc_column_offset_class_merge( $column_offset, $width ) {
 	// Remove offset settings if
 	if ( '1' === vc_settings()->get( 'not_responsive_css' ) ) {
-		$column_offset = preg_replace( '/vc_col\-(lg|md|xs)[^\s]*/', '', $column_offset );
+		//nectar addition
+		//$column_offset = preg_replace( '/vc_col\-(lg|md|xs)[^\s]*/', '', $column_offset );
 	}
 	if ( preg_match( '/vc_col\-sm\-\d+/', $column_offset ) ) {
 		return $column_offset;
