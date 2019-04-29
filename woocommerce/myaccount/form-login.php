@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates
- * @version 3.5.0
+ * @version 3.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -98,7 +98,11 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 					<label for="reg_password"><?php esc_html_e( 'Password', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
 					<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="reg_password" autocomplete="new-password" />
 				</p>
+				
+			<?php else : ?>
 
+			<p><?php esc_html_e( 'A password will be sent to your email address.', 'woocommerce' ); ?></p>
+			
 			<?php endif; ?>
 
 			<?php do_action( 'woocommerce_register_form' ); ?>

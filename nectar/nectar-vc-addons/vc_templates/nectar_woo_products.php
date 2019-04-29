@@ -151,7 +151,7 @@ if($pagination == '1') {
 	if( isset($_GET['vc_editable']) ) {
 		$nectar_using_VC_front_end_editor = sanitize_text_field($_GET['vc_editable']);
 		$nectar_using_VC_front_end_editor = ($nectar_using_VC_front_end_editor == 'true') ? true : false;
-		//imit script choices on front end editor
+		// Limit script choices on front end editor
 		if($nectar_using_VC_front_end_editor && $script != 'flickity') {
 			$script = 'flickity';
 		}
@@ -159,7 +159,7 @@ if($pagination == '1') {
 
 	ob_start();
 
-	$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
+	$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts, $type = '' ) );
 
 	if($carousel != '1' && $columns == 'dynamic' || $carousel == '1' && $script != 'flickity' && $columns == 'dynamic') {
 		$columns = 4;

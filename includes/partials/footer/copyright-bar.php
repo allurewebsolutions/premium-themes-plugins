@@ -53,7 +53,7 @@ else :
 				?>
 			 </p>	
 			<?php } else { ?>
-			<p>&copy; <?php echo the_date( 'Y' ) . ' ' . esc_html( get_bloginfo( 'name' ) ); ?>. 
+			<p>&copy; <?php echo date( 'Y' ) . ' ' . esc_html( get_bloginfo( 'name' ) ); ?>. 
 					   <?php
 						if ( ! empty( $options['footer-copyright-text'] ) ) {
 							echo wp_kses_post( $options['footer-copyright-text'] );}
@@ -203,7 +203,7 @@ else :
 				?>
 			 </p>	
 			<?php } else { ?>
-			<p>&copy; <?php echo the_date( 'Y' ) . ' ' . esc_html( get_bloginfo( 'name' ) ); ?>. 
+			<p>&copy; <?php echo date( 'Y' ) . ' ' . esc_html( get_bloginfo( 'name' ) ); ?>. 
 					   <?php
 						if ( ! empty( $options['footer-copyright-text'] ) ) {
 							echo wp_kses_post( $options['footer-copyright-text'] );}

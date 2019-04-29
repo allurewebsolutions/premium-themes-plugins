@@ -1,6 +1,6 @@
 /*
 	Theme Name: Salient
-  Version: 10.0
+  Version: 10.0.4
   Description: An Ultra Responsive Multi-Purpose Theme.
 	Theme URI: https://themeforest.net/item/salient-responsive-multipurpose-theme/4363266
   Author: ThemeNectar
@@ -579,6 +579,11 @@ body:not(.ascend) #boxed .cart-menu{padding-bottom:22px!important;  padding-top:
 /*-------------------------------------------------------------------------*/
 /*	3.	Header + Search Bar Styles
 /*-------------------------------------------------------------------------*/
+
+#header-outer .cart-outer .widget_shopping_cart > .widgettitle {
+  display: none;
+}
+
 #header-space{height:90px}
 
 #header-space { background-color: #fff;}

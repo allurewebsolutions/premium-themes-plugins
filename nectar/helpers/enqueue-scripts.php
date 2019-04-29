@@ -36,7 +36,7 @@ function nectar_register_js() {
 		wp_register_script( 'touchswipe', $nectar_get_template_directory_uri . '/js/touchswipe.min.js', 'jquery', '1.0', true );
 		wp_register_script( 'flexslider', $nectar_get_template_directory_uri . '/js/flexslider.min.js', array( 'jquery', 'touchswipe' ), '2.1', true );
 		wp_register_script( 'orbit', $nectar_get_template_directory_uri . '/js/orbit.js', 'jquery', '1.4', true );
-		wp_register_script( 'flickity', $nectar_get_template_directory_uri . '/js/flickity.min.js', 'jquery', '1.1.1', true );
+		wp_register_script( 'flickity', $nectar_get_template_directory_uri . '/js/flickity.min.js', 'jquery', '2.1.2', true );
 		wp_register_script( 'nicescroll', $nectar_get_template_directory_uri . '/js/nicescroll.js', 'jquery', '3.5.4', true );
 		wp_register_script( 'magnific', $nectar_get_template_directory_uri . '/js/magnific.js', 'jquery', '7.0.1', true );
 		wp_register_script( 'fancyBox', $nectar_get_template_directory_uri . '/js/jquery.fancybox.min.js', 'jquery', '7.0.1', true );

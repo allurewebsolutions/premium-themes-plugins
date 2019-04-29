@@ -5,6 +5,8 @@ $nectar_get_template_directory_uri = get_template_directory_uri();
 
 add_action( 'vc_load_default_templates_action','nectar_custom_studio_templates_for_vc' ); 
 
+if( !function_exists('nectar_custom_studio_templates_for_vc') ) {
+
 function nectar_custom_studio_templates_for_vc() {
 
 $cat_display_names = array(
@@ -4492,7 +4494,7 @@ vc_add_default_templates( $data );
 
 }
 
-
+}
 
 
 
