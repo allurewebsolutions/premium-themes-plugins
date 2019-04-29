@@ -1196,7 +1196,8 @@ class GFCommon {
 				$full_tag = $match[0];
 				$property = $match[1];
 
-				$value = $current_user->get( $property );
+				// Prevent leaking hashed passwords.
+				$value = $property == 'user_pass' ? '' : $current_user->get( $property );
 				$value = $url_encode ? urlencode( $value ) : $value;
 
 				$text = str_replace( $full_tag, $value, $text );
@@ -1296,7 +1297,7 @@ class GFCommon {
 						}
 					}
 
-					$field_value = apply_filters( 'gform_merge_tag_filter', $field_value, $merge_tag, $options, $field, $field_label );
+					$field_value = apply_filters( 'gform_merge_tag_filter', $field_value, $merge_tag, $options, $field, $field_label, $format );
 
 					$field_data .= $field_value;
 
@@ -1338,7 +1339,7 @@ class GFCommon {
 
 					$field_value = self::encode_shortcodes( $field_value );
 
-					$field_value = apply_filters( 'gform_merge_tag_filter', $field_value, $merge_tag, $options, $field, $raw_field_value );
+					$field_value = apply_filters( 'gform_merge_tag_filter', $field_value, $merge_tag, $options, $field, $raw_field_value, $format );
 
 					// Clear merge tag modifiers from the field object.
 					$field->set_modifiers( array() );
@@ -1826,7 +1827,7 @@ class GFCommon {
 				}
 
 				// Convert to array.
-				$attachment_urls = $upload_field->multipleFiles ? json_decode( stripslashes( $attachment_urls ), true ) : array( $attachment_urls );
+				$attachment_urls = $upload_field->multipleFiles ? json_decode( $attachment_urls, true ) : array( $attachment_urls );
 
 				self::log_debug( __METHOD__ . '(): Attaching file(s) for field #' . $upload_field->id . '. ' . print_r( $attachment_urls, true ) );
 
@@ -4509,7 +4510,19 @@ Content-Type: text/html;
 		echo $condition ? $text : '';
 	}
 
-	public static function gf_global( $echo = true ) {
+	/**
+	 * Outputs the gf_global and returns either the gf_global var declaration or the array containing the gf_global values.
+	 *
+	 *
+	 * @since 2.4.7		Added the $return_array parameter
+	 * @since unknown
+	 *
+	 * @param bool $echo         If true, outputs the inline gf_global var declaration.
+	 * @param bool $return_array If true, returns the array containing the gf_global values.
+	 *
+	 * @return array|string
+	 */
+	public static function gf_global( $echo = true, $return_array = false ) {
 		$gf_global                       = array();
 		$gf_global['gf_currency_config'] = RGCurrency::get_currency( GFCommon::get_currency() );
 		$gf_global['base_url']           = GFCommon::get_base_url();
@@ -4519,7 +4532,7 @@ Content-Type: text/html;
 		$gf_global_json = 'var gf_global = ' . json_encode( $gf_global ) . ';';
 
 		if ( ! $echo ) {
-			return $gf_global_json;
+			return $return_array ? $gf_global : $gf_global_json;
 		}
 
 		echo $gf_global_json;
@@ -4758,12 +4771,12 @@ Content-Type: text/html;
 					continue;
 				}
 
-				$class = in_array( $message['key'], array(
+				$class = in_array( $message['type'], array(
 					'warning',
 					'error',
 					'updated',
 					'success',
-				) ) ? $message['key'] : 'error';
+				) ) ? $message['type'] : 'error';
 				?>
 				<div class="notice below-h1 notice-<?php echo $class; ?> is-dismissible"
 				     data-gf_dismissible_key="<?php echo $message['key'] ?>"
@@ -5689,7 +5702,7 @@ Content-Type: text/html;
 		$value = self::encode_merge_tag( $value );
 
 		// Filter can change merge tag value.
-		$value = apply_filters( 'gform_merge_tag_filter', $value, $input_id, $modifier, $field, $raw_value );
+		$value = apply_filters( 'gform_merge_tag_filter', $value, $input_id, $modifier, $field, $raw_value, $format );
 		if ( $value === false ) {
 			$value = '';
 		}
