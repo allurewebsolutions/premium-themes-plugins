@@ -1,0 +1,17 @@
+/*  Table of Contents
+
+01. CUSTOM ELEMENTOR PANEL STYLES
+
+*/
+
+
+.panel-elements-category-title-boosted-elements-progression,
+.boosted-elements-progression-icon {
+	color:#0e9dd2;
+}
+
+
+.elementor-control-boosted_post_type_control select {
+	text-transform:capitalize;
+}
+
