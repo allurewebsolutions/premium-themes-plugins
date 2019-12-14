@@ -48,7 +48,10 @@
              */
             public function __construct( $parent = null ) {
                 if ( empty( $this->extension_dir ) ) {
-                    $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+                    /* nectar addition */
+                    $current_directory = get_parent_theme_file_path('/nectar/redux-framework/extensions/vendor_support');
+                    $this->extension_dir = trailingslashit( str_replace( '\\', '/', $current_directory ) );
+                    /* nectar addition end */
                     $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
                 }
 

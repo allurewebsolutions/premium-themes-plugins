@@ -54,7 +54,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
 
                 // Process width
                 if ( ! empty( $this->field['width'] ) ) {
-                    $width = ' style="width:' . $this->field['width'] . ';"';
+                    $width = ' style="width:' . esc_attr($this->field['width']) . ';"';
                 } else {
                     $width = ' style="width: 40%;"';
                 }
@@ -70,7 +70,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                 }                    
 
                 // Begin the <select> tag
-                echo '<select data-id="' . $this->field['id'] . '" data-placeholder="' . $placeholder . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" class="redux-select-item redux-select-images ' . $this->field['class'] . '"' . $width . ' rows="6">';
+                echo '<select data-id="' . esc_attr($this->field['id']) . '" data-placeholder="' . $placeholder . '" name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '" class="redux-select-item redux-select-images ' . esc_attr($this->field['class']) . '"' . $width . ' rows="6">';
                 echo '<option></option>';
 
 
@@ -105,7 +105,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                     }
 
                     // Add the option tag, with values.
-                    echo '<option value="' . $v['img'] . '" ' . $selected . '>' . $v['alt'] . '</option>';
+                    echo '<option value="' . esc_attr($v['img']) . '" ' . $selected . '>' . wp_kses_post($v['alt']) . '</option>';
 
                     // Add a bean
                     $x ++;
@@ -131,9 +131,9 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                 // substract one from the saved array number.  We then pull the url
                 // out of the options array, and there we go.
                 if ( '' == $this->value ) {
-                    echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . $this->field['id'] . '">';
+                    echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . esc_attr($this->field['id']) . '">';
                 } else {
-                    echo '<img src=' . $this->field['options'][ $arrNum - 1 ]['img'] . ' class="redux-preview-image" id="image_' . $this->field['id'] . '">';
+                    echo '<img src=' . esc_attr($this->field['options'][ $arrNum - 1 ]['img']) . ' class="redux-preview-image" id="image_' . esc_attr($this->field['id']) . '">';
                 }
 
                 // Close the <div> tag.
@@ -156,7 +156,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
 
             wp_enqueue_script(
                 'field-select-image-js',
-                ReduxFramework::$_url . 'inc/fields/select_image/field_select_image' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/select_image/field_select_image' . Redux_Functions::isMin() . '.js',
                 array('jquery', 'select2-js', 'redux-js'),
                 time(),
                 true
@@ -165,7 +165,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-select-image-css',
-                    ReduxFramework::$_url . 'inc/fields/select_image/field_select_image.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/select_image/field_select_image.css',
                     array(),
                     time(),
                     'all'

@@ -178,9 +178,12 @@
 
                 // load all the checks in the checks directory
                 $dir = 'checks';
-                foreach ( glob( dirname( __FILE__ ) . '/' . $dir . '/*.php' ) as $file ) {
+                /* nectar addition */
+                $current_dir = get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/themecheck');
+                foreach ( glob( $current_dir . '/' . $dir . '/*.php' ) as $file ) {
                     require_once $file;
                 }
+                /* nectar addition end */
             }
 
             /**

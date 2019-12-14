@@ -23,8 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 global $woocommerce;
 
-$options = get_nectar_theme_options(); 
-$product_style = (!empty($options['product_style'])) ? $options['product_style'] : 'classic';
+$nectar_options = get_nectar_theme_options(); 
+$product_style = (!empty($nectar_options['product_style'])) ? $nectar_options['product_style'] : 'classic';
 
 if( $woocommerce && version_compare( $woocommerce->version, "2.6", ">=" ) ) {
 	$the_product_ID = $product->get_id();
@@ -32,7 +32,7 @@ if( $woocommerce && version_compare( $woocommerce->version, "2.6", ">=" ) ) {
 	$the_product_ID = $product->id;
 }
 
-if($product_style == 'material') {
+if($product_style === 'material') {
 	
 	$price_markup = ($product->is_type( 'simple' )) ? '<span class="price">'.$product->get_price_html().'</span>' : '';
 	echo apply_filters( 'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
@@ -45,7 +45,7 @@ if($product_style == 'material') {
 		),
 	$product, $args );
 
-} else if($product_style == 'minimal') {
+} else if($product_style === 'minimal') {
 	
 	echo apply_filters( 'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
 		sprintf( '<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',

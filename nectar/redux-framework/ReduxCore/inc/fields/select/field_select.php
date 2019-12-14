@@ -108,13 +108,13 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
 
                 $sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable"' : "";
 
-                echo '<select ' . $multi . ' id="' . $this->field['id'] . '-select" data-placeholder="' . $placeholder . '" name="' . $this->field['name'] . $this->field['name_suffix'] . $nameBrackets . '" class="redux-select-item ' . $this->field['class'] . $sortable . '"' . $width . ' rows="6">';
+                echo '<select ' . $multi . ' id="' . esc_attr($this->field['id']) . '-select" data-placeholder="' . esc_attr($placeholder) . '" name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . $nameBrackets . '" class="redux-select-item ' . esc_attr($this->field['class']) . $sortable . '"' . $width . ' rows="6">';
                 echo '<option></option>';
 
                 foreach ( $this->field['options'] as $k => $v ) {
 
                     if (is_array($v)) {
-                        echo '<optgroup label="' . $k . '">';
+                        echo '<optgroup label="' . esc_attr($k) . '">';
 
                         foreach($v as $opt => $val) {
                             $this->make_option($opt, $val, $k);
@@ -155,7 +155,7 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
             }
             /* nectar addition end */
 
-            echo '<option value="' . $id . '"' . $selected . '>' . $value . '</option>';                
+            echo '<option value="' . esc_attr($id) . '"' . $selected . '>' . wp_kses_post($value) . '</option>';                
         }
 
         /**
@@ -173,7 +173,7 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
             
             wp_enqueue_script(
                 'redux-field-select-js',
-                ReduxFramework::$_url . 'inc/fields/select/field_select' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/select/field_select' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'select2-js', 'redux-js' ),
                 time(),
                 true
@@ -182,7 +182,7 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-select-css',
-                    ReduxFramework::$_url . 'inc/fields/select/field_select.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/select/field_select.css',
                     array(),
                     time(),
                     'all'

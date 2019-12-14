@@ -28,10 +28,10 @@ body [class^="icon-weather"], body [class*=" icon-weather"] {
 [class^="icon-arrows"]:before,
 [class*=" icon-arrows"]:before {
   font-family: "linea-arrows-10" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -466,10 +466,10 @@ body [class^="icon-weather"], body [class*=" icon-weather"] {
 [class^="icon-basic"]:before,
 [class*=" icon-basic"]:before {
   font-family: "linea-basic-10" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -900,10 +900,10 @@ body [class^="icon-weather"], body [class*=" icon-weather"] {
 [class^="icon-basic-elaboration"]:before,
 [class*=" icon-basic-elaboration"]:before {
   font-family: "linea-basic-elaboration-10" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -1364,10 +1364,10 @@ body [class^="icon-weather"], body [class*=" icon-weather"] {
 [class^="icon-ecommerce"]:before,
 [class*=" icon-ecommerce"]:before {
   font-family: "linea-ecommerce-10" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -1647,10 +1647,10 @@ body [class^="icon-weather"], body [class*=" icon-weather"] {
 [class^="icon-music"]:before,
 [class*=" icon-music"]:before {
   font-family: "linea-music-10" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -1764,10 +1764,10 @@ body [class^="icon-weather"], body [class*=" icon-weather"] {
 [class^="icon-software"]:before,
 [class*=" icon-software"]:before {
   font-family: "linea-software-10" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -2093,10 +2093,10 @@ body [class^="icon-weather"], body [class*=" icon-weather"] {
 [class^="icon-weather"]:before,
 [class*=" icon-weather"]:before {
   font-family: "linea-weather-10" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;

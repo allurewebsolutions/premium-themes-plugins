@@ -13,14 +13,14 @@
             if ( $redux ) {
 
                 $blacklist = array(
-                    '.tx'                    => __( 'Redux localization utilities', 'themecheck' ),
-                    'bin'                    => __( 'Redux Resting Diles', 'themecheck' ),
-                    'codestyles'             => __( 'Redux Code Styles', 'themecheck' ),
-                    'tests'                  => __( 'Redux Unit Testing', 'themecheck' ),
-                    'class.redux-plugin.php' => __( 'Redux Plugin File', 'themecheck' ),
-                    'bootstrap_tests.php'    => __( 'Redux Boostrap Tests', 'themecheck' ),
-                    '.travis.yml'            => __( 'CI Testing FIle', 'themecheck' ),
-                    'phpunit.xml'            => __( 'PHP Unit Testing', 'themecheck' ),
+                    '.tx'                    => __( 'Redux localization utilities', 'redux-framework' ),
+                    'bin'                    => __( 'Redux Resting Diles', 'redux-framework' ),
+                    'codestyles'             => __( 'Redux Code Styles', 'redux-framework' ),
+                    'tests'                  => __( 'Redux Unit Testing', 'redux-framework' ),
+                    'class.redux-plugin.php' => __( 'Redux Plugin File', 'redux-framework' ),
+                    'bootstrap_tests.php'    => __( 'Redux Boostrap Tests', 'redux-framework' ),
+                    '.travis.yml'            => __( 'CI Testing FIle', 'redux-framework' ),
+                    'phpunit.xml'            => __( 'PHP Unit Testing', 'redux-framework' ),
                 );
 
                 $errors = array();

@@ -96,7 +96,7 @@
                         $s = $name;
                     }
 
-                    echo '<input type="hidden" data-name="' . $name . '" class="buttonset-empty" name="' . $s . '" value=""/>';
+                    echo '<input type="hidden" data-name="' . esc_attr($name) . '" class="buttonset-empty" name="' . esc_attr($s) . '" value=""/>';
                     
                     $name   = $name . '[]';
                 }
@@ -132,7 +132,7 @@
                     if ($is_multi) {
                         $the_val    = '';
                         $the_name   = '';
-                        $data_val   = ' data-val="' . $k . '"';
+                        $data_val   = ' data-val="' . esc_attr($k) . '"';
                         $hidden_name = $name;
                         $multi_class = 'multi ';
                         
@@ -140,11 +140,11 @@
                             $hidden_name = '';
                         }
                         
-                        echo '<input type="hidden" class="buttonset-check" id="' . $this->field['id'] . '-buttonset' . $k . '-hidden" name="' .$hidden_name . '" value="' . $post_value . '"/>';
+                        echo '<input type="hidden" class="buttonset-check" id="' . esc_attr($this->field['id']) . '-buttonset' . esc_attr($k) . '-hidden" name="' . esc_attr($hidden_name) . '" value="' . esc_attr($post_value) . '"/>';
                     }
                     
-                    echo '<input' . $data_val . ' data-id="' . $this->field['id'] . '" type="' . $type . '" id="' . $this->field['id'] . '-buttonset' . $k . '" name="' . $the_name . '" class="buttonset-item ' . $multi_class . $this->field['class'] . '" value="' . $the_val . '" ' . $selected . '/>';
-                    echo '<label for="' . $this->field['id'] . '-buttonset' . $k . '">' . $v . '</label>';
+                    echo '<input' . $data_val . ' data-id="' . esc_attr($this->field['id']) . '" type="' . esc_attr($type) . '" id="' . esc_attr($this->field['id']) . '-buttonset' . esc_attr($k) . '" name="' . esc_attr($the_name) . '" class="buttonset-item ' . esc_attr($multi_class) . esc_attr($this->field['class']) . '" value="' . esc_attr($the_val) . '" ' . $selected . '/>';
+                    echo '<label for="' . esc_attr($this->field['id']) . '-buttonset' . esc_attr($k) . '">' . $v . '</label>';
                 }
 
                 echo '</div>';
@@ -163,7 +163,7 @@
                 if (!wp_script_is ( 'redux-field-button-set-js' )) {
                     wp_enqueue_script(
                         'redux-field-button-set-js',
-                        ReduxFramework::$_url . 'inc/fields/button_set/field_button_set' . Redux_Functions::isMin() . '.js',
+                        get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/button_set/field_button_set' . Redux_Functions::isMin() . '.js',
                         array( 'jquery', 'jquery-ui-core', 'redux-js' ),
                         time(),
                         true

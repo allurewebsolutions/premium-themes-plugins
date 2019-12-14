@@ -24,12 +24,12 @@ class Redux_Options_upload {
     */
     function render() {
         $class = (isset($this->field['class'])) ? $this->field['class'] : 'regular-text';        
-        echo '<input type="hidden" id="' . $this->field['id'] . '" name="' . $this->args['opt_name'] . '[' . $this->field['id'] . ']" value="' . $this->value . '" class="' . $class . '" />';
-        echo '<img class="redux-opts-screenshot" id="redux-opts-screenshot-' . $this->field['id'] . '" src="' . $this->value . '" />';
+        echo '<input type="hidden" id="' . esc_attr($this->field['id']) . '" name="' . esc_attr($this->args['opt_name']) . '[' . esc_attr($this->field['id']) . ']" value="' . esc_attr($this->value) . '" class="' . esc_attr($class) . '" />';
+        echo '<img class="redux-opts-screenshot" id="redux-opts-screenshot-' . esc_attr($this->field['id']) . '" src="' . esc_attr($this->value) . '" />';
         if($this->value == '') {$remove = ' style="display:none;"'; $upload = ''; } else {$remove = ''; $upload = ' style="display:none;"'; }
-        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary"' . $upload . ' rel-id="' . $this->field['id'] . '">' . __('Upload', 'salient') . '</a>';
-        echo ' <a href="javascript:void(0);" class="redux-opts-upload-remove"' . $remove . ' rel-id="' . $this->field['id'] . '">' . __('Remove Upload', 'salient') . '</a>';
-        echo (isset($this->field['desc']) && !empty($this->field['desc'])) ? '<br/><span class="description">' . $this->field['desc'] . '</span>' : '';
+        echo ' <a data-update="Select File" data-choose="Choose a File" href="javascript:void(0);"class="redux-opts-upload button-secondary"' . $upload . ' rel-id="' . esc_attr($this->field['id']) . '">' . __('Upload', 'salient') . '</a>';
+        echo ' <a href="javascript:void(0);" class="redux-opts-upload-remove"' . $remove . ' rel-id="' . esc_attr($this->field['id']) . '">' . __('Remove Upload', 'salient') . '</a>';
+        echo (isset($this->field['desc']) && !empty($this->field['desc'])) ? '<br/><span class="description">' . wp_kses_post($this->field['desc']) . '</span>' : '';
     }
 
     /**

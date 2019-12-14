@@ -188,23 +188,23 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
             echo '<input type="hidden" class="field-units" value="' . $this->value['units'] . '">';
 
             if ( isset( $this->field['all'] ) && $this->field['all'] == true ) {
-                echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-spacing-all redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'All', 'redux-framework' ) . '" rel="' . $this->field['id'] . '-all" value="' . $this->value['top'] . '"></div>';
+                echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-spacing-all redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . __( 'All', 'redux-framework' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-all" value="' . $this->value['top'] . '"></div>';
             }
 
             if ( $this->field['top'] === true ) {
-                echo '<input type="hidden" class="redux-spacing-value" id="' . $this->field['id'] . '-top" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] . 'top]' . '" value="' . $this->value['top'] . ( ! empty( $this->value['top'] ) ? $this->value['units'] : '' ) . '">';
+                echo '<input type="hidden" class="redux-spacing-value" id="' . esc_attr( $this->field['id'] ) . '-top" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[' . esc_attr( $this->field['mode'] ) . 'top]' . '" value="' . $this->value['top'] . ( ! empty( $this->value['top'] ) ? $this->value['units'] : '' ) . '">';
             }
 
             if ( $this->field['right'] === true ) {
-                echo '<input type="hidden" class="redux-spacing-value" id="' . $this->field['id'] . '-right" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] . 'right]' . '" value="' . $this->value['right'] . ( ! empty( $this->value['right'] ) ? $this->value['units'] : '' ) . '">';
+                echo '<input type="hidden" class="redux-spacing-value" id="' . esc_attr( $this->field['id'] ) . '-right" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[' . esc_attr( $this->field['mode'] ) . 'right]' . '" value="' . $this->value['right'] . ( ! empty( $this->value['right'] ) ? $this->value['units'] : '' ) . '">';
             }
 
             if ( $this->field['bottom'] === true ) {
-                echo '<input type="hidden" class="redux-spacing-value" id="' . $this->field['id'] . '-bottom" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] . 'bottom]' . '" value="' . $this->value['bottom'] . ( ! empty( $this->value['bottom'] ) ? $this->value['units'] : '' ) . '">';
+                echo '<input type="hidden" class="redux-spacing-value" id="' . esc_attr( $this->field['id'] ) . '-bottom" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[' . esc_attr( $this->field['mode'] ) . 'bottom]' . '" value="' . $this->value['bottom'] . ( ! empty( $this->value['bottom'] ) ? $this->value['units'] : '' ) . '">';
             }
 
             if ( $this->field['left'] === true ) {
-                echo '<input type="hidden" class="redux-spacing-value" id="' . $this->field['id'] . '-left" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] . 'left]' . '" value="' . $this->value['left'] . ( ! empty( $this->value['left'] ) ? $this->value['units'] : '' ) . '">';
+                echo '<input type="hidden" class="redux-spacing-value" id="' . esc_attr( $this->field['id'] ) . '-left" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[' . esc_attr( $this->field['mode'] ) . 'left]' . '" value="' . $this->value['left'] . ( ! empty( $this->value['left'] ) ? $this->value['units'] : '' ) . '">';
             }
 
             if ( ! isset( $this->field['all'] ) || $this->field['all'] !== true ) {
@@ -212,28 +212,28 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                  * Top
                  * */
                 if ( $this->field['top'] === true ) {
-                    echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-up icon-large"></i></span><input type="text" class="redux-spacing-top redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Top', 'redux-framework' ) . '" rel="' . $this->field['id'] . '-top" value="' . $this->value['top'] . '"></div>';
+                    echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-up icon-large"></i></span><input type="text" class="redux-spacing-top redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . __( 'Top', 'redux-framework' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-top" value="' . $this->value['top'] . '"></div>';
                 }
 
                 /**
                  * Right
                  * */
                 if ( $this->field['right'] === true ) {
-                    echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-right icon-large"></i></span><input type="text" class="redux-spacing-right redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Right', 'redux-framework' ) . '" rel="' . $this->field['id'] . '-right" value="' . $this->value['right'] . '"></div>';
+                    echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-right icon-large"></i></span><input type="text" class="redux-spacing-right redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . __( 'Right', 'redux-framework' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-right" value="' . $this->value['right'] . '"></div>';
                 }
 
                 /**
                  * Bottom
                  * */
                 if ( $this->field['bottom'] === true ) {
-                    echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-down icon-large"></i></span><input type="text" class="redux-spacing-bottom redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Bottom', 'redux-framework' ) . '" rel="' . $this->field['id'] . '-bottom" value="' . $this->value['bottom'] . '"></div>';
+                    echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-down icon-large"></i></span><input type="text" class="redux-spacing-bottom redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . __( 'Bottom', 'redux-framework' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-bottom" value="' . $this->value['bottom'] . '"></div>';
                 }
 
                 /**
                  * Left
                  * */
                 if ( $this->field['left'] === true ) {
-                    echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-left icon-large"></i></span><input type="text" class="redux-spacing-left redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Left', 'redux-framework' ) . '" rel="' . $this->field['id'] . '-left" value="' . $this->value['left'] . '"></div>';
+                    echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-left icon-large"></i></span><input type="text" class="redux-spacing-left redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . __( 'Left', 'redux-framework' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-left" value="' . $this->value['left'] . '"></div>';
                 }
             }
 
@@ -243,7 +243,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
             if ( $this->field['units'] !== false && is_array( $this->field['units'] ) /* && !isset($absolute) */ && $this->field['display_units'] == true ) {
 
                 echo '<div class="select_wrapper spacing-units" original-title="' . __( 'Units', 'redux-framework' ) . '">';
-                echo '<select data-placeholder="' . __( 'Units', 'redux-framework' ) . '" class="redux-spacing redux-spacing-units select ' . $this->field['class'] . '" original-title="' . __( 'Units', 'redux-framework' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[units]' . '" id="' . $this->field['id'] . '_units">';
+                echo '<select data-placeholder="' . __( 'Units', 'redux-framework' ) . '" class="redux-spacing redux-spacing-units select ' . esc_attr( $this->field['class'] ) . '" original-title="' . __( 'Units', 'redux-framework' ) . '" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[units]' . '" id="' . esc_attr( $this->field['id'] ) . '_units">';
 
                 if ( $this->field['units_extended'] ) {
                     $testUnits = array( 'px', 'em', 'rem', '%', 'in', 'cm', 'mm', 'ex', 'pt', 'pc' );
@@ -258,10 +258,10 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                 echo '<option></option>';
 
                 if ( in_array( $this->field['units'], $testUnits ) ) {
-                    echo '<option value="' . $this->field['units'] . '" selected="selected">' . $this->field['units'] . '</option>';
+                    echo '<option value="' . esc_attr($this->field['units']) . '" selected="selected">' . wp_kses_post($this->field['units']) . '</option>';
                 } else {
                     foreach ( $testUnits as $aUnit ) {
-                        echo '<option value="' . $aUnit . '" ' . selected( $this->value['units'], $aUnit, false ) . '>' . $aUnit . '</option>';
+                        echo '<option value="' . esc_attr($aUnit) . '" ' . selected( $this->value['units'], $aUnit, false ) . '>' . wp_kses_post($aUnit) . '</option>';
                     }
                 }
                 echo '</select></div>';
@@ -280,7 +280,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
             
             wp_enqueue_script(
                 'redux-field-spacing-js',
-                ReduxFramework::$_url . 'inc/fields/spacing/field_spacing' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/spacing/field_spacing' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'select2-js', 'redux-js' ),
                 time(),
                 true
@@ -289,7 +289,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-spacing-css',
-                    ReduxFramework::$_url . 'inc/fields/spacing/field_spacing.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/spacing/field_spacing.css',
                     array(),
                     time(),
                     'all'

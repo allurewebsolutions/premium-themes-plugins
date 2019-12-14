@@ -30,7 +30,7 @@
 
             public function label() {
                 // The label has already been sanitized in the Fields class, no need to re-sanitize it.
-                echo $this->label;
+                echo wp_kses_post( $this->label ); //nectar addition
             }
 
             public function description() {

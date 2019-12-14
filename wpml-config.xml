@@ -109,6 +109,7 @@
             <attributes>
                 <attribute>link_text</attribute>
                 <attribute>text</attribute>
+                <attribute>url</attribute>
             </attributes>
       </shortcode>
       <shortcode>
@@ -134,6 +135,7 @@
       <shortcode>
             <tag>fancy_box</tag>
             <attributes>
+                <attribute>link_url</attribute>
                 <attribute>link_text</attribute>
             </attributes>
       </shortcode>

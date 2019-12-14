@@ -52,8 +52,8 @@ if ( ! class_exists( 'ReduxFramework_spinner' ) ) {
             }
 
 
-            echo '<div id="' . $this->field['id'] . '-spinner" class="redux_spinner" rel="' . $this->field['id'] . '">';
-            echo '<input type="text" '.$data_string.' name="' . $this->field['name'] . $this->field['name_suffix'] . '" id="' . $this->field['id'] . '" value="' . $this->value . '" class="mini spinner-input ' . $this->field['class'] . '"' . $readonly . '/>';
+            echo '<div id="' . esc_attr($this->field['id']) . '-spinner" class="redux_spinner" rel="' . esc_attr($this->field['id']) . '">';
+            echo '<input type="text" '.$data_string.' name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '" id="' . esc_attr($this->field['id']) . '" value="' . esc_attr($this->value) . '" class="mini spinner-input ' . esc_attr($this->field['class']) . '"' . $readonly . '/>';
             echo '</div>';
         } //function
 
@@ -112,7 +112,7 @@ if ( ! class_exists( 'ReduxFramework_spinner' ) ) {
 
             wp_enqueue_script(
                 'redux-field-spinner-custom-js',
-                ReduxFramework::$_url . 'inc/fields/spinner/vendor/spinner_custom.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/spinner/vendor/spinner_custom.js',
                 array( 'jquery','redux-js' ),
                 time(),
                 true
@@ -120,7 +120,7 @@ if ( ! class_exists( 'ReduxFramework_spinner' ) ) {
 
             wp_enqueue_script(
                 'redux-field-spinner-js',
-                ReduxFramework::$_url . 'inc/fields/spinner/field_spinner' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/spinner/field_spinner' . Redux_Functions::isMin() . '.js',
                 array(
                     'jquery',
                     'redux-field-spinner-custom-js',

@@ -1,7 +1,7 @@
 <?php 
 
-/* admin notice for left over uneeded template files */
-if( get_option( 'nectar_dismiss_older_woo_templates_notice' ) != true ) {
+/* admin notice for left over unneeded template files */
+if( get_option( 'nectar_dismiss_older_woo_templates_notice' ) !== 'true' ) {
     add_action( 'admin_notices', 'nectar_add_dismissible_woo_notice' );
 }
 
@@ -18,8 +18,8 @@ function nectar_add_dismissible_woo_notice() { ?>
 <?php }
 
 
-add_action( 'admin_enqueue_scripts', 'nectar_add_admin_notice_script' );
-function nectar_add_admin_notice_script() {
+add_action( 'admin_enqueue_scripts', 'nectar_add_woo_admin_notice_script' );
+function nectar_add_woo_admin_notice_script() {
 	
 		global $nectar_get_template_directory_uri;
 		
@@ -35,5 +35,5 @@ function nectar_add_admin_notice_script() {
 
 add_action( 'wp_ajax_nectar_dismiss_older_woo_templates_notice', 'nectar_dismiss_older_woo_templates_notice' );
 function nectar_dismiss_older_woo_templates_notice() {
-      update_option( 'nectar_dismiss_older_woo_templates_notice', true );
+      update_option( 'nectar_dismiss_older_woo_templates_notice', 'true' );
 }

@@ -4,7 +4,7 @@
  *
  * @package Salient WordPress Theme
  * @subpackage Partials
- * @version 9.0.2
+ * @version 10.5
  */
 
 // Exit if accessed directly
@@ -14,37 +14,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $post;
 
-$options = get_nectar_theme_options();
+$nectar_options = get_nectar_theme_options();
 
 $bg                                = get_post_meta( $post->ID, '_nectar_header_bg', true );
 $bg_color                          = get_post_meta( $post->ID, '_nectar_header_bg_color', true );
-$single_post_header_inherit_fi     = ( ! empty( $options['blog_post_header_inherit_featured_image'] ) ) ? $options['blog_post_header_inherit_featured_image'] : '0';
-$theme_skin                        = ( ! empty( $options['theme-skin'] ) ) ? $options['theme-skin'] : 'original';
-$header_format                     = (!empty($options['header_format'])) ? $options['header_format'] : 'default';
-if($header_format == 'centered-menu-bottom-bar') {
+$single_post_header_inherit_fi     = ( ! empty( $nectar_options['blog_post_header_inherit_featured_image'] ) ) ? $nectar_options['blog_post_header_inherit_featured_image'] : '0';
+$theme_skin                        = ( ! empty( $nectar_options['theme-skin'] ) ) ? $nectar_options['theme-skin'] : 'original';
+$header_format                     = (!empty($nectar_options['header_format'])) ? $nectar_options['header_format'] : 'default';
+if($header_format === 'centered-menu-bottom-bar') {
   $theme_skin = 'material';
 }
-$fullscreen_header                 = ( ! empty( $options['blog_header_type'] ) && $options['blog_header_type'] == 'fullscreen' && is_singular( 'post' ) ) ? true : false;
-$blog_header_type                  = ( ! empty( $options['blog_header_type'] ) ) ? $options['blog_header_type'] : 'default';
-$fullscreen_class                  = ( $fullscreen_header == true ) ? 'fullscreen-header full-width-content' : null;
-$blog_social_style                 = ( ! empty( $options['blog_social_style'] ) ) ? $options['blog_social_style'] : 'default';
-$remove_single_post_date           = ( ! empty( $options['blog_remove_single_date'] ) ) ? $options['blog_remove_single_date'] : '0';
-$remove_single_post_author         = ( ! empty( $options['blog_remove_single_author'] ) ) ? $options['blog_remove_single_author'] : '0';
-$remove_single_post_comment_number = ( ! empty( $options['blog_remove_single_comment_number'] ) ) ? $options['blog_remove_single_comment_number'] : '0';
-$remove_single_post_nectar_love    = ( ! empty( $options['blog_remove_single_nectar_love'] ) ) ? $options['blog_remove_single_nectar_love'] : '0';
+$fullscreen_header                 = ( ! empty( $nectar_options['blog_header_type'] ) && $nectar_options['blog_header_type'] === 'fullscreen' && is_singular( 'post' ) ) ? true : false;
+$blog_header_type                  = ( ! empty( $nectar_options['blog_header_type'] ) ) ? $nectar_options['blog_header_type'] : 'default';
+$fullscreen_class                  = ( $fullscreen_header === true ) ? 'fullscreen-header full-width-content' : null;
+$blog_social_style                 = ( get_option( 'salient_social_button_style' ) ) ? get_option( 'salient_social_button_style' ) : 'fixed';
+$remove_single_post_date           = ( ! empty( $nectar_options['blog_remove_single_date'] ) ) ? $nectar_options['blog_remove_single_date'] : '0';
+$remove_single_post_author         = ( ! empty( $nectar_options['blog_remove_single_author'] ) ) ? $nectar_options['blog_remove_single_author'] : '0';
+$remove_single_post_comment_number = ( ! empty( $nectar_options['blog_remove_single_comment_number'] ) ) ? $nectar_options['blog_remove_single_comment_number'] : '0';
+$remove_single_post_nectar_love    = ( ! empty( $nectar_options['blog_remove_single_nectar_love'] ) ) ? $nectar_options['blog_remove_single_nectar_love'] : '0';
 
 
-if ( get_post_format() != 'quote' && get_post_format() != 'status' && get_post_format() != 'aside' ) {
+if ( get_post_format() !== 'status' && get_post_format() !== 'aside' ) {
 
 	if ( have_posts() ) :
 		while ( have_posts() ) :
 			the_post();
-
-			if ( ( empty( $bg ) && empty( $bg_color ) ) && $fullscreen_header != true && $single_post_header_inherit_fi != '1' ) { ?>
+			
+			// Determine whether theme option to inherit featured image is in effect.
+			$inherit_and_has_featured_img = false;
+			if( $single_post_header_inherit_fi === '1' && has_post_thumbnail() ) {
+				$inherit_and_has_featured_img = true;
+			}
+			
+			if ( ( empty( $bg ) && empty( $bg_color ) ) && $fullscreen_header != true && $inherit_and_has_featured_img !== true ) { ?>
 
 	  <div class="row heading-title hentry" data-header-style="<?php echo esc_attr( $blog_header_type ); ?>">
 		<div class="col span_12 section-title blog-title">
-				<?php if ( $blog_header_type == 'default_minimal' && 'post' == get_post_type() ) { ?> 
+				<?php if ( $blog_header_type === 'default_minimal' && 'post' === get_post_type() ) { ?> 
 		  <span class="meta-category">
 
 					<?php
@@ -59,19 +65,26 @@ if ( get_post_format() != 'quote' && get_post_format() != 'status' && get_post_f
 					?>
 			  </span> 
 
-		  </span> <?php } ?>
+		  <?php } ?>
 		  <h1 class="entry-title"><?php the_title(); ?></h1>
 		   
-				<?php if ( 'post' == get_post_type() ) { ?>
-			<div id="single-below-header">
+			<?php if ( 'post' === get_post_type() ) { 
+				
+			$blog_social_style = ( get_option( 'salient_social_button_style' ) ) ? get_option( 'salient_social_button_style' ) : 'fixed';
+			$using_fixed_salient_social = 'false';
+			if( function_exists('nectar_social_sharing_output') && 'default' === $blog_social_style ) {
+				$using_fixed_salient_social = 'true';
+			} 
+			?>
+			<div id="single-below-header" data-hide-on-mobile="<?php echo esc_attr($using_fixed_salient_social); ?>">
 			  <span class="meta-author vcard author"><span class="fn"><?php echo esc_html__( 'By', 'salient' ); ?> <?php the_author_posts_link(); ?></span></span>
 					<?php
 					$nectar_u_time          = get_the_time( 'U' );
 					$nectar_u_modified_time = get_the_modified_time( 'U' );
-					if ( $nectar_u_modified_time >= $nectar_u_time + 86400 ) {
+					if( $nectar_u_modified_time >= $nectar_u_time + 86400 ) {
 					?>
 				  <span class="meta-date date published"><?php echo get_the_date(); ?></span>
-				  <span class="meta-date date updated rich-snippet-hidden"><?php echo get_the_modified_time( 'F jS, Y' ); ?></span>
+				  <span class="meta-date date updated rich-snippet-hidden"><?php echo get_the_modified_time( __( 'F jS, Y' , 'salient' ) ); ?></span>
 					<?php } else { ?>
 				  <span class="meta-date date updated"><?php echo get_the_date(); ?></span>
 				  <?php } 
@@ -83,53 +96,23 @@ if ( get_post_format() != 'quote' && get_post_format() != 'status' && get_post_f
 			</div><!--/single-below-header-->
 		<?php } 
 		   
-			if ( $blog_header_type != 'default_minimal' && 'post' == get_post_type() ) { ?>
-			<div id="single-meta" data-sharing="<?php echo ( ! empty( $options['blog_social'] ) && $options['blog_social'] == 1 ) ? '1' : '0'; ?>">
-			  <ul>
-				
-				<li class="meta-comment-count">
+			if ( $blog_header_type !== 'default_minimal' && 'post' === get_post_type() ) { ?>
+			<div id="single-meta">
+	
+				<div class="meta-comment-count">
 				  <a href="<?php comments_link(); ?>"><i class="icon-default-style steadysets-icon-chat"></i> <?php comments_number( esc_html__( 'No Comments', 'salient' ), esc_html__( 'One Comment ', 'salient' ), esc_html__( '% Comments', 'salient' ) ); ?></a>
-				</li>
+				</div>
 				
-					<?php if ( $remove_single_post_nectar_love != '1' ) { ?>
-				 <li><?php echo '<span class="n-shortcode">' . nectar_love( 'return' ) . '</span>'; ?></li>
-					<?php } 
+					<?php 
 
-					
-					if ( ! empty( $options['blog_social'] ) && $options['blog_social'] == 1 && $blog_social_style != 'fixed_bottom_right' ) {
-
-						echo '<li class="meta-share-count"><a href="#"><i class="icon-default-style steadysets-icon-share"></i><span class="share-count-total">0</span></a> <div class="nectar-social">';
-
-						// facebook
-						if ( ! empty( $options['blog-facebook-sharing'] ) && $options['blog-facebook-sharing'] == 1 ) {
-							echo "<a class='facebook-share nectar-sharing' href='#' title='" . esc_attr__( 'Share this', 'salient' ) . "'> <i class='fa fa-facebook'></i> <span class='count'></span></a>";
+					if ( $blog_social_style != 'fixed' ) {
+						
+						if( function_exists('nectar_social_sharing_output') ) {
+							nectar_social_sharing_output('hover','right');
 						}
-						// twitter
-						if ( ! empty( $options['blog-twitter-sharing'] ) && $options['blog-twitter-sharing'] == 1 ) {
-							echo "<a class='twitter-share nectar-sharing' href='#' title='" . esc_attr__( 'Tweet this', 'salient' ) . "'> <i class='fa fa-twitter'></i> <span class='count'></span></a>";
-						}
-						// google plus
-						if ( ! empty( $options['blog-google-plus-sharing'] ) && $options['blog-google-plus-sharing'] == 1 ) {
-							echo "<a class='google-plus-share nectar-sharing-alt' href='#' title='" . esc_attr__( 'Share this', 'salient' ) . "'> <i class='fa fa-google-plus'></i> <span class='count'>0</span></a>";
-						}
-
-						// linkedIn
-						if ( ! empty( $options['blog-linkedin-sharing'] ) && $options['blog-linkedin-sharing'] == 1 ) {
-							echo "<a class='linkedin-share nectar-sharing' href='#' title='" . esc_attr__( 'Share this', 'salient' ) . "'> <i class='fa fa-linkedin'></i> <span class='count'> </span></a>";
-						}
-						// pinterest
-						if ( ! empty( $options['blog-pinterest-sharing'] ) && $options['blog-pinterest-sharing'] == 1 ) {
-							echo "<a class='pinterest-share nectar-sharing' href='#' title='" . esc_attr__( 'Pin this', 'salient' ) . "'> <i class='fa fa-pinterest'></i> <span class='count'></span></a>";
-						}
-
-						echo '</div></li>';
 
 					}
 					?>
-
-				
-  
-			  </ul>
 
 			</div><!--/single-meta-->
 

@@ -41,8 +41,8 @@ if ( ! class_exists( 'ReduxFramework_text' ) ) {
             }
 
             //if (isset($this->field['text_hint']) && is_array($this->field['text_hint'])) {
-            $qtip_title = isset( $this->field['text_hint']['title'] ) ? 'qtip-title="' . $this->field['text_hint']['title'] . '" ' : '';
-            $qtip_text  = isset( $this->field['text_hint']['content'] ) ? 'qtip-content="' . $this->field['text_hint']['content'] . '" ' : '';
+            $qtip_title = isset( $this->field['text_hint']['title'] ) ? 'qtip-title="' . wp_kses_post($this->field['text_hint']['title']) . '" ' : '';
+            $qtip_text  = isset( $this->field['text_hint']['content'] ) ? 'qtip-content="' . wp_kses_post($this->field['text_hint']['content']) . '" ' : '';
             //}
 
             $readonly       = ( isset( $this->field['readonly'] ) && $this->field['readonly']) ? ' readonly="readonly"' : '';
@@ -61,14 +61,14 @@ if ( ! class_exists( 'ReduxFramework_text' ) ) {
                     }
 
                     echo '<div class="input_wrapper">';
-                    echo '<label for="' . $this->field['id'] . '-text-' . $k . '">' . $v . '</label> ';
-                    echo '<input ' . $qtip_title . $qtip_text . 'type="text" id="' . $this->field['id'] . '-text-' . $k . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $k . ']' . '" ' . $placeholder . 'value="' . esc_attr( $this->value[ $k ] ) . '" class="regular-text ' . $this->field['class'] . '"' . $readonly . $autocomplete . ' /><br />';
+                    echo '<label for="' . $this->field['id'] . '-text-' . esc_attr($k) . '">' . wp_kses_post($v) . '</label> ';
+                    echo '<input ' . $qtip_title . $qtip_text . 'type="text" id="' . esc_attr($this->field['id']) . '-text-' . esc_attr($k) . '" name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '[' . esc_attr($k) . ']' . '" ' . $placeholder . 'value="' . esc_attr( $this->value[ $k ] ) . '" class="regular-text ' . $this->field['class'] . '"' . $readonly . $autocomplete . ' /><br />';
                     echo '</div>';
                 }
                 //foreach
             } else {
                 $placeholder = ( isset( $this->field['placeholder'] ) && ! is_array( $this->field['placeholder'] ) ) ? ' placeholder="' . esc_attr( $this->field['placeholder'] ) . '" ' : '';
-                echo '<input ' . $qtip_title . $qtip_text . 'type="text" id="' . $this->field['id'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" ' . $placeholder . 'value="' . esc_attr( $this->value ) . '" class="regular-text ' . $this->field['class'] . '"' . $readonly . $autocomplete . ' />';
+                echo '<input ' . $qtip_title . $qtip_text . 'type="text" id="' . esc_attr($this->field['id']) . '" name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '" ' . $placeholder . 'value="' . esc_attr( $this->value ) . '" class="regular-text ' . $this->field['class'] . '"' . $readonly . $autocomplete . ' />';
             }
         }
 
@@ -82,7 +82,7 @@ if ( ! class_exists( 'ReduxFramework_text' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-text-css',
-                    ReduxFramework::$_url . 'inc/fields/text/field_text.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/text/field_text.css',
                     array(),
                     time(),
                     'all'

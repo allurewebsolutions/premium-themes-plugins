@@ -16,7 +16,7 @@
 
     $.redux_welcome.supportHash = function() {
 
-        jQuery( "#support_hash" ).focus(
+        jQuery( "#support_hash" ).on('focus',
             function() {
                 var $this = jQuery( this );
                 $this.select();
@@ -32,7 +32,7 @@
             }
         );
 
-        jQuery( '.redux_support_hash' ).click(
+        jQuery( '.redux_support_hash' ).on('click',
             function( e ) {
 
                 var $button = jQuery( this );
@@ -63,7 +63,7 @@
                         success: function( response ) {
                             if ( response.status == "success" ) {
                                 jQuery( '#support_hash' ).val( 'http://support.redux.io/?id=' + response.identifier );
-                                $button.parents( 'fieldset:first' ).find( '.next' ).removeAttr( 'disabled' ).click();
+                                $button.parents( 'fieldset:first' ).find( '.next' ).removeAttr( 'disabled' ).trigger('click');
                             } else {
                                 console.log( response );
                                 alert( 'There was an error. Please try again later.' );
@@ -118,22 +118,22 @@
                 setHeight();
             }
         );
-        jQuery( '#is_user' ).click(
+        jQuery( '#is_user' ).on('click',
             function() {
                 jQuery( '#final_support .is_user' ).show();
                 jQuery( '#final_support .is_developer' ).hide();
-                jQuery( this ).parents( 'fieldset:first' ).find( '.next' ).click();
+                jQuery( this ).parents( 'fieldset:first' ).find( '.next' ).trigger('click');
             }
         );
-        jQuery( '#is_developer' ).click(
+        jQuery( '#is_developer' ).on('click',
             function() {
                 jQuery( '#final_support .is_user' ).hide();
                 jQuery( '#final_support .is_developer' ).show();
-                jQuery( this ).parents( 'fieldset:first' ).find( '.next' ).click();
+                jQuery( this ).parents( 'fieldset:first' ).find( '.next' ).trigger('click');
             }
         );
 
-        jQuery( "#support_div .next" ).click(
+        jQuery( "#support_div .next" ).on('click',
             function() {
                 if ( animating ) return false;
                 animating = true;
@@ -172,7 +172,7 @@
             }
         );
 
-        jQuery( "#support_div .previous" ).click(
+        jQuery( "#support_div .previous" ).on('click',
             function() {
                 if ( animating ) return false;
                 animating = true;

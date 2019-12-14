@@ -81,7 +81,8 @@
                 }
 
                 if ( empty( $this->_extension_dir ) ) {
-                    $this->_extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+                    $current_dir = get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/extensions/customizer');
+                    $this->_extension_dir = trailingslashit( str_replace( '\\', '/', $current_dir ) );
                     $this->_extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->_extension_dir ) );
                 }
 
@@ -258,25 +259,27 @@
 
             // All sections, settings, and controls will be added here
             public function _register_customizer_controls( $wp_customize ) {
-
+                
+                $current_dir = get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/extensions/customizer');
+                
                 if ( ! class_exists( 'Redux_Customizer_Section' ) ) {
-                    require_once dirname( __FILE__ ) . '/inc/customizer_section.php';
+                    require_once $current_dir . '/inc/customizer_section.php';
                     if ( method_exists( $wp_customize, 'register_section_type' ) ) {
                         $wp_customize->register_section_type( 'Redux_Customizer_Section' );
                     }
                 }
                 if ( ! class_exists( 'Redux_Customizer_Panel' ) ) {
-                    require_once dirname( __FILE__ ) . '/inc/customizer_panel.php';
+                    require_once $current_dir . '/inc/customizer_panel.php';
                     if ( method_exists( $wp_customize, 'register_panel_type' ) ) {
                         $wp_customize->register_panel_type( 'Redux_Customizer_Panel' );
                     }
                 }
                 if ( ! class_exists( 'Redux_Customizer_Control' ) ) {
-                    require_once dirname( __FILE__ ) . '/inc/customizer_control.php';
+                    require_once $current_dir . '/inc/customizer_control.php';
                 }
 
-                require_once dirname( __FILE__ ) . '/inc/customizer_fields.php';
-                require_once dirname( __FILE__ ) . '/inc/customizer_devs.php';
+                require_once $current_dir . '/inc/customizer_fields.php';
+                require_once $current_dir . '/inc/customizer_devs.php';
 
                 do_action( "redux/extension/customizer/control/includes" );
 
@@ -616,7 +619,7 @@
                 echo '1';
                 preg_match_all( "/\[([^\]]*)\]/", $option->id, $matches );
                 $id = $matches[1][0];
-                echo $option->link();
+                echo wp_kses_post( $option->link() ); // nectar addition
                 //$link = $option->link();
 
                 $this->parent->_field_input( $this->controls[ $id ] );

@@ -168,13 +168,13 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             }
 
             /* nectar addition */
-            echo '<input placeholder="' . $placeholder . '" type="text" class="' . $hide . 'upload large-text ' . $this->field['class'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[url]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][url]" value="' . $this->value['url'] . '"' . $readOnly . '/>';
-            echo '<input type="hidden" class="data" data-mode="' . $this->field['mode'] . '" />';
+            echo '<input placeholder="' .  esc_attr( $placeholder ) . '" type="text" class="' . $hide . 'upload large-text ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[url]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . $this->field['id'] . '][url]" value="' . esc_attr( $this->value['url'] ) . '"' . $readOnly . '/>';
+            echo '<input type="hidden" class="data" data-mode="' .  esc_attr( $this->field['mode'] ) . '" />';
             echo '<input type="hidden" class="library-filter" data-lib-filter="' . $libFilter . '" />';
-            echo '<input type="hidden" class="upload-id ' . $this->field['class'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[id]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][id]" value="' . $display_val . '" />';
-            echo '<input type="hidden" class="upload-height" name="' . $this->field['name'] . $this->field['name_suffix'] . '[height]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][height]" value="' . $this->value['height'] . '" />';
-            echo '<input type="hidden" class="upload-width" name="' . $this->field['name'] . $this->field['name_suffix'] . '[width]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][width]" value="' . $this->value['width'] . '" />';
-            echo '<input type="hidden" class="upload-thumbnail" name="' . $this->field['name'] . $this->field['name_suffix'] . '[thumbnail]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][thumbnail]" value="' . $this->value['thumbnail'] . '" />';
+            echo '<input type="hidden" class="upload-id ' .  esc_attr( $this->field['class'] ) . '" name="' .  esc_attr( $this->field['name'] ) .  esc_attr( $this->field['name_suffix'] ) . '[id]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][id]" value="' . esc_attr( $display_val ) . '" />';
+            echo '<input type="hidden" class="upload-height" name="' .  esc_attr( $this->field['name'] ) .  esc_attr( $this->field['name_suffix'] ) . '[height]" id="' .  esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][height]" value="' . esc_attr( $this->value['height'] ) . '" />';
+            echo '<input type="hidden" class="upload-width" name="' .  esc_attr( $this->field['name'] ) .  esc_attr( $this->field['name_suffix'] ) . '[width]" id="' .  esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][width]" value="' . esc_attr( $this->value['width'] ) . '" />';
+            echo '<input type="hidden" class="upload-thumbnail" name="' .  esc_attr( $this->field['name'] ) .  esc_attr( $this->field['name_suffix'] ) . '[thumbnail]" id="' .  esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][thumbnail]" value="' . esc_attr( $this->value['thumbnail'] ) . '" />';
             /* nectar addition end */
 
             //Preview
@@ -205,8 +205,8 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             }
 
             echo '<div class="' . $hide . 'screenshot">';
-            echo '<a class="of-uploaded-image" href="' . $this->value['url'] . '" target="_blank">';
-            echo '<img class="redux-option-image" id="image_' . $this->field['id'] . '" src="' . $this->value['thumbnail'] . '" target="_blank" rel="external" />';
+            echo '<a class="of-uploaded-image" href="' .  esc_attr( $this->value['url'] ) . '" target="_blank">';
+            echo '<img class="redux-option-image" id="image_' .  esc_attr( $this->field['id'] ) . '" src="' .  esc_attr( $this->value['thumbnail'] ) . '" target="_blank" rel="external" />';
             echo '</a>';
             echo '</div>';
 
@@ -214,14 +214,14 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             echo '<div class="upload_button_div">';
 
             //If the user has WP3.5+ show upload/remove button
-            echo '<span class="button media_upload_button" id="' . $this->field['id'] . '-media">' . __( 'Upload', 'redux-framework' ) . '</span>';
+            echo '<span class="button media_upload_button" id="' .  esc_attr( $this->field['id'] ) . '-media">' . __( 'Upload', 'redux-framework' ) . '</span>';
 
             $hide = '';
             if ( empty( $this->value['url'] ) || $this->value['url'] == '' ) {
                 $hide = ' hide';
             }
 
-            echo '<span class="button remove-image' . $hide . '" id="reset_' . $this->field['id'] . '" rel="' . $this->field['id'] . '">' . __( 'Remove', 'redux-framework' ) . '</span>';
+            echo '<span class="button remove-image' . $hide . '" id="reset_' .  esc_attr( $this->field['id'] ) . '" rel="' .  esc_attr( $this->field['id'] ) . '">' . __( 'Remove', 'redux-framework' ) . '</span>';
 
             echo '</div>';
         }
@@ -243,7 +243,7 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             
             wp_enqueue_script(
                 'redux-field-media-js',
-                ReduxFramework::$_url . 'assets/js/media/media' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/assets/js/media/media' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
                 time(),
                 true

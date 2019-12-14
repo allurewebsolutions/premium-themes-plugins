@@ -180,15 +180,15 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
                     echo '<li class="redux-image-select">';
                     echo '<label class="' . $selected . ' redux-image-select' . $is_preset_class . $this->field['id'] . '_' . $x . '" for="' . $this->field['id'] . '_' . ( array_search( $k, array_keys( $this->field['options'] ) ) + 1 ) . '">';
 
-                    echo '<input type="radio" class="' . $this->field['class'] . '" id="' . $this->field['id'] . '_' . ( array_search( $k, array_keys( $this->field['options'] ) ) + 1 ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $theValue . '" ' . checked( $this->value, $theValue, false ) . $presets . $merge . '/>';
+                    echo '<input type="radio" class="' . $this->field['class'] . '" id="' . $this->field['id'] . '_' . ( array_search( $k, array_keys( $this->field['options'] ) ) + 1 ) . '" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '" value="' . esc_attr( $theValue ) . '" ' . checked( $this->value, $theValue, false ) . $presets . $merge . '/>';
                     if ( ! empty( $this->field['tiles'] ) && $this->field['tiles'] == true ) {
-                        echo '<span class="tiles ' . $v['class'] . '" style="background-image: url(' . $v['img'] . ');" rel="' . $v['img'] . '"">&nbsp;</span>';
+                        echo '<span class="tiles ' . esc_attr( $v['class'] ) . '" style="background-image: url(' . esc_attr( $v['img'] ) . ');" rel="' . esc_attr( $v['img'] ) . '"">&nbsp;</span>';
                     } else {
-                        echo '<img src="' . $v['img'] . '" title="'. $v['alt'] . '" alt="' . $v['alt'] . '" data-ntooltip="'.$v['tooltip'].'" class="' . $v['class'] . '" style="' . $style . '"' . $presets . $merge . ' />';
+                        echo '<img src="' . esc_attr( $v['img'] ) . '" title="'. esc_attr( $v['alt'] ) . '" alt="' . esc_attr( $v['alt'] ) . '" data-ntooltip="'. esc_attr($v['tooltip'] ) .'" class="' . esc_attr( $v['class'] ) . '" style="' . $style . '"' . $presets . $merge . ' />';
                     }
 
                     if ( $v['title'] != '' ) {
-                        echo '<br /><span>' . $v['title'] . '</span>';
+                        echo '<br /><span>' . wp_kses_post( $v['title'] ) . '</span>';
                     }
 
                     echo '</label>';
@@ -214,7 +214,7 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
 
             wp_enqueue_script(
                 'redux-field-image-select-js',
-                ReduxFramework::$_url . 'inc/fields/image_select/field_image_select' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/image_select/field_image_select' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
                 time(),
                 true
@@ -223,7 +223,7 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-image-select-css',
-                    ReduxFramework::$_url . 'inc/fields/image_select/field_image_select.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/image_select/field_image_select.css',
                     array(),
                     time(),
                     'all'

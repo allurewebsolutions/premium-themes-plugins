@@ -61,14 +61,14 @@
                         } else {
                             var content_new_title = $( this ).parent( '.redux-slides-accordion' ).data( 'new-content-title' );
 
-                            $( this ).parents( '.redux-slides-accordion-group:first' ).find( '.remove-image' ).click();
+                            $( this ).parents( '.redux-slides-accordion-group:first' ).find( '.remove-image' ).trigger('click');
                             $( this ).parents( '.redux-container-slides:first' ).find( '.redux-slides-accordion-group:last' ).find( '.redux-slides-header' ).text( content_new_title );
                         }
                     }
                 );
 
-                //el.find( '.redux-slides-add' ).click(
-                el.find( '.redux-slides-add' ).off('click').click(
+
+                el.find( '.redux-slides-add' ).off('click').on('click',
                     function() {
                         var newSlide = $( this ).prev().find( '.redux-slides-accordion-group:last' ).clone( true );
 

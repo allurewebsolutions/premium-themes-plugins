@@ -48,7 +48,7 @@
                 <?php esc_html_e( 'Get System Report', 'redux-framework' ); ?>
             </a>
             <a class="skip button-primary"
-               href="http://docs.reduxframework.com/core/support/understanding-the-redux-framework-system-status-report/"
+               href="//docs.reduxframework.com/core/support/understanding-the-redux-framework-system-status-report/"
                target="_blank">
                    <?php esc_html_e( 'Understanding the Status Report', 'redux-framework' ); ?>
             </a>
@@ -263,32 +263,8 @@
         </tr>
         </tbody>
     </table>
-    <table class="redux_status_table widefat" cellspacing="0" id="status">
-        <thead>
-        <tr>
-            <th colspan="3" data-export-label="Browser">
-                <?php esc_html_e( 'Browser', 'redux-framework' ); ?>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td data-export-label="Browser Info">
-                <?php esc_html_e( 'Browser Info', 'redux-framework' ); ?>:
-            </td>
-            <td class="help">
-                <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Information about web browser current in use.', 'redux-framework' ) . '">[?]</a>'; ?>
-            </td>
-            <td>
-<?php
-                foreach ( $sysinfo['browser'] as $key => $value ) {
-                    echo '<strong>' . esc_html(ucfirst( $key )) . '</strong>: ' . esc_html($value) . '<br/>';
-                }
-?>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    
+    <?php /* nectar addition - removed browser status */ ?>
 
     <table class="redux_status_table widefat" cellspacing="0" id="status">
         <thead>
@@ -307,7 +283,7 @@
                 <?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Information about the web server that is currently hosting your site.', 'redux-framework' ) . '">[?]</a>'; ?>
             </td>
             <td>
-                <?php echo esc_html($sysinfo['server_info']); ?>
+                  <?php /* nectar addition - removed browser status */ ?>
             </td>
         </tr>
         <tr>
@@ -765,13 +741,13 @@
         </tbody>
     </table>
     <script type="text/javascript">
-        jQuery( 'a.redux-hint-qtip' ).click(
+        jQuery( 'a.redux-hint-qtip' ).on('click',
             function() {
                 return false;
             }
         );
 
-        jQuery( 'a.debug-report' ).click(
+        jQuery( 'a.debug-report' ).on('click',
             function() {
                 var report = '';
 

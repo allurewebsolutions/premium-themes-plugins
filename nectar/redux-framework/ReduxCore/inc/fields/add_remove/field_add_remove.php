@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             */
             function render() {
             	echo '<div class="add-remove-controls">';
-        		echo '<input type="hidden" name="' . $this->args['opt_name'] . '[' . $this->field['id'] . ']" value="'.esc_attr($this->value).'" />';
+        		echo '<input type="hidden" name="' . esc_attr($this->args['opt_name']) . '[' . esc_attr($this->field['id']) . ']" value="'.esc_attr($this->value).'" />';
                 echo '<a href="" class="add button button-primary">+</a> ';
         		echo '<a href="" class="remove button button-primary">-</a>';
         		echo '</div>';
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             function enqueue() {
                 wp_enqueue_script(
                     'redux-opts-field-add_remove-js', 
-                   ReduxFramework::$_url . 'inc/fields/add_remove/field_add_remove.js', 
+                   get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/add_remove/field_add_remove.js', 
                     array('jquery', 'jquery-ui-core', 'jquery-ui-dialog'),
                     time(),
                     true

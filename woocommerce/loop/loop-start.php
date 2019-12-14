@@ -16,12 +16,12 @@
  * @version     3.3.0
  */
 
-$options = get_nectar_theme_options(); 
-$product_style = (!empty($options['product_style'])) ? $options['product_style'] : 'classic';
-$nectar_woo_desktop_cols = (!empty($options['product_desktop_cols'])) ? $options['product_desktop_cols'] : 'default';
-$nectar_woo_desktop_small_cols = (!empty($options['product_desktop_small_cols'])) ? $options['product_desktop_small_cols'] : 'default';
-$nectar_woo_tablet_cols = (!empty($options['product_tablet_cols'])) ? $options['product_tablet_cols'] : 'default';
-$nectar_woo_phone_cols = (!empty($options['product_phone_cols'])) ? $options['product_phone_cols'] : 'default';
+$nectar_options                = get_nectar_theme_options(); 
+$product_style                 = (!empty($nectar_options['product_style'])) ? $nectar_options['product_style'] : 'classic';
+$nectar_woo_desktop_cols       = (!empty($nectar_options['product_desktop_cols'])) ? $nectar_options['product_desktop_cols'] : 'default';
+$nectar_woo_desktop_small_cols = (!empty($nectar_options['product_desktop_small_cols'])) ? $nectar_options['product_desktop_small_cols'] : 'default';
+$nectar_woo_tablet_cols        = (!empty($nectar_options['product_tablet_cols'])) ? $nectar_options['product_tablet_cols'] : 'default';
+$nectar_woo_phone_cols         = (!empty($nectar_options['product_phone_cols'])) ? $nectar_options['product_phone_cols'] : 'default';
 
 ?>
 

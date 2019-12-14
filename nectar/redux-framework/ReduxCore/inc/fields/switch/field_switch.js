@@ -40,7 +40,7 @@
                 } else {
                     return;
                 }
-                el.find( ".cb-enable" ).click(
+                el.find( ".cb-enable" ).on('click',
                     function() {
                         if ( $( this ).hasClass( 'selected' ) ) {
                             return;
@@ -65,7 +65,7 @@
                     }
                 );
 
-                el.find( ".cb-disable" ).click(
+                el.find( ".cb-disable" ).on('click',
                     function() {
                         if ( $( this ).hasClass( 'selected' ) ) {
                             return;

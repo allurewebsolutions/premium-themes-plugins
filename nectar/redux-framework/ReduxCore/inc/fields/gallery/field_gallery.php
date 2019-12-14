@@ -63,8 +63,8 @@ if ( ! class_exists( 'ReduxFramework_gallery' ) ) {
 
                 foreach ( $ids as $attachment_id ) {
                     $img = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
-                    echo '<a class="of-uploaded-image" href="' . $img[0] . '">';
-                    echo '<img class="redux-option-image" id="image_' . $this->field['id'] . '_' . $attachment_id . '" src="' . $img[0] . '" target="_blank" rel="external" />';
+                    echo '<a class="of-uploaded-image" href="' . esc_attr( $img[0] ) . '">';
+                    echo '<img class="redux-option-image" id="image_' . esc_attr( $this->field['id'] ) . '_' . esc_attr( $attachment_id ) . '" src="' . esc_attr( $img[0] ) . '" target="_blank" rel="external" />';
                     echo '</a>';
                 }
             }
@@ -72,7 +72,7 @@ if ( ! class_exists( 'ReduxFramework_gallery' ) ) {
             echo '</div>';
             echo '<a href="#" onclick="return false;" id="edit-gallery" class="gallery-attachments button button-primary">' . __( 'Add/Edit Gallery', 'redux-framework' ) . '</a> ';
             echo '<a href="#" onclick="return false;" id="clear-gallery" class="gallery-attachments button">' . __( 'Clear Gallery', 'redux-framework' ) . '</a>';
-            echo '<input type="hidden" class="gallery_values ' . $this->field['class'] . '" value="' . esc_attr( $this->value ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" />';
+            echo '<input type="hidden" class="gallery_values ' . esc_attr( $this->field['class'] ) . '" value="' . esc_attr( $this->value ) . '" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '" />';
         }
 
         /**
@@ -95,7 +95,7 @@ if ( ! class_exists( 'ReduxFramework_gallery' ) ) {
 
             wp_enqueue_script(
                 'redux-field-gallery-js',
-                ReduxFramework::$_url . 'inc/fields/gallery/field_gallery' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/gallery/field_gallery' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
                 time(),
                 true

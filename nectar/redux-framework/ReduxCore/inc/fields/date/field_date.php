@@ -60,7 +60,7 @@ if ( ! class_exists( 'ReduxFramework_date' ) ) {
         public function render() {
             $placeholder = ( isset( $this->field['placeholder'] ) ) ? ' placeholder="' . esc_attr( $this->field['placeholder'] ) . '" ' : '';
 
-            echo '<input data-id="' . $this->field['id'] . '" type="text" id="' . $this->field['id'] . '-date" name="' . $this->field['name'] . $this->field['name_suffix'] . '"' . $placeholder . 'value="' . $this->value . '" class="redux-datepicker regular-text ' . $this->field['class'] . '" />';
+            echo '<input data-id="' . esc_attr( $this->field['id'] ) . '" type="text" id="' . esc_attr( $this->field['id'] ) . '-date" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '"' . $placeholder . 'value="' . esc_attr( $this->value ) . '" class="redux-datepicker regular-text ' . esc_attr( $this->field['class'] ) . '" />';
         }
 
         /**
@@ -76,7 +76,7 @@ if ( ! class_exists( 'ReduxFramework_date' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-date-css',
-                    ReduxFramework::$_url . 'inc/fields/date/field_date.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/date/field_date.css',
                     array(),
                     time(),
                     'all'
@@ -85,7 +85,7 @@ if ( ! class_exists( 'ReduxFramework_date' ) ) {
 
             wp_enqueue_script(
                 'redux-field-date-js',
-                ReduxFramework::$_url . 'inc/fields/date/field_date' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/date/field_date' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'redux-js' ),
                 time(),
                 true

@@ -54,12 +54,12 @@ if ( ! class_exists( 'ReduxFramework_palette' ) ) {
                 return;
             }
             
-            echo '<div id="' . $this->field['id'] . '" class="buttonset">';
+            echo '<div id="' . esc_attr($this->field['id']) . '" class="buttonset">';
 
             foreach ( $this->field['palettes'] as $value => $colorSet ) {
                 $checked = checked( $this->value , $value, false );
-                echo '<input type="radio" value="' . $value . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" class="redux-palette-set ' . $this->field['class'] . '" id="' . $this->field['id'] . '-' . $value . '"' . $checked . '>';
-                echo '<label for="' . $this->field['id'] . '-' . $value . '">';
+                echo '<input type="radio" value="' . esc_attr($value) . '" name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '" class="redux-palette-set ' . esc_attr($this->field['class']) . '" id="' . esc_attr($this->field['id']) . '-' . esc_attr($value) . '"' . $checked . '>';
+                echo '<label for="' . esc_attr($this->field['id']) . '-' . esc_attr($value) . '">';
                 
                 foreach ( $colorSet as $color ) {
                     printf( "<span style='background: {$color}'>{$color}</span>" );
@@ -85,7 +85,7 @@ if ( ! class_exists( 'ReduxFramework_palette' ) ) {
             
             wp_enqueue_script(
                 'redux-field-palette-js',
-                ReduxFramework::$_url . 'inc/fields/palette/field_palette' . $min . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/palette/field_palette' . $min . '.js',
                 array( 'jquery', 'redux-js', 'jquery-ui-button', 'jquery-ui-core' ),
                 time(),
                 true
@@ -94,7 +94,7 @@ if ( ! class_exists( 'ReduxFramework_palette' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-palette-css',
-                    ReduxFramework::$_url . 'inc/fields/palette/field_palette.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/palette/field_palette.css',
                     array(),
                     time(),
                     'all'

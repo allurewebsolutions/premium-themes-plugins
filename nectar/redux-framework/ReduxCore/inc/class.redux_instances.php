@@ -83,7 +83,7 @@
             $this->options['dev_mode'] = false;
 
             if ( ! isset( $this->options['hash'] ) || ! $this->options['hash'] || empty( $this->options['hash'] ) ) {
-                $this->options['hash'] = md5( network_site_url() . '-' . $_SERVER['REMOTE_ADDR'] );
+                $this->options['hash'] = md5( network_site_url() ); // nectar addition
                 update_option( 'redux-framework-tracking', $this->options );
             }
 

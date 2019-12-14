@@ -129,7 +129,7 @@
                     ?>
                     <?php if ( ! empty( $this->description ) ) : ?>
                         <li class="customize-section-description-container">
-                            <p class="description customize-section-description legacy"><?php echo $this->description; ?></p>
+                            <p class="description customize-section-description legacy"><?php echo wp_kses_post( $this->description ); //nectar addition ?></p>
                         </li>
                     <?php endif; ?>
                 </ul>

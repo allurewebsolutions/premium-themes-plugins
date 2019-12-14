@@ -100,21 +100,21 @@
 
                 // Color picker container
                 echo '<div 
-                      class="redux-color-rgba-container ' . $this->field['class'] . '" 
-                      data-id="' . $field_id . '"
-                      data-show-input="' . $this->field['options']['show_input'] . '"
-                      data-show-initial="' . $this->field['options']['show_initial'] . '"
-                      data-show-alpha="' . $this->field['options']['show_alpha'] . '"
-                      data-show-palette="' . $this->field['options']['show_palette'] . '"
-                      data-show-palette-only="' . $this->field['options']['show_palette_only'] . '"
-                      data-show-selection-palette="' . $this->field['options']['show_selection_palette'] . '"
-                      data-max-palette-size="' . $this->field['options']['max_palette_size'] . '"
-                      data-allow-empty="' . $this->field['options']['allow_empty'] . '"
-                      data-clickout-fires-change="' . $this->field['options']['clickout_fires_change'] . '"
-                      data-choose-text="' . $this->field['options']['choose_text'] . '"
-                      data-cancel-text="' . $this->field['options']['cancel_text'] . '"
-                      data-input-text="' . $this->field['options']['input_text'] . '"
-                      data-show-buttons="' . $this->field['options']['show_buttons'] . '"
+                      class="redux-color-rgba-container ' . esc_attr( $this->field['class'] ) . '" 
+                      data-id="' . esc_attr( $field_id ) . '"
+                      data-show-input="' . esc_attr( $this->field['options']['show_input'] ) . '"
+                      data-show-initial="' . esc_attr( $this->field['options']['show_initial'] ) . '"
+                      data-show-alpha="' . esc_attr( $this->field['options']['show_alpha'] ) . '"
+                      data-show-palette="' . esc_attr( $this->field['options']['show_palette'] ) . '"
+                      data-show-palette-only="' . esc_attr( $this->field['options']['show_palette_only'] ) . '"
+                      data-show-selection-palette="' . esc_attr( $this->field['options']['show_selection_palette'] ) . '"
+                      data-max-palette-size="' . esc_attr( $this->field['options']['max_palette_size'] ) . '"
+                      data-allow-empty="' . esc_attr( $this->field['options']['allow_empty'] ) . '"
+                      data-clickout-fires-change="' . esc_attr( $this->field['options']['clickout_fires_change'] ) . '"
+                      data-choose-text="' . esc_attr( $this->field['options']['choose_text'] ) . '"
+                      data-cancel-text="' . esc_attr( $this->field['options']['cancel_text'] ) . '"
+                      data-input-text="' . esc_attr( $this->field['options']['input_text'] ) . '"
+                      data-show-buttons="' . esc_attr( $this->field['options']['show_buttons'] ) . '"
                       data-palette="' . urlencode( json_encode( $this->field['options']['palette'] ) ) . '"
                   >';
 
@@ -132,44 +132,44 @@
                 }
 
                 echo '<input
-                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[color]"
-                        id="' . $field_id . '-color"
+                        name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[color]"
+                        id="' . esc_attr( $field_id ) . '-color"
                         class="redux-color-rgba"
                         type="text"
-                        value="' . $this->value['color'] . '"
-                        data-color="' . $color . '"
-                        data-id="' . $field_id . '"
-                        data-current-color="' . $this->value['color'] . '"
-                        data-block-id="' . $field_id . '"
-                        data-output-transparent="' . $this->field['output_transparent'] . '"
+                        value="' . esc_attr( $this->value['color'] ) . '"
+                        data-color="' . esc_attr( $color ) . '"
+                        data-id="' . esc_attr( $field_id ) . '"
+                        data-current-color="' . esc_attr( $this->value['color'] ) . '"
+                        data-block-id="' . esc_attr( $field_id ) . '"
+                        data-output-transparent="' . esc_attr( $this->field['output_transparent'] ) . '"
                       />';
 
                 echo '<input
                         type="hidden"
                         class="redux-hidden-color"
-                        data-id="' . $field_id . '-color"
-                        id="' . $field_id . '-color"
-                        value="' . $this->value['color'] . '"
+                        data-id="' . esc_attr( $field_id ) . '-color"
+                        id="' . esc_attr( $field_id ) . '-color"
+                        value="' . esc_attr( $this->value['color'] ) . '"
                       />';
 
                 // Hidden input for alpha channel
                 echo '<input
                         type="hidden"
                         class="redux-hidden-alpha"
-                        data-id="' . $field_id . '-alpha"
-                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[alpha]' . '"
-                        id="' . $field_id . '-alpha"
-                        value="' . $this->value['alpha'] . '"
+                        data-id="' . esc_attr( $field_id ) . '-alpha"
+                        name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[alpha]' . '"
+                        id="' . esc_attr( $field_id ) . '-alpha"
+                        value="' . esc_attr( $this->value['alpha'] ) . '"
                       />';
 
                 // Hidden input for rgba
                 echo '<input
                         type="hidden"
                         class="redux-hidden-rgba"
-                        data-id="' . $field_id . '-rgba"
-                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[rgba]' . '"
-                        id="' . $field_id . '-rgba"
-                        value="' . $this->value['rgba'] . '"
+                        data-id="' . esc_attr( $field_id ) . '-rgba"
+                        name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[rgba]' . '"
+                        id="' . esc_attr( $field_id ) . '-rgba"
+                        value="' . esc_attr( $this->value['rgba'] ) . '"
                       />';
 
                 echo '</div>';
@@ -192,7 +192,7 @@
                 if ( ! wp_script_is( 'redux-field-color-rgba-js' ) ) {
                     wp_enqueue_script(
                         'redux-field-color-rgba-js',
-                        ReduxFramework::$_url . 'inc/fields/color_rgba/field_color_rgba' . Redux_Functions::isMin() . '.js',
+                        get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/color_rgba/field_color_rgba' . Redux_Functions::isMin() . '.js',
                         array( 'jquery', 'redux-spectrum-js' ),
                         time(),
                         true
@@ -208,7 +208,7 @@
                     if ( ! wp_style_is( 'redux-field-color-rgba-css' ) ) {
                         wp_enqueue_style(
                             'redux-field-color-rgba-css',
-                            ReduxFramework::$_url . 'inc/fields/color_rgba/field_color_rgba.css',
+                            get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/color_rgba/field_color_rgba.css',
                             array(),
                             time(),
                             'all'

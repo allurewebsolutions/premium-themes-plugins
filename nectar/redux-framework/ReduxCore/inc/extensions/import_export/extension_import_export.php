@@ -57,7 +57,7 @@
 
                 $this->parent = $parent;
                 if ( empty( $this->extension_dir ) ) {
-                    //$this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+      
                 }
                 $this->field_name = 'import_export';
 
@@ -174,8 +174,10 @@
                     header( 'Expires: 0' );
                     header( 'Cache-Control: must-revalidate' );
                     header( 'Pragma: public' );
-
-                    echo $content;
+                    
+                    // nectar addition
+                    echo json_encode( $backup_options );
+                    // nectar addition end;
                     exit;
                 } else {
                     header( "Expires: Mon, 26 Jul 1997 05:00:00 GMT" );
@@ -187,14 +189,18 @@
 
                     // Can't include the type. Thanks old Firefox and IE. BAH.
                     //header("Content-type: application/json");
-                    echo $content;
+                    // nectar addition
+                    echo json_encode( $backup_options );
+                    // nectar addition end;
                     exit;
                 }
             }
 
             // Forces the use of the embeded field path vs what the core typically would use
             public function overload_field_path( $field ) {
-                return dirname( __FILE__ ) . '/' . $this->field_name . '/field_' . $this->field_name . '.php';
+              /* nectar addition */
+              return get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/extensions/import_export/' . $this->field_name . '/field_' . $this->field_name . '.php');
+              /* nectar addition end */
             }
 
             public function remove_cookie() {

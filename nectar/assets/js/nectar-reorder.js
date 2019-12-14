@@ -1,5 +1,15 @@
+/**
+ * Salient sortable reordering.
+ *
+ * @package Salient
+ * @author ThemeNectar
+ */
+ /* global jQuery */
+ 
 jQuery(function($){
-
+	
+	"use strict";
+	
 	$('#sortable-table tbody').sortable({
 		axis: 'y',
 		handle: '.column-order img',
@@ -17,19 +27,17 @@ jQuery(function($){
 			$.post(ajaxurl,data);
 		}
 	}).disableSelection();
+	
 
-	//shifty fix for the title column header in the home slider section
-    if($('td.post-title').parent().hasClass('type-home_slider') || $('td.post-title').parent().hasClass('type-nectar_slider')) {
-    	$('th#title, th.column-title').html('<span>Actions</span>');
-    }
-    
-
-    $('.slider-locations #slider-locations').chosen();
-    
-    $('.slider-locations #slider-locations').change(function(){
-    	window.location = $(this).parents('.wrap').attr('data-base-url') + '&slider-location='+$(this).val()
-    });
-
-
-
+	if($('td.post-title').parent().hasClass('type-home_slider') || $('td.post-title').parent().hasClass('type-nectar_slider')) {
+		$('th#title, th.column-title').html('<span>Actions</span>');
+	}
+	
+	$('.slider-locations #slider-locations').chosen();
+	
+	$('.slider-locations #slider-locations').on('change',function(){
+		window.location = $(this).parents('.wrap').attr('data-base-url') + '&slider-location='+$(this).val()
+	});
+	
+	
 });

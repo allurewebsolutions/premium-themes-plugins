@@ -89,7 +89,7 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
                 }
             }
             
-            echo '<ul id="' . $this->field['id'] . '-list" class="redux-sortable ' . $class . ' ' . $label_class . '">';
+            echo '<ul id="' . esc_attr($this->field['id']) . '-list" class="redux-sortable ' . $class . ' ' . $label_class . '">';
 
 
             foreach ( $this->value as $k => $nicename ) {
@@ -105,7 +105,7 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
                     }
                     $class .= " checkbox_sortable";
                     $name = "";
-                    echo '<input type="hidden" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $k . ']' . '" id="' . $this->field['id'] . '-' . $k . '-hidden" value="' . $value_display . '" />';
+                    echo '<input type="hidden" name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '[' . esc_attr($k) . ']' . '" id="' . esc_attr($this->field['id']) . '-' . esc_attr($k) . '-hidden" value="' . $value_display . '" />';
 
                     echo '<div class="checkbox-container">';
                 } else {
@@ -116,21 +116,20 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
 
                 if ($this->field['mode'] != "checkbox") {
                     if ($use_labels) {
-                        echo '<label class="bugger" for="' . $this->field['id'] . '[' . $k . ']"><strong>' . $k . '</strong></label>';
+                        echo '<label class="bugger" for="' . esc_attr($this->field['id']) . '[' . esc_attr($k) . ']"><strong>' . esc_attr($k) . '</strong></label>';
                         echo "<br />";
                     }
                 }
 
-                echo '<input rel="' . $this->field['id'] . '-' . $k . '-hidden" class="' . $class . '" ' . $checked . 'type="' . $this->field['mode'] . '" ' . $name . 'id="' . $this->field['id'] . '[' . $k . ']" value="' . esc_attr( $value_display ) . '" placeholder="' . $nicename . '" />';
+                echo '<input rel="' . esc_attr($this->field['id']) . '-' . esc_attr($k) . '-hidden" class="' . esc_attr($class) . '" ' . $checked . 'type="' . $this->field['mode'] . '" ' . $name . 'id="' . esc_attr($this->field['id']) . '[' . $k . ']" value="' . esc_attr( $value_display ) . '" placeholder="' . $nicename . '" />';
 
                 echo '<span class="compact drag"><i class="el el-move icon-large"></i></span>';
-                //if ( ( isset( $this->field['label'] ) && $this->field['label'] == true ) ) {
+      
                 if ($this->field['mode'] == "checkbox") {
                     if ( $this->field['mode'] != "checkbox" ) {
-                        //echo "<br />";
-                        //echo '<label for="' . $this->field['id'] . '[' . $k . ']"><strong>' . $k . '</strong></label>';
+                
                     } else {
-                        echo '<label for="' . $this->field['id'] . '[' . $k . ']"><strong>' .  $options[$k] . '</strong></label>';
+                        echo '<label for="' . esc_attr($this->field['id']) . '[' . esc_attr($k) . ']"><strong>' .  wp_kses_post($options[$k]) . '</strong></label>';
                     }
                 }
                 if ( $this->field['mode'] == "checkbox" ) {
@@ -145,7 +144,7 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-sortable-css',
-                    ReduxFramework::$_url . 'inc/fields/sortable/field_sortable.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/sortable/field_sortable.css',
                     array(),
                     time(),
                     'all'
@@ -154,7 +153,7 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
 
             wp_enqueue_script(
                 'redux-field-sortable-js',
-                ReduxFramework::$_url . 'inc/fields/sortable/field_sortable' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/sortable/field_sortable' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js', 'jquery-ui-sortable' ),
                 time(),
                 true

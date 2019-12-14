@@ -51,7 +51,7 @@
                     }
                 );
 
-                el.find( '.redux-multi-text-add' ).click(
+                el.find( '.redux-multi-text-add' ).on('click',
                     function() {
                         var number = parseInt( $( this ).attr( 'data-add_number' ) );
                         var id = $( this ).attr( 'data-id' );

@@ -9,6 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 
 nectar_page_header( $post->ID );
+
 ?>
 
 <div class="container-wrap">
@@ -18,20 +19,22 @@ nectar_page_header( $post->ID );
 		<div class="row">
 			
 			<div class="post-area col span_9">
+				
 				<?php
 
-				// breadcrumbs
-				if ( function_exists( 'yoast_breadcrumb' ) && ! is_home() && ! is_front_page() ) {
-					yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' ); }
+				nectar_hook_before_content(); 
 
 				if ( have_posts() ) :
 					while ( have_posts() ) :
 
 						the_post();
 						the_content();
-
+						
 					endwhile;
 				endif;
+				
+				nectar_hook_after_content();
+				
 				?>
 				
 			</div><!--/span_9-->

@@ -4,13 +4,11 @@ get_header();
 
 $nectar_options = get_nectar_theme_options();
 
+wp_enqueue_script('flexslider');
 
-$nectar_disable_home_slider = ( ! empty( $nectar_options['disable_home_slider_pt'] ) && $nectar_options['disable_home_slider_pt'] == '1' ) ? true : false;
-if ( $nectar_disable_home_slider != true ) {
+if ( class_exists( 'Salient_Home_Slider' ) ) { ?>
 
-?>
-
-<div id="featured" data-caption-animation="<?php echo (!empty($nectar_options['slider-caption-animation']) && $nectar_options['slider-caption-animation'] == 1) ? '1' : '0'; ?>" data-bg-color="<?php if(!empty($nectar_options['slider-bg-color'])) echo esc_attr( $nectar_options['slider-bg-color'] ); ?>" data-slider-height="<?php if(!empty($nectar_options['slider-height'])) echo esc_attr( $nectar_options['slider-height'] ); ?>" data-animation-speed="<?php if(!empty($nectar_options['slider-animation-speed'])) echo esc_attr( $nectar_options['slider-animation-speed'] ); ?>" data-advance-speed="<?php if(!empty($nectar_options['slider-advance-speed'])) echo esc_attr( $nectar_options['slider-advance-speed'] ); ?>" data-autoplay="<?php echo esc_attr( $nectar_options['slider-autoplay'] );?>"> 
+<div id="featured" data-caption-animation="<?php echo (!empty($nectar_options['slider-caption-animation']) && $nectar_options['slider-caption-animation'] === '1') ? '1' : '0'; ?>" data-bg-color="<?php if(!empty($nectar_options['slider-bg-color'])) echo esc_attr( $nectar_options['slider-bg-color'] ); ?>" data-slider-height="<?php if(!empty($nectar_options['slider-height'])) echo esc_attr( $nectar_options['slider-height'] ); ?>" data-animation-speed="800" data-advance-speed="<?php if(!empty($nectar_options['slider-advance-speed'])) echo esc_attr( $nectar_options['slider-advance-speed'] ); ?>" data-autoplay="<?php echo esc_attr( $nectar_options['slider-autoplay'] );?>"> 
 	
 	<?php
 	$slides = new WP_Query(
@@ -28,8 +26,7 @@ if ( $nectar_disable_home_slider != true ) {
 		while ( $slides->have_posts() ) :
 			$slides->the_post();
 
-			$alignment = get_post_meta( $post->ID, '_nectar_slide_alignment', true );
-
+			$alignment    = get_post_meta( $post->ID, '_nectar_slide_alignment', true );
 			$video_embed  = get_post_meta( $post->ID, '_nectar_video_embed', true );
 			$video_m4v    = get_post_meta( $post->ID, '_nectar_video_m4v', true );
 			$video_ogv    = get_post_meta( $post->ID, '_nectar_video_ogv', true );
@@ -40,7 +37,7 @@ if ( $nectar_disable_home_slider != true ) {
 			<div class="slide orbit-slide <?php if ( ! empty( $video_embed ) || ! empty( $video_m4v ) || ! empty( $video_ogv ) ) { echo 'has-video'; } else { echo esc_attr( $alignment ); } ?> ">
 				
 				<?php $image = get_post_meta( $post->ID, '_nectar_slider_image', true ); ?>
-				<article data-background-cover="<?php echo ( ! empty( $nectar_options['slider-background-cover'] ) && $nectar_options['slider-background-cover'] == 1 ) ? '1' : '0'; ?>" style="background-image: url('<?php echo esc_url( $image ); ?>')">
+				<article data-background-cover="<?php echo ( ! empty( $nectar_options['slider-background-cover'] ) && $nectar_options['slider-background-cover'] === '1' ) ? '1' : '0'; ?>" style="background-image: url('<?php echo esc_url( $image ); ?>')">
 					<div class="container">
 						<div class="col span_12">
 							<div class="post-title">
@@ -54,14 +51,7 @@ if ( $nectar_disable_home_slider != true ) {
 									 echo '<div class="video">' . do_shortcode( $video_embed ) . '</div>';
 
 								}
-									// self hosted video pre 3-6
-								elseif ( ! empty( $video_m4v ) && $wp_version < '3.6' || ! empty( $video_ogv ) && $wp_version < '3.6' ) {
-
-									 echo '<div class="video">';
-									 echo '</div>';
-
-								}
-									// self hosted video post 3-6
+								// self hosted video post 3-6
 								elseif ( $wp_version >= '3.6' ) {
 
 									if ( ! empty( $video_m4v ) || ! empty( $video_ogv ) ) {
@@ -69,11 +59,11 @@ if ( $nectar_disable_home_slider != true ) {
 										$video_output = '[video ';
 
 										if ( ! empty( $video_m4v ) ) {
-											$video_output .= 'mp4="' . $video_m4v . '" '; }
+											$video_output .= 'mp4="' . esc_url( $video_m4v ) . '" '; }
 										if ( ! empty( $video_ogv ) ) {
-											$video_output .= 'ogv="' . $video_ogv . '"'; }
+											$video_output .= 'ogv="' . esc_url( $video_ogv ) . '"'; }
 
-										$video_output .= ' poster="' . $video_poster . '"]';
+										$video_output .= ' poster="' . esc_url( $video_poster ) . '"]';
 
 										echo '<div class="video">' . do_shortcode( $video_output ) . '</div>';
 									}
@@ -126,148 +116,149 @@ if ( $nectar_disable_home_slider != true ) {
 			<?php
 			if ( have_posts() ) :
 				while ( have_posts() ) :
+					
 					the_post();
-					?>
-				
-					<?php the_content(); ?>
-	
-					<?php
+					the_content(); 
+
 			endwhile;
-endif;
+			endif;
 			?>
 	
 		</div><!--/row-->
 		
-	
-	
+
 		
 		<?php
-
+		
+		if( class_exists('Salient_Portfolio') ) { 
+			
 			$portfolio_link = get_portfolio_page_link( get_the_ID() );
-		if ( ! empty( $nectar_options['main-portfolio-link'] ) ) {
-			$portfolio_link = $nectar_options['main-portfolio-link'];
-		}
+			if ( ! empty( $nectar_options['main-portfolio-link'] ) ) {
+				$portfolio_link = $nectar_options['main-portfolio-link'];
+			}
 
-				$portfolio = array(
-					'posts_per_page' => '6',
-					'post_type'      => 'portfolio',
-				);
-				query_posts( $portfolio );
-				?>
-				
+					$portfolio = array(
+						'posts_per_page' => '6',
+						'post_type'      => 'portfolio',
+					);
+					query_posts( $portfolio );
+					?>
+					
+					
+					<?php if ( have_posts() ) { ?>
+						
+						<div class="carousel-wrap recent-work-carousel" data-full-width="false">
+						
+
+							<div class="carousel-heading">
+								<div class="container">
+									<h2 class="uppercase"><?php echo ( ! empty( $nectar_options['carousel-title'] ) ) ? esc_html( $nectar_options['carousel-title'] ) : 'Recent Work'; ?><a href="<?php echo esc_url( $portfolio_link ); ?>" class="button"> / <?php echo ( ! empty( $nectar_options['carousel-link'] ) ) ? esc_html( $nectar_options['carousel-link'] ) : 'View all work'; ?></a></h2>
+									<div class="control-wrap"><a class="carousel-prev" href="#"><i class="icon-angle-left"></i></a>
+									<a class="carousel-next" href="#"><i class="icon-angle-right"></i></a></div>
+								</div>
+							</div>
+
+						
+						<ul class="row portfolio-items text-align-center carousel" data-scroll-speed="800" data-easing="easeInOutQuart">
+					<?php } ?>
+					
+					<?php
+					if ( have_posts() ) :
+						while ( have_posts() ) :
+							the_post();
+							?>
+					
+					
+						
+					<li class="col span_4">
+						
+						<div class="work-item">
+							<?php
+							// custom thumbnail
+							$custom_thumbnail = get_post_meta( $post->ID, '_nectar_portfolio_custom_thumbnail', true );
+
+							if ( ! empty( $custom_thumbnail ) ) {
+								echo '<img class="custom-thumbnail" src="' . esc_url( $custom_thumbnail ) . '" alt="' . get_the_title() . '" />';
+							} else {
+
+								if ( has_post_thumbnail() ) {
+									 echo get_the_post_thumbnail( $post->ID, 'portfolio-thumb', array( 'title' => '' ) );
+								}
+								// no image added
+								else {
+									 echo '<img src="' . get_template_directory_uri() . '/img/no-portfolio-item-small.jpg" alt="no image added yet." />';
+								}
+							}
+							?>
+							
+							<div class="work-info-bg"></div>
+							<div class="work-info">
+								
+								<div class="vert-center">
+									
+									<?php
+
+									$featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+									$video_embed    = get_post_meta( $post->ID, '_nectar_video_embed', true );
+									$video_m4v      = get_post_meta( $post->ID, '_nectar_video_m4v', true );
+									$wp_version     = floatval( get_bloginfo( 'version' ) );
+
+									$custom_project_link = get_post_meta( $post->ID, '_nectar_external_project_url', true );
+									$the_project_link    = ( ! empty( $custom_project_link ) ) ? $custom_project_link : esc_url( get_permalink() );
+
+									// video
+									if ( ! empty( $video_embed ) || ! empty( $video_m4v ) ) {
+
+										echo nectar_portfolio_video_popup_link( $post, '1', $video_embed, $video_m4v );
+
+									}
+
+									// image
+									else {
+										echo '<a href="' . esc_url( $featured_image[0] ) . '" class="pp">' . esc_html__( 'View Larger', 'salient' ) . '</a> ';
+									}
+
+									 echo '<a href="' . esc_url( $the_project_link ) . '">' . esc_html__( 'More Details', 'salient' ) . '</a>';
+									?>
+									 
+								</div><!--/vert-center-->
+								
+							</div>
+						</div><!--work-item-->
+						
+						<div class="work-meta">
+							<h4 class="title"><?php the_title(); ?></h4>
+												<?php
+												global $nectar_options;
+												if ( ! empty( $nectar_options['portfolio_date'] ) && $nectar_options['portfolio_date'] === '1' ) {
+													echo get_the_date();
+												}
+												?>
+						</div>
+						<div class="nectar-love-wrap">
+							<?php
+							if ( function_exists( 'nectar_love' ) ) {
+								nectar_love();}
+							?>
+						</div><!--/nectar-love-wrap-->	
+						
+						<div class="clear"></div>
+						
+					</li><!--/span_4-->
+					
+										<?php
+					endwhile;
+				endif;
+					?>
+					
 				
 				<?php if ( have_posts() ) { ?>
-					
-					<div class="carousel-wrap">
-					
-					<div class="container">
-						<div class="carousel-heading">
-							<h2 class="uppercase"><?php echo ( ! empty( $nectar_options['carousel-title'] ) ) ? wp_kses_post( $nectar_options['carousel-title'] ) : 'Recent Work'; ?><a href="<?php echo esc_url( $portfolio_link ); ?>" class="button"> / <?php echo ( ! empty( $nectar_options['carousel-link'] ) ) ? wp_kses_post( $nectar_options['carousel-link'] ) : 'View all work'; ?></a></h2>
-							<a class="carousel-prev" href="#"><i class="icon-angle-left"></i></a>
-							<a class="carousel-next" href="#"><i class="icon-angle-right"></i></a>
-						</div>
-					</div>
-					
-					<ul class="row portfolio-items text-align-center carousel" data-scroll-speed="800" data-easing="easeInOutQuart">
+				</ul><!--/carousel-->
+				
+				</div><!--/carousel-wrap-->
 				<?php } ?>
-				
-				<?php
-				if ( have_posts() ) :
-					while ( have_posts() ) :
-						the_post();
-						?>
-				
-				
-					
-				<li class="col span_4">
-					
-					<div class="work-item">
-						<?php
-						// custom thumbnail
-						$custom_thumbnail = get_post_meta( $post->ID, '_nectar_portfolio_custom_thumbnail', true );
-
-						if ( ! empty( $custom_thumbnail ) ) {
-							echo '<img class="custom-thumbnail" src="' . esc_url( $custom_thumbnail ) . '" alt="' . get_the_title() . '" />';
-						} else {
-
-							if ( has_post_thumbnail() ) {
-								 echo get_the_post_thumbnail( $post->ID, 'portfolio-thumb', array( 'title' => '' ) );
-							}
-							// no image added
-							else {
-								 echo '<img src="' . get_template_directory_uri() . '/img/no-portfolio-item-small.jpg" alt="no image added yet." />';
-							}
-						}
-						?>
-						
-						<div class="work-info-bg"></div>
-						<div class="work-info">
-							
-							<div class="vert-center">
-								
-								<?php
-
-								$featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
-								$video_embed    = get_post_meta( $post->ID, '_nectar_video_embed', true );
-								$video_m4v      = get_post_meta( $post->ID, '_nectar_video_m4v', true );
-								$wp_version     = floatval( get_bloginfo( 'version' ) );
-
-								$custom_project_link = get_post_meta( $post->ID, '_nectar_external_project_url', true );
-								$the_project_link    = ( ! empty( $custom_project_link ) ) ? $custom_project_link : esc_url( get_permalink() );
-
-								// video
-								if ( ! empty( $video_embed ) || ! empty( $video_m4v ) ) {
-
-									echo nectar_portfolio_video_popup_link( $post, '1', $video_embed, $video_m4v );
-
-								}
-
-								// image
-								else {
-									echo '<a href="' . esc_url( $featured_image[0] ) . '" class="pp">' . esc_html__( 'View Larger', 'salient' ) . '</a> ';
-								}
-
-								 echo '<a href="' . esc_url( $the_project_link ) . '">' . esc_html__( 'More Details', 'salient' ) . '</a>';
-								?>
-								 
-							</div><!--/vert-center-->
-							
-						</div>
-					</div><!--work-item-->
-					
-					<div class="work-meta">
-						<h4 class="title"><?php the_title(); ?></h4>
-											<?php
-											global $nectar_options;
-											if ( ! empty( $nectar_options['portfolio_date'] ) && $nectar_options['portfolio_date'] == 1 ) {
-												echo get_the_date();
-											}
-											?>
-					</div>
-					<div class="nectar-love-wrap">
-						<?php
-						if ( function_exists( 'nectar_love' ) ) {
-							nectar_love();}
-						?>
-					</div><!--/nectar-love-wrap-->	
-					
-					<div class="clear"></div>
-					
-				</li><!--/span_4-->
-				
-									<?php
-				endwhile;
-endif;
-				?>
-				
 			
-			<?php if ( have_posts() ) { ?>
-			</ul><!--/carousel-->
-			
-			</div><!--/carousel-wrap-->
-			<?php } ?>
-		
-		
+		<?php } //class exists ?>
 		
 		<div class="divider-border"></div>
 	
@@ -312,7 +303,7 @@ endif;
 
 						$wp_version = floatval( get_bloginfo( 'version' ) );
 
-						if ( get_post_format() == 'video' ) {
+						if ( get_post_format() === 'video' ) {
 
 							if ( $wp_version < '3.6' ) {
 								$video_embed = get_post_meta( $post->ID, '_nectar_video_embed', true );
@@ -352,11 +343,11 @@ endif;
 											$video_output = '[video ';
 
 											if ( ! empty( $video_m4v ) ) {
-												$video_output .= 'mp4="' . $video_m4v . '" '; }
+												$video_output .= 'mp4="' . esc_url( $video_m4v ) . '" '; }
 											if ( ! empty( $video_ogv ) ) {
-												$video_output .= 'ogv="' . $video_ogv . '"'; }
+												$video_output .= 'ogv="' . esc_url( $video_ogv ) . '"'; }
 
-											$video_output .= ' poster="' . $video_poster . '"]';
+											$video_output .= ' poster="' . esc_url( $video_poster ) . '"]';
 
 											echo '<div class="video">' . do_shortcode( $video_output ) . '</div>';
 										}
@@ -365,7 +356,7 @@ endif;
 							} // endif for 3.6
 						} //endif for post format video
 
-						elseif ( get_post_format() == 'audio' ) {
+						elseif ( get_post_format() === 'audio' ) {
 							?>
 							<div class="audio-wrap">		
 								<?php
@@ -380,9 +371,9 @@ endif;
 										$audio_output = '[audio ';
 
 										if ( ! empty( $audio_mp3 ) ) {
-											$audio_output .= 'mp3="' . $audio_mp3 . '" '; }
+											$audio_output .= 'mp3="' . esc_url( $audio_mp3 ) . '" '; }
 										if ( ! empty( $audio_ogg ) ) {
-											$audio_output .= 'ogg="' . $audio_ogg . '"'; }
+											$audio_output .= 'ogg="' . esc_url( $audio_ogg ) . '"'; }
 
 										$audio_output .= ']';
 
@@ -400,14 +391,14 @@ endif;
 									echo get_the_post_thumbnail( $post->ID, 'full', array( 'title' => '' ) ); }
 							} else {
 
-								$gallery_ids = grab_ids_from_gallery();
+								$gallery_ids = nectar_grab_ids_from_gallery();
 								?>
 					
 								<div class="flex-gallery"> 
 										 <ul class="slides">
 											<?php
 											foreach ( $gallery_ids as $image_id ) {
-												 echo '<li>' . wp_get_attachment_image( $image_id, '', false, $attr ) . '</li>';
+												 echo '<li>' . wp_get_attachment_image( $image_id, '', false ) . '</li>';
 											}
 											?>
 										</ul>
@@ -434,7 +425,7 @@ endif;
 				
 									<?php
 				endwhile;
-endif;
+			endif;
 				?>
 		
 			</div><!--/blog-recent-->

@@ -28,7 +28,7 @@
                 }
                 el.each(
                     function() {
-                        $( '#redux-import' ).click(
+                        $( '#redux-import' ).on('click',
                             function( e ) {
                                 if ( $( '#import-code-value' ).val() === "" && $( '#import-link-value' ).val() === "" ) {
                                     e.preventDefault();
@@ -39,7 +39,7 @@
                             }
                         );
 
-                        $( this ).find( '#redux-import-code-button' ).click(
+                        $( this ).find( '#redux-import-code-button' ).on('click',
                             function() {
                                 var $el = $( '#redux-import-code-wrapper' );
                                 if ( $( '#redux-import-link-wrapper' ).is( ':visible' ) ) {
@@ -48,7 +48,7 @@
                                         'fast', function() {
                                             $el.slideDown(
                                                 'fast', function() {
-                                                    $( '#import-code-value' ).focus();
+                                                    $( '#import-code-value' ).trigger('focus');
                                                 }
                                             );
                                         }
@@ -59,7 +59,7 @@
                                     } else {
                                         $el.slideDown(
                                             'medium', function() {
-                                                $( '#import-code-value' ).focus();
+                                                $( '#import-code-value' ).trigger('focus');
                                             }
                                         );
                                     }
@@ -67,7 +67,7 @@
                             }
                         );
 
-                        $( this ).find( '#redux-import-link-button' ).click(
+                        $( this ).find( '#redux-import-link-button' ).on('click',
                             function() {
                                 var $el = $( '#redux-import-link-wrapper' );
                                 if ( $( '#redux-import-code-wrapper' ).is( ':visible' ) ) {
@@ -76,7 +76,7 @@
                                         'fast', function() {
                                             $el.slideDown(
                                                 'fast', function() {
-                                                    $( '#import-link-value' ).focus();
+                                                    $( '#import-link-value' ).trigger('focus');
                                                 }
                                             );
                                         }
@@ -87,7 +87,7 @@
                                     } else {
                                         $el.slideDown(
                                             'medium', function() {
-                                                $( '#import-link-value' ).focus();
+                                                $( '#import-link-value' ).trigger('focus');
                                             }
                                         );
                                     }
@@ -95,7 +95,7 @@
                             }
                         );
 
-                        $( this ).find( '#redux-export-code-copy' ).click(
+                        $( this ).find( '#redux-export-code-copy' ).on('click',
                             function() {
                                 var $el = $( '#redux-export-code' );
                                 if ( $( '#redux-export-link-value' ).is( ':visible' ) ) {
@@ -105,7 +105,7 @@
                                                 'medium', function() {
                                                     var options = redux.options;
                                                     options['redux-backup'] = 1;
-                                                    $( this ).text( JSON.stringify( options ) ).focus().select();
+                                                    $( this ).text( JSON.stringify( options ) ).trigger('focus').trigger('select');
                                                 }
                                             );
                                         }
@@ -118,7 +118,7 @@
                                             'medium', function() {
                                                 var options = redux.options;
                                                 options['redux-backup'] = 1;
-                                                $( this ).text( JSON.stringify( options ) ).focus().select();
+                                                $( this ).text( JSON.stringify( options ) ).trigger('focus').trigger('select');
                                             }
                                         );
                                     }
@@ -145,13 +145,13 @@
                         );
 
 
-                        $( this ).find( '#redux-export-link' ).click(
+                        $( this ).find( '#redux-export-link' ).on('click',
                             function() {
                                 var $el = $( '#redux-export-link-value' );
                                 if ( $( '#redux-export-code' ).is( ':visible' ) ) {
                                     $( '#redux-export-code' ).slideUp(
                                         'fast', function() {
-                                            $el.slideDown().focus().select();
+                                            $el.slideDown().trigger('focus').trigger('select');
                                         }
                                     );
                                 } else {
@@ -160,7 +160,7 @@
                                     } else {
                                         $el.slideDown(
                                             'medium', function() {
-                                                $( this ).focus().select();
+                                                $( this ).trigger('focus').trigger('select');
                                             }
                                         );
                                     }

@@ -2,13 +2,13 @@
 /*template name: Home - Recent Posts */
 get_header();
 
-$options = get_nectar_theme_options();
+$nectar_options = get_nectar_theme_options();
 
+wp_enqueue_script('flexslider');
 
-$nectar_disable_home_slider = ( ! empty( $options['disable_home_slider_pt'] ) && $options['disable_home_slider_pt'] == '1' ) ? true : false;
-if ( $nectar_disable_home_slider != true ) { ?>
+if ( class_exists( 'Salient_Home_Slider' ) ) { ?>
 
-<div id="featured" data-caption-animation="<?php echo (!empty($options['slider-caption-animation']) && $options['slider-caption-animation'] == 1) ? '1' : '0'; ?>" data-bg-color="<?php if(!empty($options['slider-bg-color'])) echo esc_attr( $options['slider-bg-color'] ); ?>" data-slider-height="<?php if(!empty($options['slider-height'])) echo esc_attr( $options['slider-height'] ); ?>" data-animation-speed="<?php if(!empty($options['slider-animation-speed'])) echo esc_attr( $options['slider-animation-speed'] ); ?>" data-advance-speed="<?php if(!empty($options['slider-advance-speed'])) echo esc_attr( $options['slider-advance-speed'] ); ?>" data-autoplay="<?php echo esc_attr( $options['slider-autoplay'] );?>"> 
+<div id="featured" data-caption-animation="<?php echo (!empty($nectar_options['slider-caption-animation']) && $nectar_options['slider-caption-animation'] === '1') ? '1' : '0'; ?>" data-bg-color="<?php if(!empty($nectar_options['slider-bg-color'])) echo esc_attr( $nectar_options['slider-bg-color'] ); ?>" data-slider-height="<?php if(!empty($nectar_options['slider-height'])) echo esc_attr( $nectar_options['slider-height'] ); ?>" data-animation-speed="800" data-advance-speed="<?php if(!empty($nectar_options['slider-advance-speed'])) echo esc_attr( $nectar_options['slider-advance-speed'] ); ?>" data-autoplay="<?php echo esc_attr( $nectar_options['slider-autoplay'] );?>"> 
 	
 	<?php
 	$slides = new WP_Query(
@@ -38,7 +38,7 @@ if ( $nectar_disable_home_slider != true ) { ?>
 			<div class="slide orbit-slide <?php if ( ! empty( $video_embed ) || ! empty( $video_m4v ) || ! empty( $video_ogv ) ) { echo 'has-video'; } else { echo esc_attr( $alignment ); } ?> ">
 				
 				<?php $image = get_post_meta( $post->ID, '_nectar_slider_image', true ); ?>
-				<article data-background-cover="<?php echo ( ! empty( $options['slider-background-cover'] ) && $options['slider-background-cover'] == 1 ) ? '1' : '0'; ?>" style="background-image: url('<?php echo esc_url( $image ); ?>')">
+				<article data-background-cover="<?php echo ( ! empty( $nectar_options['slider-background-cover'] ) && $nectar_options['slider-background-cover'] === '1' ) ? '1' : '0'; ?>" style="background-image: url('<?php echo esc_url( $image ); ?>')">
 					<div class="container">
 						<div class="col span_12">
 							<div class="post-title">
@@ -52,14 +52,8 @@ if ( $nectar_disable_home_slider != true ) { ?>
 									 echo '<div class="video">' . do_shortcode( $video_embed ) . '</div>';
 
 								}
-									// self hosted video pre 3-6
-								elseif ( ! empty( $video_m4v ) && $wp_version < '3.6' || ! empty( $video_ogv ) && $wp_version < '3.6' ) {
 
-									 echo '<div class="video">';
-									 echo '</div>';
-
-								}
-									// self hosted video post 3-6
+								// self hosted video post 3-6
 								elseif ( $wp_version >= '3.6' ) {
 
 									if ( ! empty( $video_m4v ) || ! empty( $video_ogv ) ) {
@@ -67,11 +61,11 @@ if ( $nectar_disable_home_slider != true ) { ?>
 										$video_output = '[video ';
 
 										if ( ! empty( $video_m4v ) ) {
-											$video_output .= 'mp4="' . $video_m4v . '" '; }
+											$video_output .= 'mp4="' . esc_url( $video_m4v ) . '" '; }
 										if ( ! empty( $video_ogv ) ) {
-											$video_output .= 'ogv="' . $video_ogv . '"'; }
+											$video_output .= 'ogv="' . esc_url( $video_ogv ) . '"'; }
 
-										$video_output .= ' poster="' . $video_poster . '"]';
+										$video_output .= ' poster="' . esc_url( $video_poster ) . '"]';
 
 										echo '<div class="video">' . do_shortcode( $video_output ) . '</div>';
 									}
@@ -124,14 +118,12 @@ if ( $nectar_disable_home_slider != true ) { ?>
 			<?php
 			if ( have_posts() ) :
 				while ( have_posts() ) :
+					
 					the_post();
-					?>
-				
-					<?php the_content(); ?>
+					the_content(); 
 	
-					<?php
 			endwhile;
-endif;
+			endif;
 			?>
 	
 		</div><!--/row-->
@@ -142,8 +134,8 @@ endif;
 				$posts_page_title = $posts_page->post_title;
 				$posts_page_link  = get_page_uri( $posts_page_id );
 
-				$recent_posts_title_text = ( ! empty( $options['recent-posts-title'] ) ) ? $options['recent-posts-title'] : 'Recent Posts';
-				$recent_posts_link_text  = ( ! empty( $options['recent-posts-link'] ) ) ? $options['recent-posts-link'] : 'View All Posts';
+				$recent_posts_title_text = ( ! empty( $nectar_options['recent-posts-title'] ) ) ? $nectar_options['recent-posts-title'] : 'Recent Posts';
+				$recent_posts_link_text  = ( ! empty( $nectar_options['recent-posts-link'] ) ) ? $nectar_options['recent-posts-link'] : 'View All Posts';
 			?>
 			
 			<h2 class="uppercase recent-posts-title"><?php echo wp_kses_post( $recent_posts_title_text ); ?><a href="<?php echo esc_url( $posts_page_link ); ?>" class="button"> / <?php echo wp_kses_post( $recent_posts_link_text ); ?> </a></h2>
@@ -175,7 +167,7 @@ endif;
 
 						$wp_version = floatval( get_bloginfo( 'version' ) );
 
-						if ( get_post_format() == 'video' ) {
+						if ( get_post_format() === 'video' ) {
 
 							if ( $wp_version < '3.6' ) {
 								$video_embed = get_post_meta( $post->ID, '_nectar_video_embed', true );
@@ -200,13 +192,6 @@ endif;
 										 echo '<div class="video">' . do_shortcode( $video_embed ) . '</div>';
 
 									}
-									// self hosted video pre 3-6
-									elseif ( ! empty( $video_m4v ) && $wp_version < '3.6' ) {
-
-										 echo '<div class="video">';
-										 echo '</div>';
-
-									}
 									// self hosted video post 3-6
 									elseif ( $wp_version >= '3.6' ) {
 
@@ -215,11 +200,11 @@ endif;
 											$video_output = '[video ';
 
 											if ( ! empty( $video_m4v ) ) {
-												$video_output .= 'mp4="' . $video_m4v . '" '; }
+												$video_output .= 'mp4="' . esc_url( $video_m4v ) . '" '; }
 											if ( ! empty( $video_ogv ) ) {
-												$video_output .= 'ogv="' . $video_ogv . '"'; }
+												$video_output .= 'ogv="' . esc_url( $video_ogv ) . '"'; }
 
-											$video_output .= ' poster="' . $video_poster . '"]';
+											$video_output .= ' poster="' . esc_url( $video_poster ) . '"]';
 
 											echo '<div class="video">' . do_shortcode( $video_output ) . '</div>';
 										}
@@ -228,12 +213,12 @@ endif;
 							} // endif for 3.6
 						} //endif for post format video
 
-						elseif ( get_post_format() == 'audio' ) {
+						elseif ( get_post_format() === 'audio' ) {
 							?>
 							<div class="audio-wrap">		
 								<?php
 								if ( $wp_version < '3.6' ) {
-									// nectar_audio($post->ID);
+			
 								} else {
 									$audio_mp3 = get_post_meta( $post->ID, '_nectar_audio_mp3', true );
 									$audio_ogg = get_post_meta( $post->ID, '_nectar_audio_ogg', true );
@@ -243,9 +228,9 @@ endif;
 										$audio_output = '[audio ';
 
 										if ( ! empty( $audio_mp3 ) ) {
-											$audio_output .= 'mp3="' . $audio_mp3 . '" '; }
+											$audio_output .= 'mp3="' . esc_url( $audio_mp3 ) . '" '; }
 										if ( ! empty( $audio_ogg ) ) {
-											$audio_output .= 'ogg="' . $audio_ogg . '"'; }
+											$audio_output .= 'ogg="' . esc_url( $audio_ogg ) . '"'; }
 
 										$audio_output .= ']';
 
@@ -255,7 +240,7 @@ endif;
 								?>
 							</div><!--/audio-wrap-->
 							<?php
-						} elseif ( get_post_format() == 'gallery' ) {
+						} elseif ( get_post_format() === 'gallery' ) {
 
 							if ( $wp_version < '3.6' ) {
 
@@ -263,14 +248,14 @@ endif;
 									echo get_the_post_thumbnail( $post->ID, 'full', array( 'title' => '' ) ); }
 							} else {
 
-								$gallery_ids = grab_ids_from_gallery();
+								$gallery_ids = nectar_grab_ids_from_gallery();
 								?>
 					
 								<div class="flex-gallery"> 
 										 <ul class="slides">
 											<?php
 											foreach ( $gallery_ids as $image_id ) {
-												 echo '<li>' . wp_get_attachment_image( $image_id, '', false, $attr ) . '</li>';
+												 echo '<li>' . wp_get_attachment_image( $image_id, '', false ) . '</li>';
 											}
 											?>
 										</ul>
@@ -295,9 +280,9 @@ endif;
 					
 				</div><!--/span_3-->
 				
-									<?php
+				<?php
 				endwhile;
-endif;
+				endif;
 				?>
 		
 			</div><!--/blog-recent-->

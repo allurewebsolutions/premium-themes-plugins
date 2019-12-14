@@ -133,7 +133,7 @@
                     // nothing to do here, but I'm leaving the construct just in case I have to debug this again.
                 }
 
-                echo '<fieldset id="' . $this->field['id'] . '" class="redux-dimensions-container" data-id="' . $this->field['id'] . '">';
+                echo '<fieldset id="' . esc_attr( $this->field['id'] ) . '" class="redux-dimensions-container" data-id="' . esc_attr( $this->field['id'] ) . '">';
 
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                     $select2_params = json_encode( $this->field['select2'] );
@@ -145,7 +145,7 @@
 
                 // This used to be unit field, but was giving the PHP index error when it was an array,
                 // so I changed it.
-                echo '<input type="hidden" class="field-units" value="' . $this->value['units'] . '">';
+                echo '<input type="hidden" class="field-units" value="' . esc_attr( $this->value['units'] ) . '">';
 
                 /**
                  * Width
@@ -159,8 +159,8 @@
                     }
                     echo '<div class="field-dimensions-input input-prepend">';
                     echo '<span class="add-on"><i class="el el-resize-horizontal icon-large"></i></span>';
-                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-width mini ' . $this->field['class'] . '" placeholder="' . __( 'Width', 'redux-framework' ) . '" rel="' . $this->field['id'] . '-width" value="' . filter_var( $this->value['width'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
-                    echo '<input data-id="' . $this->field['id'] . '" type="hidden" id="' . $this->field['id'] . '-width" name="' . $this->field['name'] . $this->field['name_suffix'] . '[width]' . '" value="' . $this->value['width'] . '"></div>';
+                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-width mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . __( 'Width', 'redux-framework' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-width" value="' . filter_var( $this->value['width'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
+                    echo '<input data-id="' . esc_attr( $this->field['id'] ) . '" type="hidden" id="' . esc_attr( $this->field['id'] ) . '-width" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[width]' . '" value="' . esc_attr( $this->value['width'] ) . '"></div>';
                 }
 
                 /**
@@ -175,8 +175,8 @@
                     }
                     echo '<div class="field-dimensions-input input-prepend">';
                     echo '<span class="add-on"><i class="el el-resize-vertical icon-large"></i></span>';
-                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-height mini ' . $this->field['class'] . '" placeholder="' . __( 'Height', 'redux-framework' ) . '" rel="' . $this->field['id'] . '-height" value="' . filter_var( $this->value['height'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
-                    echo '<input data-id="' . $this->field['id'] . '" type="hidden" id="' . $this->field['id'] . '-height" name="' . $this->field['name'] . $this->field['name_suffix'] . '[height]' . '" value="' . $this->value['height'] . '"></div>';
+                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-height mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . __( 'Height', 'redux-framework' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-height" value="' . filter_var( $this->value['height'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
+                    echo '<input data-id="' . esc_attr( $this->field['id'] ) . '" type="hidden" id="' . esc_attr( $this->field['id'] ) . '-height" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[height]' . '" value="' . esc_attr( $this->value['height'] ) . '"></div>';
                 }
 
                 /**
@@ -187,7 +187,7 @@
                 // and the default units value will apply.
                 if ( isset( $this->field['units'] ) && $this->field['units'] !== false ) {
                     echo '<div class="select_wrapper dimensions-units" original-title="' . __( 'Units', 'redux-framework' ) . '">';
-                    echo '<select data-id="' . $this->field['id'] . '" data-placeholder="' . __( 'Units', 'redux-framework' ) . '" class="redux-dimensions redux-dimensions-units select ' . $this->field['class'] . '" original-title="' . __( 'Units', 'redux-framework' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[units]' . '">';
+                    echo '<select data-id="' . esc_attr( $this->field['id'] ) . '" data-placeholder="' . __( 'Units', 'redux-framework' ) . '" class="redux-dimensions redux-dimensions-units select ' . esc_attr( $this->field['class'] ) . '" original-title="' . __( 'Units', 'redux-framework' ) . '" name="' . esc_attr( $this->field['name'] ) . esc_attr( $this->field['name_suffix'] ) . '[units]' . '">';
 
                     //  Extended units, show 'em all
                     if ( $this->field['units_extended'] ) {
@@ -201,10 +201,10 @@
                     }
 
                     if ( in_array( $this->field['units'], $testUnits ) ) {
-                        echo '<option value="' . $this->field['units'] . '" selected="selected">' . $this->field['units'] . '</option>';
+                        echo '<option value="' . esc_attr( $this->field['units'] ) . '" selected="selected">' . wp_kses_post( $this->field['units'] ) . '</option>';
                     } else {
                         foreach ( $testUnits as $aUnit ) {
-                            echo '<option value="' . $aUnit . '" ' . selected( $this->value['units'], $aUnit, false ) . '>' . $aUnit . '</option>';
+                            echo '<option value="' . esc_attr( $aUnit ) . '" ' . selected( $this->value['units'], $aUnit, false ) . '>' . wp_kses_post( $aUnit ) . '</option>';
                         }
                     }
                     echo '</select></div>';
@@ -223,7 +223,7 @@
 
                 wp_enqueue_script(
                     'redux-field-dimensions-js',
-                    ReduxFramework::$_url . 'inc/fields/dimensions/field_dimensions' . Redux_Functions::isMin() . '.js',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/dimensions/field_dimensions' . Redux_Functions::isMin() . '.js',
                     array( 'jquery', 'select2-js', 'redux-js' ),
                     time(),
                     true
@@ -232,7 +232,7 @@
                 if ( $this->parent->args['dev_mode'] ) {
                     wp_enqueue_style(
                         'redux-field-dimensions-css',
-                        ReduxFramework::$_url . 'inc/fields/dimensions/field_dimensions.css',
+                        get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/dimensions/field_dimensions.css',
                         array(),
                         time(),
                         'all'

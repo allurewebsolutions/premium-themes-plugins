@@ -84,15 +84,15 @@
                                 global $wp_version;
                                 // Print the notice with the dismiss link
                                 if ( version_compare( $wp_version, '4.2', '>' ) ) {
-                                    $output    = "";
+                                    // nectar addition.
                                     $css_id    = esc_attr( $notice['id'] ) . $pageName . $curTab;
                                     $css_class = esc_attr( $notice['type'] ) . ' redux-notice notice is-dismissible redux-notice';
-                                    $output .= "<div {$add_style} id='$css_id' class='$css_class'> \n";
+                                    echo "<div {$add_style} id='$css_id' class='$css_class'> \n";
                                     $nonce = wp_create_nonce( $notice['id'] . $userid . 'nonce' );
-                                    $output .= "<input type='hidden' class='dismiss_data' id='" . esc_attr( $notice['id'] ) . $pageName . $curTab . "' value='{$nonce}'> \n";
-                                    $output .= '<p>' . wp_kses_post( $notice['msg'] ) . '</p>';
-                                    $output .= "</div> \n";
-                                    echo $output;
+                                    echo "<input type='hidden' class='dismiss_data' id='" . esc_attr( $notice['id'] ) . $pageName . $curTab . "' value='{$nonce}'> \n";
+                                    echo '<p>' . wp_kses_post( $notice['msg'] ) . '</p>';
+                                    echo "</div> \n";
+                                    // nectar addition end.
                                 } else {
                                     echo '<div ' . $add_style . ' class="' . esc_attr( $notice['type'] ) . ' notice is-dismissable"><p>' . wp_kses_post( $notice['msg'] ) . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . esc_attr( $notice['id'] ) . $pageName . $curTab . '">' . esc_html__( 'Dismiss', 'redux-framework' ) . '</a>.</p></div>';
                                 }

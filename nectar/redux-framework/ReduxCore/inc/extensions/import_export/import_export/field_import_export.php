@@ -104,13 +104,13 @@
                             <?php echo esc_html( apply_filters( 'redux-import-file-description', __( 'Input your backup file below and hit Import to restore your sites options from a backup.', 'redux-framework' ) ) ); ?>
                         </p>
                         <?php // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it. ?>
-                        <textarea id="import-code-value" name="<?php echo $this->parent->args['opt_name']; ?>[import_code]" class="large-text noUpdate" rows="2"></textarea>
+                        <textarea id="import-code-value" name="<?php echo esc_attr( $this->parent->args['opt_name'] ); //nectar addition ?>[import_code]" class="large-text noUpdate" rows="2"></textarea>
                     </div>
 
                     <div id="redux-import-link-wrapper">
                         <p class="description" id="import-link-description"><?php echo esc_html( apply_filters( 'redux-import-link-description', __( 'Input the URL to another sites options set and hit Import to load the options from that site.', 'redux-framework' ) ) ); ?></p>
                         <?php // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it. ?>
-                        <textarea class="large-text noUpdate" id="import-link-value" name="<?php echo $this->parent->args['opt_name'] ?>[import_link]" rows="2"></textarea>
+                        <textarea class="large-text noUpdate" id="import-link-value" name="<?php echo esc_attr( $this->parent->args['opt_name'] ); //nectar addition ?>[import_link]" rows="2"></textarea>
                     </div>
 
                     <p id="redux-import-action"><input type="submit" id="redux-import" name="import" class="button-primary" value="<?php esc_html_e( 'Import', 'redux-framework' ) ?>">&nbsp;&nbsp;<span><?php echo esc_html( apply_filters( 'redux-import-warning', __( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'redux-framework' ) ) ) ?></span></p>
@@ -130,13 +130,13 @@
                 ?>
                     <p>
                         <a href="javascript:void(0);" id="redux-export-code-copy" class="button-secondary"><?php esc_html_e( 'Copy Data', 'redux-framework' ) ?></a>
-                        <a href="<?php echo $link; ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Download Data File', 'redux-framework' ) ?></a>
+                        <a href="<?php echo esc_attr( $link ); //nectar addition ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Download Data File', 'redux-framework' ) ?></a>
                         <a href="javascript:void(0);" id="redux-export-link" class="button-secondary"><?php esc_html_e( 'Copy Export URL', 'redux-framework' ) ?></a>
                     </p>
 
                     <p></p>
                     <textarea class="large-text noUpdate" id="redux-export-code" rows="2"></textarea>
-                    <textarea class="large-text noUpdate" id="redux-export-link-value" data-url="<?php echo $link; ?>" rows="2"><?php echo $link; ?></textarea>
+                    <textarea class="large-text noUpdate" id="redux-export-link-value" data-url="<?php echo esc_attr( $link ); //nectar addition ?>" rows="2"><?php echo esc_attr( $link ); //nectar addition ?></textarea>
 
                 <?php
             }

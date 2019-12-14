@@ -1,30 +1,23 @@
 <?php
 /**
  * @package Salient WordPress Theme
- * @version 9.0.2
+ * @version 10.5
  */
 
-// Do not delete these lines
-	if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
-		die ('Please do not load this page directly. Thanks!');
+if ( post_password_required() ) {
+	return;
+}
 
-	if ( post_password_required() ) { ?>
-		<p class="nocomments">This post is password protected. Enter the password to view comments.</p>
-	<?php
-		return;
-	}
+$nectar_options     = get_nectar_theme_options(); 
+$fw_class           = (!empty($nectar_options['theme-skin']) && 'ascend' === $nectar_options['theme-skin']) ? 'full-width-section custom-skip': null; 
+$comments_open_attr = (comments_open() || have_comments()) ? 'true' : 'false';
+
 ?>
 
-<!-- You can start editing here. -->
-<?php 
-$options = get_nectar_theme_options(); 
-$fw_class = (!empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') ? 'full-width-section custom-skip': null; 
-$comments_open_attr = (comments_open()) ? 'true' : 'false';
-?>
-<div class="comment-wrap <?php echo esc_attr($fw_class) ;?>" data-midnight="dark" data-comments-open="<?php echo esc_attr($comments_open_attr); ?>">
+<div class="comment-wrap <?php echo esc_attr($fw_class); ?>" data-midnight="dark" data-comments-open="<?php echo esc_attr($comments_open_attr); ?>">
 
 <?php if ( have_comments() ) : ?>
-	<h3 id="comments"><?php  if(!empty($options['theme-skin']) && $options['theme-skin'] == 'ascend') echo '<span><i>'. esc_html__("Join the discussion", 'salient').'</i></span>' ?> <?php comments_number(esc_html__('No Comments','salient'), esc_html__('One Comment', 'salient'), esc_html__('% Comments', 'salient') );?></h3>
+	<h3 id="comments"><?php if(!empty($nectar_options['theme-skin']) && $nectar_options['theme-skin'] === 'ascend') echo '<span><i>'. esc_html__("Join the discussion", 'salient').'</i></span>' ?> <?php comments_number(esc_html__('No Comments','salient'), esc_html__('One Comment', 'salient'), esc_html__('% Comments', 'salient') );?></h3>
 
 	<div class="navigation">
 		<div class="alignleft"><?php previous_comments_link() ?></div>
@@ -32,7 +25,12 @@ $comments_open_attr = (comments_open()) ? 'true' : 'false';
 	</div>
 
 	<ul class="comment-list <?php echo esc_attr($fw_class); ?>">
-		<?php wp_list_comments(array('avatar_size' => 60)); ?>
+		<?php wp_list_comments(
+			array(
+				'avatar_size' => 60,
+				'short_ping'  => true
+			)
+		); ?>
 	</ul>
 
  <?php else : // this is displayed if there are no comments so far ?>
@@ -51,9 +49,10 @@ $comments_open_attr = (comments_open()) ? 'true' : 'false';
 <?php if ( comments_open() ) : 
 
 $required_text = null;
-$form_style = (!empty($options['form-style'])) ? $options['form-style'] : 'default'; 
-$comment_label = ($form_style == 'minimal') ? '<label for="comment">' . esc_html__('My comment is..', 'salient') . '</label>' : null;
-$consent  = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
+$form_style    = (!empty($nectar_options['form-style'])) ? $nectar_options['form-style'] : 'default'; 
+$comment_label = ($form_style === 'minimal') ? '<label for="comment">' . esc_html__('My comment is..', 'salient') . '</label>' : null;
+$consent       = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
+
 $args = array(
   'id_form'           => 'commentform',
   'id_submit'         => 'submit',
@@ -104,14 +103,12 @@ $args = array(
       '" size="30" /></div></div>',
 			
 			'cookies' => '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' />' .
-						 '<label for="wp-comment-cookies-consent">' . __( 'Save my name, email, and website in this browser for the next time I comment.', 'default' ) . '</label></p>'
+						 '<label for="wp-comment-cookies-consent">' . __( 'Save my name, email, and website in this browser for the next time I comment.', 'salient' ) . '</label></p>'
     )
   ),
 );
 
 comment_form($args);
-
-
 
 endif; // if you delete this the sky will fall on your head ?>
 

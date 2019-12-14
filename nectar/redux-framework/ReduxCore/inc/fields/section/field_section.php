@@ -90,12 +90,13 @@
                 echo '</div><table id="section-table-' . esc_attr($this->field['id']) . '" data-id="' . esc_attr($this->field['id']) . '" class="form-table form-table-section no-border' . esc_attr($add_class) . '"><tbody><tr><th></th><td id="' . esc_attr($guid) . '">';
 
                 // delete the tr afterwards
+                // nectar addition of esc_html below
                 ?>
                 <script type="text/javascript">
                     jQuery( document ).ready(
                         function() {
-                            jQuery( '#<?php echo $this->field['id']; ?>-marker' ).parents( 'tr:first' ).css( {display: 'none'} ).prev('tr' ).css('border-bottom','none');;
-                            var group = jQuery( '#<?php echo $this->field['id']; ?>-marker' ).parents( '.redux-group-tab:first' );
+                            jQuery( '#<?php echo esc_html($this->field['id']); ?>-marker' ).parents( 'tr:first' ).css( {display: 'none'} ).prev('tr' ).css('border-bottom','none');;
+                            var group = jQuery( '#<?php echo esc_html($this->field['id']); ?>-marker' ).parents( '.redux-group-tab:first' );
                             if ( !group.hasClass( 'sectionsChecked' ) ) {
                                 group.addClass( 'sectionsChecked' );
                                 var test = group.find( '.redux-section-indent-start h3' );
@@ -119,7 +120,7 @@
                 if ( $this->parent->args['dev_mode'] ) {
                     wp_enqueue_style(
                         'redux-field-section-css',
-                        ReduxFramework::$_url . 'inc/fields/section/field_section.css',
+                        get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/section/field_section.css',
                         array(),
                         time(),
                         'all'

@@ -42,11 +42,7 @@
                     }
                 );
         
-//                el.find('.redux-palette-set').click(
-//                    function(){
-//                        console.log($(this).val());
-//                    }
-//                )
+
             }
         );
     };

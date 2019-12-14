@@ -1,7 +1,22 @@
 <?php 
+/**
+ * Salient WooCommerce Quickview
+ *
+ * @package Salient WordPress Theme
+ * @version 10.1
+ */
 
-if (!defined( 'ABSPATH')) exit;
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+
+/**
+ * Quickview option. 
+ *
+ * @since 9.0
+ */
 class Nectar_Woo_Quickview {
   
   function __construct() {
@@ -28,13 +43,15 @@ class Nectar_Woo_Quickview {
     
     global $nectar_options;
 		global $post;
+    
     $product_style = (!empty($nectar_options['product_style'])) ? $nectar_options['product_style'] : 'classic';
-    $button_class = ($product_style == 'classic') ? 'button' : '';
-    $button_icon = ($product_style != 'material') ? '<i class="normal icon-salient-m-eye"></i>' : '';
+    $button_class  = ($product_style === 'classic') ? 'button' : '';
+    $button_icon   = ($product_style !== 'material') ? '<i class="normal icon-salient-m-eye"></i>' : '';
+    $get_product   = wc_get_product( $post->ID );
     
-    $get_product = wc_get_product( $post->ID );
-    
-    if($get_product->is_type( 'grouped' ) || $get_product->is_type( 'external' ) ) { return; }
+    if($get_product->is_type( 'grouped' ) || $get_product->is_type( 'external' ) ) { 
+      return; 
+    }
     
     echo '<a class="nectar_quick_view no-ajaxy '.$button_class.'" data-product-id="'.$post->ID.'"> '.$button_icon.'
     <span>' . esc_html__('Quick View', 'salient') . '</span></a>';
@@ -70,7 +87,6 @@ class Nectar_Woo_Quickview {
              <div class="product type-product"> 
                   
                   <div class="woocommerce-product-gallery">
-                  
                   </div>
                   
                   <div class="summary entry-summary scrollable">
@@ -88,6 +104,7 @@ class Nectar_Woo_Quickview {
 		 
 	}
   
+  
   public function nectar_add_template_actions() {
     
     add_action('nectar_quick_view_summary_content','woocommerce_template_single_title');
@@ -95,7 +112,6 @@ class Nectar_Woo_Quickview {
     add_action('nectar_quick_view_summary_content','woocommerce_template_single_price');
     add_action('nectar_quick_view_summary_content','woocommerce_template_single_excerpt');
     add_action('nectar_quick_view_summary_content','woocommerce_template_single_add_to_cart');
-    
     add_action('nectar_quick_view_sale_content','woocommerce_show_product_sale_flash');
 
   }
@@ -103,15 +119,13 @@ class Nectar_Woo_Quickview {
   
   public function nectar_woo_get_product_info() {
     
-    
 		global $woocommerce;
     global $post;
     
 		$product_id = intval($_POST['product_id']);
     
-		if(intval($product_id)){
+		if( intval($product_id) ) {
       
-     //set the wp query for the product based on ID
 		 wp('p=' . $product_id . '&post_type=product');
      
 	   ob_start();
@@ -175,7 +189,6 @@ class Nectar_Woo_Quickview {
                                        <?php
                                        
                                        echo '<div class="nectar-full-product-link"><a href="'.esc_url(get_permalink()).'"><span>'. esc_html__('More Information', 'salient') .'</span></a></div>';
-                                       
                                        do_action('nectar_quick_view_summary_content');
       
                                       ?>
@@ -191,15 +204,11 @@ class Nectar_Woo_Quickview {
  	        echo  ob_get_clean();
  	
  	        exit();
-            
-			
+
 	    }
 	}
   
-  
-  
 }
-
 
 
 $nectar_quick_view = new Nectar_Woo_Quickview();

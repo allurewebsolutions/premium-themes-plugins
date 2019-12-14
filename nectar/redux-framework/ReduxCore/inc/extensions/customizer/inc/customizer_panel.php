@@ -116,7 +116,7 @@
                 </div>
                 <?php if ( ! empty( $this->description ) ) : ?>
                     <div class="accordion-section-content description legacy">
-                        <?php echo $this->description; ?>
+                        <?php echo wp_kses_post( $this->description ); //nectar addition ?>
                     </div>
                 <?php endif; ?>
             </li>

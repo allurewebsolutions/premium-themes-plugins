@@ -393,9 +393,16 @@
         if ( google === true && ( family in redux.fonts.google) ) {
             details = redux.fonts.google[family];
         } else {
+            /*nectar addition - adding all weights */
             details = {
+                '100': 'Ultra-Light 100',
+                '200': 'Light 200',
+                '300': 'Book 300',
                 '400': 'Normal 400',
+                '500': 'Medium 500',
                 '700': 'Bold 700',
+                '800': 'Extra-Bold 800',
+                '900': 'Ultra-Bold 900',
                 '400italic': 'Normal 400 Italic',
                 '700italic': 'Bold 700 Italic'
             };

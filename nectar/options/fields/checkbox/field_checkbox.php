@@ -30,11 +30,11 @@ class Redux_Options_checkbox {
         ?>
 
     	<label <?php if($switch) : ?>class="switch_wrap"<?php endif; ?>>
-			<input name="<?php echo $name; ?>" id="<?php echo $id; ?>" class="<?php echo $class; ?>" value="1" <?php echo checked($this->value, '1', FALSE); ?> type="checkbox" />
+			<input name="<?php echo esc_attr( $name ); ?>" id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $class ); ?>" value="1" <?php echo checked($this->value, '1', FALSE); ?> type="checkbox" />
 			<?php if($switch) : ?><div class="switch"><span class="bullet"></span></div><?php endif; ?>
 		</label>
 		<?php if($desc != '') : ?>
-			<label for="<?php echo $id; ?>"><?php echo $desc; ?></label>
+			<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_attr( $desc ); ?></label>
 		<?php endif; ?>
 
         <?php

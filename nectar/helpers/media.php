@@ -15,11 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /**
- * Add theme specific image sizes that are used throughout blog/portfolio/image gallery
+ * Add theme specific image sizes that are used
  *
  * @since 8.0
  */
-
 if ( ! function_exists( 'nectar_add_image_sizes' ) ) {
 
 	function nectar_add_image_sizes() {
@@ -31,19 +30,20 @@ if ( ! function_exists( 'nectar_add_image_sizes' ) ) {
 		add_image_size( 'nectar_small_square', 140, 140, true );
 
 		global $nectar_options;
-		$masonry_sizing_type = ( ! empty( $nectar_options['portfolio_masonry_grid_sizing'] ) && $nectar_options['portfolio_masonry_grid_sizing'] == 'photography' ) ? 'photography' : 'default';
+		$masonry_sizing_type = ( ! empty( $nectar_options['portfolio_masonry_grid_sizing'] ) && $nectar_options['portfolio_masonry_grid_sizing'] === 'photography' ) ? 'photography' : 'default';
 
-		if ( $masonry_sizing_type != 'photography' ) {
+		if ( $masonry_sizing_type !== 'photography' ) {
+			
 			add_image_size( 'wide', 1000, 500, true );
 			add_image_size( 'wide_small', 670, 335, true );
 			add_image_size( 'regular', 500, 500, true );
 			add_image_size( 'regular_small', 350, 350, true );
 			add_image_size( 'tall', 500, 1000, true );
 			add_image_size( 'wide_tall', 1000, 1000, true );
-
 			add_image_size( 'wide_photography', 900, 600, true );
 		} else {
-			// these two are still needed for meta overlaid masonry blog
+			
+			// These three are still needed for meta overlaid masonry blog.
 			add_image_size( 'regular', 500, 500, true );
 			add_image_size( 'regular_small', 350, 350, true );
 			add_image_size( 'wide_tall', 1000, 1000, true );
@@ -55,7 +55,7 @@ if ( ! function_exists( 'nectar_add_image_sizes' ) ) {
 			add_image_size( 'wide_tall_photography', 900, 1200, true );
 		}
 
-		add_image_size( 'large_featured', 1700, 700, true );
+		add_image_size( 'large_featured', 1870, 770, true );
 		add_image_size( 'medium_featured', 800, 800, true );
 
 	}
@@ -70,32 +70,35 @@ add_action( 'after_setup_theme', 'nectar_add_image_sizes' );
  *
  * @since 8.0
  */
-
-function nectar_list_thumbnail_sizes() {
-	global $_wp_additional_image_sizes;
-	   $sizes = array();
-	foreach ( get_intermediate_image_sizes() as $s ) {
-		$sizes[ $s ] = array( 0, 0 );
-		if ( in_array( $s, array( 'thumbnail', 'medium', 'large' ) ) ) {
-			   $sizes[ $s ][0] = get_option( $s . '_size_w' );
-			   $sizes[ $s ][1] = get_option( $s . '_size_h' );
-		} else {
-			if ( isset( $_wp_additional_image_sizes ) && isset( $_wp_additional_image_sizes[ $s ] ) ) {
-				$sizes[ $s ] = array( $_wp_additional_image_sizes[ $s ]['width'], $_wp_additional_image_sizes[ $s ]['height'] );
-			}
-		}
-	}
-
-	foreach ( $sizes as $size => $atts ) {
-		echo esc_html( $size ) . ' ' . implode( 'x', $atts ) . "\n";
-	}
-}
-
+ function nectar_list_thumbnail_sizes() {
+	 global $_wp_additional_image_sizes;
+	 $sizes = array();
+	 foreach ( get_intermediate_image_sizes() as $s ) {
+		 $sizes[ $s ] = array( 0, 0 );
+		 if ( in_array( $s, array( 'thumbnail', 'medium', 'large' ) ) ) {
+			 $sizes[ $s ][0] = get_option( $s . '_size_w' );
+			 $sizes[ $s ][1] = get_option( $s . '_size_h' );
+		 } else {
+			 if ( isset( $_wp_additional_image_sizes ) && isset( $_wp_additional_image_sizes[ $s ] ) ) {
+				 $sizes[ $s ] = array( $_wp_additional_image_sizes[ $s ]['width'], $_wp_additional_image_sizes[ $s ]['height'] );
+			 }
+		 }
+	 }
+	 
+	 foreach ( $sizes as $size => $atts ) {
+		 echo esc_html( $size ) . ' ' . implode( 'x', $atts ) . "\n";
+	 }
+ }
 
 
 
 
 
+/**
+ * Auto lightbox image links theme option.
+ *
+ * @since 5.0
+ */
 if ( ! function_exists( 'nectar_auto_gallery_lightbox' ) ) {
 	function nectar_auto_gallery_lightbox( $content ) {
 
@@ -120,7 +123,7 @@ if ( ! function_exists( 'nectar_auto_gallery_lightbox' ) ) {
 
  global $nectar_options;
 
-if ( ! empty( $nectar_options['default-lightbox'] ) && $nectar_options['default-lightbox'] == '1' ) {
+if ( ! empty( $nectar_options['default-lightbox'] ) && $nectar_options['default-lightbox'] === '1' ) {
 	add_filter( 'the_content', 'nectar_auto_gallery_lightbox' );
 
 	add_filter( 'body_class', 'nectar_auto_gallery_lightbox_class' );
@@ -136,10 +139,11 @@ if ( ! empty( $nectar_options['default-lightbox'] ) && $nectar_options['default-
 
 
 
-
- // -----------------------------------------------------------------#
- // Add URL option into attachment details for visual composer image gallery element
- // -----------------------------------------------------------------#
+/**
+ * Add URL option into attachment details for visual composer image gallery element
+ *
+ * @since 5.0
+ */
 function nectar_add_attachment_field_credit( $form_fields, $post ) {
 
 	$form_fields['image-url'] = array(
@@ -319,6 +323,11 @@ function nectar_add_attachment_field_credit_save( $post, $attachment ) {
 
 
 
+ /**
+  * Get attachment ID from a given image URL.
+  *
+  * @since 5.0
+  */
 if ( ! function_exists( 'fjarrett_get_attachment_id_from_url' ) ) {
 	function fjarrett_get_attachment_id_from_url( $url ) {
 
@@ -335,7 +344,6 @@ if ( ! function_exists( 'fjarrett_get_attachment_id_from_url' ) ) {
 		}
 
 		// Now we're going to quickly search the DB for any attachment GUID with a partial path match.
-		// Example: /uploads/2013/05/test-image.jpg
 		global $wpdb;
 
 		$prefix     = $wpdb->prefix;
@@ -349,16 +357,20 @@ if ( ! function_exists( 'fjarrett_get_attachment_id_from_url' ) ) {
 
 
 
-
+/**
+ * Get attachment src from a given image URL.
+ *
+ * @since 4.0
+ */
 if ( ! function_exists( 'nectar_options_img' ) ) {
 
 	function nectar_options_img( $image_arr_or_str ) {
 
 		// dummy data import from external
-		if ( isset( $image_arr_or_str['thumbnail'] ) && strpos( $image_arr_or_str['thumbnail'], 'http://themenectar.com' ) !== false && $_SERVER['SERVER_NAME'] != 'themenectar.com' ) {
+		if ( isset( $image_arr_or_str['thumbnail'] ) && strpos( $image_arr_or_str['thumbnail'], 'http://themenectar.com' ) !== false && strpos( get_site_url(), 'themenectar.com' ) === false ) {
 			return $image_arr_or_str['thumbnail'];
 		}
-		if ( isset( $image_arr_or_str['thumbnail'] ) && strpos( $image_arr_or_str['thumbnail'], 'https://source.unsplash.com' ) !== false && $_SERVER['SERVER_NAME'] != 'unsplash.com' ) {
+		if ( isset( $image_arr_or_str['thumbnail'] ) && strpos( $image_arr_or_str['thumbnail'], 'https://source.unsplash.com' ) !== false ) {
 			return $image_arr_or_str['thumbnail'];
 		}
 
@@ -366,9 +378,11 @@ if ( ! function_exists( 'nectar_options_img' ) ) {
 		if ( isset( $image_arr_or_str['id'] ) ) {
 			$image = wp_get_attachment_image_src( $image_arr_or_str['id'], 'full' );
 			return $image[0];
-		} elseif ( isset( $image_arr_or_str['url'] ) ) {
+		} 
+		elseif ( isset( $image_arr_or_str['url'] ) ) {
 			return $image_arr_or_str['url'];
-		} else {
+		} 
+		else {
 
 			$image_id = fjarrett_get_attachment_id_from_url( $image_arr_or_str );
 

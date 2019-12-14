@@ -4,7 +4,7 @@
  *
  * @package Salient WordPress Theme
  * @subpackage helpers
- * @version 9.0.2
+ * @version 10.5
  */
 
 // Exit if accessed directly
@@ -13,9 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-
-/*Previous and Next Post in Same Taxonomy*/
-/*Author: Bill Erickson*/
+/**
+ * Previous and Next Post in Same Taxonomy.
+ * Thanks to Bill Erickson.
+ *
+ * @since 1.0
+ */
 if( !function_exists('be_get_previous_post') ) {
 	function be_get_previous_post($in_same_cat = false, $excluded_categories = '', $taxonomy = 'category') {
 		return be_get_adjacent_post($in_same_cat, $excluded_categories, true, $taxonomy);
@@ -29,6 +32,11 @@ if( !function_exists('be_get_next_post') ) {
 }
 
 
+/**
+ * Grab adjacent post.
+ *
+ * @since 1.0
+ */
 if( !function_exists('be_get_adjacent_post') ) {
 	
 	function be_get_adjacent_post( $in_same_cat = false, $excluded_categories = '', $previous = true, $taxonomy = 'category' ) {
@@ -85,12 +93,14 @@ if( !function_exists('be_get_adjacent_post') ) {
 		$query = "SELECT p.* FROM $wpdb->posts AS p $join $where $sort";
 		$query_key = 'adjacent_post_' . md5($query);
 		$result = wp_cache_get($query_key, 'counts');
-		if ( false !== $result )
+		if ( false !== $result ) {
 			return $result;
+		}
 
 		$result = $wpdb->get_row("SELECT p.* FROM $wpdb->posts AS p $join $where $sort");
-		if ( null === $result )
+		if ( null === $result ) {
 			$result = '';
+		}
 
 		wp_cache_set($query_key, $result, 'counts');
 		return $result;
@@ -146,53 +156,43 @@ if( !function_exists('be_adjacent_post_link') ) {
 
 
 
-
-
+/**
+ * Pagination output.
+ *
+ * @since 8.0
+ */
 if ( !function_exists( 'nectar_pagination' ) ) {
 	
 	function nectar_pagination() {
 		
 		global $nectar_options;
-		//extra pagination
-		if( !empty($nectar_options['extra_pagination']) && $nectar_options['extra_pagination'] == '1' ){
+		global $wp_query, $wp_rewrite; 
+		
+		$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1; 
+		$total_pages = $wp_query->max_num_pages; 
+		
+		if ( $total_pages > 1 ) {  
 			
-			    global $wp_query, $wp_rewrite; 
-	      
-			    $wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1; 
-			    $total_pages = $wp_query->max_num_pages; 
-			      
-			    if ($total_pages > 1){  
-			      
-			      $permalink_structure = get_option('permalink_structure');
-				  $query_type = (count($_GET)) ? '&' : '?';	
-			      $format = empty( $permalink_structure ) ? $query_type.'paged=%#%' : 'page/%#%/';  
-				
-				  echo '<div id="pagination" data-is-text="'.esc_attr__("All items loaded", 'salient').'">';
-				   
-			      echo paginate_links(array(  
-			          'base' => get_pagenum_link(1) . '%_%',  
-			          'format' => $format,  
-			          'current' => $current,  
-			          'total' => $total_pages,  
-			          'prev_text'    => esc_html__('Previous','salient'),
-    				  	'next_text'    => esc_html__('Next','salient')
-			        )); 
-					
-				  echo  '</div>'; 
-					
-			    }  
-	}
-		//regular pagination
-		else{
+			$permalink_structure = get_option('permalink_structure');
+			$query_type          = (count($_GET)) ? '&' : '?';	
+			$format              = empty( $permalink_structure ) ? $query_type.'paged=%#%' : 'page/%#%/';  
 			
-			if( get_next_posts_link() || get_previous_posts_link() ) { 
-				echo '<div id="pagination" data-is-text="'.esc_attr__("All items loaded", 'salient').'">
-				      <div class="prev">'.get_previous_posts_link('&laquo; Previous').'</div>
-				      <div class="next">'.get_next_posts_link('NextPrevious &raquo;','').'</div>
-			          </div>';
+			echo '<div id="pagination" data-is-text="'.esc_attr__("All items loaded", 'salient').'">';
 			
-	        }
-		}
+			$big = 999999999; // need an unlikely integer
+			
+			echo paginate_links(array(  
+				'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+				'format' => $format,  
+				'current' => $current,  
+				'total' => $total_pages,  
+				'prev_text'    => esc_html__('Previous','salient'),
+				'next_text'    => esc_html__('Next','salient')
+			)); 
+			
+			echo  '</div>'; 
+			
+		}  
 		
 	}
 	

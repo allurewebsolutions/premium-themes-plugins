@@ -22,15 +22,17 @@ global $post, $product, $woocommerce, $nectar_options;
 
 $product_gallery_style = (!empty($nectar_options['single_product_gallery_type'])) ? $nectar_options['single_product_gallery_type'] : 'default';
 
-if($product_gallery_style == 'left_thumb_sticky') { wp_enqueue_script('stickykit'); }
+if($product_gallery_style === 'left_thumb_sticky') { 
+	wp_enqueue_script('stickykit'); 
+}
 
-if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thumb_sticky') {
+if($product_gallery_style === 'ios_slider' || $product_gallery_style === 'left_thumb_sticky') {
 	wp_enqueue_script('flickity');
 }
-wp_enqueue_script('nectar_single_product');
+wp_enqueue_script('nectar-single-product');
 
 
-if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thumb_sticky') {
+if($product_gallery_style === 'ios_slider' || $product_gallery_style === 'left_thumb_sticky') {
 
 	if( $woocommerce && version_compare( $woocommerce->version, "3.0", ">=" ) ) {
 		$product_attach_ids = $product->get_gallery_image_ids(); 
@@ -87,8 +89,9 @@ if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thu
 
 						$img_link = wp_get_attachment_url( $product_attach_id );
 			
-						if (!$img_link)
+						if (!$img_link) {
 							continue;
+						}
 							
 							
 							$full_size_image   = wp_get_attachment_image_src( $product_attach_id, 'full' );
@@ -130,11 +133,12 @@ if($product_gallery_style == 'ios_slider' || $product_gallery_style == 'left_thu
 
 							$img_link = wp_get_attachment_url($product_attach_id);
 				
-							if ( !$img_link )
+							if ( !$img_link ) {
 								continue;
+							}
 							
-							$img_size = wp_get_attachment_image($product_attach_id, apply_filters('single_product_small_thumbnail_size', 'shop_thumbnail'));
-							$classes = array();
+							$img_size    = wp_get_attachment_image($product_attach_id, apply_filters('single_product_small_thumbnail_size', 'shop_thumbnail'));
+							$classes     = array();
 							$image_class = esc_attr( implode(' ', $classes));
 						
 							echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', sprintf( '<div class="thumb"><div class="thumb-inner">%s</div></div>', $img_size ), $product_attach_id, $post->ID, $image_class );

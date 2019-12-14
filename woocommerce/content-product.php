@@ -55,8 +55,8 @@ if(!version_compare( $woocommerce->version, '2.6', ">=" )) {
 
 } 
 
-$options = get_nectar_theme_options(); 
-$product_style = (!empty($options['product_style'])) ? $options['product_style'] : 'classic';
+$nectar_options = get_nectar_theme_options(); 
+$product_style = (!empty($nectar_options['product_style'])) ? $nectar_options['product_style'] : 'classic';
 $classes[] = $product_style;
 
 ?>

@@ -184,7 +184,7 @@
                 if ( $this->parent->args['dev_mode'] ) {
                     wp_enqueue_style(
                         'redux-field-sorder-css',
-                        ReduxFramework::$_url . 'inc/fields/sorter/field_sorter.css',
+                        get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/sorter/field_sorter.css',
                         array(),
                         time(),
                         'all'
@@ -193,7 +193,7 @@
 
                 wp_enqueue_script(
                     'redux-field-sorter-js',
-                    ReduxFramework::$_url . 'inc/fields/sorter/field_sorter' . Redux_Functions::isMin() . '.js',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/sorter/field_sorter' . Redux_Functions::isMin() . '.js',
                     array( 'jquery', 'redux-js', 'jquery-ui-sortable' ),
                     time(),
                     true

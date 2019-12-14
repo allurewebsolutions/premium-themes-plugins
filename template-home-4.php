@@ -3,12 +3,11 @@
 
 get_header();
 
-$options = get_nectar_theme_options();
+$nectar_options = get_nectar_theme_options();
 
-$nectar_disable_home_slider = ( ! empty( $options['disable_home_slider_pt'] ) && $options['disable_home_slider_pt'] == '1' ) ? true : false;
-if ( $nectar_disable_home_slider != true ) { ?>
+if ( class_exists( 'Salient_Home_Slider' ) ) { ?>
 
-	<div id="featured" data-caption-animation="<?php echo (!empty($options['slider-caption-animation']) && $options['slider-caption-animation'] == 1) ? '1' : '0'; ?>" data-bg-color="<?php if(!empty($options['slider-bg-color'])) echo esc_attr( $options['slider-bg-color'] ); ?>" data-slider-height="<?php if(!empty($options['slider-height'])) echo esc_attr( $options['slider-height'] ); ?>" data-animation-speed="<?php if(!empty($options['slider-animation-speed'])) echo esc_attr( $options['slider-animation-speed'] ); ?>" data-advance-speed="<?php if(!empty($options['slider-advance-speed'])) echo esc_attr( $options['slider-advance-speed'] ); ?>" data-autoplay="<?php echo esc_attr( $options['slider-autoplay'] );?>"> 
+	<div id="featured" data-caption-animation="<?php echo (!empty($nectar_options['slider-caption-animation']) && $nectar_options['slider-caption-animation'] === '1') ? '1' : '0'; ?>" data-bg-color="<?php if(!empty($nectar_options['slider-bg-color'])) echo esc_attr( $nectar_options['slider-bg-color'] ); ?>" data-slider-height="<?php if(!empty($nectar_options['slider-height'])) echo esc_attr( $nectar_options['slider-height'] ); ?>" data-animation-speed="800" data-advance-speed="<?php if(!empty($nectar_options['slider-advance-speed'])) echo esc_attr( $nectar_options['slider-advance-speed'] ); ?>" data-autoplay="<?php echo esc_attr( $nectar_options['slider-autoplay'] );?>"> 
 	
 	 
 	<?php
@@ -21,14 +20,12 @@ if ( $nectar_disable_home_slider != true ) { ?>
 		)
 	);
 	if ( $slides->have_posts() ) :
-		?>
-	
-		<?php
+
 		while ( $slides->have_posts() ) :
+			
 			$slides->the_post();
 
-			$alignment = get_post_meta( $post->ID, '_nectar_slide_alignment', true );
-
+			$alignment    = get_post_meta( $post->ID, '_nectar_slide_alignment', true );
 			$video_embed  = get_post_meta( $post->ID, '_nectar_video_embed', true );
 			$video_m4v    = get_post_meta( $post->ID, '_nectar_video_m4v', true );
 			$video_ogv    = get_post_meta( $post->ID, '_nectar_video_ogv', true );
@@ -39,7 +36,7 @@ if ( $nectar_disable_home_slider != true ) { ?>
 			<div class="slide orbit-slide <?php if ( ! empty( $video_embed ) || ! empty( $video_m4v ) || ! empty( $video_ogv ) ) { echo 'has-video'; } else { echo esc_attr( $alignment ); } ?> ">
 				
 				<?php $image = get_post_meta( $post->ID, '_nectar_slider_image', true ); ?>
-				<article data-background-cover="<?php echo ( ! empty( $options['slider-background-cover'] ) && $options['slider-background-cover'] == 1 ) ? '1' : '0'; ?>" style="background-image: url('<?php echo esc_url( $image ); ?>')">
+				<article data-background-cover="<?php echo ( ! empty( $nectar_options['slider-background-cover'] ) && $nectar_options['slider-background-cover'] === '1' ) ? '1' : '0'; ?>" style="background-image: url('<?php echo esc_url( $image ); ?>')">
 					<div class="container">
 						<div class="col span_12">
 							<div class="post-title">
@@ -53,14 +50,7 @@ if ( $nectar_disable_home_slider != true ) { ?>
 									 echo '<div class="video">' . do_shortcode( $video_embed ) . '</div>';
 
 								}
-									// self hosted video pre 3-6
-								elseif ( ! empty( $video_m4v ) && $wp_version < '3.6' || ! empty( $video_ogv ) && $wp_version < '3.6' ) {
-
-									 echo '<div class="video">';
-									 echo '</div>';
-
-								}
-									// self hosted video post 3-6
+								// self hosted video post 3-6
 								elseif ( $wp_version >= '3.6' ) {
 
 									if ( ! empty( $video_m4v ) || ! empty( $video_ogv ) ) {
@@ -68,19 +58,16 @@ if ( $nectar_disable_home_slider != true ) { ?>
 										$video_output = '[video ';
 
 										if ( ! empty( $video_m4v ) ) {
-											$video_output .= 'mp4="' . $video_m4v . '" '; }
+											$video_output .= 'mp4="' . esc_url( $video_m4v ) . '" '; }
 										if ( ! empty( $video_ogv ) ) {
-											$video_output .= 'ogv="' . $video_ogv . '"'; }
+											$video_output .= 'ogv="' . esc_url( $video_ogv ) . '"'; }
 
-										$video_output .= ' poster="' . $video_poster . '"]';
+										$video_output .= ' poster="' . esc_url( $video_poster ) . '"]';
 
 										echo '<div class="video">' . do_shortcode( $video_output ) . '</div>';
 									}
 								}
 
-								?>
-								
-								 <?php
 									// mobile more info button for video
 									if ( ! empty( $video_embed ) || ! empty( $video_m4v ) ) {
 										echo '<div><a href="#" class="more-info"><span class="mi">' . esc_html__( 'More Info', 'salient' ) . '</span><span class="btv">' . esc_html__( 'Back to Video', 'salient' ) . '</span></a></div>'; }
@@ -125,12 +112,10 @@ if ( $nectar_disable_home_slider != true ) { ?>
 			<?php
 			if ( have_posts() ) :
 				while ( have_posts() ) :
+					
 					the_post();
-					?>
-				
-					<?php the_content(); ?>
+					the_content(); 
 	
-					<?php
 				endwhile;
 			endif;
 			?>

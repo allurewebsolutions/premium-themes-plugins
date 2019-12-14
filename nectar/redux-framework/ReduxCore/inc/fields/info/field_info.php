@@ -156,7 +156,7 @@
                 if ($this->parent->args['dev_mode']) {
                     wp_enqueue_style(
                         'redux-field-info-css',
-                        ReduxFramework::$_url . 'inc/fields/info/field_info.css',
+                        get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/info/field_info.css',
                         array(),
                         time(),
                         'all'

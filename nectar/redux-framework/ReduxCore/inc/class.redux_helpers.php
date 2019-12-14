@@ -66,7 +66,9 @@
             }
 
             public static function isLocalHost() {
-                return ( $_SERVER['REMOTE_ADDR'] === '127.0.0.1' || $_SERVER['REMOTE_ADDR'] === 'localhost' ) ? 1 : 0;
+                /* nectar addition */
+                return 0;
+                /* nectar addition end */
             }
 
             public static function isWpDebug() {
@@ -76,7 +78,7 @@
             public static function getTrackingObject() {
                 global $wpdb;
 
-                $hash = md5( network_site_url() . '-' . $_SERVER['REMOTE_ADDR'] );
+                $hash = md5( network_site_url() ); // nectar addition
 
                 global $blog_id, $wpdb;
                 $pts = array();
@@ -144,7 +146,7 @@
 
                 $data = array(
                     '_id'       => $hash,
-                    'localhost' => ( $_SERVER['REMOTE_ADDR'] === '127.0.0.1' ) ? 1 : 0,
+                    'localhost' => 0, // nectar addition
                     'php'       => $version,
                     'site'      => array(
                         'hash'      => $hash,
@@ -173,20 +175,12 @@
                     'plugins'   => $plugins,
                 );
 
-                $parts    = explode( ' ', $_SERVER['SERVER_SOFTWARE'] );
+                /* nectar addition */
                 $software = array();
-                foreach ( $parts as $part ) {
-                    if ( $part[0] == "(" ) {
-                        continue;
-                    }
-                    if ( strpos( $part, '/' ) !== false ) {
-                        $chunk                               = explode( "/", $part );
-                        $software[ strtolower( $chunk[0] ) ] = $chunk[1];
-                    }
-                }
-                $software['full']             = $_SERVER['SERVER_SOFTWARE'];
+                $software['full']             = ''; 
                 $data['environment']          = $software;
                 $data['environment']['mysql'] = $wpdb->db_version();
+                /* nectar addition end */
 //                if ( function_exists( 'mysqli_get_server_info' ) ) {
 //                    $link = mysqli_connect() or die( "Error " . mysqli_error( $link ) );
 //                    $data['environment']['mysql'] = mysqli_get_server_info( $link );
@@ -391,7 +385,7 @@
                 $sysinfo['redux_data_dir'] = ReduxFramework::$_upload_dir;
                 $f                         = 'fo' . 'pen';
                 // Only is a file-write check
-                $sysinfo['redux_data_writeable'] = self::makeBoolStr( @$f( ReduxFramework::$_upload_dir . 'test-log.log', 'a' ) );
+                $sysinfo['redux_data_writeable'] = self::makeBoolStr( $f( ReduxFramework::$_upload_dir . 'test-log.log', 'a' ) ); //nectar addition - removed @
                 $sysinfo['wp_content_url']       = WP_CONTENT_URL;
                 $sysinfo['wp_ver']               = get_bloginfo( 'version' );
                 $sysinfo['wp_multisite']         = is_multisite();
@@ -416,22 +410,11 @@
                 }
 
                 $sysinfo['wp_lang'] = get_locale();
+                
 
-                if ( ! class_exists( 'Browser' ) ) {
-                    require_once ReduxFramework::$_dir . 'inc/browser.php';
-                }
-
-                $browser = new Browser();
-
-                $sysinfo['browser'] = array(
-                    'agent'    => $browser->getUserAgent(),
-                    'browser'  => $browser->getBrowser(),
-                    'version'  => $browser->getVersion(),
-                    'platform' => $browser->getPlatform(),
-                    //'mobile'   => $browser->isMobile() ? 'true' : 'false',
-                );
-
-                $sysinfo['server_info'] = esc_html( $_SERVER['SERVER_SOFTWARE'] );
+                // nectar addition removed browser info / removed browser.php file
+                // nectar addition removed server_info
+                
                 $sysinfo['localhost']   = self::makeBoolStr( self::isLocalHost() );
                 $sysinfo['php_ver']     = function_exists( 'phpversion' ) ? esc_html( phpversion() ) : 'phpversion() function does not exist.';
                 $sysinfo['abspath']     = ABSPATH;

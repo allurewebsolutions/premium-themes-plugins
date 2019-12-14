@@ -57,7 +57,7 @@
 
                 $this->parent = $parent;
                 if ( empty( $this->extension_dir ) ) {
-                    //$this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+                  
                 }
                 $this->field_name = 'options_object';
 
@@ -95,7 +95,9 @@
 
             // Forces the use of the embeded field path vs what the core typically would use
             public function overload_field_path( $field ) {
-                return dirname( __FILE__ ) . '/' . $this->field_name . '/field_' . $this->field_name . '.php';
+              /* nectar addition */
+              return get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/extensions/options_object/' . $this->field_name . '/field_' . $this->field_name . '.php');
+              /* nectar addition end */
             }
         } // class
     } // if

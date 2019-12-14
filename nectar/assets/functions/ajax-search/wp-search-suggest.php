@@ -3,7 +3,7 @@
  * AJAX search logic
  *
  * @package Salient WordPress Theme
- * @version 9.0.2
+ * @version 10.5
  */
 
 // Exit if accessed directly
@@ -13,11 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'init', 'nectar_autocomplete_init' );
 function nectar_autocomplete_init() {
-	// Register our jQuery UI style and our custom javascript file
+	// Register our jQuery UI style and our custom javascript file.
 	wp_register_script( 'my_acsearch', get_template_directory_uri() . '/nectar/assets/functions/ajax-search/wpss-search-suggest.js', array( 'jquery', 'jquery-ui-autocomplete' ), null, true );
 	wp_localize_script( 'my_acsearch', 'MyAcSearch', array( 'url' => esc_url( admin_url( 'admin-ajax.php' ) ) ) );
 
-	// Function to fire whenever search form is displayed
+	// Function to fire whenever search form is displayed.
 	if ( ! is_admin() ) {
 		nectar_autocomplete_search_form();
 	}
@@ -37,8 +37,8 @@ function nectar_autocomplete_suggestions() {
 	$search_term = sanitize_text_field( $_REQUEST['term'] );
 	$search_term = apply_filters( 'get_search_query', $search_term );
 
-	$options       = get_nectar_theme_options();
-	$show_postsnum = ( ! empty( $options['theme-skin'] ) && $options['theme-skin'] == 'ascend' ) ? 3 : 6;
+	$nectar_options       = get_nectar_theme_options();
+	$show_postsnum = ( ! empty( $nectar_options['theme-skin'] ) && $nectar_options['theme-skin'] == 'ascend' ) ? 3 : 6;
 
 	$search_array = array(
 		's'                => $search_term,
@@ -53,13 +53,13 @@ function nectar_autocomplete_suggestions() {
 
 	$posts = get_posts( $query );
 
-	// Initialise suggestions array
+	// Initialize suggestions array.
 	$suggestions = array();
 
 	global $post;
 	foreach ( $posts as $post ) :
 		setup_postdata( $post );
-		// Initialise suggestion array
+
 		$suggestion          = array();
 		$suggestion['label'] = esc_html( $post->post_title );
 		$suggestion['link']  = esc_url( get_permalink() );
@@ -77,7 +77,7 @@ function nectar_autocomplete_suggestions() {
 
 			$suggestion['post_type'] = esc_html__( 'Portfolio Item', 'salient' );
 
-			// show custom thumbnail if in use
+			// Show custom thumbnail if in use.
 			$custom_thumbnail = get_post_meta( $post->ID, '_nectar_portfolio_custom_thumbnail', true );
 			if ( ! empty( $custom_thumbnail ) ) {
 				$attachment_id       = pn_get_attachment_id_from_url( $custom_thumbnail );
@@ -88,14 +88,13 @@ function nectar_autocomplete_suggestions() {
 			$suggestion['post_type'] = esc_html__( 'Product', 'salient' );
 		}
 
-		// Add suggestion to suggestions array
+		// Add suggestion to suggestions array.
 		$suggestions[] = $suggestion;
 		endforeach;
 
-	// JSON encode and echo
+	// JSON encode and echo.
 	echo htmlentities( $_GET['callback'], ENT_QUOTES, 'UTF-8' ) . '(' . wp_json_encode( $suggestions ) . ')';
 
-	// Don't forget to exit!
 	exit;
 }
 

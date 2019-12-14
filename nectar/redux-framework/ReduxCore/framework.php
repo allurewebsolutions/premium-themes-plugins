@@ -22,8 +22,9 @@
 
     if ( ! class_exists( 'ReduxFrameworkInstances' ) ) {
         // Instance Container
-        require_once dirname( __FILE__ ) . '/inc/class.redux_instances.php';
-        require_once dirname( __FILE__ ) . '/inc/lib.redux_instances.php';
+          /* nectar addition */ 
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.redux_instances.php');
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/lib.redux_instances.php');
     }
 
     if ( class_exists( 'ReduxFrameworkInstances' ) ) {
@@ -34,30 +35,28 @@
     if ( ! class_exists( 'ReduxFramework' ) ) {
 
         // Redux CDN class
-        require_once dirname( __FILE__ ) . '/inc/class.redux_cdn.php';
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.redux_cdn.php');
 
         // Redux API class  :)
-        require_once dirname( __FILE__ ) . '/inc/class.redux_api.php';
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.redux_api.php');
 
         // General helper functions
-        require_once dirname( __FILE__ ) . '/inc/class.redux_helpers.php';
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.redux_helpers.php');
 
         // General functions
-        require_once dirname( __FILE__ ) . '/inc/class.redux_functions.php';
-        require_once dirname( __FILE__ ) . '/inc/class.p.php';
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.redux_functions.php');
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.p.php');
 
-        require_once dirname( __FILE__ ) . '/inc/class.thirdparty.fixes.php';
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.thirdparty.fixes.php');
 
-        require_once dirname( __FILE__ ) . '/inc/class.redux_filesystem.php';
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.redux_filesystem.php');
 
-        require_once dirname( __FILE__ ) . '/inc/class.redux_admin_notices.php';
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/class.redux_admin_notices.php');
 
         // ThemeCheck checks
-        require_once dirname( __FILE__ ) . '/inc/themecheck/class.redux_themecheck.php';
+        require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/themecheck/class.redux_themecheck.php');
 
         // Welcome
-        /* nectar addition */ 
-        //require_once dirname( __FILE__ ) . '/inc/welcome/welcome.php';
         /* nectar addition end */ 
 
         /**
@@ -82,7 +81,9 @@
             public static $_as_plugin = false;
 
             public static function init() {
-                $dir = Redux_Helpers::cleanFilePath( dirname( __FILE__ ) );
+                /* nectar addition */
+                $dir = Redux_Helpers::cleanFilePath( get_parent_theme_file_path('/nectar/redux-framework/ReduxCore') );
+                /* nectar addition end */
 
                 // Windows-proof constants: replace backward by forward slashes. Thanks to: @peterbouwmeester
                 self::$_dir           = trailingslashit( $dir );
@@ -101,7 +102,6 @@
                         $is_plugin = false;
                         foreach ( get_plugins() as $key => $value ) {
                           /*nectar addition */
-                            //if ( is_plugin_active( $key ) && strpos( $key, 'redux-framework.php' ) !== false ) {
                             if ( strpos( $key, 'redux-framework.php' ) !== false ) {
                           /*nectar addition end */
                                 self::$_dir = trailingslashit( Redux_Helpers::cleanFilePath( WP_CONTENT_DIR . '/plugins/' . plugin_dir_path( $key ) . 'ReduxCore/' ) );
@@ -571,7 +571,6 @@
             public function vc_fixes() {
                 if ( redux_helpers::isFieldInUse( $this, 'ace_editor' ) ) {
                     wp_dequeue_script( 'wpb_ace' );
-                    wp_deregister_script( 'wpb_ace' );
                 }
             }
 
@@ -632,13 +631,7 @@
                  * @param string     The locale of the blog or from the 'locale' hook
                  * @param string     'redux-framework'  text domain
                  */
-                //                $locale = apply_filters( "redux/textdomain/{$this->args['opt_name']}", get_locale(), 'redux-framework' );
-                //
-                //                if ( strpos( $locale, '_' ) === false ) {
-                //                    if ( file_exists( self::$_dir . 'languages/' . strtolower( $locale ) . '_' . strtoupper( $locale ) . '.mo' ) ) {
-                //                        $locale = strtolower( $locale ) . '_' . strtoupper( $locale );
-                //                    }
-                //                }
+
 
                 $basename = basename( __FILE__ );
                 $basepath = plugin_basename( __FILE__ );
@@ -658,7 +651,9 @@
 
                 if ( ! $loaded ) {
                     $locale = apply_filters( 'plugin_locale', get_locale(), 'redux-framework' );
-                    $mofile = dirname( __FILE__ ) . '/languages/redux-framework-' . $locale . '.mo';
+                    /* nectar addition */
+                    $mofile = get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/languages/redux-framework-' . $locale . '.mo');
+                    /* nectar addition end */
                     load_textdomain( 'redux-framework', $mofile );
                 }
             }
@@ -675,11 +670,13 @@
             // get_instance()
 
             private function _tracking() {
-                if ( file_exists( dirname( __FILE__ ) . '/inc/tracking.php' ) ) {
-                    require_once dirname( __FILE__ ) . '/inc/tracking.php';
+                /* nectar addition */
+                if ( file_exists( get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/tracking.php') ) ) {
+                    require_once get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/tracking.php');
                     $tracking = Redux_Tracking::get_instance();
                     $tracking->load( $this );
                 }
+                /* nectar addition end */
             }
             // _tracking()
 
@@ -1127,9 +1124,11 @@
             public function show( $opt_name, $default = '' ) {
                 $option = $this->get( $opt_name );
                 if ( ! is_array( $option ) && $option != '' ) {
-                    echo $option;
+                  // nectar addition
+                    echo wp_kses_post( $option );
                 } elseif ( $default != '' ) {
-                    echo $this->_get_default( $opt_name, $default );
+                    echo wp_kses_post( $this->_get_default( $opt_name, $default ) );
+                  // nectar addition end
                 }
             }
             // show()
@@ -1477,7 +1476,7 @@
 
                                 // ONLY for non-wp.org themes OR plugins. Theme-Check alert shown if used and IS theme.
                                 call_user_func( 'add_submenu_page', $this->args['page_slug'], $section['title'], $section['title'], $this->args['page_permissions'], $this->args['page_slug'] . '&tab=' . $k,
-                                    //create_function( '$a', "return null;" )
+                                    
                                     '__return_null' );
                             }
 
@@ -1499,94 +1498,7 @@
              * @global      $menu , $submenu, $wp_admin_bar
              * @return      void
              */
-            public function _admin_bar_menu() { //not used in Salient
-                global $menu, $submenu, $wp_admin_bar;
-
-                $ct         = wp_get_theme();
-                $theme_data = $ct;
-
-                if ( ! is_super_admin() || ! is_admin_bar_showing() || ! $this->args['admin_bar'] || $this->args['menu_type'] == 'hidden' ) {
-                    return;
-                }
-
-                if ( $menu ) {
-                    foreach ( $menu as $menu_item ) {
-                        if ( isset ( $menu_item[2] ) && $menu_item[2] === $this->args["page_slug"] ) {
-
-                            // Fetch the title
-                            $title = empty ( $this->args['admin_bar_icon'] ) ? $menu_item[0] : '<span class="ab-icon ' . $this->args['admin_bar_icon'] . '"></span>' . $menu_item[0];
-
-                            $nodeargs = array(
-                                'id'    => $menu_item[2],
-                                'title' => $title,
-                                'href'  => admin_url( 'admin.php?page=' . $menu_item[2] ),
-                                'meta'  => array()
-                            );
-                            $wp_admin_bar->add_node( $nodeargs );
-
-                            break;
-                        }
-                    }
-
-                    if ( isset ( $submenu[ $this->args["page_slug"] ] ) && is_array( $submenu[ $this->args["page_slug"] ] ) ) {
-                        foreach ( $submenu[ $this->args["page_slug"] ] as $index => $redux_options_submenu ) {
-                            $subnodeargs = array(
-                                'id'     => $this->args["page_slug"] . '_' . $index,
-                                'title'  => $redux_options_submenu[0],
-                                'parent' => $this->args["page_slug"],
-                                'href'   => admin_url( 'admin.php?page=' . $redux_options_submenu[2] ),
-                            );
-
-                            $wp_admin_bar->add_node( $subnodeargs );
-                        }
-                    }
-
-                    // Let's deal with external links
-                    if ( isset ( $this->args['admin_bar_links'] ) ) {
-
-                        if ( ! $this->args['dev_mode'] && $this->omit_admin_items ) {
-                            return;
-                        }
-
-                        // Group for Main Root Menu (External Group)
-                        $wp_admin_bar->add_node( array(
-                            'id'     => $this->args["page_slug"] . '-external',
-                            'parent' => $this->args["page_slug"],
-                            'group'  => true,
-                            'meta'   => array( 'class' => 'ab-sub-secondary' )
-                        ) );
-
-                        // Add Child Menus to External Group Menu
-                        foreach ( $this->args['admin_bar_links'] as $link ) {
-                            if ( ! isset ( $link['id'] ) ) {
-                                $link['id'] = $this->args["page_slug"] . '-sub-' . sanitize_html_class( $link['title'] );
-                            }
-                            $externalnodeargs = array(
-                                'id'     => $link['id'],
-                                'title'  => $link['title'],
-                                'parent' => $this->args["page_slug"] . '-external',
-                                'href'   => $link['href'],
-                                'meta'   => array( 'target' => '_blank' )
-                            );
-
-                            $wp_admin_bar->add_node( $externalnodeargs );
-                        }
-                    }
-                } else {
-                    // Fetch the title
-                    $title = empty ( $this->args['admin_bar_icon'] ) ? $this->args['menu_title'] : '<span class="ab-icon ' . $this->args['admin_bar_icon'] . '"></span>' . $this->args['menu_title'];
-
-                    $nodeargs = array(
-                        'id'    => $this->args["page_slug"],
-                        'title' => $title,
-                        // $theme_data->get( 'Name' ) . " " . __( 'Options', 'redux-framework-demo' ),
-                        'href'  => admin_url( 'admin.php?page=' . $this->args["page_slug"] ),
-                        'meta'  => array()
-                    );
-
-                    $wp_admin_bar->add_node( $nodeargs );
-                }
-            }
+            /* nectar addition - remove admin bar menu*/
         
 
             /**
@@ -1693,10 +1605,9 @@
                             $families[] = $key;
                         }
                         
-                        /*nectar addition - local load*/
+                        /* nectar addition */
                         global $nectar_get_template_directory_uri;
-                        /*nectar addition end */
-                        
+
                         ?>
                         <script>
                             /* You can add more configuration options to webfontloader by previously defining the WebFontConfig with your options */
@@ -1704,12 +1615,12 @@
                                 WebFontConfig = new Object();
                             }
                           
-                            WebFontConfig['google'] = {families: [<?php echo $typography->makeGoogleWebfontString ( $this->typography ) ?>]};
+                            WebFontConfig['google'] = {families: [<?php echo trim($typography->makeGoogleWebfontString ( $this->typography )); ?>]};
 
                             (function() {
                                 var wf = document.createElement( 'script' );
                                 /*nectar addition - local load*/
-                                wf.src = <?php echo $nectar_get_template_directory_uri . '/nectar/assets/js/webfont.js'; ?>;
+                                wf.src = <?php echo "'" . get_template_directory_uri() . '/nectar/assets/js/webfont.js' . "'"; ?>;
                                 /*nectar addition end */
                                 wf.type = 'text/javascript';
                                 wf.async = 'true';
@@ -1718,9 +1629,12 @@
                             })();
                         </script>
                         <?php
+                        /* nectar addition end */
                     } elseif ( ! $this->args['disable_google_fonts_link'] ) {
-                        $protocol = ( ! empty ( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443 ) ? "https:" : "http:";
-
+                        /* nectar addition */
+                        $protocol = ( is_ssl() ) ? "https:" : "http:";
+                        /* nectar addition end */
+                        
                         //echo '<link rel="stylesheet" id="options-google-fonts" title="" href="'.$protocol.$typography->makeGoogleWebfontLink( $this->typography ).'&amp;v='.$version.'" type="text/css" media="all" />';
                         wp_register_style( 'redux-google-fonts-' . $this->args['opt_name'], $protocol . $typography->makeGoogleWebfontLink( $this->typography ), '', $version );
                         wp_enqueue_style( 'redux-google-fonts-' . $this->args['opt_name'] );
@@ -2543,9 +2457,11 @@
              * @return      void
              */
             private function _register_extensions() {
-                $path    = dirname( __FILE__ ) . '/inc/extensions/';
+                /* nectar addition */
+                $path    = get_parent_theme_file_path('/nectar/redux-framework/ReduxCore/inc/extensions/');
                 $folders = scandir( $path, 1 );
-
+                /* nectar addition end */
+                
                 /**
                  * action 'redux/extensions/before'
                  *
@@ -2891,7 +2807,9 @@
                     $w3_inst = w3_instance( 'W3_ObjectCache' );
                     $w3      = $w3_inst->instance();
                     $key     = $w3->_get_cache_key( $this->args['opt_name'] . '-transients', 'transient' );
-                    //echo $key;
+                    /* nectar addition */
+                    /* removed unused echo */
+                    /* nectar addition end */
                     $w3->delete( $key, 'transient', true );
                     //set_transient($this->args['opt_name'].'-transients', $this->transients);
                     //exit();
@@ -3255,6 +3173,7 @@
              * @access      public
              * @return      void
              */
+            /* nectar addition - output instead of return */
             public function section_menu( $k, $section, $suffix = "", $sections = array() ) {
                 $display = true;
 
@@ -3274,7 +3193,6 @@
                     $sections = $this->sections;
                 }
 
-                $string = "";
                 if ( ( ( isset ( $this->args['icon_type'] ) && $this->args['icon_type'] == 'image' ) || ( isset ( $section['icon_type'] ) && $section['icon_type'] == 'image' ) ) || ( isset( $section['icon'] ) && strpos( $section['icon'], '/' ) !== false ) ) {
                     //if( !empty( $this->args['icon_type'] ) && $this->args['icon_type'] == 'image' ) {
                     $icon = ( ! isset ( $section['icon'] ) ) ? '' : '<img class="image_icon_type" src="' . esc_url( $section['icon'] ) . '" /> ';
@@ -3304,7 +3222,7 @@
                 }
 
                 if ( isset ( $section['type'] ) && $section['type'] == "divide" ) {
-                    $string .= '<li class="divide' . esc_attr( $section['class'] ) . '">&nbsp;</li>';
+                    echo '<li class="divide' . esc_attr( $section['class'] ) . '">&nbsp;</li>';
                 } else if ( ! isset ( $section['subsection'] ) || $section['subsection'] != true ) {
 
                     // DOVY! REPLACE $k with $section['ID'] when used properly.
@@ -3314,14 +3232,14 @@
                     $subsectionsClass .= ( ! isset ( $section['fields'] ) || empty ( $section['fields'] ) ) ? ' empty_section' : '';
                     $extra_icon = $subsections ? '<span class="extraIconSubsections"><i class="el el-chevron-down">&nbsp;</i></span>' : '';
                     //var_dump($section);
-                    $string .= '<li id="' . esc_attr( $k . $suffix ) . '_section_group_li" class="redux-group-tab-link-li' . esc_attr( $hide_section ) . esc_attr( $section['class'] ) . esc_attr( $subsectionsClass ) . '">';
-                    $string .= '<a href="javascript:void(0);" id="' . esc_attr( $k . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $k ) . '" data-rel="' . esc_attr( $k . $suffix ) . '">' . $extra_icon . $icon . '<span class="group_title">' . wp_kses_post( $section['title'] ) . '</span></a>';
+                    echo '<li id="' . esc_attr( $k . $suffix ) . '_section_group_li" class="redux-group-tab-link-li' . esc_attr( $hide_section ) . esc_attr( $section['class'] ) . esc_attr( $subsectionsClass ) . '">';
+                    echo '<a href="javascript:void(0);" id="' . esc_attr( $k . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $k ) . '" data-rel="' . esc_attr( $k . $suffix ) . '">' . $extra_icon . $icon . '<span class="group_title">' . wp_kses_post( $section['title'] ) . '</span></a>';
 
                     $nextK = $k;
 
                     // Make sure you can make this a subsection
                     if ( $subsections ) {
-                        $string .= '<ul id="' . esc_attr( $nextK . $suffix ) . '_section_group_li_subsections" class="subsection">';
+                        echo '<ul id="' . esc_attr( $nextK . $suffix ) . '_section_group_li_subsections" class="subsection">';
                         $doLoop = true;
 
                         while ( $doLoop ) {
@@ -3365,19 +3283,18 @@
 
                                 $sections[ $nextK ]['class'] = isset($sections[ $nextK ]['class']) ? $sections[ $nextK ]['class'] : '';
                                 $section[ $nextK ]['class'] = isset ( $section[ $nextK ]['class'] ) ? $section[ $nextK ]['class'] : $sections[ $nextK ]['class'];
-                                $string .= '<li id="' . esc_attr( $nextK . $suffix ) . '_section_group_li" class="redux-group-tab-link-li ' . esc_attr( $hide_sub ) . esc_attr( $section[ $nextK ]['class'] ) . ( $icon ? ' hasIcon' : '' ) . '">';
-                                $string .= '<a href="javascript:void(0);" id="' . esc_attr( $nextK . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $nextK ) . '" data-rel="' . esc_attr( $nextK . $suffix ) . '">' . $icon . '<span class="group_title">' . wp_kses_post( $sections[ $nextK ]['title'] ) . '</span></a>';
-                                $string .= '</li>';
+                                echo '<li id="' . esc_attr( $nextK . $suffix ) . '_section_group_li" class="redux-group-tab-link-li ' . esc_attr( $hide_sub ) . esc_attr( $section[ $nextK ]['class'] ) . ( $icon ? ' hasIcon' : '' ) . '">';
+                                echo '<a href="javascript:void(0);" id="' . esc_attr( $nextK . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $nextK ) . '" data-rel="' . esc_attr( $nextK . $suffix ) . '">' . $icon . '<span class="group_title">' . wp_kses_post( $sections[ $nextK ]['title'] ) . '</span></a>';
+                                echo '</li>';
                             }
                         }
 
-                        $string .= '</ul>';
+                        echo '</ul>';
                     }
 
-                    $string .= '</li>';
+                    echo '</li>';
                 }
 
-                return $string;
             }
             // section_menu()
 
@@ -3578,46 +3495,10 @@
                             $field['name_suffix'] = "";
                         }
 
-                        $render = new $field_class ( $field, $value, $this );
-                        ob_start();
-
-                        $render->render();
-
-                        /*
-
-                      echo "<pre>";
-                      print_r($value);
-                      echo "</pre>";
-                     */
-
-                        /**
-                         * filter 'redux-field-{opt_name}'
-                         *
-                         * @deprecated
-                         *
-                         * @param       string        rendered field markup
-                         * @param array $field        field data
-                         */
-                        $_render = apply_filters( "redux-field-{$this->args['opt_name']}", ob_get_contents(), $field ); // REMOVE
-
-                        /**
-                         * filter 'redux/field/{opt_name}/{field.type}/render/after'
-                         *
-                         * @param       string        rendered field markup
-                         * @param array $field        field data
-                         */
-                        $_render = apply_filters( "redux/field/{$this->args['opt_name']}/{$field['type']}/render/after", $_render, $field );
-
-                        /**
-                         * filter 'redux/field/{opt_name}/render/after'
-                         *
-                         * @param       string        rendered field markup
-                         * @param array $field        field data
-                         */
-                        $_render = apply_filters( "redux/field/{$this->args['opt_name']}/render/after", $_render, $field );
-
-                        ob_end_clean();
-
+                  
+                        /* nectar addition - removed output buffering method of rendering field */
+                        /* nectar addition end */
+                        
                         //save the values into a unique array in case we need it for dependencies
                         $this->fieldsValues[ $field['id'] ] = ( isset ( $value['url'] ) && is_array( $value ) ) ? $value['url'] : $value;
 
@@ -3649,7 +3530,7 @@
                             &$value
                         ) );
 
-                        //if ( ! isset( $field['fields'] ) || empty( $field['fields'] ) ) {
+                      
                         $hidden = '';
                         if ( isset ( $field['hidden'] ) && $field['hidden'] ) {
                             $hidden = 'hidden ';
@@ -3663,20 +3544,22 @@
                             $class_string .= ' ' . $field['fieldset_class'];
                         }
 
-                        echo '<fieldset id="' . $this->args['opt_name'] . '-' . $field['id'] . '" class="' . $hidden . 'redux-field-container redux-field redux-field-init redux-container-' . $field['type'] . ' ' . $class_string . '" data-id="' . $field['id'] . '" ' . $data_string . ' data-type="' . $field['type'] . '">';
-                        //}
-
-                        echo $_render;
+                        echo '<fieldset id="' . esc_attr($this->args['opt_name']) . '-' . esc_attr($field['id']) . '" class="' . esc_attr($hidden) . 'redux-field-container redux-field redux-field-init redux-container-' . esc_attr($field['type']) . ' ' . esc_attr($class_string) . '" data-id="' . esc_attr($field['id']) . '" ' . $data_string . ' data-type="' . esc_attr($field['type']) . '">';
+                      
+                        /* nectar addition */
+                        $render = new $field_class ( $field, $value, $this );
+                        $render->render();
+                        /* nectar addition end */
 
                         if ( ! empty ( $field['desc'] ) ) {
                             $field['description'] = $field['desc'];
                         }
 
-                        echo ( isset ( $field['description'] ) && $field['type'] != "info" && $field['type'] !== "section" && ! empty ( $field['description'] ) ) ? '<div class="description field-desc">' . $field['description'] . '</div>' : '';
+                        echo ( isset ( $field['description'] ) && $field['type'] != "info" && $field['type'] !== "section" && ! empty ( $field['description'] ) ) ? '<div class="description field-desc">' . wp_kses_post($field['description']) . '</div>' : '';
 
-                        //if ( ! isset( $field['fields'] ) || empty( $field['fields'] ) ) {
+                
                         echo '</fieldset>';
-                        //}
+                      
 
                         /**
                          * action 'redux-after-field-{opt_name}'

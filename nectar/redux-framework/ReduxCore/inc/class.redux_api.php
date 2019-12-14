@@ -174,7 +174,9 @@
                         if ( $field['section_id'] == $section_id ) {
                             $p = $field['priority'];
                             while ( isset( $fields[ $p ] ) ) {
-                                echo $p ++;
+                                // nectar addition.
+                                $p++;
+                                // nectar addition end.
                             }
                             $fields[ $p ] = $field;
                         }

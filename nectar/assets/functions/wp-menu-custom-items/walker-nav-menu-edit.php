@@ -1,11 +1,6 @@
 <?php
 /**
  * Custom Walker for Nav Menu Editor
- *
- * We're separating this class from the plugin file because Walker_Nav_Menu_Edit
- * is only loaded on the wp-admin/nav-menus.php page.
- *
- * @package Menu_Item_Custom_Fields
  * @version 0.1.1
  * @author Dzikri Aziz <kvcrvt@gmail.com>
  */

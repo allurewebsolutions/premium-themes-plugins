@@ -76,7 +76,10 @@ if( !class_exists( 'ReduxFramework_extension_ad_remover' ) ) {
             
             // Set extension dir
             if ( empty( $this->extension_dir ) ) {
-                $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+                /* nectar addition */
+                $current_directory = get_parent_theme_file_path('/nectar/redux-framework/extensions/ad_remove');
+                $this->extension_dir = trailingslashit( str_replace( '\\', '/', $current_directory ) );
+                /* nectar addition end */
                 $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
                 self::$ext_url = $this->extension_url;
             }
@@ -118,7 +121,9 @@ if( !class_exists( 'ReduxFramework_extension_ad_remover' ) ) {
         
         // Forces the use of the embeded field path vs what the core typically would use
         public function overload_field_path($field) {
-            return dirname(__FILE__).'/'.$this->field_name.'/field_'.$this->field_name.'.php';
+            /* nectar addition */
+            return get_parent_theme_file_path('/nectar/redux-framework/extensions/ad_remove/' . $this->field_name . '/field_' . $this->field_name . '.php');
+            /* nectar addition end */
         }
     }
 }

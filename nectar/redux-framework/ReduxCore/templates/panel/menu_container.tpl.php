@@ -28,7 +28,9 @@
             }
 
             if ( false == $skip_sec ) {
-                echo $this->parent->section_menu ( $k, $section );
+                /* nectar addition */
+                $this->parent->section_menu ( $k, $section );
+                /* nectar addition end */
                 $skip_sec = false;
             }
         }

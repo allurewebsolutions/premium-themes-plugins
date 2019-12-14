@@ -61,9 +61,9 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
             /*nectar addition*/
             echo '<div class="switch-options salient '.$activated_switch.'">';
             /*nectar addition end*/
-            echo '<label class="cb-enable' . $cb_enabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['on'] . '</span></label>';
-            echo '<label class="cb-disable' . $cb_disabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['off'] . '</span></label>';
-            echo '<input type="hidden" class="checkbox checkbox-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $display_val . '" />';
+            echo '<label class="cb-enable' . $cb_enabled . '" data-id="' . esc_attr($this->field['id']) . '"><span>' . esc_attr($this->field['on']) . '</span></label>';
+            echo '<label class="cb-disable' . $cb_disabled . '" data-id="' . esc_attr($this->field['id']) . '"><span>' . esc_attr($this->field['off']) . '</span></label>';
+            echo '<input type="hidden" class="checkbox checkbox-input ' . esc_attr($this->field['class']) . '" id="' . esc_attr($this->field['id']) . '" name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '" value="' . esc_attr($display_val) . '" />';
             echo '</div>';
         } //function
 
@@ -76,7 +76,7 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
         function enqueue() {
             wp_enqueue_script(
                 'redux-field-switch-js',
-                ReduxFramework::$_url . 'inc/fields/switch/field_switch' . Redux_Functions::isMin() . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/switch/field_switch' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
                 time(),
                 true
@@ -85,7 +85,7 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-switch-css',
-                    ReduxFramework::$_url . 'inc/fields/switch/field_switch.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/switch/field_switch.css',
                     array(),
                     time(),
                     'all'

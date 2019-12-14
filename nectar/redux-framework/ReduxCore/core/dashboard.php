@@ -14,7 +14,8 @@
             }
             
             public function add_redux_dashboard() {
-                add_meta_box('redux_dashboard_widget', 'Redux Framework News', array($this,'redux_dashboard_widget'), 'dashboard', 'side', 'high');
+                /* nectar addition - remove metabox */
+                /* nectar addition end */
             }
             
             public function dat() {

@@ -21,16 +21,16 @@
           id="redux-form-wrapper">
         <?php // $this->parent->args['opt_name'] is sanitized in the Framework class, no need to re-sanitize it. ?>
         <input type="hidden" id="redux-compiler-hook"
-            name="<?php echo $this->parent->args['opt_name']; ?>[compiler]"
+            name="<?php echo esc_attr( $this->parent->args['opt_name'] ); //nectar addition ?>[compiler]"
             value=""/>
         <?php // $this->parent->args['opt_name'] is sanitized in the Framework class, no need to re-sanitize it. ?>
         <input type="hidden" id="currentSection"
-            name="<?php echo $this->parent->args['opt_name']; ?>[redux-section]"
+            name="<?php echo esc_attr( $this->parent->args['opt_name'] ); //nectar addition ?>[redux-section]"
             value=""/>
         <?php // $this->parent->args['opt_name'] is sanitized in the Framework class, no need to re-sanitize it. ?>
         <?php if ( ! empty( $this->parent->no_panel ) ) { ?>
             <input type="hidden" 
-                name="<?php echo $this->parent->args['opt_name']; ?>[redux-no_panel]"
+                name="<?php echo esc_attr( $this->parent->args['opt_name'] ); //nectar addition ?>[redux-no_panel]"
                 value="<?php echo esc_attr(implode( '|', $this->parent->no_panel )); ?>"
             />
         <?php } ?>
@@ -44,7 +44,7 @@
         <?php // $this->parent->args['opt_name'] is sanitized in the Framework class, no need to re-sanitize it. ?>
         <input type="hidden" 
                id="last_tab" 
-               name="<?php echo $this->parent->args['opt_name']; ?>[last_tab]"
+               name="<?php echo esc_attr( $this->parent->args['opt_name'] ); //nectar addition ?>[last_tab]"
                value="<?php echo esc_attr( $this->parent->options['last_tab'] ); ?>"
         />
 

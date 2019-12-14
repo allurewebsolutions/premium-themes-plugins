@@ -6,20 +6,21 @@
  * It is expected that theme authors would copy and paste this code into their
  * functions.php file, and amend to suit.
  *
- * @package	   TGM-Plugin-Activation
+ * @see http://tgmpluginactivation.com/configuration/ for detailed documentation.
+ *
+ * @package    TGM-Plugin-Activation
  * @subpackage Example
- * @version	   2.3.6
- * @author	   Thomas Griffin <thomas@thomasgriffinmedia.com>
- * @author	   Gary Jones <gamajo@gamajo.com>
- * @copyright  Copyright (c) 2012, Thomas Griffin
- * @license	   http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
- * @link       https://github.com/thomasgriffin/TGM-Plugin-Activation
+ * @version    2.6.1 for parent theme Salient for publication on ThemeForest
+ * @author     Thomas Griffin, Gary Jones, Juliette Reinders Folmer
+ * @copyright  Copyright (c) 2011, Thomas Griffin
+ * @license    http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
+ * @link       https://github.com/TGMPA/TGM-Plugin-Activation
  */
 
 /**
  * Include the TGM_Plugin_Activation class.
  */
-require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
+require_once get_template_directory() . '/nectar/tgm-plugin-activation/class-tgm-plugin-activation.php';
 
 add_action( 'tgmpa_register', 'nectar_register_required_plugins' );
 /**
@@ -42,37 +43,90 @@ function nectar_register_required_plugins() {
 	 */
 	$plugins = array(
 
-		// This is an example of how to include a plugin from the WordPress Plugin Repository
 		array(
-			'name' 		=> 'Woocommerce',
-			'slug' 		=> 'woocommerce',
-			'required' 	=> false,
-		),
-
+        'name'               => 'Salient WPBakery Page Builder', // The plugin name
+        'slug'               => 'js_composer_salient', // The plugin slug (typically the folder name)
+        'source'             => get_template_directory() . '/plugins/js_composer_salient.zip', // The plugin source
+        'required'           => true, // If false, the plugin is only 'recommended' instead of required
+        'version'            => '6.0.5', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+        'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+        'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+    ),
 		array(
-			'name' 		=> 'Contact Form 7',
-			'slug' 		=> 'contact-form-7',
-			'required' 	=> false,
-		),
+        'name'               => 'Salient Core', 
+        'slug'               => 'salient-core', 
+        'source'             => get_template_directory() . '/plugins/salient-core.zip', 
+        'required'           => true, 
+        'version'            => '1.4', 
+        'force_activation'   => false, 
+        'force_deactivation' => false, 
+    ),
 		array(
-			'name' 		=> 'Classic Editor',
-			'slug' 		=> 'classic-editor',
-			'required' 	=> false,
-		),
+        'name'               => 'Salient Demo Importer', 
+        'slug'               => 'salient-demo-importer', 
+        'source'             => get_template_directory() . '/plugins/salient-demo-importer.zip', 
+        'required'           => false,  
+        'version'            => '1.1', 
+        'force_activation'   => false,
+        'force_deactivation' => false, 
+    ),
 		array(
-            'name'          => 'Salient WPBakery Page Builder', // The plugin name
-            'slug'          => 'js_composer_salient', // The plugin slug (typically the folder name)
-            'source'            => get_template_directory() . '/plugins/js_composer_salient.zip', // The plugin source
-            'required'          => true, // If false, the plugin is only 'recommended' instead of required
-            'version'           => '5.7', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-            'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-            'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-        )
+        'name'               => 'Salient Social', 
+        'slug'               => 'salient-social', 
+        'source'             => get_template_directory() . '/plugins/salient-social.zip', 
+        'required'           => false, 
+        'version'            => '1.1', 
+        'force_activation'   => false,
+        'force_deactivation' => false, 
+    ),
+		array(
+        'name'               => 'Salient Widgets', 
+        'slug'               => 'salient-widgets', 
+        'source'             => get_template_directory() . '/plugins/salient-widgets.zip', 
+        'required'           => false, 
+        'version'            => '1.1', 
+        'force_activation'   => false,
+        'force_deactivation' => false, 
+    ),
+		array(
+        'name'               => 'Salient Portfolio', 
+        'slug'               => 'salient-portfolio', 
+        'source'             => get_template_directory() . '/plugins/salient-portfolio.zip', 
+        'required'           => false, 
+        'version'            => '1.4', 
+        'force_activation'   => false,
+        'force_deactivation' => false, 
+    ),
+		array(
+        'name'               => 'Salient Nectar Slider', 
+        'slug'               => 'salient-nectar-slider', 
+        'source'             => get_template_directory() . '/plugins/salient-nectar-slider.zip', 
+        'required'           => false,  
+        'version'            => '1.4', 
+        'force_activation'   => false,
+        'force_deactivation' => false, 
+    ),
+		array(
+        'name'               => 'Salient Home Slider', 
+        'slug'               => 'salient-home-slider', 
+        'source'             => get_template_directory() . '/plugins/salient-home-slider.zip', 
+        'required'           => false, 
+        'version'            => '1.1', 
+        'force_activation'   => false,
+        'force_deactivation' => false, 
+    ),
+		array(
+        'name'               => 'Salient Shortcodes', 
+        'slug'               => 'salient-shortcodes', 
+        'source'             => get_template_directory() . '/plugins/salient-shortcodes.zip', 
+        'required'           => false, 
+        'version'            => '1.3', 
+        'force_activation'   => false,
+        'force_deactivation' => false, 
+    )
 
 	);
 
-	// Change this to your theme text domain, used for internationalising strings
-	$theme_text_domain = 'tgmpa';
 
 	/**
 	 * Array of configuration settings. Amend each line as needed.
@@ -82,7 +136,7 @@ function nectar_register_required_plugins() {
 	 * end of each line for what each argument will be.
 	 */
 	$config = array(
-		'id'           => 'tgmpa',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+		'id'           => 'salient',               // Unique ID for hashing notices for multiple instances of TGMPA.
 		'default_path' => '',                      // Default absolute path to bundled plugins.
 		'menu'         => 'tgmpa-install-plugins', // Menu slug.
 		'parent_slug'  => 'themes.php',            // Parent menu slug.

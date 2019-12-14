@@ -31,7 +31,7 @@ class Redux_Options_checkbox_hide_below {
 	echo '>';
 	echo '<input data-amount="' . $next_to_hide . '" type="checkbox" id="' . $this->field['id'] . '" name="' . $this->args['opt_name'] . '[' . $this->field['id'] . ']" value="1" class="' . $class . ' redux-opts-checkbox-hide-below" ' . checked($this->value, '1', false) . ' /> ';
 	if($switch) { echo '<div class="switch"><span class="bullet"></span></div>'; } 
-	if (isset($this->field['desc']) && !empty($this->field['desc'])) echo $this->field['desc'];
+	if (isset($this->field['desc']) && !empty($this->field['desc'])) echo esc_html( $this->field['desc'] );
 	echo '</label>';
     }
 

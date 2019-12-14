@@ -36,7 +36,7 @@
                     return;
                 }
                 // On label click, change the input and class
-                el.find( '.redux-image-select label img, .redux-image-select label .tiles' ).click(
+                el.find( '.redux-image-select label img, .redux-image-select label .tiles' ).on('click',
                     function( e ) {
                         var id = $( this ).closest( 'label' ).attr( 'for' );
 
@@ -78,9 +78,9 @@
                                         $( '#import-code-value' ).val( JSON.stringify( data ) );
                                     }
                                     if ( $( '#publishing-action #publish' ).length !== 0 ) {
-                                        $( '#publish' ).click();
+                                        $( '#publish' ).trigger('click');
                                     } else {
-                                        $( '#redux-import' ).click();
+                                        $( '#redux-import' ).trigger('click');
                                     }
                                 }
                             } else {

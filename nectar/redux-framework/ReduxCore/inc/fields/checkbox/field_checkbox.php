@@ -93,16 +93,16 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
                     }
 
                     echo '<li>';
-                    echo '<label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $k . ']', array(
+                    echo '<label for="' . strtr ( esc_attr($this->parent->args[ 'opt_name' ]) . '[' . esc_attr($this->field[ 'id' ]) . '][' . esc_attr($k) . ']', array(
                         '[' => '_',
                         ']' => ''
                     ) ) . '_' . array_search ( $k, array_keys ( $this->field[ 'options' ] ) ) . '">';
-                    echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . $this->field[ 'name' ] . '[' . $k . ']' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ $k ] . '" ' . '/>';
-                    echo '<input type="checkbox" class="checkbox ' . $this->field[ 'class' ] . '" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $k . ']', array(
+                    echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . esc_attr($this->field[ 'name' ]) . '[' . esc_attr($k) . ']' . esc_attr($this->field[ 'name_suffix' ]) . '" value="' . esc_attr($this->value[ $k ]) . '" ' . '/>';
+                    echo '<input type="checkbox" class="checkbox ' . esc_attr($this->field[ 'class' ]) . '" id="' . strtr ( esc_attr($this->parent->args[ 'opt_name' ]) . '[' . esc_attr($this->field[ 'id' ]) . '][' . esc_attr($k) . ']', array(
                         '[' => '_',
                         ']' => ''
                     ) ) . '_' . array_search ( $k, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $this->value[ $k ], '1', false ) . '/>';
-                    echo ' ' . $v . '</label>';
+                    echo ' ' . wp_kses_post($v) . '</label>';
                     echo '</li>';
                 }
 
@@ -120,19 +120,19 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
                 $legacy_cehckbox = (!empty($old_options[$fixed_ID])) ? $old_options[$fixed_ID] : '-';
                 $display_val = (isset($salient_redux[$this->field['id']]) || $legacy_cehckbox == '-') ? $this->value : $legacy_cehckbox;
 
-                echo (!empty ( $this->field[ 'desc' ] ) ) ? ' <ul class="data-full"><li><label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . ']', array(
+                echo (!empty ( $this->field[ 'desc' ] ) ) ? ' <ul class="data-full"><li><label for="' . strtr ( esc_attr($this->parent->args[ 'opt_name' ]) . '[' . esc_attr($this->field[ 'id' ]) . ']', array(
                             '[' => '_',
                             ']' => ''
                         ) ) . '">' : '';
 
                 // Got the "Checked" status as "0" or "1" then insert it as the "value" option
                 //$ch_value = 1; // checked($this->value, '1', false) == "" ? "0" : "1";
-                echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . $this->field[ 'name' ] . $this->field[ 'name_suffix' ] . '" value="' . $display_val . '" ' . '/>';
-                echo '<input type="checkbox" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . ']', array(
+                echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . esc_attr($this->field[ 'name' ]) . esc_attr($this->field[ 'name_suffix' ]) . '" value="' . esc_attr($display_val) . '" ' . '/>';
+                echo '<input type="checkbox" id="' . strtr ( esc_attr($this->parent->args[ 'opt_name' ]) . '[' . esc_attr($this->field[ 'id' ]) . ']', array(
                     '[' => '_',
                     ']' => ''
-                ) ) . '" value="1" class="checkbox ' . $this->field[ 'class' ] . '" ' . checked ( $display_val, '1', false ) . '/>';
-                echo isset( $this->field[ 'label' ] ) ? ' ' . $this->field[ 'label' ] : '';
+                ) ) . '" value="1" class="checkbox ' . esc_attr($this->field[ 'class' ]) . '" ' . checked ( $display_val, '1', false ) . '/>';
+                echo isset( $this->field[ 'label' ] ) ? ' ' . wp_kses_post($this->field[ 'label' ]) : '';
                 echo '</label></li></ul>';
 
                 /* nectar addition end */
@@ -152,7 +152,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style (
                     'redux-field-checkbox-css',
-                    ReduxFramework::$_url . 'inc/fields/checkbox/field_checkbox.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/checkbox/field_checkbox.css',
                     array(),
                     time (),
                     'all'
@@ -161,7 +161,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
 
             wp_enqueue_script (
                 'redux-field-checkbox-js',
-                ReduxFramework::$_url . 'inc/fields/checkbox/field_checkbox' . Redux_Functions::isMin () . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/checkbox/field_checkbox' . Redux_Functions::isMin () . '.js',
                 array( 'jquery', 'redux-js' ),
                 time (),
                 true

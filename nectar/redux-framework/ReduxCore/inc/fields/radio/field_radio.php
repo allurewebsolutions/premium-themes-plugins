@@ -54,11 +54,11 @@
 
                     foreach ( $this->field['options'] as $k => $v ) {
                         echo '<li>';
-                        echo '<label for="' . $this->field['id'] . '_' . array_search( $k, array_keys( $this->field['options'] ) ) . '">';
+                        echo '<label for="' . esc_attr($this->field['id']) . '_' . array_search( $k, array_keys( $this->field['options'] ) ) . '">';
                         /* nectar additon */
-                        echo '<input type="radio" class="radio ' . $this->field['class'] . '" id="' . $this->field['id'] . '_' . array_search( $k, array_keys( $this->field['options'] ) ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $k . '" ' . checked( $display_val, $k, false ) . '/>';
+                        echo '<input type="radio" class="radio ' . esc_attr($this->field['class']) . '" id="' . esc_attr($this->field['id']) . '_' . array_search( $k, array_keys( $this->field['options'] ) ) . '" name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '" value="' . $k . '" ' . checked( $display_val, $k, false ) . '/>';
                         /* nectar additon end */
-                        echo ' <span>' . $v . '</span>';
+                        echo ' <span>' . wp_kses_post($v) . '</span>';
                         echo '</label>';
                         echo '</li>';
                     }

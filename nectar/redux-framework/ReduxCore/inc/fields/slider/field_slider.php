@@ -222,7 +222,7 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
 
             wp_enqueue_style(
                 'redux-nouislider-css',
-                ReduxFramework::$_url . 'inc/fields/slider/vendor/nouislider/redux.jquery.nouislider.css',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/slider/vendor/nouislider/redux.jquery.nouislider.css',
                 array(),
                 '5.0.0',
                 'all'
@@ -230,7 +230,7 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
 
             wp_register_script(
                 'redux-nouislider-js',
-                ReduxFramework::$_url . 'inc/fields/slider/vendor/nouislider/redux.jquery.nouislider' . $min . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/slider/vendor/nouislider/redux.jquery.nouislider' . $min . '.js',
                 array( 'jquery' ),
                 '5.0.0',
                 true
@@ -238,7 +238,7 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
 
             wp_enqueue_script(
                 'redux-field-slider-js',
-                ReduxFramework::$_url . 'inc/fields/slider/field_slider' . $min . '.js',
+                get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/slider/field_slider' . $min . '.js',
                 array( 'jquery', 'redux-nouislider-js', 'redux-js', 'select2-js' ),
                 time(),
                 true
@@ -247,7 +247,7 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-slider-css',
-                    ReduxFramework::$_url . 'inc/fields/slider/field_slider.css',
+                    get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/slider/field_slider.css',
                     array(),
                     time(),
                     'all'
@@ -282,8 +282,8 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
                 $valOne = $this->value[0];
                 $valTwo = $this->value[1];
 
-                $html = 'data-default-one="' . $valOne . '" ';
-                $html .= 'data-default-two="' . $valTwo . '" ';
+                $html = 'data-default-one="' . esc_attr($valOne) . '" ';
+                $html .= 'data-default-two="' . esc_attr($valTwo) . '" ';
 
                 $nameOne = $fieldName . '[1]';
                 $nameTwo = $fieldName . '[2]';
@@ -294,7 +294,7 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
                 $valOne = $this->value;
                 $valTwo = '';
 
-                $html = 'data-default-one="' . $valOne . '"';
+                $html = 'data-default-one="' . esc_attr($valOne) . '"';
 
                 $nameOne = $fieldName;
                 $nameTwo = '';
@@ -311,10 +311,10 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
             if ( $this->display_text == $this->field['display_value'] ) {
                 $showInput = true;
                 echo '<input type="text"
-                         name="' . $nameOne . '"
-                         id="' . $idOne . '"
-                         value="' . $valOne . '"
-                         class="redux-slider-input redux-slider-input-one-' . $fieldID . ' ' . $this->field['class'] . '"/>';
+                         name="' . esc_attr($nameOne) . '"
+                         id="' . esc_attr($idOne) . '"
+                         value="' . esc_attr($valOne) . '"
+                         class="redux-slider-input redux-slider-input-one-' . esc_attr($fieldID) . ' ' . esc_attr($this->field['class']) . '"/>';
 
             // LABEL output
             } elseif ( $this->display_label == $this->field['display_value'] ) {
@@ -322,9 +322,9 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
 
                 $labelNum = $twoHandles ? '-one' : '';
 
-                echo '<div class="redux-slider-label' . $labelNum . '"
-                       id="redux-slider-label-one-' . $fieldID . '"
-                       name="' . $nameOne . '">
+                echo '<div class="redux-slider-label' . esc_attr($labelNum) . '"
+                       id="redux-slider-label-one-' . esc_attr($fieldID) . '"
+                       name="' . esc_attr($nameOne) . '">
                   </div>';
 
             // SELECT output
@@ -339,27 +339,27 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
                 }
 
 
-                echo '<select class="redux-slider-select-one redux-slider-select-one-' . $fieldID . ' ' . $this->field['class'] . '"
-                          name="' . $nameOne . '"
-                          id="' . $idOne . '">
+                echo '<select class="redux-slider-select-one redux-slider-select-one-' . esc_attr($fieldID) . ' ' . esc_attr($this->field['class']) . '"
+                          name="' . esc_attr($nameOne) . '"
+                          id="' . esc_attr($idOne) . '">
                  </select>';
             }
 
             // DIV output
             echo 
             '<div
-                class="redux-slider-container ' . $this->field['class'] . '"
-                id="' . $fieldID . '"
-                data-id="' . $fieldID . '"
-                data-min="' . $this->field['min'] . '"
-                data-max="' . $this->field['max'] . '"
-                data-step="' . $this->field['step'] . '"
-                data-handles="' . $this->field['handles'] . '"
-                data-display="' . $this->field['display_value'] . '"
+                class="redux-slider-container ' . esc_attr($this->field['class']) . '"
+                id="' . esc_attr($fieldID) . '"
+                data-id="' . esc_attr($fieldID) . '"
+                data-min="' . esc_attr($this->field['min']) . '"
+                data-max="' . esc_attr($this->field['max'] ) . '"
+                data-step="' . esc_attr($this->field['step']) . '"
+                data-handles="' . esc_attr($this->field['handles'] ). '"
+                data-display="' . esc_attr($this->field['display_value'] ). '"
                 data-rtl="' . is_rtl() . '"
-                data-forced="' . $this->field['forced'] . '"
-                data-float-mark="' . $this->field['float_mark'] . '"
-                data-resolution="' . $this->field['resolution'] . '" ' . $html . '>
+                data-forced="' . esc_attr($this->field['forced']) . '"
+                data-float-mark="' . esc_attr($this->field['float_mark']) . '"
+                data-resolution="' . esc_attr($this->field['resolution']) . '" ' . $html . '>
             </div>';
 
             // Double slider output
@@ -368,25 +368,25 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
                 // TEXT
                 if ( true == $showInput ) {
                     echo '<input type="text"
-                             name="' . $nameTwo . '"
-                             id="' . $idTwo . '"
-                             value="' . $valTwo . '"
-                             class="redux-slider-input redux-slider-input-two-' . $fieldID . ' ' . $this->field['class'] . '"/>';
+                             name="' . esc_attr($nameTwo) . '"
+                             id="' . esc_attr($idTwo) . '"
+                             value="' . esc_attr($valTwo) . '"
+                             class="redux-slider-input redux-slider-input-two-' . esc_attr($fieldID) . ' ' . esc_attr($this->field['class']) . '"/>';
                 }
 
                 // LABEL
                 if ( true == $showLabel ) {
                     echo '<div class="redux-slider-label-two"
-                           id="redux-slider-label-two-' . $fieldID . '"
-                           name="' . $nameTwo . '">
+                           id="redux-slider-label-two-' . esc_attr($fieldID) . '"
+                           name="' . esc_attr($nameTwo) . '">
                       </div>';
                 }
 
                 // SELECT
                 if ( true == $showSelect ) {
-                    echo '<select class="redux-slider-select-two redux-slider-select-two-' . $fieldID . ' ' . $this->field['class'] . '"
-                              name="' . $nameTwo . '"
-                              id="' . $idTwo . '">
+                    echo '<select class="redux-slider-select-two redux-slider-select-two-' . esc_attr($fieldID) . ' ' . esc_attr($this->field['class']) . '"
+                              name="' . esc_attr($nameTwo) . '"
+                              id="' . esc_attr($idTwo) . '">
                      </select>';
 
                 }
@@ -395,18 +395,18 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
             // NO output (input hidden)
             if ( $this->display_none == $this->field['display_value'] || $this->display_label == $this->field['display_value'] ) {
                 echo '<input type="hidden"
-                         class="redux-slider-value-one-' . $fieldID . ' ' . $this->field['class'] . '"
-                         name="' . $nameOne . '"
-                         id="' . $idOne . '"
-                         value="' . $valOne . '"/>';
+                         class="redux-slider-value-one-' . esc_attr($fieldID) . ' ' . esc_attr($this->field['class']) . '"
+                         name="' . esc_attr($nameOne) . '"
+                         id="' . esc_attr($idOne) . '"
+                         value="' . esc_attr($valOne) . '"/>';
 
                 // double slider hidden output
                 if ( true == $twoHandles ) {
                     echo '<input type="hidden"
-                             class="redux-slider-value-two-' . $fieldID . ' ' . $this->field['class'] . '"
-                             name="' . $nameTwo . '"
-                             id="' . $idTwo . '"
-                             value="' . $valTwo . '"/>';
+                             class="redux-slider-value-two-' . esc_attr($fieldID) . ' ' . esc_attr($this->field['class']) . '"
+                             name="' . esc_attr($nameTwo) . '"
+                             id="' . esc_attr($idTwo) . '"
+                             value="' . esc_attr($valTwo) . '"/>';
                 }
             }
         }

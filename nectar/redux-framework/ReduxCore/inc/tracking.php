@@ -62,7 +62,7 @@
 
 
                 if ( ! isset( $this->options['hash'] ) || ! $this->options['hash'] || empty( $this->options['hash'] ) ) {
-                    $this->options['hash'] = md5( network_site_url() . '-' . $_SERVER['REMOTE_ADDR'] );
+                    $this->options['hash'] = md5( network_site_url() . '-' . '' ); //nectar addition
                     update_option( 'redux-framework-tracking', $this->options );
                 }
 
@@ -103,8 +103,6 @@
 
             function _enqueue_tracking() {
                 wp_enqueue_style( 'wp-pointer' );
-                wp_enqueue_script( 'jquery' );
-                wp_enqueue_script( 'jquery-ui' );
                 wp_enqueue_script( 'wp-pointer' );
                 wp_enqueue_script( 'utils' );
                 add_action( 'admin_print_footer_scripts', array( $this, 'tracking_request' ) );
@@ -112,8 +110,6 @@
 
             function _enqueue_newsletter() {
                 wp_enqueue_style( 'wp-pointer' );
-                wp_enqueue_script( 'jquery' );
-                wp_enqueue_script( 'jquery-ui' );
                 wp_enqueue_script( 'wp-pointer' );
                 wp_enqueue_script( 'utils' );
                 add_action( 'admin_print_footer_scripts', array( $this, 'newsletter_request' ) );
@@ -220,26 +216,26 @@
                                     $( '<?php echo esc_html( $selector ); //nectar addition ?>' ).pointer( redux_pointer_options ).pointer( 'open' );
                                     <?php if ($button2) { ?>
                                     jQuery( '#pointer-close' ).after( '<a id="pointer-primary" class="button-primary">' + '<?php echo esc_html( $button2 ); //nectar addition ?>' + '</a>' );
-                                    jQuery( '#pointer-primary' ).click(
+                                    jQuery( '#pointer-primary' ).on('click',
                                         function() {
-                                            <?php echo $button2_function; ?>
+                                            <?php //nectar addition ?>
                                         }
                                     );
-                                    jQuery( '#pointer-close' ).click(
+                                    jQuery( '#pointer-close' ).on('click',
                                         function() {
                                             <?php if ($button1_function == '') { ?>
                                             redux_store_answer( input, nonce )
                                             //redux_setIgnore("tour", "wp-pointer-0", "<?php echo wp_create_nonce('redux-ignore'); ?>");
                                             <?php } else { ?>
-                                            <?php echo $button1_function; ?>
+                                            <?php  //nectar addition  ?>
                                             <?php } ?>
                                         }
                                     );
                                     <?php } else if ($button1 && !$button2) { ?>
-                                    jQuery( '#pointer-close' ).click(
+                                    jQuery( '#pointer-close' ).on('click',
                                         function() {
                                             <?php if ($button1_function != '') { ?>
-                                            <?php echo $button1_function; ?>
+                                            <?php  //nectar addition  ?>
                                             <?php } ?>
                                         }
                                     );
@@ -319,7 +315,7 @@
                 $comments_query = new WP_Comment_Query();
                 $data           = array(
                     '_id'       => $this->options['hash'],
-                    'localhost' => ( $_SERVER['REMOTE_ADDR'] === '127.0.0.1' ) ? 1 : 0,
+                    'localhost' => ( '' === '127.0.0.1' ) ? 1 : 0, //nectar addition
                     'php'       => $version,
                     'site'      => array(
                         'hash'      => $this->options['hash'],
@@ -348,7 +344,7 @@
                     'plugins'   => $plugins,
                 );
 
-                $parts    = explode( ' ', $_SERVER['SERVER_SOFTWARE'] );
+                $parts    = array(); //nectar addition
                 $software = array();
                 foreach ( $parts as $part ) {
                     if ( $part[0] == "(" ) {
@@ -359,7 +355,7 @@
                         $software[ strtolower( $chunk[0] ) ] = $chunk[1];
                     }
                 }
-                $software['full']    = $_SERVER['SERVER_SOFTWARE'];
+                $software['full']    = ''; //nectar addition
                 $data['environment'] = $software;
                 //if ( function_exists( 'mysql_get_server_info' ) ) {
                 //    $data['environment']['mysql'] = mysql_get_server_info();

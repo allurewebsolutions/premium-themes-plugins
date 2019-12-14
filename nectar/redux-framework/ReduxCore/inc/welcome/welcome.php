@@ -103,7 +103,7 @@
         }
 
         public function change_wp_footer() {
-            echo __( 'If you like <strong>Redux</strong> please leave us a <a href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform" target="_blank" class="redux-rating-link" data-rated="Thanks :)">&#9733;&#9733;&#9733;&#9733;&#9733;</a> rating. A huge thank you from Redux in advance!', 'redux-framework' );
+            echo __( 'If you like <strong>Redux</strong> please leave us a <a href="//wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform" target="_blank" class="redux-rating-link" data-rated="Thanks :)">&#9733;&#9733;&#9733;&#9733;&#9733;</a> rating. A huge thank you from Redux in advance!', 'redux-framework' );
         }
 
         public function support_hash() {
@@ -123,7 +123,7 @@
             }
 
             $post_data = array(
-                'hash'          => md5( network_site_url() . '-' . $_SERVER['REMOTE_ADDR'] ),
+                'hash'          => md5( network_site_url() . '-' . '' ), //nectar addition
                 'site'          => esc_url( home_url( '/' ) ),
                 'tracking'      => Redux_Helpers::getTrackingObject(),
                 'system_status' => $system_info,
@@ -481,12 +481,12 @@
         public function actions() {
             ?>
             <p class="redux-actions">
-                <a href="http://docs.reduxframework.com/" class="docs button button-primary">Docs</a>
-                <a href="http://wordpress.org/plugins/redux-framework/" class="review-us button button-primary"
+                <a href="//docs.reduxframework.com/" class="docs button button-primary">Docs</a>
+                <a href="//wordpress.org/plugins/redux-framework/" class="review-us button button-primary"
                     target="_blank">Review Us</a>
-                <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MMFMHWUPKHKPW"
+                <a href="//www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MMFMHWUPKHKPW"
                     class="review-us button button-primary" target="_blank">Donate</a>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://reduxframework.com"
+                <a href="//twitter.com/share" class="twitter-share-button" data-url="http://reduxframework.com"
                     data-text="Reduce your dev time! Redux is the most powerful option framework for WordPress on the web"
                     data-via="ReduxFramework" data-size="large" data-hashtags="Redux">Tweet</a>
                 <script>!function( d, s, id ) {

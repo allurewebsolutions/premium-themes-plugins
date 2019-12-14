@@ -163,8 +163,6 @@
                     $recursive = false;
                 }
 
-                //$target_dir = $wp_filesystem->find_folder( dirname( $file ) );
-
                 // Do unique stuff
                 if ( $action == 'mkdir' ) {
 

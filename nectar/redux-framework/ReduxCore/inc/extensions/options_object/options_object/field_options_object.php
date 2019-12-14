@@ -103,7 +103,17 @@
                 <fieldset id="<?php echo esc_attr($id); ?>" class="redux-field redux-container-<?php echo esc_attr($this->field['type']) . ' ' . esc_attr($this->field['class']); ?>" data-id="<?php echo esc_attr($this->field['id']); ?>">
                     <h3><?php esc_html_e( 'Options Object', 'redux-framework' ); ?></h3>
                     <div id="redux-object-browser"></div>
-                    <div id="redux-object-json" class="hide"><?php echo $json; ?></div>
+                    <div id="redux-object-json" class="hide">
+                      <?php  
+                      // nectar addition
+                      if ( version_compare( phpversion(), "5.3.0", ">=" ) ) {
+                          echo json_encode( $this->parent->options, true );
+                      } else {
+                          echo json_encode( $this->parent->options );
+                      }
+                      // nectar addition end
+                      ?>
+                    </div>
                     <a href="#" id="consolePrintObject" class="button"><?php esc_html_e( 'Show Object in Javascript Console Object', 'redux-framework' ); ?></a>
                 </div>
                 </fieldset>

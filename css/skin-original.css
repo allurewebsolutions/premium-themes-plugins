@@ -1,214 +1,428 @@
+/*
+Theme Name:  Salient
+Description: Theme Skin set to "Original" in theme options
+*/
 
-/* fw css calcs */
-body .full-width-section,
-body .full-width-content {  visibility: visible; }
+.original .nectar-button.extra-color-gradient-1, 
+.original .nectar-button.extra-color-gradient-2, 
+.original .nectar-button.see-through-extra-color-gradient-1, 
+.original .nectar-button.see-through-extra-color-gradient-2{
+  background-color:transparent!important;
+  opacity:1;
+  box-shadow:none
+}
+.nectar-button.extra-color-gradient-1:after,
+.nectar-button.extra-color-gradient-2:after,
+.nectar-button.see-through-extra-color-gradient-1:after, 
+.nectar-button.see-through-extra-color-gradient-2:after{
+   position:absolute;
+    content:' ';
+    top:-2%;
+    left:-1%;
+    width:101.5%;
+    height:104%;
+    transform-origin:right;
+    -webkit-transform-origin:right;
+    -ms-transform-origin:right;
+    transform:scale(0,1);
+    -webkit-transform:scale(0,1);
+    -ms-transform:scale(0,1);
+    -ms-transition:transform 0.38s cubic-bezier(.2,0.95,.4,0.95),background-size 0.38s ease;
+    transition:transform 0.38s cubic-bezier(.2,0.95,.4,0.95),background-size 0.38s ease;
+    -webkit-transition:transform 0.38s cubic-bezier(.2,0.95,.4,0.95),background-size 0.38s ease;
+    z-index:-1
+}
+.nectar-button.see-through-extra-color-gradient-1:after,
+.nectar-button.see-through-extra-color-gradient-2:after,
+.nectar-button.extra-color-gradient-1:hover:after,
+.nectar-button.extra-color-gradient-2:hover:after {
+   background-size:225% 100%!important;
+    background-position:right!important
+}
 
-.portfolio-filters-inline.full-width-section:not(.non-fw),
-.portfolio-filters-inline.full-width-content,
-.post-area.full-width-content.standard-minimal,
-.full-width-content.blog-fullwidth-wrap,
-.wpb_row.full-width-content, 
-.full-width-content.nectar-shop-outer,
-.page-submenu > .full-width-section,
-.page-submenu .full-width-content,
-.wpb_row.full-width-section .mobile-video-image,
-body .full-width-section .row-bg-wrap,
-body .full-width-section .nectar-parallax-scene,
-body .full-width-section > .nectar-shape-divider-wrap,
-body .full-width-section > .video-color-overlay,
-body[data-aie="zoom-out"] .first-section .row-bg-wrap, 
-body[data-aie="long-zoom-out"] .first-section .row-bg-wrap,
-body[data-aie="zoom-out"] .top-level.full-width-section .row-bg-wrap, 
-body[data-aie="long-zoom-out"] .top-level.full-width-section .row-bg-wrap,
-body .full-width-section.parallax_section .row-bg-wrap,
-.nectar-slider-wrap[data-full-width="true"],
-.wpb_row.full-width-section .templatera_shortcode > .wpb_row.full-width-section > .row-bg-wrap {
-  margin-left: -50vw;
-  left: 50%;
-  width: 100vw;
-}
-body .full-width-section > .nectar-video-wrap {
-  margin-left: -50vw;
-  left: 50%;
-  width: 100vw!important;
-}
-body .full-width-section > .nectar-video-wrap,
-body .full-width-content > .nectar-video-wrap {
-  height: 100%;  
+.nectar-button.see-through-extra-color-gradient-1:hover:after,
+.nectar-button.see-through-extra-color-gradient-2:hover:after,
+.nectar-button.extra-color-gradient-1:after,
+.nectar-button.extra-color-gradient-2:after {
+  background-position:left!important;
+  background-size:100% 100%!important
 }
 
-/*boxed and left header*/
-@media only screen and (min-width: 1000px) {
-  
-  [data-header-format="left-header"] .full-width-content.blog-fullwidth-wrap,
-  [data-header-format="left-header"] .wpb_row.full-width-content, 
-  [data-header-format="left-header"] .full-width-content.nectar-shop-outer,
-  [data-header-format="left-header"] .page-submenu > .full-width-section,
-  [data-header-format="left-header"] .page-submenu .full-width-content,
-  [data-header-format="left-header"] .full-width-section .row-bg-wrap,
-  [data-header-format="left-header"] .full-width-section .nectar-parallax-scene,
-  [data-header-format="left-header"] .full-width-section > .nectar-shape-divider-wrap,
-  [data-header-format="left-header"] .full-width-section > .video-color-overlay,
-  [data-header-format="left-header"][data-aie="zoom-out"] .first-section .row-bg-wrap, 
-  [data-header-format="left-header"][data-aie="long-zoom-out"] .first-section .row-bg-wrap,
-  [data-header-format="left-header"][data-aie="zoom-out"] .top-level.full-width-section .row-bg-wrap, 
-  [data-header-format="left-header"][data-aie="long-zoom-out"] .top-level.full-width-section .row-bg-wrap,
-  [data-header-format="left-header"] .full-width-section.parallax_section .row-bg-wrap,
-  [data-header-format="left-header"] .nectar-slider-wrap[data-full-width="true"],
-  body[data-header-format="left-header"] .wpb_row.full-width-section .templatera_shortcode > .wpb_row.full-width-section > .row-bg-wrap {
-    margin-left: calc(-50vw + 135px);
-    width: calc(100vw - 272px);
-    left: 50%;
+.nectar-button.see-through-extra-color-gradient-1:hover:after,
+.nectar-button.see-through-extra-color-gradient-2:hover:after{
+   transform:scale(1,1);
+    -webkit-transform:scale(1,1);
+    -ms-transform:scale(1,1);
+    transform-origin:left;
+    -webkit-transform-origin:left;
+    -ms-transform-origin:left;
+}
+
+.nectar-button.extra-color-gradient-1:after,
+.nectar-button.extra-color-gradient-2:after{
+   transform:scale(1,1);
+    -webkit-transform:scale(1,1);
+    -ms-transform:scale(1,1);
+    transform-origin:left;
+    -webkit-transform-origin:left;
+    -ms-transform-origin:left;
+}
+
+.nectar-button.extra-color-gradient-1:hover:after,
+.nectar-button.extra-color-gradient-2:hover:after{
+   transform:scale(0,1);
+    -webkit-transform:scale(0,1);
+    -ms-transform:scale(0,1);
+    transform-origin:right;
+    -webkit-transform-origin:right;
+    -ms-transform-origin:right;
+}
+.nectar-button.extra-color-gradient-1 .start, 
+.nectar-button.extra-color-gradient-2 .start, 
+.nectar-button.extra-color-gradient-1 .hover, 
+.nectar-button.extra-color-gradient-2 .hover, 
+.nectar-button.see-through-extra-color-gradient-1 .start, 
+.nectar-button.see-through-extra-color-gradient-2 .start, 
+.nectar-button.see-through-extra-color-gradient-1 .hover, 
+.nectar-button.see-through-extra-color-gradient-2 .hover{
+   -ms-transition:transform 0.38s cubic-bezier(.2,0.95,.4,0.95),opacity 0.38s cubic-bezier(.2,0.95,.4,0.95);
+    transition:transform 0.38s cubic-bezier(.2,0.95,.4,0.95),opacity 0.38s cubic-bezier(.2,0.95,.4,0.95);
+    -webkit-transition:transform 0.38s cubic-bezier(.2,0.95,.4,0.95),opacity 0.38s cubic-bezier(.2,0.95,.4,0.95)
+}
+.nectar-button.extra-color-gradient-1 .start, 
+.nectar-button.extra-color-gradient-2 .start, 
+.nectar-button.see-through-extra-color-gradient-1 .start, 
+.nectar-button.see-through-extra-color-gradient-2 .start{
+   animation:gradientTextHoverHover 0.38s;
+    animation-timing-function:cubic-bezier(.2,0.9,.4,0.9);
+    animation-fill-mode:forwards;
+    display:inline-block!important
+}
+.nectar-button.extra-color-gradient-1 .hover, 
+.nectar-button.extra-color-gradient-2 .hover, 
+.nectar-button.see-through-extra-color-gradient-1 .hover, 
+.nectar-button.see-through-extra-color-gradient-2 .hover{
+   position:absolute;
+    display:inline;
+    left:0;
+    animation:gradientTextHoverOff 0.38s;
+    animation-timing-function:cubic-bezier(.2,0.9,.4,0.9);
+    animation-fill-mode:forwards;
+    text-align:center;
+    width:100%;
+    opacity:0;
+    z-index:0
+}
+.nectar-button.extra-color-gradient-1:hover .hover, 
+.nectar-button.extra-color-gradient-2:hover .hover, 
+.nectar-button.see-through-extra-color-gradient-1:hover .hover, 
+.nectar-button.see-through-extra-color-gradient-2:hover .hover{
+   animation:gradientTextHoverHover 0.38s;
+    animation-timing-function:cubic-bezier(.2,0.9,.4,0.9);
+    animation-fill-mode:forwards
+}
+.nectar-button.extra-color-gradient-1:hover .start, 
+.nectar-button.extra-color-gradient-2:hover .start, 
+.nectar-button.see-through-extra-color-gradient-1:hover .start, 
+.nectar-button.see-through-extra-color-gradient-2:hover .start{
+   animation:gradientTextHoverOff 0.38s;
+    animation-timing-function:cubic-bezier(.2,0.9,.4,0.9);
+    animation-fill-mode:forwards
+}
+.nectar-button.see-through-extra-color-gradient-1 .hover, 
+.nectar-button.see-through-extra-color-gradient-2 .hover{
+   position:absolute;
+    display:inline;
+    left:0;
+    text-align:center;
+    width:100%;
+    opacity:0;
+    z-index:100
+}
+.nectar-button.extra-color-gradient-1 .start.loading, 
+.nectar-button.extra-color-gradient-2 .start.loading, 
+.nectar-button.see-through-extra-color-gradient-1 .start.loading, 
+.nectar-button.see-through-extra-color-gradient-2 .start.loading{
+   animation:gradientTextHoverHover 0s
+}
+.light .nectar-button.extra-color-gradient-1:hover .hover, 
+.light .nectar-button.extra-color-gradient-2:hover .hover, 
+.light .nectar-button.see-through-extra-color-gradient-1:hover .start, 
+.light .nectar-button.see-through-extra-color-gradient-2:hover .start, 
+.light .nectar-button.see-through-extra-color-gradient-1 .start, 
+.light .nectar-button.see-through-extra-color-gradient-2 .start, 
+div[data-text-color="light"] .nectar-button.extra-color-gradient-1:hover .hover, 
+div[data-text-color="light"] .nectar-button.extra-color-gradient-2:hover .hover, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-1:hover .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-2:hover .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-1 .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-2 .start{
+   background:none!important;
+    -webkit-background-clip:border-box;
+    -webkit-text-fill-color:#fff;
+    background-clip:border-box;
+}
+.light .nectar-button.see-through-extra-color-gradient-1.no-text-grad .start, 
+.light .nectar-button.see-through-extra-color-gradient-2.no-text-grad .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-1.no-text-grad .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-2.no-text-grad .start{
+   color:#fff!important
+}
+.light .nectar-button.see-through-extra-color-gradient-1:hover .start, 
+.light .nectar-button.see-through-extra-color-gradient-2:hover .start, 
+.light .nectar-button.see-through-extra-color-gradient-1 .start, 
+.light .nectar-button.see-through-extra-color-gradient-2 .start, 
+.light .nectar-button.extra-color-gradient-1 .start, 
+.light .nectar-button.extra-color-gradient-2 .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-1:hover .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-2:hover .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-1 .start, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-2 .start, 
+div[data-text-color="light"] .nectar-button.extra-color-gradient-1 .start, 
+div[data-text-color="light"] .nectar-button.extra-color-gradient-2 .start{
+   opacity:1!important;
+    animation:none!important
+}
+.light .nectar-button.see-through-extra-color-gradient-1 .hover, 
+.light .nectar-button.see-through-extra-color-gradient-2 .hover, 
+.light .nectar-button.extra-color-gradient-1 .hover, 
+.light .nectar-button.extra-color-gradient-2 .hover, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-1 .hover, 
+div[data-text-color="light"] .nectar-button.see-through-extra-color-gradient-2 .hover, 
+div[data-text-color="light"] .nectar-button.extra-color-gradient-1 .hover, 
+div[data-text-color="light"] .nectar-button.extra-color-gradient-2 .hover{
+   opacity:0!important;
+    animation:none!important
+}
+@keyframes gradientTextHoverHover{
+    0%{
+        transform:translateX(0px);
+        opacity:0
+   }
+    70%{
+        opacity:1
+   }
+    100%{
+        transform:translateX(0px)!important;
+        opacity:1
+   }
+}
+@keyframes gradientTextHoverOff{
+    0%{
+        transform:translateX(0px);
+        opacity:1
+   }
+    70%{
+        opacity:0
+   }
+    100%{
+        transform:translateX(0px)!important;
+        opacity:0
+   }
+}
+.nectar-button.see-through-extra-color-gradient-1.medium.has-icon, 
+.nectar-button.see-through-extra-color-gradient-2.medium.has-icon, 
+.nectar-button.extra-color-gradient-1.medium.has-icon, 
+.nectar-button.extra-color-gradient-2.medium.has-icon{
+   padding:7px 30px
+}
+.nectar-button.see-through-extra-color-gradient-1.large.has-icon, 
+.nectar-button.see-through-extra-color-gradient-2.large.has-icon, 
+.nectar-button.extra-color-gradient-1.large.has-icon, 
+.nectar-button.extra-color-gradient-2.large.has-icon{
+   padding:12px 35px
+}
+.nectar-button.extra-color-gradient-1 i, .nectar-button.extra-color-gradient-2 i, 
+.nectar-button.see-through-extra-color-gradient-1 i, .nectar-button.see-through-extra-color-gradient-2 i{
+   opacity:1;
+    right:24px;
+    background:inherit;
+    background-size:500% 100%;
+    background-position:right
+}
+.nectar-button.extra-color-gradient-1.has-icon span, 
+.nectar-button.extra-color-gradient-2.has-icon span, 
+.nectar-button.see-through-extra-color-gradient-1.has-icon span, 
+.nectar-button.see-through-extra-color-gradient-2.has-icon span{
+   left:-18px
+}
+.nectar-button.extra-color-gradient-1.has-icon:hover span, 
+.nectar-button.extra-color-gradient-2.has-icon:hover span, 
+.nectar-button.see-through-extra-color-gradient-1.has-icon:hover span, 
+.nectar-button.see-through-extra-color-gradient-2.has-icon:hover span, 
+.nectar-button.extra-color-gradient-1.has-icon:hover i, 
+.nectar-button.extra-color-gradient-2.has-icon:hover i, 
+.nectar-button.see-through-extra-color-gradient-1.has-icon:hover i, 
+.nectar-button.see-through-extra-color-gradient-2.has-icon:hover i{
+   -ms-transform:none;
+    transform:none;
+    -webkit-transform:none
+}
+.nectar-button.extra-color-gradient-1.jumbo i, 
+.nectar-button.extra-color-gradient-2.jumbo i, 
+.nectar-button.see-through-extra-color-gradient-1.jumbo i, 
+.nectar-button.see-through-extra-color-gradient-2.jumbo i{
+   opacity:1;
+    font-size:20px;
+    line-height:20px;
+    width:20px;
+    text-align:center;
+    margin-top:-10px
+}
+.nectar-button.extra-color-gradient-1.extra_jumbo i, 
+.nectar-button.extra-color-gradient-2.extra_jumbo i, 
+.nectar-button.see-through-extra-color-gradient-1.extra_jumbo i, 
+.nectar-button.see-through-extra-color-gradient-2.extra_jumbo i{
+    width:40px
+}
+.nectar-button.extra-color-gradient-1.has-icon.extra_jumbo span, 
+.nectar-button.extra-color-gradient-2.has-icon.extra_jumbo span, 
+.nectar-button.see-through-extra-color-gradient-1.has-icon.extra_jumbo span, 
+.nectar-button.see-through-extra-color-gradient-2.has-icon.extra_jumbo span{
+   left:-35px
+}
+.nectar-button.extra-color-gradient-1.has-icon.jumbo span, 
+.nectar-button.extra-color-gradient-2.has-icon.jumbo span, 
+.nectar-button.see-through-extra-color-gradient-1.has-icon.jumbo span, 
+.nectar-button.see-through-extra-color-gradient-2.has-icon.jumbo span{
+   left:-16px
+}
+.nectar-button.extra-color-gradient-1.has-icon.large span, 
+.nectar-button.extra-color-gradient-2.has-icon.large span, 
+.nectar-button.see-through-extra-color-gradient-1.has-icon.large span, 
+.nectar-button.see-through-extra-color-gradient-2.has-icon.large span{
+   left:-14px
+}
+.nectar-button.extra-color-gradient-1.has-icon.medium span, 
+.nectar-button.extra-color-gradient-2.has-icon.medium span, 
+.nectar-button.see-through-extra-color-gradient-1.has-icon.medium span, 
+.nectar-button.see-through-extra-color-gradient-2.has-icon.medium span{
+   left:-13px
+}
+.nectar-button.extra-color-gradient-1.has-icon.small span, 
+.nectar-button.extra-color-gradient-2.has-icon.small span, 
+.nectar-button.see-through-extra-color-gradient-1.has-icon.small span, 
+.nectar-button.see-through-extra-color-gradient-2.has-icon.small span{
+   left:-11px
+}
+.nectar-button.extra-color-gradient-1.jumbo .hover i, 
+.nectar-button.extra-color-gradient-2.jumbo .hover i, 
+.nectar-button.see-through-extra-color-gradient-1.jumbo .hover i, 
+.nectar-button.see-through-extra-color-gradient-2.jumbo .hover i{
+   right:8px
+}
+.nectar-button.extra-color-gradient-1.extra_jumbo .hover i, 
+.nectar-button.extra-color-gradient-2.extra_jumbo .hover i, 
+.nectar-button.see-through-extra-color-gradient-1.extra_jumbo .hover i, 
+.nectar-button.see-through-extra-color-gradient-2.extra_jumbo .hover i{
+   right:19px
+}
+.nectar-button.extra-color-gradient-1.large .hover i, 
+.nectar-button.extra-color-gradient-2.large .hover i, 
+.nectar-button.see-through-extra-color-gradient-1.large .hover i, 
+.nectar-button.see-through-extra-color-gradient-2.large .hover i{
+   right:5px
+}
+.nectar-button.extra-color-gradient-1.medium .hover i, 
+.nectar-button.extra-color-gradient-2.medium .hover i, 
+.nectar-button.see-through-extra-color-gradient-1.medium .hover i, 
+.nectar-button.see-through-extra-color-gradient-2.medium .hover i{
+   right:3px
+}
+.nectar-button.extra-color-gradient-1.small .hover i, 
+.nectar-button.extra-color-gradient-2.small .hover i, 
+.nectar-button.see-through-extra-color-gradient-1.small .hover i, 
+.nectar-button.see-through-extra-color-gradient-2.small .hover i{
+   right:7px
+}
+.nectar-button.extra-color-gradient-1.jumbo .start i, 
+.nectar-button.extra-color-gradient-2.jumbo .start i, 
+.nectar-button.see-through-extra-color-gradient-1.jumbo .start i, 
+.nectar-button.see-through-extra-color-gradient-2.jumbo .start i{
+   right:-32px
+}
+.nectar-button.extra-color-gradient-1.extra_jumbo .start i, 
+.nectar-button.extra-color-gradient-2.extra_jumbo .start i, 
+.nectar-button.see-through-extra-color-gradient-1.extra_jumbo .start i, 
+.nectar-button.see-through-extra-color-gradient-2.extra_jumbo .start i{
+   right:-75px
+}
+.nectar-button.extra-color-gradient-1.large .start i, 
+.nectar-button.extra-color-gradient-2.large .start i, 
+.nectar-button.see-through-extra-color-gradient-1.large .start i, 
+.nectar-button.see-through-extra-color-gradient-2.large .start i{
+   right:-32px
+}
+.nectar-button.extra-color-gradient-1.medium .start i, 
+.nectar-button.extra-color-gradient-2.medium .start i, 
+.nectar-button.see-through-extra-color-gradient-1.medium .start i, 
+.nectar-button.see-through-extra-color-gradient-2.medium .start i{
+   right:-30px
+}
+.nectar-button.extra-color-gradient-1.small .start i, 
+.nectar-button.extra-color-gradient-2.small .start i, 
+.nectar-button.see-through-extra-color-gradient-1.small .start i, 
+.nectar-button.see-through-extra-color-gradient-2.small .start i{
+   right:-30px
+}
+.nectar-button.see-through-extra-color-gradient-1.small, 
+.nectar-button.see-through-extra-color-gradient-2.small, 
+.nectar-button.extra-color-gradient-1.small, 
+.nectar-button.extra-color-gradient-2.small{
+   padding:5px 14px
+}
+.nectar-button.see-through-extra-color-gradient-1.medium, 
+.nectar-button.see-through-extra-color-gradient-2.medium, 
+.nectar-button.extra-color-gradient-1.medium, 
+.nectar-button.extra-color-gradient-2.medium{
+   border-width:3px;
+    padding:7px 15px
+}
+.nectar-button.see-through-extra-color-gradient-1.large,
+ .nectar-button.see-through-extra-color-gradient-2.large, 
+ .nectar-button.extra-color-gradient-1.large, 
+ .nectar-button.extra-color-gradient-2.large{
+   border-width:3px;
+    padding:12px 22px
+}
+.nectar-button.see-through-extra-color-gradient-1.jumbo, 
+.nectar-button.see-through-extra-color-gradient-2.jumbo, 
+.nectar-button.extra-color-gradient-1.jumbo, 
+.nectar-button.extra-color-gradient-2.jumbo{
+   border-width:4px;
+    padding:21px 40px
+}
+.nectar-button.see-through-extra-color-gradient-1.extra_jumbo, 
+.nectar-button.see-through-extra-color-gradient-2.extra_jumbo, 
+.nectar-button.extra-color-gradient-1.extra_jumbo, 
+.nectar-button.extra-color-gradient-2.extra_jumbo{
+   border-width:10px;
+    padding:56px 90px
+}
+.nectar-button.extra-color-gradient-1 span, 
+.nectar-button.extra-color-gradient-2 span, 
+.nectar-button.see-through-extra-color-gradient-1 span, 
+.nectar-button.see-through-extra-color-gradient-2 span{
+   z-index:100
+}
+
+.comment-wrap {
+  padding: 60px 0;
+}
+.comment-wrap[data-comments-open="false"] {
+  padding: 0;
+}
+
+.carousel-next i, 
+.carousel-prev i {
+  color: #fff;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  #search-outer {
+    height: 55px;
+    bottom: 0;
+    top: auto;
   }
-  [data-header-format="left-header"] .full-width-section > .nectar-video-wrap {
-    margin-left: calc(-50vw + 135px);
-    width: calc(100vw - 272px)!important;
-    left: 50%;
-  }
-  
-  
-  #boxed .full-width-content.blog-fullwidth-wrap,
-  #boxed .wpb_row.full-width-content, 
-  #boxed .page-submenu > .full-width-section,
-  #boxed .page-submenu .full-width-content,
-  #boxed .full-width-content.nectar-shop-outer,
-  body #boxed .full-width-section .row-bg-wrap,
-  body #boxed .full-width-section .nectar-parallax-scene,
-  body #boxed .full-width-section > .nectar-shape-divider-wrap,
-  body #boxed .full-width-section > .video-color-overlay,
-  body[data-aie="zoom-out"] #boxed .first-section .row-bg-wrap, 
-  body[data-aie="long-zoom-out"] #boxed .first-section .row-bg-wrap,
-  body[data-aie="zoom-out"] #boxed .top-level.full-width-section .row-bg-wrap, 
-  body[data-aie="long-zoom-out"] #boxed .top-level.full-width-section .row-bg-wrap,
-  body #boxed .full-width-section.parallax_section .row-bg-wrap,
-  #boxed .nectar-slider-wrap[data-full-width="true"],
-  #boxed .wpb_row.full-width-section .templatera_shortcode > .wpb_row.full-width-section > .row-bg-wrap {
-    margin-left: -5%;
-    width: 110%;
-    left: 0;
-  }
-  body #boxed .full-width-section > .nectar-video-wrap {
-    margin-left: -5%;
-    width: 110%!important;
-    left: 0;
-  }
-  
 }
-
-@media only screen and (max-width: 1000px) and (min-width: 691px) {
-  
-  
-  #boxed .full-width-content.blog-fullwidth-wrap,
-  #boxed .wpb_row.full-width-content, 
-  #boxed .page-submenu > .full-width-section,
-  #boxed .page-submenu .full-width-content,
-  body #boxed .full-width-section .row-bg-wrap,
-  body #boxed .full-width-section .nectar-parallax-scene,
-  body #boxed .full-width-section > .nectar-shape-divider-wrap,
-  body #boxed .full-width-section > .video-color-overlay,
-  body[data-aie="zoom-out"] #boxed .first-section .row-bg-wrap, 
-  body[data-aie="long-zoom-out"] #boxed .first-section .row-bg-wrap,
-  body[data-aie="zoom-out"] #boxed .top-level.full-width-section .row-bg-wrap, 
-  body[data-aie="long-zoom-out"] #boxed .top-level.full-width-section .row-bg-wrap,
-  body #boxed .full-width-section.parallax_section .row-bg-wrap,
-  #boxed .nectar-slider-wrap[data-full-width="true"],
-  #boxed .wpb_row.full-width-section .templatera_shortcode > .wpb_row.full-width-section > .row-bg-wrap {
-    margin-left: -7%;
-    width: 114%;
-    left: 0;
-  }
-  body #boxed .full-width-section > .nectar-video-wrap {
-    margin-left: -7%;
-    width: 114%!important;
-    left: 0;
-  }
-  
-}
-
-.page-submenu .full-width-content,
-.page-submenu > .full-width-section,
-.full-width-content.blog-fullwidth-wrap,
-.portfolio-filters-inline.full-width-content,
-.portfolio-filters-inline.full-width-section { position: relative;}
-
-
-
-/*prevent fws bg on rows inside non compat areas*/
-body .post-area.span_9 
-body .post-area.span_9 .portfolio-filters-inline.full-width-section:not(.non-fw),
-body .post-area.span_9 .portfolio-filters-inline.full-width-content,
-body .post-area.span_9 .post-area.full-width-content.standard-minimal,
-body .post-area.span_9 .full-width-content.blog-fullwidth-wrap,
-body .post-area.span_9 .wpb_row.full-width-content, 
-body .post-area.span_9 .page-submenu > .full-width-section,
-body .post-area.span_9 .page-submenu .full-width-content,
-body .post-area.span_9 .full-width-section .row-bg-wrap,
-body .post-area.span_9 .full-width-section .nectar-parallax-scene,
-body .post-area.span_9  .full-width-section > .nectar-shape-divider-wrap,
-body .post-area.span_9  .full-width-section > .video-color-overlay,
-body[data-aie="zoom-out"] .post-area.span_9 .first-section .row-bg-wrap, 
-body[data-aie="long-zoom-out"] .post-area.span_9 .first-section .row-bg-wrap,
-body[data-aie="zoom-out"] .post-area.span_9 .top-level.full-width-section .row-bg-wrap, 
-body[data-aie="long-zoom-out"] .post-area.span_9 .top-level.full-width-section .row-bg-wrap,
-body .post-area.span_9 .full-width-section.parallax_section .row-bg-wrap,
-body .post-area.span_9 .wpb_row.parallax_section .row-bg-wrap,
-.post-area.span_9 .nectar-slider-wrap[data-full-width="true"],
-body #boxed .post-area.span_9 .full-width-section .row-bg-wrap,
-body .post-area.span_9 .wpb_row.full-width-section .templatera_shortcode > .wpb_row.full-width-section > .row-bg-wrap { 
-  margin-left: 0;
-  left: 0;
-  width: 100%;
-}
-body .post-area.span_9 .full-width-section > .nectar-video-wrap {
-  margin-left: 0;
-  left: 0;
-  width: 100%!important;
-}
-
-.pum .pum-container .popmake-content .full-width-section .row-bg-wrap,
-.pum .pum-container .popmake-content .wpb_row.full-width-content,
-body #boxed .pum .pum-container .popmake-content .full-width-section .row-bg-wrap,
-body #boxed .pum .pum-container .popmake-content .wpb_row.full-width-content {
-  margin-left: 0!important;
-  left: 0!important;
-  width: 100%!important;
-}
-
-/*inner row*/
-body .wpb_row.full-width-section .wpb_row > .row-bg-wrap,
-#boxed .wpb_row.full-width-section .wpb_row > .row-bg-wrap,
-body .wpb_row.full-width-content .wpb_row > .row-bg-wrap,
-#boxed .wpb_row.full-width-content .wpb_row > .row-bg-wrap {
-  margin-left: 0;
-  left: 0;
-  width: 100%;
-}
-
-
-/* page header css vert center */
-#page-header-bg .span_6,
-#page-header-bg  .nectar-particles .span_6 .inner-wrap {
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-#page-header-bg[data-alignment-v="top"] .span_6,
-#page-header-bg[data-alignment-v="bottom"] .span_6 {
-  -webkit-transform: none;
-  transform: none;
-}
-
-#page-header-bg .nectar-particles .span_6 {
-  top: 0;
-  -webkit-transform: none;
-  transform: none;
-}
-
-/*col bg*/
- .wpb_row .column-image-bg-wrap, .wpb_row .column-image-bg-wrap .inner-wrap, .wpb_row .column-image-bg-wrap .column-image-bg {
-   overflow:hidden; width:100%; height:100%; position:absolute; z-index:1; top:0; left:0;
- }
-  .wpb_column[data-bg-cover="true"] .column-image-bg, .wpb_column .column-inner[data-bg-cover="true"] .column-image-bg {background-size:cover; background-position:center}
-  .wpb_row .column-image-bg-wrap { z-index: 0; overflow: hidden; }
- .full-width-content.vc_row-fluid .wpb_column .column-image-bg-wrap .column-image-bg{background-position:center; background-size:cover; -webkit-background-size:cover}

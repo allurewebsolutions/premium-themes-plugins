@@ -6,7 +6,7 @@ jQuery(document).ready(function($){
    if(count.length == 0) count = 1;
  
    
-   $('.add-remove-controls .add').click(function(){
+   $('.add-remove-controls .add').on('click',function(){
    		
    		if(count < 10){
    			$('.add-remove-controls .remove').stop(true,true).fadeIn();
@@ -23,7 +23,7 @@ jQuery(document).ready(function($){
    });
    
    
-   $('.add-remove-controls .remove').click(function(){
+   $('.add-remove-controls .remove').on('click',function(){
 		
    		$('#map-point-'+count).parents('tr').fadeOut();
    		if( $('#map-point-'+count).attr('checked') == 'checked') $('#map-point-'+count).parents('tr').nextAll('tr').stop(true,true).fadeOut();
@@ -42,7 +42,7 @@ jQuery(document).ready(function($){
    
    
    //update the value for saving
-   $('.add-remove-controls .remove, .add-remove-controls .add').click(function(){
+   $('.add-remove-controls .remove, .add-remove-controls .add').on('click',function(){
    	   $('.add-remove-controls input[type=hidden]').attr('value',count);	
    });
    
