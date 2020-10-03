@@ -256,6 +256,7 @@ div[data-style="minimal_small"] .toggle.accent-color > h3:after,
 .post.format-link .post-content .link-inner,
 .nectar-post-grid-wrap[data-load-more-color="accent-color"] .load-more:hover,
 .format-status .post-content .status-inner, 
+.nectar-post-grid-item.nectar-new-item .inner:before,
 input[type=submit]:hover, 
 input[type="button"]:hover,  
 body[data-form-submit="regular"] input[type=submit], 
@@ -1081,7 +1082,15 @@ if( !empty($nectar_options['overall-font-color']) ) {
 	
 	echo 'body, body h1, body h2, body h3, body h4, body h5, body h6, .masonry.material .masonry-blog-item .grav-wrap .text { 
 		color: '.$nectar_options['overall-font-color'].'; 
-	}';
+	}
+  #sidebar h4,
+  body .row .col.section-title span {
+   color: '.$nectar_options['overall-font-color'].'; 
+  }
+  .single .heading-title[data-header-style="default_minimal"] .meta-category a {
+    color: '.$nectar_options['overall-font-color'].'; 
+    border-color: '.$nectar_options['overall-font-color'].'; 
+  }';
 
 	if( $nectar_options['overall-font-color'] !== '#000000' && $nectar_options['overall-font-color'] !== '#0a0a0a' && 
 	    $nectar_options['overall-font-color'] !== '#111111' && $nectar_options['overall-font-color'] !== '#222222' && 

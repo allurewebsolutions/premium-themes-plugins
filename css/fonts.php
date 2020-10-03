@@ -204,7 +204,9 @@ $nectar_blockquote_default_size  = 22;
  
  if( $nectar_options['logo_font_family']['attrs_in_use'] ) {
 	 
-	 echo '#header-outer #logo.no-image, #header-outer[data-format="centered-logo-between-menu"] .logo-spacing[data-using-image="false"] {'; 
+	 echo '#header-outer #logo.no-image, 
+   #header-outer[data-format="centered-menu"] .logo-spacing[data-using-image="false"],
+   #header-outer[data-format="centered-logo-between-menu"] .logo-spacing[data-using-image="false"] {'; 
 		 
 		 // Output font properties.
 		 nectar_output_font_props('logo_font', $line_height, $nectar_options);
@@ -421,7 +423,8 @@ $nectar_blockquote_default_size  = 22;
 		}
 
 		@media only screen and (max-width: 999px) and (min-width: 690px) {
-		.col h2, h2, .single-product div.product h1.product_title, .woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control {
+		.col h2, h2, .single-product div.product h1.product_title, .woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control,
+    .nectar_single_testimonial[data-style="bold"] p {
 				font-size: <?php echo esc_html( $defined_font_size*$nectar_h2_tablet ) . 'px'; ?>;
 				line-height: <?php echo esc_html( $defined_line_height*$nectar_h2_tablet ) . 'px'; ?>;
 			}
@@ -433,7 +436,8 @@ $nectar_blockquote_default_size  = 22;
 		}
 
 		@media only screen and (max-width: 690px) {
-		.col h2, h2, .single-product div.product h1.product_title, .woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control {
+		.col h2, h2, .single-product div.product h1.product_title, .woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control,
+    .nectar_single_testimonial[data-style="bold"] p {
 				font-size: <?php echo esc_html( $defined_font_size*$nectar_h2_phone ) . 'px'; ?>;
 				line-height: <?php echo esc_html( $defined_line_height*$nectar_h2_phone ) . 'px'; ?>;
 			}

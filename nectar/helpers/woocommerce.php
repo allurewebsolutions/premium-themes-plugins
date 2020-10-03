@@ -419,9 +419,8 @@ if ( !function_exists( 'woocommerce_output_upsells' ) ) {
 
 if ( $woocommerce && version_compare( $woocommerce->version, '3.0', '>=' ) ) {
 	add_filter( 'woocommerce_add_to_cart_fragments', 'nectar_woocommerce_header_add_to_cart_fragment' );
-	if ( $nectar_theme_skin === 'material' ) {
-		add_filter( 'woocommerce_add_to_cart_fragments', 'nectar_mobile_woocommerce_header_add_to_cart_fragment' );
-	}
+	add_filter( 'woocommerce_add_to_cart_fragments', 'nectar_mobile_woocommerce_header_add_to_cart_fragment' );
+	
 } else {
 	add_filter( 'add_to_cart_fragments', 'nectar_woocommerce_header_add_to_cart_fragment' );
 }

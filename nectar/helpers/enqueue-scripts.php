@@ -4,7 +4,7 @@
  *
  * @package Salient WordPress Theme
  * @subpackage helpers
- * @version 10.5
+ * @version 12.0.1
  */
 
 // Exit if accessed directly
@@ -44,7 +44,7 @@ function nectar_register_js() {
 		wp_register_script( 'hoverintent', $nectar_get_template_directory_uri . '/js/third-party/hoverintent.js', array( 'jquery' ), '1.9', true );
 		wp_register_script( 'touchswipe', $nectar_get_template_directory_uri . '/js/third-party/touchswipe.min.js', array( 'jquery' ), '1.0', true );
 		wp_register_script( 'flexslider', $nectar_get_template_directory_uri . '/js/third-party/flexslider.min.js', array( 'jquery', 'touchswipe' ), '2.1', true );
-		wp_register_script( 'flickity', $nectar_get_template_directory_uri . '/js/third-party/flickity.min.js', array( 'jquery' ), '2.1.2', true );
+		wp_register_script( 'flickity', $nectar_get_template_directory_uri . '/js/third-party/flickity.min.js', array( 'jquery' ), '2.2', true );
 		wp_register_script( 'magnific', $nectar_get_template_directory_uri . '/js/third-party/magnific.js', array( 'jquery' ), '7.0.1', true );
 		wp_register_script( 'fancyBox', $nectar_get_template_directory_uri . '/js/third-party/jquery.fancybox.min.js', array( 'jquery' ), '3.3.1', true );
 		wp_register_script( 'isotope', $nectar_get_template_directory_uri . '/js/third-party/isotope.min.js', array( 'jquery' ), '7.6', true );

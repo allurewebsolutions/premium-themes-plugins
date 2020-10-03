@@ -37,7 +37,12 @@ if ( class_exists( 'Salient_Home_Slider' ) ) { ?>
 			
 			<div class="slide orbit-slide <?php if ( ! empty( $video_embed ) || ! empty( $video_m4v ) || ! empty( $video_ogv ) ) { echo 'has-video'; } else { echo esc_attr( $alignment ); } ?> ">
 				
-				<?php $image = get_post_meta( $post->ID, '_nectar_slider_image', true ); ?>
+				<?php 
+				$image = get_post_meta( $post->ID, '_nectar_slider_image', true );
+				if( $image ) {
+					$image = nectar_options_img($image);
+				}
+				?>
 				<article data-background-cover="<?php echo ( ! empty( $nectar_options['slider-background-cover'] ) && $nectar_options['slider-background-cover'] === '1' ) ? '1' : '0'; ?>" style="background-image: url('<?php echo esc_url( $image ); ?>')">
 					<div class="container">
 						<div class="col span_12">

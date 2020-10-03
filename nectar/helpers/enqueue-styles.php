@@ -4,7 +4,7 @@
  *
  * @package Salient WordPress Theme
  * @subpackage helpers
- * @version 10.5
+ * @version 12.0.1
  */
 
 // Exit if accessed directly

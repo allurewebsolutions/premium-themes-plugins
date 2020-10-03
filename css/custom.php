@@ -529,6 +529,13 @@
 			if( true === $menu_label ) {
         echo 'body #header-outer[data-format="menu-left-aligned"]:not([data-format="left-header"]):not([data-format="centered-menu-bottom-bar"]) #top nav > .buttons {
           margin-right: 110px;
+        }
+        #header-outer[data-format="centered-menu-bottom-bar"] .right-side > .slide-out-widget-area-toggle a.using-label > span {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        #header-outer[data-format="centered-menu-bottom-bar"] .right-side > .slide-out-widget-area-toggle a.using-label .label {
+          margin-right: 15px;
         }';
       }
 
@@ -613,8 +620,9 @@
 				position: relative;
 			}
 			
-			body #header-outer[data-format="centered-logo-between-menu"] #top #logo { 
-				transform: none; 
+			body #header-outer[data-format="centered-logo-between-menu"] #top #logo,
+      body[data-slide-out-widget-area-style="slide-out-from-right"]:not(.material) #header-outer[data-format="centered-logo-between-menu"] #top #logo { 
+				transform: none!important; 
 			}
 			
  	    #header-outer:not([data-format="centered-menu-bottom-bar"]) #top .span_9 > .slide-out-widget-area-toggle, 

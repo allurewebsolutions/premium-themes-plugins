@@ -928,11 +928,16 @@ if ( !function_exists( 'nectar_using_page_header' ) ) {
 			$header_bg_color            = 0; 
 			$bg_type                    = 'image_bg'; 
 		}
-
+		
+		// Page full screen rows.
 		$page_full_screen_rows = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_full_screen_rows', true) : '';
 		
+		if($page_full_screen_rows === 'on' && $disable_effect !== 'on' && (!is_search() && !is_tax()) ) {
+			$using_applicable_shortcode = 1; 
+		}
+		
 		// Forcing effect.
-		if( $force_effect === 'on' && (!is_search() && !is_tax()) || $page_full_screen_rows === 'on' && (!is_search() && !is_tax()) ) { 
+		if( $force_effect === 'on' && (!is_search() && !is_tax()) ) { 
 			$using_applicable_shortcode = 1; 
 		}
 

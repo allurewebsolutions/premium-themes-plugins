@@ -3622,9 +3622,9 @@
      }
      
      Redux::setSection( $opt_name, array(
-       'title'            => esc_html__( 'Styling', 'salient' ),
+       'title'            => esc_html__( 'Archive', 'salient' ),
        'id'               => 'portfolio-style',
-       'desc'             => esc_html__( 'All portfolio options are listed here. These are used for the Salient Portfolio post type plugin.', 'salient' ) . ' ' . wp_kses_post($nectar_salient_portfolio_active_str),
+       'desc'             => esc_html__( 'Options that affect the styling of the portfolio archive pages (portfolio grid).', 'salient' ) . ' ' . wp_kses_post($nectar_salient_portfolio_active_str),
        'subsection'       => true,
        'fields'           => array(
          array(
@@ -3660,7 +3660,15 @@
            ),
            'default' => '1'
          ),
-         
+         array(
+           'id' => 'portfolio_date',
+           'type' => 'checkbox',
+           'title' => esc_html__('Display Dates on Projects', 'salient'), 
+           'subtitle' => esc_html__('Toggle whether or not to show the date on your projects within your portfolio grids - note that if a custom excerpt is supplied for a specific project, it will be shown instead of the date.', 'salient'),
+           'desc' => '',
+           'switch' => true,
+           'default' => '1' 
+         ),   
          array(
            'id' => 'main_portfolio_item_spacing',
            'type' => 'select',
@@ -3716,6 +3724,41 @@
              'default' => '0' 
            ),
            array(
+             'id' => 'portfolio_loading_animation',
+             'type' => 'select',
+             'title' => esc_html__('Load In Animation', 'salient'), 
+             'subtitle' => esc_html__('Please select the loading animation you would like', 'salient'),
+             'desc' => '',
+             'options' => array(
+               "none" => esc_html__("None", 'salient'),
+               "fade_in" => esc_html__("Fade In", 'salient'),
+               "fade_in_from_bottom" => esc_html__("Fade In From Bottom", 'salient'),
+               "perspective" => esc_html__("Perspective Fade In", 'salient')
+             ),
+             'default' => 'fade_in_from_bottom'
+           ),
+         )
+       ) );
+       
+       Redux::setSection( $opt_name, array(
+         'title'            => esc_html__( 'Single Project', 'salient' ),
+         'id'               => 'portfolio-single-project',
+         'subsection'       => true,
+         'desc'             => esc_html__( 'Options for the single project template.', 'salient' ) . ' ' . wp_kses_post($nectar_salient_portfolio_active_str),
+         'fields'           => array(
+           array(
+             'id' => 'single_portfolio_project_layout',
+             'type' => 'image_select',
+             'title' => esc_html__('Single Project Layout', 'salient'), 
+             'subtitle' => esc_html__('Please select the layout to use for your single project template.', 'salient') . '<br/><br/>' . esc_html__('By default, Salient will use a basic predetermined layout for the single project template. If you wish to have more design flexibility, select the','salient') . ' <strong>'. esc_html__('Full Width Page Builder','salient').'</strong> ' . esc_html__('option and your single projects will behave like regular pages.','salient'),
+             'desc' => '',
+             'options' => array(
+               'basic' => array('title' => esc_html__('Basic With Sidebar','salient'), 'img' => NECTAR_FRAMEWORK_DIRECTORY.'redux-framework/ReduxCore/assets/img/project-default.jpg'),
+               'page_builder' => array('title' => esc_html__('Full Width Page Builder','salient'), 'img' => NECTAR_FRAMEWORK_DIRECTORY.'redux-framework/ReduxCore/assets/img/project-page-builder.jpg'),
+             ),
+             'default' => 'basic'
+           ),  
+           array(
              'id' => 'portfolio_single_nav',
              'type' => 'radio',
              'title' => esc_html__('Single Project Page Navigation', 'salient'), 
@@ -3738,36 +3781,35 @@
              'default' => '0' 
            ),  
            array(
-             'id' => 'portfolio_loading_animation',
-             'type' => 'select',
-             'title' => esc_html__('Load In Animation', 'salient'), 
-             'subtitle' => esc_html__('Please select the loading animation you would like', 'salient'),
-             'desc' => '',
-             'options' => array(
-               "none" => esc_html__("None", 'salient'),
-               "fade_in" => esc_html__("Fade In", 'salient'),
-               "fade_in_from_bottom" => esc_html__("Fade In From Bottom", 'salient'),
-               "perspective" => esc_html__("Perspective Fade In", 'salient')
-             ),
-             'default' => 'fade_in_from_bottom'
-           ),
-         )
-       ) );
-       
-       Redux::setSection( $opt_name, array(
-         'title'            => esc_html__( 'Functionality', 'salient' ),
-         'id'               => 'portfolio-functionality',
-         'subsection'       => true,
-         'fields'           => array(
-           array(
              'id' => 'portfolio_sidebar_follow', 
              'type' => 'switch',
              'title' => esc_html__('Portfolio Sidebar Follow on Scroll', 'salient'),
              'subtitle' => esc_html__('When supplying extra content, a sidebar enabled page can get quite tall and feel empty on the right side. Enable this option to have your sidebar follow you down the page.', 'salient'),
              'desc' => '',
+             'required' => array( 'single_portfolio_project_layout', '!=', 'page_builder' ),
              'switch' => true,
              'default' => '0' 
            ), 
+           array(
+             'id' => 'portfolio_remove_comments', 
+             'type' => 'switch',
+             'title' => esc_html__('Remove Comment Functionality On Projects', 'salient'),
+             'subtitle' => esc_html__('Enable this to globally disable commenting on your single project layout', 'salient'),
+             'desc' => '',
+             'default' => '0',
+           ),
+         )
+         
+       ) );
+           
+           
+           
+       Redux::setSection( $opt_name, array(
+         'title'            => esc_html__( 'Functionality', 'salient' ),
+         'id'               => 'portfolio-functionality',
+         'subsection'       => true,
+         'fields'           => array(
+           
            array(
              'id'    => 'portfolio_social',
              'type'  => 'info',
@@ -3776,15 +3818,7 @@
              'icon'  => 'el-icon-info-sign',
              'desc'  => esc_html__( 'As of Salient v10.1 the Portfolio social settings have been moved into WordPress customizer (Appearance > Customize). Ensure that you have the "Salient Social" plugin installed and activated to use them.', 'salient')
            ),
-           array(
-             'id' => 'portfolio_date',
-             'type' => 'checkbox',
-             'title' => esc_html__('Display Dates on Projects', 'salient'), 
-             'subtitle' => esc_html__('Toggle whether or not to show the date on your projects within your portfolio grids - note that if a custom excerpt is supplied for a specific project, it will be shown instead of the date.', 'salient'),
-             'desc' => '',
-             'switch' => true,
-             'default' => '1' 
-           ),                                                      
+                                                           
            array(
              'id' => 'portfolio_pagination', 
              'type' => 'switch',
@@ -3824,14 +3858,7 @@
              'desc' => '',
              'validate' => 'numeric'
            ),  
-           array(
-             'id' => 'portfolio_remove_comments', 
-             'type' => 'switch',
-             'title' => esc_html__('Remove Comment Functionality On Projects', 'salient'),
-             'subtitle' => esc_html__('Enable this to globally disable commenting on your single project layout', 'salient'),
-             'desc' => '',
-             'default' => '0',
-           ),
+           
            array(
              'id' => 'portfolio_rewrite_slug', 
              'type' => 'text', 
@@ -3839,20 +3866,7 @@
              'subtitle' => esc_html__('If you want your portfolio post type to have a custom slug in the url, please enter it here. You will still have to refresh your permalinks after saving this! This is done by going to Settings > Permalinks and clicking save.', 'salient'),
              'desc' => ''
            ), 
-           array(
-             'id' => 'carousel-title', 
-             'type' => 'text', 
-             'title' => esc_html__('Custom Recent Projects Title', 'salient'),
-             'subtitle' => esc_html__('This is be used anywhere you place the recent work shortcode and on the "Recent Work" home layout. e.g. Recent Work', 'salient'),
-             'desc' => ''
-           ),
-           array(
-             'id' => 'carousel-link', 
-             'type' => 'text', 
-             'title' => esc_html__('Custom Recent Projects Link Text', 'salient'),
-             'subtitle' => esc_html__('This is be used anywhere you place the recent work shortcode and on the "Recent Work" home layout. e.g. View All Work', 'salient'),
-             'desc' => ''
-           ),
+           
            array(
              'id' => 'portfolio-sortable-text', 
              'type' => 'text', 
@@ -3874,7 +3888,21 @@
              'subtitle' => esc_html__('This will cause your single project page next/prev arrows to lead only to projects that exist in the same category as the current.', 'salient'),
              'desc' => '',
              'default' => '0' 
-           )
+           ),
+           array(
+             'id' => 'carousel-title', 
+             'type' => 'text', 
+             'title' => esc_html__('Custom Recent Projects Title', 'salient'),
+             'subtitle' => esc_html__('This is be used anywhere you place the recent work shortcode and on the "Recent Work" home layout. e.g. Recent Work', 'salient'),
+             'desc' => ''
+           ),
+           array(
+             'id' => 'carousel-link', 
+             'type' => 'text', 
+             'title' => esc_html__('Custom Recent Projects Link Text', 'salient'),
+             'subtitle' => esc_html__('This is be used anywhere you place the recent work shortcode and on the "Recent Work" home layout. e.g. View All Work', 'salient'),
+             'desc' => ''
+           ),
            
          )
        ) );

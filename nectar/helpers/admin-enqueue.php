@@ -4,7 +4,7 @@
  *
  * @package Salient WordPress Theme
  * @subpackage helpers
- * @version 10.5
+ * @version 12.1
  */
 
 // Exit if accessed directly
@@ -44,7 +44,7 @@ if ( ! function_exists( 'nectar_enqueue_media' ) ) {
  * @since 1.0
  */
 function nectar_metabox_styles() {
-	wp_enqueue_style( 'nectar_meta_css', NECTAR_FRAMEWORK_DIRECTORY . 'assets/css/nectar_meta.css', '', '11.2' );
+	wp_enqueue_style( 'nectar_meta_css', NECTAR_FRAMEWORK_DIRECTORY . 'assets/css/nectar_meta.css', '', '12.1.1' );
 }
 
 
@@ -55,7 +55,7 @@ function nectar_metabox_styles() {
  */
 function nectar_metabox_scripts() {
 	
-	wp_register_script( 'nectar-upload', NECTAR_FRAMEWORK_DIRECTORY . 'assets/js/nectar-meta.js', array( 'jquery' ), '10.1' );
+	wp_register_script( 'nectar-upload', NECTAR_FRAMEWORK_DIRECTORY . 'assets/js/nectar-meta.js', array( 'jquery' ), '12.1.2' );
 	wp_enqueue_script( 'nectar-upload' );
 	wp_localize_script( 'redux-opts-field-upload-js', 'redux_upload', array( 'url' => get_template_directory_uri() . '/nectar/redux-framework/ReduxCore/inc/fields/upload/blank.png' ) );
 
