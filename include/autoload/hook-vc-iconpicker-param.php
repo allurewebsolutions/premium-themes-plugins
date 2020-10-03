@@ -43,9 +43,8 @@ add_action( 'vc_frontend_editor_enqueue_js_css', 'vc_iconpicker_editor_jscss' );
 function vc_iconpicker_base_register_css() {
 	// Vc Icon picker fonts:
 	/* nectar addition */
-	/*
-	wp_register_style( 'font-awesome', vc_asset_url( 'lib/bower/font-awesome/css/font-awesome.min.css' ), array(), WPB_VC_VERSION );
-	*/
+	//wp_register_style( 'vc_font_awesome_5_shims', vc_asset_url( 'lib/bower/font-awesome/css/v4-shims.min.css' ), array(), WPB_VC_VERSION );
+	//wp_register_style( 'vc_font_awesome_5', vc_asset_url( 'lib/bower/font-awesome/css/all.min.css' ), array( 'vc_font_awesome_5_shims' ), WPB_VC_VERSION );
 	/* nectar addition end */
 	wp_register_style( 'vc_typicons', vc_asset_url( 'css/lib/typicons/src/font/typicons.min.css' ), false, WPB_VC_VERSION );
 	wp_register_style( 'vc_openiconic', vc_asset_url( 'css/lib/vc-open-iconic/vc_openiconic.min.css' ), false, WPB_VC_VERSION );
@@ -68,7 +67,7 @@ function vc_iconpicker_base_register_css() {
  * @since 4.4
  */
 function vc_iconpicker_base_register_js() {
-	wp_register_script( 'vc-icon-picker', vc_asset_url( 'lib/bower/vcIconPicker/jquery.fonticonpicker.min.js' ), array( 'jquery' ), WPB_VC_VERSION );
+	wp_register_script( 'vc-icon-picker', vc_asset_url( 'lib/bower/vcIconPicker/jquery.fonticonpicker.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 }
 
 /**
@@ -85,15 +84,16 @@ function vc_iconpicker_editor_jscss() {
 	wp_enqueue_style( 'vc-icon-picker-main-css-theme' );
 
 	// Fonts
+	/* nectar addition */
 	wp_enqueue_style( 'font-awesome' );
+	//wp_enqueue_style( 'vc_font_awesome_5' );
+	/*
+	wp_enqueue_style( 'vc_material' );
+	*/
+	/* nectar addition end */
 	wp_enqueue_style( 'vc_openiconic' );
 	wp_enqueue_style( 'vc_typicons' );
 	wp_enqueue_style( 'vc_entypo' );
 	wp_enqueue_style( 'vc_linecons' );
 	wp_enqueue_style( 'vc_monosocialiconsfont' );
-	/* nectar addition */
-	/*
-	wp_enqueue_style( 'vc_material' );
-	*/
-	/* nectar addition end */
 }

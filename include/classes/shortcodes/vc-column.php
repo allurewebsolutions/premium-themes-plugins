@@ -11,15 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 	/**
-	 * @var array
+	 * @var string
 	 */
-	protected $predefined_atts = array(
-		'font_color' => '',
-		'el_class' => '',
-		'el_position' => '',
-		'width' => '1/1',
-	);
-
 	public $nonDraggableClass = 'vc-non-draggable-column';
 
 	/**
@@ -30,6 +23,9 @@ class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 		$this->shortcodeScripts();
 	}
 
+	/**
+	 *
+	 */
 	protected function shortcodeScripts() {
 		wp_register_script( 'vc_jquery_skrollr_js', vc_asset_url( 'lib/bower/skrollr/dist/skrollr.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		wp_register_script( 'vc_youtube_iframe_api_js', 'https://www.youtube.com/iframe_api', array(), WPB_VC_VERSION, true );
@@ -40,6 +36,7 @@ class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 	 * @param string $extended_css
 	 *
 	 * @return string
+	 * @throws \Exception
 	 */
 	public function getColumnControls( $controls, $extended_css = '' ) {
 		$output = '<div class="vc_controls vc_control-column vc_controls-visible' . ( ! empty( $extended_css ) ? " {$extended_css}" : '' ) . '">';
@@ -85,7 +82,7 @@ class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 			return $output . $controls_add . $controls_end;
 		} elseif ( is_string( $controls ) ) {
 			$control_var = 'controls_' . $controls;
-			if ( 'add' === $controls || ( $editAccess && 'edit' == $controls || $allAccess ) && isset( ${$control_var} ) ) {
+			if ( 'add' === $controls || ( $editAccess && 'edit' === $controls || $allAccess ) && isset( ${$control_var} ) ) {
 				return $output . ${$control_var} . $controls_end;
 			}
 
@@ -150,54 +147,59 @@ class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 	 * @return string
 	 */
 	public function contentAdmin( $atts, $content = null ) {
-		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		$width = '';
+		$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
+		// @codingStandardsIgnoreLine
+		extract( $atts );
+		$this->atts = $atts;
+
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
 		$column_controls_bottom = $this->getColumnControls( 'add', 'bottom-controls' );
 
-		if ( ' column_14' === $width || ' 1/4' === $width ) {
+		if ( 'column_14' === $width || '1/4' === $width ) {
 			$width = array( 'vc_col-sm-3' );
-		} elseif ( ' column_14===$width-14-14-14' ) {
+		} elseif ( 'column_14-14-14-14' === $width ) {
 			$width = array(
 				'vc_col-sm-3',
 				'vc_col-sm-3',
 				'vc_col-sm-3',
 				'vc_col-sm-3',
 			);
-		} elseif ( ' column_13' === $width || ' 1/3' === $width ) {
+		} elseif ( 'column_13' === $width || '1/3' === $width ) {
 			$width = array( 'vc_col-sm-4' );
-		} elseif ( ' column_13===$width-23' ) {
+		} elseif ( 'column_13-23' === $width ) {
 			$width = array(
 				'vc_col-sm-4',
 				'vc_col-sm-8',
 			);
-		} elseif ( ' column_13===$width-13-13' ) {
+		} elseif ( 'column_13-13-13' === $width ) {
 			$width = array(
 				'vc_col-sm-4',
 				'vc_col-sm-4',
 				'vc_col-sm-4',
 			);
-		} elseif ( ' column_12' === $width || ' 1/2' === $width ) {
+		} elseif ( 'column_12' === $width || '1/2' === $width ) {
 			$width = array( 'vc_col-sm-6' );
-		} elseif ( ' column_12===$width-12' ) {
+		} elseif ( 'column_12-12' === $width ) {
 			$width = array(
 				'vc_col-sm-6',
 				'vc_col-sm-6',
 			);
-		} elseif ( ' column_23' === $width || ' 2/3' === $width ) {
+		} elseif ( 'column_23' === $width || '2/3' === $width ) {
 			$width = array( 'vc_col-sm-8' );
-		} elseif ( ' column_34' === $width || ' 3/4' === $width ) {
+		} elseif ( 'column_34' === $width || '3/4' === $width ) {
 			$width = array( 'vc_col-sm-9' );
-		} elseif ( ' column_16' === $width || ' 1/6' === $width ) {
+		} elseif ( 'column_16' === $width || '1/6' === $width ) {
 			$width = array( 'vc_col-sm-2' );
 		} elseif ( ' column_56' === $width || ' 5/6' === $width ) {
 			$width = array( 'vc_col-sm-10' );
 		} else {
 			$width = array( '' );
 		}
-		for ( $i = 0; $i < count( $width ); $i ++ ) {
+		$count = count( $width );
+		for ( $i = 0; $i < $count; $i ++ ) {
 			$output .= '<div ' . $this->mainHtmlBlockParams( $width, $i ) . '>';
 			$output .= str_replace( '%column_size%', wpb_translateColumnWidthToFractional( $width[ $i ] ), $column_controls );
 			$output .= '<div class="wpb_element_wrapper">';
@@ -238,6 +240,7 @@ class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 	 * @param $i
 	 *
 	 * @return string
+	 * @throws \Exception
 	 */
 	public function mainHtmlBlockParams( $width, $i ) {
 		$sortable = ( vc_user_access_check_shortcode_all( $this->shortcode ) ? 'wpb_sortable' : $this->nonDraggableClass );
@@ -287,7 +290,6 @@ class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 }
 
 
-
 /* nectar addition */ 
 
 class WPBakeryShortCode_One_Half extends WPBakeryShortCode_VC_Column {
@@ -298,7 +300,7 @@ class WPBakeryShortCode_One_Half extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -344,7 +346,7 @@ class WPBakeryShortCode_One_Half_Last extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -392,7 +394,7 @@ class WPBakeryShortCode_One_Third extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -440,7 +442,7 @@ class WPBakeryShortCode_One_Third_Last extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -490,7 +492,7 @@ class WPBakeryShortCode_One_Fourth extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -538,7 +540,7 @@ class WPBakeryShortCode_One_Fourth_Last extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -586,7 +588,7 @@ class WPBakeryShortCode_One_Sixth extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -636,7 +638,7 @@ class WPBakeryShortCode_One_Sixth_Last extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -684,7 +686,7 @@ class WPBakeryShortCode_Two_Thirds extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -733,7 +735,7 @@ class WPBakeryShortCode_Two_Thirds_Last extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -780,7 +782,7 @@ class WPBakeryShortCode_Three_Fourths extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -828,7 +830,7 @@ class WPBakeryShortCode_Three_Fourths_Last extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -876,7 +878,7 @@ class WPBakeryShortCode_Five_Sixths extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -923,7 +925,7 @@ class WPBakeryShortCode_Five_Sixths_Last extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -970,7 +972,7 @@ class WPBakeryShortCode_One_Whole extends WPBakeryShortCode_VC_Column {
     
     public function contentAdmin($atts, $content = null) {
        		$width = $el_class = '';
-		extract( shortcode_atts( $this->predefined_atts, $atts ) );
+		extract( vc_map_get_attributes( $this->getShortcode(), $atts ) );
 		$output = '';
 
 		$column_controls = $this->getColumnControls( $this->settings( 'controls' ) );
@@ -1294,3 +1296,5 @@ vc_map(  array(
 ));
 
 /* nectar addition end */ 
+
+

@@ -9,13 +9,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package WPBakeryPageBuilder
  *
  */
-class WPBakeryShortCode_VC_Accordion extends WPBakeryShortCode {
+class WPBakeryShortCode_Vc_Accordion extends WPBakeryShortCode {
 	protected $controls_css_settings = 'out-tc vc_controls-content-widget';
 
-	public function __construct( $settings ) {
-		parent::__construct( $settings );
-	}
-
+	/**
+	 * @param $atts
+	 * @param null $content
+	 * @return mixed|string
+	 * @throws \Exception
+	 */
 	public function contentAdmin( $atts, $content = null ) {
 		$width = $custom_markup = '';
 		$shortcode_attributes = array( 'width' => '1/1' );
@@ -59,8 +61,6 @@ class WPBakeryShortCode_VC_Accordion extends WPBakeryShortCode {
 		return $output;
 	}
 }
-
-
 
 /* nectar addition */ 
 class WPBakeryShortCode_Toggles extends WPBakeryShortCode {
@@ -139,4 +139,4 @@ class WPBakeryShortCode_Toggles extends WPBakeryShortCode {
 		}
 }
 
-/* nectar addition end */ 
+/* nectar addition end */
