@@ -62,7 +62,7 @@ class Vc_Shortcode_Edit_Form {
 			'edit_post',
 			(int) vc_request_param( 'post_id' ),
 		) )->validateDie( esc_html__( 'Access denied', 'js_composer' ) )->check( 'vc_user_access_check_shortcode_edit', $tag )->validateDie( esc_html__( 'Access denied', 'js_composer' ) );
-
+		
 		// nectar addition
 		function array_htmlspecialchars_decode(&$input) {
   			 if (is_array($input))
@@ -78,8 +78,8 @@ class Vc_Shortcode_Edit_Form {
   	 }
 		 
 		$params = (array) stripslashes_deep( vc_post_param( 'params' ) );
-		$params = array_map( 'array_htmlspecialchars_decode', $params );
-		// nectar addition end
+ 		$params = array_map( 'array_htmlspecialchars_decode', $params );
+ 		// nectar addition end
 
 		require_once vc_path_dir( 'EDITORS_DIR', 'class-vc-edit-form-fields.php' );
 		$fields = new Vc_Edit_Form_Fields( $tag, $params );

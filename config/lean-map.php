@@ -29,11 +29,40 @@ vc_lean_map( 'vc_zigzag', null, $vc_config_path . '/content/shortcode-vc-zigzag.
 
 
 /* nectar addition */
-
 if( ! defined( 'NECTAR_THEME_NAME' ) ) {
 	vc_lean_map( 'vc_row', null, $vc_config_path . '/containers/shortcode-vc-row.php' );
 	vc_lean_map( 'vc_column', null, $vc_config_path . '/containers/shortcode-vc-column.php' );
 	vc_lean_map( 'vc_column_inner', null, $vc_config_path . '/containers/shortcode-vc-column-inner.php' );
+}
+
+if( has_filter('salient_register_core_wpbakery_els') ) {
+	
+	// Els that are acceptable to add in via filter.
+	$el_list = array(
+		'vc_hoverbox'    => '/content/shortcode-vc-hoverbox.php',
+		'vc_message'     => '/content/shortcode-vc-message.php',
+		'vc_btn'         => '/buttons/shortcode-vc-btn.php',
+		'vc_cta'         => '/buttons/shortcode-vc-cta.php',
+		'vc_empty_space' => '/content/shortcode-vc-empty-space.php',
+		'vc_button'      => '/deprecated/shortcode-vc-button.php',
+		'vc_button2'     => '/deprecated/shortcode-vc-button2.php',
+		'vc_cta_button'  => '/deprecated/shortcode-vc-cta-button.php',
+		'vc_cta_button2' => '/deprecated/shortcode-vc-cta-button2.php'
+	);
+	
+	$el_list_keys = array_keys($el_list);
+	
+	$core_els_list = array();
+	$core_els_list = apply_filters('salient_register_core_wpbakery_els', $core_els_list);
+	
+	foreach ($core_els_list as $k => $el) {
+		
+		if( in_array($el, $el_list_keys) ) {
+			vc_lean_map( $el, null, $vc_config_path . $el_list[$el] );
+		}
+		
+	}
+	
 }
 
 /*
@@ -117,7 +146,6 @@ vc_lean_map( 'vc_cta_button', null, $vc_config_path . '/deprecated/shortcode-vc-
 vc_lean_map( 'vc_cta_button2', null, $vc_config_path . '/deprecated/shortcode-vc-cta-button2.php' );
 
 */
-
 if ( is_admin() ) {
 	add_action( 'admin_print_scripts-post.php', array(
 		Vc_Shortcodes_Manager::getInstance(),

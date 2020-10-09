@@ -67,9 +67,7 @@ class Vc_Base {
 	 */
 	public function init() {
 		do_action( 'vc_before_init_base' );
-		if ( is_admin() ) {
-			$this->postAdmin()->init();
-		}
+		$this->postAdmin()->init();
 		add_filter( 'body_class', array(
 			$this,
 			'bodyClass',
@@ -292,7 +290,6 @@ class Vc_Base {
 		 * vc_filter: vc_base_build_shortcodes_custom_css
 		 * @since 4.4
 		 */
-		 
 		 /* nectar addition */ 
 		$portfolio_extra_content = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_portfolio_extra_content', true) : '';
 		
@@ -302,7 +299,7 @@ class Vc_Base {
 			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $post->post_content ), $id  );
 		}
 		/* nectar addition end */ 
-
+		
 		if ( empty( $css ) ) {
 			delete_metadata( 'post', $id, '_wpb_shortcodes_custom_css' );
 		} else {
@@ -510,12 +507,12 @@ class Vc_Base {
 	 * @access public
 	 */
 	public function frontJsRegister() {
-		wp_register_script( 'prettyphoto', vc_asset_url( 'lib/prettyphoto/js/jquery.prettyPhoto.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
-		wp_register_script( 'vc_waypoints', vc_asset_url( 'lib/vc_waypoints/vc-waypoints.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
+		wp_register_script( 'prettyphoto', vc_asset_url( 'lib/prettyphoto/js/jquery.prettyPhoto.min.js' ), array( 'jquery-core' ), WPB_VC_VERSION, true );
+		wp_register_script( 'vc_waypoints', vc_asset_url( 'lib/vc_waypoints/vc-waypoints.min.js' ), array( 'jquery-core' ), WPB_VC_VERSION, true );
 
 		// @deprecated used in old tabs
 		wp_register_script( 'jquery_ui_tabs_rotate', vc_asset_url( 'lib/bower/jquery-ui-tabs-rotate/jquery-ui-tabs-rotate.min.js' ), array(
-			'jquery',
+			'jquery-core',
 			'jquery-ui-tabs',
 		), WPB_VC_VERSION, true );
 
@@ -525,10 +522,10 @@ class Vc_Base {
 		wp_register_script( 'isotope', vc_asset_url( 'lib/bower/isotope/dist/isotope.pkgd.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		*/
 
-		wp_register_script( 'twbs-pagination', vc_asset_url( 'lib/bower/twbs-pagination/jquery.twbsPagination.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
-		wp_register_script( 'nivo-slider', vc_asset_url( 'lib/bower/nivoslider/jquery.nivo.slider.pack.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
-		wp_register_script( 'flexslider', vc_asset_url( 'lib/bower/flexslider/jquery.flexslider-min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
-		wp_register_script( 'wpb_composer_front_js', vc_asset_url( 'js/dist/js_composer_front.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
+		wp_register_script( 'twbs-pagination', vc_asset_url( 'lib/bower/twbs-pagination/jquery.twbsPagination.min.js' ), array( 'jquery-core' ), WPB_VC_VERSION, true );
+		wp_register_script( 'nivo-slider', vc_asset_url( 'lib/bower/nivoslider/jquery.nivo.slider.pack.js' ), array( 'jquery-core' ), WPB_VC_VERSION, true );
+		wp_register_script( 'flexslider', vc_asset_url( 'lib/bower/flexslider/jquery.flexslider-min.js' ), array( 'jquery-core' ), WPB_VC_VERSION, true );
+		wp_register_script( 'wpb_composer_front_js', vc_asset_url( 'js/dist/js_composer_front.min.js' ), array( 'jquery-core' ), WPB_VC_VERSION, true );
 
 		/**
 		 * @since 4.4
@@ -646,23 +643,23 @@ class Vc_Base {
 	 * @access public
 	 *
 	 */
-	public function excerptFilter( $output ) {
-		global $post;
-		/* nectar addition */ 
-		if ( empty( $output ) && ! empty( $post->post_content ) ) {
-			$post_content =  preg_replace ('/\[recent_posts[^\]]*\]/', ' ', $post->post_content);
-			$text = wp_strip_all_tags( do_shortcode( $post_content ) );
-			$options = get_option('salient_redux');
-			$the_excerpt_length = (!empty($options['blog_excerpt_length'])) ? intval($options['blog_excerpt_length']) : 30; 
-			$excerpt_length = apply_filters('excerpt_length', $the_excerpt_length);
-			$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
-			$text = wp_trim_words( $text, $the_excerpt_length, $excerpt_more );
-			return $text;
-		}
-		/* nectar addition end */ 
+	 public function excerptFilter( $output ) {
+ 		global $post;
+ 		/* nectar addition */ 
+ 		if ( empty( $output ) && ! empty( $post->post_content ) ) {
+ 			$post_content =  preg_replace ('/\[recent_posts[^\]]*\]/', ' ', $post->post_content);
+ 			$text = wp_strip_all_tags( do_shortcode( $post_content ) );
+ 			$options = get_option('salient_redux');
+ 			$the_excerpt_length = (!empty($options['blog_excerpt_length'])) ? intval($options['blog_excerpt_length']) : 30; 
+ 			$excerpt_length = apply_filters('excerpt_length', $the_excerpt_length);
+ 			$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
+ 			$text = wp_trim_words( $text, $the_excerpt_length, $excerpt_more );
+ 			return $text;
+ 		}
+ 		/* nectar addition end */ 
 
-		return $output;
-	}
+ 		return $output;
+ 	}
 
 	/**
 	 * Remove unwanted wraping with p for content.
@@ -781,6 +778,7 @@ class Vc_Base {
 			'preset_removed' => esc_html__( 'Element successfully removed.', 'js_composer' ),
 			'vc_successfully_updated' => esc_html__( 'Successfully updated!', 'js_composer' ),
 			'gutenbergDoesntWorkProperly' => esc_html__( 'Gutenberg plugin doesn\'t work properly. Please check Gutenberg plugin.', 'js_composer' ),
+			'unfiltered_html_access' => esc_html__( 'Custom HTML is disabled for your user role. Please contact your site Administrator to change your capabilities.', 'js_composer' ),
 		);
 	}
 }

@@ -42,7 +42,7 @@ class Vc_Navbar_Frontend extends Vc_Navbar {
 		$disable_responsive = '0';
 		//nectar addition end
 		if ( '1' !== $disable_responsive ) {
-			$screen_sizes = array(
+			$screen_sizes = apply_filters( 'wpb_navbar_getControlScreenSize', array(
 				array(
 					'title' => esc_html__( 'Desktop', 'js_composer' ),
 					'size' => '100%',
@@ -69,7 +69,7 @@ class Vc_Navbar_Frontend extends Vc_Navbar {
 					'size' => '320px',
 					'key' => 'portrait-smartphones',
 				),
-			);
+			) );
 			$output = '<li class="vc_pull-right">' . '<div class="vc_dropdown" id="vc_screen-size-control">' . '<a href="#" class="vc_dropdown-toggle"' . ' title="' . esc_attr__( 'Responsive preview', 'js_composer' ) . '"><i class="vc-composer-icon vc_current-layout-icon vc-c-icon-layout_default"' . ' id="vc_screen-size-current"></i><i class="vc-composer-icon vc-c-icon-arrow_drop_down"></i></a>' . '<ul class="vc_dropdown-list">';
 			$screen = current( $screen_sizes );
 			while ( $screen ) {
