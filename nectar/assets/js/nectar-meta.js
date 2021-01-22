@@ -817,5 +817,12 @@ jQuery(document).ready(function($){
 			$(this).addClass( 'activated');
 		}
 	});
+  
+  // WPBakery wp 5.6 compatibility disabled field temp fix.
+  $('body').on("keyup change input", "[data-vc-disable-empty]", function() {
+    var _this = $(this),
+        $target = $(_this.data("vcDisableEmpty"));
+        _this.val().length ? $target.prop( "disabled", false ) : $target.prop( "disabled", true );
+  });
 	
 });

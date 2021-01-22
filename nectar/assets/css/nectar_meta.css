@@ -109,8 +109,16 @@ div[id*="nectar-metabox"] .ui-buttonset .ui-button {
 	box-sizing: border-box;
 }
 
-div[id*="nectar-metabox"] fieldset.buttonset:not(.ui-buttonset) { 
-	opacity: 0;
+body div[id*="nectar-metabox"] fieldset.buttonset:not(.ui-buttonset) { 
+	opacity: 1;
+}
+body .edit-post-header__settings .composer-inner-switch {
+    margin-top: 0;
+}
+body .edit-post-header__settings .composer-switch a {
+	height: 36px;
+	margin: 0;
+	line-height: 20px;
 }
 
 tr.font-option th {
@@ -259,8 +267,10 @@ tr.font-option  {
     font-weight: normal;
 }
 .nectar-metabox-table .ui-buttonset .ui-state-active,
+body .nectar-metabox-table .buttonset .ui-state-active,
 #nectar_slider_canvas_shape a.button-primary {
 	background-color: #3a67ff!important;
+	color: #fff;
 }
 .nectar-metabox-table label .ui-button-text {
 	line-height: 16px;

@@ -1890,6 +1890,10 @@
 			return (1 - n) * a + n * b;
 		}
 		
+		function isWindow( obj ) {
+		  return obj != null && obj === obj.window;
+		}
+		
 		/**
 		* Aspect Ratio Calculator
 		*
@@ -2031,7 +2035,7 @@
 			return this;
 		};
 		
-		$.extend($.expr[':'], {
+		$.extend(jQuery.expr.pseudos, {
 			transparent: function (elem, i, attr) {
 				return ($(elem).css("opacity") === "0");
 			}
@@ -2198,7 +2202,7 @@
 			s.prototype.refresh = function () {
 				var s = "offset",
 				e = 0;
-				$.isWindow(this.$scrollElement[0]) || (s = "position", e = this.$scrollElement.scrollTop()), this.offsets = [], this.targets = [], this.scrollHeight = this.getScrollHeight();
+				isWindow(this.$scrollElement[0]) || (s = "position", e = this.$scrollElement.scrollTop()), this.offsets = [], this.targets = [], this.scrollHeight = this.getScrollHeight();
 				var i = this;
 				this.$body.find(this.selector).map(function () {
 					var i = $(this),
@@ -2702,6 +2706,7 @@
 					'close'
 				],
 				margin: fbMarginArr,
+				backFocus: false,
 				loop: true,
 				caption: function() {
 					return $(this).attr('title');
@@ -2879,10 +2884,10 @@
 							
 							elementParse: function(item) {
 								
-								if ($(item.el.context).is('[href]') && $(item.el.context).attr('href').indexOf('iframe=true') != -1 || 
-								$(item.el.context).is('[href]') && $(item.el.context).attr('href').indexOf('https://www.youtube.com/watch') != -1) {
+								if ($(item.el).is('[href]') && $(item.el).attr('href').indexOf('iframe=true') != -1 || 
+								$(item.el).is('[href]') && $(item.el).attr('href').indexOf('https://www.youtube.com/watch') != -1) {
 									item.type = 'iframe';
-								} else if ($(item.el.context).is('[href]') && $(item.el.context).attr('href').indexOf('video-popup-') != -1) {
+								} else if ($(item.el).is('[href]') && $(item.el).attr('href').indexOf('video-popup-') != -1) {
 									item.type = 'inline';
 								} else {
 									item.type = 'image';
@@ -4111,7 +4116,7 @@
 						$that.find('.back-3d svg, .front-3d svg').css({
 							'width': ($text_width + $padding * 1.5) + 'px',
 							'height': ($text_height + $padding) + 'px'
-						}).attr('viewBox', '0 0 ' + ($text_width + $padding) + ' ' + ($text_height + $padding));
+						}).attr('viewBox', '0 0 ' + ($text_width + $padding * 1.5) + ' ' + ($text_height + $padding));
 						
 						$that.find('svg text').attr('transform', 'matrix(1 0 0 1 ' + ($text_width + $padding * 1.6) / 2 + ' ' + (($text_height + $padding) / $vert_height_divider) + ')');
 						$that.find('.front-3d ').css('transform-origin', '50% 50% -' + ($text_height + $padding) / 2 + 'px');
@@ -4406,7 +4411,7 @@
 						$that.find('.back-3d svg, .front-3d svg').css({
 							'width': ($text_width + $padding * 1.5) + 'px',
 							'height': ($text_height + $padding) + 'px'
-						}).attr('viewBox', '0 0 ' + ($text_width + $padding) + ' ' + ($text_height + $padding));
+						}).attr('viewBox', '0 0 ' + ($text_width + $padding * 1.5) + ' ' + ($text_height + $padding));
 
 						$that.find('svg text').attr('transform', 'matrix(1 0 0 1 ' + ($text_width + $padding * v1) / 2 + ' ' + (($text_height + $padding) / v2) + ')');
 						$that.find('.front-3d, .back-3d').css('transform-origin', '50% 50% -' + ($text_height + $padding) / 2 + 'px');
@@ -13575,6 +13580,7 @@
 				function footerRevealCalcs() {
 					
 					var $headerNavSpace = '';
+					var pageHeaderHeight = 0;
 					
 					if( $headerOuterEl.is('[data-logo-height]') && $headerOuterEl.is('[data-padding]') ) {
 						
@@ -13588,8 +13594,14 @@
 						$headerNavSpace = ( headerLayoutFormat == 'left-header' && nectarDOMInfo.winW > 1000) ? 0 : $headerOuterEl.outerHeight();
 					}
 					
+					if( $pageHeaderBG.length > 0 ) {
+						pageHeaderHeight += $pageHeaderBG.height();
+					}
+					if( $('.page-header-no-bg').length > 0 ) {
+						pageHeaderHeight += $('.page-header-no-bg').height();
+					}
 
-					if (nectarDOMInfo.winH - nectarDOMInfo.adminBarHeight - $headerNavSpace - nectarDOMInfo.footerOuterHeight - 1 - $pageHeaderBG.height() - $('.page-header-no-bg').height() > 0) {
+					if (nectarDOMInfo.winH - nectarDOMInfo.adminBarHeight - $headerNavSpace - nectarDOMInfo.footerOuterHeight - 1 - pageHeaderHeight > 0) {
 						
 						var $resizeExtra = ($('body:not(.material) #header-outer[data-header-resize="1"]').length > 0) ? 55 : 0;
 						
@@ -13598,7 +13610,7 @@
 						});
 						
 						$('.container-wrap').css({
-							'min-height': nectarDOMInfo.winH - nectarDOMInfo.adminBarHeight - $headerNavSpace - nectarDOMInfo.footerOuterHeight - $('.page-header-no-bg').height() - $pageHeaderBG.height() + $resizeExtra
+							'min-height': nectarDOMInfo.winH - nectarDOMInfo.adminBarHeight - $headerNavSpace - nectarDOMInfo.footerOuterHeight - pageHeaderHeight + $resizeExtra
 						}); 
 						
 					} else {
@@ -15832,7 +15844,7 @@
 					}
 
 					var $hashSubstrng   = ($hash && $hash.length > 0) ? $hash.substring(1, $hash.length) : 0,
-					headerPadding2      = parseInt($headerOuterEl.attr('data-padding')) * 2,
+					headerPadding2      = headerPadding - headerPadding / 1.8,
 					$hasSlashLength     = 0;
 					
 					// If the hash has slashes 
