@@ -1,0 +1,102 @@
+del { opacity: 0.8; }
+pre{
+	display:block;
+	margin-top:5px;  
+	border:1px solid rgba(0,0, 0, 0.09);
+	padding:15px;
+	background:rgba(0,0, 0, 0.05);
+	overflow:auto;
+	word-wrap: break-word;
+	font-size:14px;
+	line-height:1.2;
+	margin-bottom:25px;
+	color:#606060;
+}
+code  {
+	display:inline-block;
+	border:1px solid rgba(0,0, 0, 0.09);
+	padding:5px;
+	background:rgba(0,0, 0, 0.05);
+	overflow:auto;
+	word-wrap: break-word;
+	font-size:14px;
+	line-height:1.2;
+	color:#606060;
+}
+
+.wp-block-gallery li.blocks-gallery-item figure figcaption {
+	padding-left:0px;
+	padding-right:0px;
+}
+
+body .gallery-item {
+	margin-top:0px;
+	position:relative;
+	margin-bottom:25px;	
+}
+body .gallery-item img {
+	border:none !important;
+}
+body .gallery-icon {
+	margin-right:10px;
+	margin-left:10px;
+}
+body #content-pro .gallery-caption {
+	position:relative;
+	padding:10px 10px;
+	font-weight:600;
+}
+
+body .wp-caption  {
+	max-width:100% !important;
+}
+
+.noselect {
+	-webkit-touch-callout: none; 
+	-webkit-user-select: none;  
+	-khtml-user-select: none;  
+	-moz-user-select: none;  
+	-ms-user-select: none; 
+	user-select: none;
+}
+.google-maps-pin h6 {
+	margin-bottom:2px;
+}
+.screen-reader-text {
+	display:none;
+}
+
+.wp-caption img {
+	margin-bottom:5px;
+}
+
+figcaption {
+    font-weight: 500;
+	line-height:1.4;
+    padding-bottom: 8px
+}
+
+body #content-pro .width-container-pro  .wp-caption-text {
+	line-height:1.4;
+	font-size:13px;
+	font-weight:400;
+}
+p.wp-caption-text {
+	margin-bottom:10px;
+}
+
+.wp-block-separator {
+	width:100%;
+	overflow:hidden;
+}
+
+.wp-block-cover-image .aligncenter {
+	width:100%;
+	text-align:center;
+	overflow:hidden;
+	color:#ffffff;
+}
+
+body .alignnone  {
+	max-width: 100% ;
+}
