@@ -1,0 +1,653 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Progression Theme Elements - Food Truck\n"
+"POT-Creation-Date: 2019-07-16 13:13-0700\n"
+"PO-Revision-Date: 2019-07-16 13:13-0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: progression-elements.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: elements/post-element.php:15
+msgid "Truck Locations Map"
+msgstr ""
+
+#: elements/post-element.php:40 inc/custom-meta.php:128
+msgid "Post Settings"
+msgstr ""
+
+#: elements/post-element.php:48
+msgid "Post Count"
+msgstr ""
+
+#: elements/post-element.php:57
+msgid "Columns"
+msgstr ""
+
+#: elements/post-element.php:64
+msgid "1 Column"
+msgstr ""
+
+#: elements/post-element.php:65
+msgid "2 Column"
+msgstr ""
+
+#: elements/post-element.php:66
+msgid "3 Columns"
+msgstr ""
+
+#: elements/post-element.php:67
+msgid "4 Columns"
+msgstr ""
+
+#: elements/post-element.php:68
+msgid "5 Columns"
+msgstr ""
+
+#: elements/post-element.php:69
+msgid "6 Columns"
+msgstr ""
+
+#: elements/post-element.php:82
+msgid "Margin"
+msgstr ""
+
+#: elements/post-element.php:107
+msgid "Masonry Layout"
+msgstr ""
+
+#: elements/post-element.php:122
+msgid "Post Layout"
+msgstr ""
+
+#: elements/post-element.php:129
+msgid "Display Map"
+msgstr ""
+
+#: elements/post-element.php:140
+msgid "Display Category in Map"
+msgstr ""
+
+#: elements/post-element.php:150
+msgid "Display Posts Below"
+msgstr ""
+
+#: elements/post-element.php:160
+msgid "Display Category in Post"
+msgstr ""
+
+#: elements/post-element.php:176
+msgid "Map Layout"
+msgstr ""
+
+#: elements/post-element.php:184
+msgid "Map Height"
+msgstr ""
+
+#: elements/post-element.php:204
+msgid "Map Margin Bottom"
+msgstr ""
+
+#: elements/post-element.php:226
+msgid "Map Zoom"
+msgstr ""
+
+#: elements/post-element.php:243
+msgid "Street View Controls"
+msgstr ""
+
+#: elements/post-element.php:253
+msgid "Map Type Controls Top Right"
+msgstr ""
+
+#: elements/post-element.php:261
+msgid "Scroll Wheel Zoom"
+msgstr ""
+
+#: elements/post-element.php:269
+msgid "Map Type"
+msgstr ""
+
+#: elements/post-element.php:273
+msgid "Road Map"
+msgstr ""
+
+#: elements/post-element.php:274
+msgid "Satellite"
+msgstr ""
+
+#: elements/post-element.php:275
+msgid "Terrain"
+msgstr ""
+
+#: elements/post-element.php:276
+msgid "Hybrid"
+msgstr ""
+
+#: elements/post-element.php:286
+msgid "Open One Pin at a Time?"
+msgstr ""
+
+#: elements/post-element.php:297
+msgid "Post Query"
+msgstr ""
+
+#: elements/post-element.php:306
+msgid "Narrow by Category"
+msgstr ""
+
+#: elements/post-element.php:307
+msgid "Choose a category to display posts"
+msgstr ""
+
+#: elements/post-element.php:320
+msgid "Order By"
+msgstr ""
+
+#: elements/post-element.php:324
+msgid "Default - Date"
+msgstr ""
+
+#: elements/post-element.php:325
+msgid "Post Title"
+msgstr ""
+
+#: elements/post-element.php:326
+msgid "Menu Order"
+msgstr ""
+
+#: elements/post-element.php:327
+msgid "Last Modified"
+msgstr ""
+
+#: elements/post-element.php:328
+msgid "Random"
+msgstr ""
+
+#: elements/post-element.php:337
+msgid "Order"
+msgstr ""
+
+#: elements/post-element.php:341
+msgid "Ascending"
+msgstr ""
+
+#: elements/post-element.php:342
+msgid "Descending"
+msgstr ""
+
+#: elements/post-element.php:350
+msgid "Offset Count"
+msgstr ""
+
+#: elements/post-element.php:353
+msgid "Use this to skip over posts (Example: 3 would skip the first 3 posts.)"
+msgstr ""
+
+#: elements/post-element.php:367
+msgid "Post Layout Styles"
+msgstr ""
+
+#: elements/post-element.php:376 elements/post-element.php:594
+msgid "Title"
+msgstr ""
+
+#: elements/post-element.php:386 elements/post-element.php:431
+#: elements/post-element.php:479 elements/post-element.php:550
+#: elements/post-element.php:604 elements/post-element.php:649
+#: elements/post-element.php:696
+msgid "Typography"
+msgstr ""
+
+#: elements/post-element.php:395 elements/post-element.php:613
+msgid "Title Color"
+msgstr ""
+
+#: elements/post-element.php:408 elements/post-element.php:626
+msgid "Title Margin"
+msgstr ""
+
+#: elements/post-element.php:421 elements/post-element.php:639
+msgid "Category"
+msgstr ""
+
+#: elements/post-element.php:441 elements/post-element.php:659
+msgid "Category Color"
+msgstr ""
+
+#: elements/post-element.php:454 elements/post-element.php:672
+msgid "Category Margin"
+msgstr ""
+
+#: elements/post-element.php:466
+msgid "Content"
+msgstr ""
+
+#: elements/post-element.php:488
+msgid "Content Color"
+msgstr ""
+
+#: elements/post-element.php:500
+msgid "Content Padding"
+msgstr ""
+
+#: elements/post-element.php:516
+msgid "Content Background"
+msgstr ""
+
+#: elements/post-element.php:527
+msgid "Content Border Hover"
+msgstr ""
+
+#: elements/post-element.php:539 elements/post-element.php:685
+msgid "Date/Time"
+msgstr ""
+
+#: elements/post-element.php:560 elements/post-element.php:706
+msgid "Date/Time Border"
+msgstr ""
+
+#: elements/post-element.php:571 elements/post-element.php:717
+msgid "Date/Time Color"
+msgstr ""
+
+#: elements/post-element.php:585
+msgid "Map Layout Styles"
+msgstr ""
+
+#: inc/custom-meta.php:14
+msgid "Page Settings"
+msgstr ""
+
+#: inc/custom-meta.php:20
+msgid "Sub-title"
+msgstr ""
+
+#: inc/custom-meta.php:26
+msgid "Sidebar Display"
+msgstr ""
+
+#: inc/custom-meta.php:30
+msgid "Hide Sidebar"
+msgstr ""
+
+#: inc/custom-meta.php:31
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/custom-meta.php:32
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/custom-meta.php:37
+msgid "Page Title Background Image"
+msgstr ""
+
+#: inc/custom-meta.php:44
+msgid "Disable Page Title"
+msgstr ""
+
+#: inc/custom-meta.php:64
+msgid "Header Settings"
+msgstr ""
+
+#: inc/custom-meta.php:70
+msgid "Navigation Text Color"
+msgstr ""
+
+#: inc/custom-meta.php:74
+msgid "Default Color"
+msgstr ""
+
+#: inc/custom-meta.php:75
+msgid "Force Text Black"
+msgstr ""
+
+#: inc/custom-meta.php:76
+msgid "Force Text White"
+msgstr ""
+
+#: inc/custom-meta.php:82
+msgid "Force Transparent Header"
+msgstr ""
+
+#: inc/custom-meta.php:89
+msgid "Custom logo for page"
+msgstr ""
+
+#: inc/custom-meta.php:90
+msgid "Must be same size as the main logo."
+msgstr ""
+
+#: inc/custom-meta.php:98
+msgid "Disable Header"
+msgstr ""
+
+#: inc/custom-meta.php:104
+msgid "Disable Footer"
+msgstr ""
+
+#: inc/custom-meta.php:133
+msgid "Featured Image Link"
+msgstr ""
+
+#: inc/custom-meta.php:137
+msgid "Default link to post"
+msgstr ""
+
+#: inc/custom-meta.php:138
+msgid "Link to image in lightbox pop-up"
+msgstr ""
+
+#: inc/custom-meta.php:139
+msgid "Link to URL"
+msgstr ""
+
+#: inc/custom-meta.php:140
+msgid "Link to URL (New Window)"
+msgstr ""
+
+#: inc/custom-meta.php:147
+msgid "Optional Link"
+msgstr ""
+
+#: inc/custom-meta.php:148
+msgid "Make your post link to another page"
+msgstr ""
+
+#: inc/custom-meta.php:155
+msgid "Video/Audio"
+msgstr ""
+
+#: inc/custom-meta.php:156
+msgid "Paste in your video url or embed code"
+msgstr ""
+
+#: inc/custom-meta.php:180
+msgid "Location Settings"
+msgstr ""
+
+#: inc/custom-meta.php:185
+msgid "Google Maps Address"
+msgstr ""
+
+#: inc/custom-meta.php:186
+msgid "Add-in address for the location"
+msgstr ""
+
+#: inc/custom-meta.php:193
+msgid "Location Time"
+msgstr ""
+
+#: inc/custom-meta.php:194
+msgid "Add-in time for the location"
+msgstr ""
+
+#: inc/custom-meta.php:201
+msgid "Replace Default Icon"
+msgstr ""
+
+#: inc/custom-meta.php:208
+msgid "Open Pin By Default"
+msgstr ""
+
+#: inc/custom-meta.php:209
+msgid "Check box to open pin by default"
+msgstr ""
+
+#: inc/social-icons.php:10
+msgid "Header Social Icons"
+msgstr ""
+
+#: inc/social-icons.php:23
+msgid "Facebook Icon"
+msgstr ""
+
+#: inc/social-icons.php:36
+msgid "Twitter Icon"
+msgstr ""
+
+#: inc/social-icons.php:49
+msgid "Instagram Icon"
+msgstr ""
+
+#: inc/social-icons.php:61
+msgid "Spotify Icon"
+msgstr ""
+
+#: inc/social-icons.php:73
+msgid "Youtube Icon"
+msgstr ""
+
+#: inc/social-icons.php:85
+msgid "Vimeo Icon"
+msgstr ""
+
+#: inc/social-icons.php:98
+msgid "Google + Icon"
+msgstr ""
+
+#: inc/social-icons.php:111
+msgid "Pinterest Icon"
+msgstr ""
+
+#: inc/social-icons.php:123
+msgid "Soundcloud Icon"
+msgstr ""
+
+#: inc/social-icons.php:135
+msgid "LinkedIn Icon"
+msgstr ""
+
+#: inc/social-icons.php:147
+msgid "Snapchat Icon"
+msgstr ""
+
+#: inc/social-icons.php:159
+msgid "Tumblr Icon"
+msgstr ""
+
+#: inc/social-icons.php:171
+msgid "Flickr Icon"
+msgstr ""
+
+#: inc/social-icons.php:184
+msgid "Dribbble Icon"
+msgstr ""
+
+#: inc/social-icons.php:197
+msgid "VK Icon"
+msgstr ""
+
+#: inc/social-icons.php:210
+msgid "WordPress Icon"
+msgstr ""
+
+#: inc/social-icons.php:222
+msgid "Houzz Icon"
+msgstr ""
+
+#: inc/social-icons.php:235
+msgid "Behance Icon"
+msgstr ""
+
+#: inc/social-icons.php:247
+msgid "GitHub Icon"
+msgstr ""
+
+#: inc/social-icons.php:259
+msgid "Last.fm Icon"
+msgstr ""
+
+#: inc/social-icons.php:271
+msgid "Medium Icon"
+msgstr ""
+
+#: inc/social-icons.php:283
+msgid "Trip Advisor Icon"
+msgstr ""
+
+#: inc/social-icons.php:295
+msgid "Twitch Icon"
+msgstr ""
+
+#: inc/social-icons.php:307
+msgid "Yelp Icon"
+msgstr ""
+
+#: inc/social-icons.php:321
+msgid "E-mail Icon"
+msgstr ""
+
+#: inc/social-icons.php:334
+msgid "Heart Icon"
+msgstr ""
+
+#: inc/social-icons.php:358
+msgid "Facebook"
+msgstr ""
+
+#: inc/social-icons.php:359
+msgid "Twitter"
+msgstr ""
+
+#: inc/social-icons.php:360
+msgid "Instagram"
+msgstr ""
+
+#: inc/social-icons.php:361
+msgid "Spotify"
+msgstr ""
+
+#: inc/social-icons.php:362
+msgid "Youtube"
+msgstr ""
+
+#: inc/social-icons.php:363
+msgid "Vimeo"
+msgstr ""
+
+#: inc/social-icons.php:364
+msgid "Google+"
+msgstr ""
+
+#: inc/social-icons.php:365
+msgid "Pinterest"
+msgstr ""
+
+#: inc/social-icons.php:366
+msgid "Soundcloud"
+msgstr ""
+
+#: inc/social-icons.php:367
+msgid "LinkedIn"
+msgstr ""
+
+#: inc/social-icons.php:368
+msgid "Snapchat"
+msgstr ""
+
+#: inc/social-icons.php:369
+msgid "Tumblr"
+msgstr ""
+
+#: inc/social-icons.php:370
+msgid "Flickr"
+msgstr ""
+
+#: inc/social-icons.php:371
+msgid "Dribbble"
+msgstr ""
+
+#: inc/social-icons.php:372
+msgid "VK"
+msgstr ""
+
+#: inc/social-icons.php:373
+msgid "WordPress"
+msgstr ""
+
+#: inc/social-icons.php:375
+msgid "Houzz"
+msgstr ""
+
+#: inc/social-icons.php:376
+msgid "Behance"
+msgstr ""
+
+#: inc/social-icons.php:377
+msgid "Github"
+msgstr ""
+
+#: inc/social-icons.php:378
+msgid "LastFM"
+msgstr ""
+
+#: inc/social-icons.php:379
+msgid "Medium"
+msgstr ""
+
+#: inc/social-icons.php:380
+msgid "Trip Advisor"
+msgstr ""
+
+#: inc/social-icons.php:381
+msgid "Twitch"
+msgstr ""
+
+#: inc/social-icons.php:382
+msgid "Yelp"
+msgstr ""
+
+#: inc/social-icons.php:384
+msgid "Email"
+msgstr ""
+
+#: inc/social-icons.php:386
+msgid "Wishlist"
+msgstr ""
+
+#: progression-elements.php:50
+msgid "Locations"
+msgstr ""
+
+#: progression-elements.php:51
+msgid "Location"
+msgstr ""
+
+#: progression-elements.php:66
+msgid "Location Category"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Progression Theme Elements - Food Truck"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://progressionstudios.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Theme Elements for Progression Studios Theme"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Progression Studios"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://progressionstudios.com/"
+msgstr ""
