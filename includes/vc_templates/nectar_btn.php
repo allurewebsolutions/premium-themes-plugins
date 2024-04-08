@@ -21,6 +21,7 @@ extract(shortcode_atts(array(
 	'icon_linecons' => '', 
 	'icon_iconsmind' => '', 
 	'icon_steadysets' => '', 
+	'icon_nectarbrands' => '',
 	'open_new_tab' => '0', 
 	'margin_top' => '',
 	'margin_right' => '',
@@ -57,6 +58,9 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 		case 'iconsmind':
 			$icon = $icon_iconsmind;
 			break;
+		case 'nectarbrands':
+			$icon = $icon_nectarbrands;
+			break;
 		case 'default_arrow':
 			$icon = 'icon-button-arrow';
 			break;
@@ -70,11 +74,11 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 	$im_starting_custom_icon_color = null;
 	
 	if( !empty($solid_text_color_override) && $button_style === 'regular' || !empty($solid_text_color_override) && $button_style === 'regular-tilt' ) {
-		$starting_custom_icon_color    = 'style="color: '.$solid_text_color_override.';" ';
-		$im_starting_custom_icon_color = $solid_text_color_override;
+		$starting_custom_icon_color    = 'style="color: '.esc_attr($solid_text_color_override).';" ';
+		$im_starting_custom_icon_color = esc_attr($solid_text_color_override);
 	}
 	
-	$color = ($button_style === 'regular' || $button_style === 'see-through') ? $button_color_2 : $button_color;
+	$color = ($button_style === 'regular' || $button_style === 'see-through') ? esc_attr($button_color_2) : esc_attr($button_color);
 	
 	if( !empty($icon_family) && $icon_family !== 'none' ) {
 		
@@ -190,11 +194,11 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 	// Custom Coloring.
 	$starting_custom_color = '';
 	if(!empty($solid_text_color_override) && $button_style === 'regular' || !empty($solid_text_color_override) && $button_style === 'regular-tilt') {
-		$starting_custom_color = 'color: '.$solid_text_color_override.'; ';
+		$starting_custom_color = 'color: '.esc_attr($solid_text_color_override).'; ';
 	}
 	
 	if(!empty($color_override)) {
-		$color_or = 'data-color-override="'. $color_override.'" ';	
+		$color_or = 'data-color-override="'. esc_attr($color_override).'" ';	
 		
 		if($button_style === 'see-through' || $button_style === 'see-through-2') {
 			$starting_custom_color .= 'border-color: '.esc_attr($color_override).'; color: '.esc_attr($color_override).';';
@@ -216,7 +220,7 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 	}
 	
 	// Opening tag.	
-	$button_open_tag_escaped .= '<a class="nectar-button '. esc_attr($size) . esc_attr($style_color) . esc_attr($has_icon) . esc_attr($stnd_button).'" '.$button_ID_markup . $nofollow_attr.' style="'. $margins . $starting_custom_color.'" '. $target;
+	$button_open_tag_escaped .= '<a class="nectar-button '. esc_attr($size) . esc_attr($style_color) . esc_attr($has_icon) . esc_attr($stnd_button).'" '.$button_ID_markup . $nofollow_attr.' role="button" style="'. $margins . $starting_custom_color.'" '. $target;
 	
 	$hover_color_override      = (!empty($hover_color_override)) ? ' data-hover-color-override="'. esc_attr($hover_color_override) .'"' : 'data-hover-color-override="false"';
 	$hover_text_color_override = (!empty($hover_text_color_override)) ? ' data-hover-text-color-override="'. esc_attr($hover_text_color_override) .'"' :  null;	
@@ -232,7 +236,7 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 	// Regular Button Markup
 	if( $button_style !== 'see-through-3d' ) {
 		
-		echo $button_open_tag_escaped . ' href="' . esc_attr($url) . '" '.$color_or.$hover_color_override.$hover_text_color_override.'>';
+		echo $button_open_tag_escaped . ' href="' . esc_attr(do_shortcode($url)) . '" '.$color_or.$hover_color_override.$hover_text_color_override.'>';
 		
 		if( $color === 'extra-color-gradient-1' || $color === 'extra-color-gradient-2' ) {
 			echo '<span class="start loading">' . wp_kses_post($text) . $button_icon_escaped. '</span><span class="hover">' . wp_kses_post($text) . $button_icon_escaped. '</span></a>'. $button_close_tag;
@@ -255,7 +259,7 @@ $target = ($open_new_tab == 'true') ? 'target="_blank"' : null;
 		
 		echo '
 		<div class="nectar-3d-transparent-button" '.$button_ID_markup . $nofollow_attr . ' style="'.$margins.'" data-size="'.esc_attr($size).'">
-		  <a href="'. esc_attr($url) .'" '. $target.' class="'.esc_attr($el_class).'"><span class="hidden-text">'.wp_kses_post($text).'</span>
+		  <a href="'. esc_attr($url) .'" '. $target.' role="button" class="'.esc_attr($el_class).'"><span class="hidden-text">'.wp_kses_post($text).'</span>
 			<div class="inner-wrap">
 				<div class="front-3d">
 					<svg>

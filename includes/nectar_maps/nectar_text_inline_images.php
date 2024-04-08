@@ -89,12 +89,11 @@ return array(
       ),
 		array(
 			"type" => "textarea_html",
-			"holder" => "div",
+			"admin_label" => true,
 			"heading" => esc_html__("Text Content", "salient-core"),
 			"param_name" => "content",
 			"value" => '',
 			"description" => '',
-			"admin_label" => false,
 			'dependency' => array(
 				'element' => 'animation_type',
 				'value' => array('default'),
@@ -381,6 +380,19 @@ return array(
       "description" => esc_html__("Determine whether to load the media on page load or to use a lazy load method for higher performance.", "salient-core"),
       'std' => 'default',
     ),
+
+    array(
+      "type" => "nectar_radio_tab_selection",
+      "class" => "",
+      'save_always' => true,
+      "heading" => esc_html__("Text Direction", "salient-core"),
+      "param_name" => "text_direction",
+      "options" => array(
+        esc_html__("Auto", "salient-core") => "default",
+        esc_html__("Left", "salient-core") => "ltr",
+				esc_html__("Right", "salient-core") => "rtl",
+      ),
+    )
 		
     
 

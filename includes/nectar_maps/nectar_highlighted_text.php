@@ -45,12 +45,11 @@ return array(
 		),
 		array(
 			"type" => "textarea_html",
-			"holder" => "div",
 			"heading" => esc_html__("Text Content", "salient-core"),
 			"param_name" => "content",
 			"value" => '',
 			"description" => esc_html__("Any text that is wrapped in italics will get an animated highlight. Use the \"I\" button on the editor above when highlighting text to toggle italics.", "salient-core"),
-			"admin_label" => false
+			"admin_label" => true
 		),
 		array(
 			"type" => "colorpicker",
@@ -241,6 +240,19 @@ return array(
 			"heading" => esc_html__("Highlight ID", "salient-core"),
 			"param_name" => "id",
 			"description" => esc_html__("Enter an ID that will be added to your highlighted word. You can use this for targeting the highlighted word with CSS or other elements. When using multiple highlights, an integer will automatically be added on to the end of each ID in the format {id}-{number}", "salient-core")
+		),
+
+		array(
+			"type" => "nectar_radio_tab_selection",
+			"class" => "",
+			'save_always' => true,
+			"heading" => esc_html__("Text Direction", "salient-core"),
+			"param_name" => "text_direction",
+			"options" => array(
+				esc_html__("Auto", "salient-core") => "default",
+				esc_html__("Left", "salient-core") => "ltr",
+				esc_html__("Right", "salient-core") => "rtl",
+			),
 		),
 		
 	)

@@ -73,7 +73,7 @@ if( 'images' === $media_type ) {
   
   }
 
-  if( count($images) == 1 && $images[0] == '-1' ) {
+  if( count($images) == 1 && $images[0] == '-1' || count($images) == 1 && $images[0] == '') {
     for( $i=0; $i<5; $i++) {
       $place_holder_size = ( 'circle_fade_in' === $image_effect ) ? 'square' : 'wide';
       $images_markup_arr[$i] = '<img src="'.esc_attr( SALIENT_CORE_PLUGIN_PATH . '/includes/img/placeholder-'.$place_holder_size.'.jpg').'" alt="" width="100" height="100" />';
@@ -114,6 +114,8 @@ else {
 }
 
 
+// sanitize text content.
+$content = wp_kses_post( $content );
 
 /* Interpolate symbol */
 $content = preg_replace_callback( '/\*/', function( $match ) use( $images_markup_arr, &$count ) {

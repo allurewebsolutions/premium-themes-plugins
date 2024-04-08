@@ -95,7 +95,7 @@
     
           $shadow_method = isset($atts['box_shadow_method']) ? $atts['box_shadow_method'] : 'default';
 
-          // Detemerine shadow type.
+          // Determine shadow type.
          if( 'default' === $shadow_method ) {
           $shadow_base = 'box-shadow: $;';
          } else {
@@ -120,10 +120,10 @@
         // Build shadow.
         foreach($parsed_values as $key => $value) {
           if( 'opacity' !== $key ) {
-            $style .= $value . 'px ';
+            $style .= esc_attr($value) . 'px ';
           }
           else {
-            $style .= 'rgba(0,0,0,'.$value.')';
+            $style .= 'rgba(0,0,0,'.esc_attr($value).')';
           }
         }
 
@@ -161,6 +161,9 @@
         case 'linecons':
           $icon = $atts['icon_linecons'];
           wp_enqueue_style( 'vc_linecons' );
+          break;
+        case 'nectarbrands':
+          $icon = $atts['icon_nectarbrands'];
           break;
         case 'iconsmind':
           $icon = $atts['icon_iconsmind'];
@@ -342,6 +345,23 @@
   }
 
 
+  if( !function_exists('nectar_get_curved_arrow_markup') ) {
+    function nectar_get_curved_arrow_markup() {
+      return '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 22 22" preserveAspectRatio="xMidYMid meet">
+      <g transform="matrix(1,0,0,-1,12,11)">
+      <g transform="matrix(1,0,0,-1,-1,3)">
+        <path class="line" stroke-linejoin="round" stroke-linecap="round" fill-opacity="0" stroke="#000" stroke-width="1.5" d="M 7 3.3 L -3.2 3.3 C -5 3.3 -6.5 1.8 -6.5 0 L -6.5 -2.5"></path>
+      </g>
+      <g transform="matrix(1,0,0,-1,4,-0.5)">
+        <path class="arrow" fill-opacity="0" stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#000" d="M -2.5 5 C -2.5 5 2.5 0 2.5 0"></path>
+        <path class="arrow" fill-opacity="0" stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#000" d="M -2.5 -5 C -2.5 -5 2.5 0 2.5 0"></path>
+      </g>
+      </g>
+      </svg>';
+    }
+  }
+
+
  /**
   * Map Legacy FA Icons
   *
@@ -410,7 +430,7 @@
         'icon-folder-close-alt'       => 'icon-folder-o',
         'icon-folder-close'           => 'icon-folder',
         'icon-folder-open-alt'        => 'icon-folder-open-o',
-        'icon-food '                  => 'icon-cutlery',
+        'icon-food'                  => 'icon-cutlery',
         'icon-frown'                  => 'icon-frown-o',
         'icon-fullscreen'             => 'icon-arrows-alt',
         'icon-github-sign'            => 'icon-github-square',

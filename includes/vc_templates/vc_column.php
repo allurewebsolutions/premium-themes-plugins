@@ -19,6 +19,7 @@ extract(shortcode_atts(array(
     'sticky_content_alignment' => 'default',
     'enable_animation' => '',
     'animation' => '',
+    'persist_animation_on_mobile' => '',
     'column_position' => '',
     'column_padding' => 'no-extra-padding',
 		'column_padding_tablet' => 'inherit',
@@ -118,6 +119,7 @@ if( $centered_text === 'true' ) {
   $el_class .= ' centered-text';
 }
 
+$sticky_open = $sticky_close = '';
 if( $sticky_content === 'true' ) {
 
    // JS powered.
@@ -126,6 +128,9 @@ if( $sticky_content === 'true' ) {
   } 
   // CSS powered.
   else {
+
+    $sticky_open = '<div class="n-sticky">';
+    $sticky_close = '</div>';
 
     if( 'middle' === $sticky_content_alignment ) { 
       $el_class .= ' nectar-sticky-column-css--middle';
@@ -148,7 +153,7 @@ if(!empty($background_color)) {
 $column_bg_overlay_wrap_attrs_escaped = '';
 if( 'true' === $mask_enable && 'custom' === $mask_shape ) {
 
-  $mask_image_src = $mask_custom_image;
+  $mask_image_src = apply_filters('nectar_mask_image_src', $mask_custom_image);
 
   if (preg_match('/^\d+$/', $mask_custom_image)) {
     apply_filters('wpml_object_id', $mask_image_src, 'attachment', TRUE);
@@ -246,7 +251,7 @@ foreach( $bg_img_arr as $viewport => $image ) {
 
 $using_custom_font_color = '';
 if( !empty($font_color) ) {
-  $style .= ' color: '.$font_color.';';
+  $style .= ' color: '.esc_attr($font_color).';';
   $using_custom_font_color = 'data-cfc="true" ';
 }
 
@@ -453,6 +458,9 @@ if( !empty($color_overlay) ||
 	}
   else if( $enable_gradient === 'true' ) {
 
+      $color_overlay = esc_attr($color_overlay);
+      $color_overlay_2 = esc_attr($color_overlay_2);
+
       if($color_overlay !== 'transparent' && $color_overlay_2 === 'transparent') {
         $color_overlay_2 = 'rgba(255,255,255,0.001)';
       }
@@ -510,7 +518,7 @@ if( !empty($color_overlay) ||
   else {
 
       if( !empty($color_overlay) ) {
-        $column_overlay_layer_style .= 'background-color:' . $color_overlay . ';  opacity: '.esc_attr($overlay_strength).'; ';
+        $column_overlay_layer_style .= 'background-color:' . esc_attr($color_overlay) . ';  opacity: '.esc_attr($overlay_strength).'; ';
       }
 
   }
@@ -527,6 +535,7 @@ $video_image_src = '';
 
 if( $video_bg ) {
 
+  $video_image_poster_attr = '';
   // Parse video image.
   if( strpos($video_image, "http") !== false ){
     $video_image_src = $video_image;
@@ -541,13 +550,14 @@ if( $video_bg ) {
   if( !empty($video_image_src) ) {
     $video_markup .= '
     <div class="mobile-video-image column-video column-bg-layer" style="background-image: url('. esc_url( $video_image_src ) .')"></div>';
+    $video_image_poster_attr = ' poster="'.esc_attr($video_image_src).'"';
   }
   $video_markup .= '
   <div class="nectar-video-wrap column-video column-bg-layer"'.$column_bg_overlay_wrap_attrs_escaped.'>';
       
     if( 'lazy-load' === $background_video_loading ) {
 
-      $video_markup .= '<video class="nectar-video-bg nectar-lazy-video" width="1800" height="700" preload="auto" loop autoplay muted playsinline>';
+      $video_markup .= '<video class="nectar-video-bg nectar-lazy-video" width="1800" height="700" preload="auto" loop autoplay muted playsinline'.$video_image_poster_attr.'>';
       if(!empty($video_webm)) { $video_markup .= '<source data-nectar-video-src="'. esc_url( $video_webm ) .'" type="video/webm">'; }
       if(!empty($video_mp4)) { $video_markup .= '<source data-nectar-video-src="'. esc_url( $video_mp4 ) .'"  type="video/mp4">'; }
       if(!empty($video_ogv)) { $video_markup .= '<source data-nectar-video-src="'. esc_url( $video_ogv ) .'" type="video/ogg">'; }
@@ -555,7 +565,7 @@ if( $video_bg ) {
 
     }  else {
       $video_markup .= '
-      <video class="nectar-video-bg" width="1800" height="700" preload="auto" loop autoplay muted playsinline>';
+      <video class="nectar-video-bg" width="1800" height="700" preload="auto" loop autoplay muted playsinline'.$video_image_poster_attr.'>';
 
         if(!empty($video_webm)) { $video_markup .= '<source src="'. esc_url( $video_webm ) .'" type="video/webm">'; }
         if(!empty($video_mp4)) { $video_markup .= '<source src="'. esc_url( $video_mp4 ) .'"  type="video/mp4">'; }
@@ -639,7 +649,21 @@ if( $active_animation_easing && !empty($animation_easing) && 'default' !== $anim
 if( $animation_type == 'parallax' ) {
   $column_data_attrs .= 'data-scroll-animation="true" data-scroll-animation-movement="'.esc_attr($animation_movement_type).'" data-scroll-animation-mobile="'.esc_attr($persist_movement_on_mobile).'" data-scroll-animation-intensity="'.esc_attr(strtolower($column_parallax_intensity)).'" ';
 }
+// Scroll based animation.
+if( 'scroll_pos_advanced' === $animation_type ) {
 
+  $animation_atts = array_merge(
+    $atts, 
+    array(
+      'animation_inner_selector' => ''
+    )
+  );
+  $animations = new NectarAnimations($animation_atts);
+  $column_data_attrs .= 'data-nectar-animate-settings="'.esc_attr($animations->json).'" data-advanced-animation="true" ';
+  if ( 'true' === $persist_animation_on_mobile) {
+    $column_data_attrs .= 'data-persist-animation ';
+  }
+}
 
 // Col BG layers.
 $col_bg_combined_output = $column_link_html . $border_html . $image_bg_markup . $video_markup;
@@ -671,7 +695,7 @@ $column_inner_style_parsed = '';
 if( !empty($inner_columns_style) ) {
   $column_inner_style_parsed = 'style="'.$inner_columns_style.'"';
 }
-$output .= "\n\t\t".'<div class="vc_column-inner" '.$column_inner_style_parsed.'>';
+$output .= "\n\t\t".$sticky_open.'<div class="vc_column-inner" '.$column_inner_style_parsed.'>';
 
 if( true === $nectar_use_modern_grid ) {
   $output .= $col_bg_combined_output;
@@ -682,7 +706,7 @@ $output .= "\n\t\t\t".'<div class="wpb_wrapper">';
 $output .= "\n\t\t\t\t".wpb_js_remove_wpautop($content);
 $output .= "\n\t\t\t".'</div> '.$this->endBlockComment('.wpb_wrapper');
 
-$output .= "\n\t\t".'</div>';
+$output .= "\n\t\t".'</div>'. $sticky_close;
 
 $output .= "\n\t".'</div> '.$this->endBlockComment($el_class) . "\n";
 

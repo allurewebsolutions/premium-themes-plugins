@@ -224,13 +224,13 @@ for( $i = 1; $i < 5; $i++ ) {
 	$parsed_animation        = ( 'yes' !== $cascading_attrs['parallax_scrolling'] ) ? str_replace(" ","-",$cascading_attrs['image_'.$i.'_animation']) : 'none';
 
 	if(!empty($cascading_attrs['image_'.$i.'_offset_x'])) {
-    $transform_string .='translateX('.$transform_x_sign_string . $cascading_attrs['image_'.$i.'_offset_x'].') '; 
+    $transform_string .='translateX('.esc_attr($transform_x_sign_string) . esc_attr($cascading_attrs['image_'.$i.'_offset_x']).') '; 
   }
 	if(!empty($cascading_attrs['image_'.$i.'_offset_y'])) {
-    $transform_string .= 'translateY('.$transform_y_sign_string . $cascading_attrs['image_'.$i.'_offset_y'].') '; 
+    $transform_string .= 'translateY('.esc_attr($transform_y_sign_string) . esc_attr($cascading_attrs['image_'.$i.'_offset_y']).') '; 
   }
 	if(!empty($cascading_attrs['image_'.$i.'_rotate']) && $cascading_attrs['image_'.$i.'_rotate'] != 'none') {
-    $transform_string .= 'rotate('.$rotate_sign_string . $cascading_attrs['image_'.$i.'_rotate'].'deg) ';
+    $transform_string .= 'rotate('.esc_attr($rotate_sign_string) . esc_attr($cascading_attrs['image_'.$i.'_rotate']).'deg) ';
   }
   if(!empty($cascading_attrs['image_'.$i.'_scale']) && $cascading_attrs['image_'.$i.'_scale'] != '100%') {
     $scale_string_escaped = 'style="transform: scale('. esc_attr($cascading_attrs['image_'.$i.'_scale']).')"';
@@ -249,13 +249,23 @@ for( $i = 1; $i < 5; $i++ ) {
 			$lazy_load_wrap_class = ' lazy-enabled';		
 			
 			$placeholder_img_src = "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20".esc_attr($image_width).'%20'.esc_attr($image_height)."'%2F%3E";	
-      $img_el = '<img src="'.$placeholder_img_src.'" data-nectar-img-src="'.$image_url.'" '.$image_srcset.' height="'.esc_attr($image_height).'" width="'.esc_attr($image_width).'" class="skip-lazy nectar-lazy" alt="'.esc_attr($image_alt).'" />';
+      $img_el = '<img src="'.$placeholder_img_src.'" data-nectar-img-src="'.esc_attr($image_url).'" '.$image_srcset.' height="'.esc_attr($image_height).'" width="'.esc_attr($image_width).'" class="skip-lazy nectar-lazy" alt="'.esc_attr($image_alt).'" />';
     } else {
 			
+      $class_names = '';
+      $class_attr = '';
+      $disable_third_party_lazy_loading = apply_filters('nectar_disable_third_party_lazy_loading', true);
+      if ( $disable_third_party_lazy_loading ) {
+        $class_names = 'skip-lazy';
+      }
+      if ( !empty($class_names) ) {
+        $class_attr = 'class="' . esc_attr($class_names) . '"';
+      }
+      
 			if( true === $has_dimension_data ) {
-				$img_el = '<img src="'.$image_url.'" '.$image_srcset.' height="'.esc_attr($image_height).'" width="'.esc_attr($image_width).'" class="skip-lazy" alt="'.esc_attr($image_alt).'" />';
+				$img_el = '<img src="'.esc_attr($image_url).'" '.$image_srcset.' height="'.esc_attr($image_height).'" width="'.esc_attr($image_width).'" '.$class_attr.' alt="'.esc_attr($image_alt).'" />';
 			} else {
-				$img_el = '<img src="'.$image_url.'" '.$image_srcset.' class="skip-lazy" alt="'.esc_attr($image_alt).'" />';
+				$img_el = '<img src="'.esc_attr($image_url).'" '.$image_srcset.' '.$class_attr.' alt="'.esc_attr($image_alt).'" />';
 			}
     
     }
@@ -280,7 +290,7 @@ for( $i = 1; $i < 5; $i++ ) {
 	
 	$data_has_bg_img   = (!empty($image_url)) ? 'true': 'false';
 	$data_has_bg_color = (!empty($cascading_attrs['image_'.$i.'_bg_color'])) ? 'true' : 'false';
-	$bg_color_markup   = ($data_has_bg_color == 'true') ? '<div class="bg-color" style=" -webkit-transform:'.$transform_string.'; -ms-transform:'.$transform_string.'; transform: '.$transform_string.'; background-color: '.$cascading_attrs['image_'.$i.'_bg_color'].';" data-has-bg-color="'.esc_attr($data_has_bg_color).'"></div>' : null;
+	$bg_color_markup   = ($data_has_bg_color == 'true') ? '<div class="bg-color" style=" -webkit-transform:'.$transform_string.'; -ms-transform:'.$transform_string.'; transform: '.$transform_string.'; background-color: '.esc_attr($cascading_attrs['image_'.$i.'_bg_color']).';" data-has-bg-color="'.esc_attr($data_has_bg_color).'"></div>' : null;
 	
 	if( !empty($image_url) || $data_has_bg_color === 'true' ) {
     

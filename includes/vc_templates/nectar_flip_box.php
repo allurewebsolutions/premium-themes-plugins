@@ -27,6 +27,7 @@ extract(shortcode_atts(array(
 	'icon_fontawesome' => '',
 	'icon_linea' => '',
 	'icon_iconsmind' => '',
+	'icon_nectarbrands' => '',
 	'icon_steadysets' => '',
 	'icon_color' => 'accent-color',
 	'icon_size' => '60',
@@ -117,6 +118,9 @@ switch( $icon_family ) {
 	case 'steadysets':
 		$icon = $icon_steadysets;
 		break;
+	case 'nectarbrands':
+		$icon = $icon_nectarbrands;
+		break;
 	case 'linea':
 		$icon = $icon_linea;
 		break;
@@ -153,7 +157,7 @@ if( !empty($icon) ) {
 		// Custom size.
 		$icon_markup = preg_replace(
 	   array('/width="\d+"/i', '/height="\d+"/i'),
-	   array('width="'.$icon_size.'"', 'height="'.$icon_size.'"'),
+	   array('width="'.esc_attr($icon_size).'"', 'height="'.esc_attr($icon_size).'"'),
 	   $icon_markup);
 		
 		// Handle gradients.
@@ -178,8 +182,8 @@ if( !empty($icon) ) {
 				
 			  $icon_markup .= '<svg style="height:0;width:0;position:absolute;" aria-hidden="true" focusable="false">
 				  <linearGradient id="'.$icon_id.'" x2="1" y2="1">
-				    <stop offset="0%" stop-color="'.$accent_gradient_to.'" />
-				    <stop offset="100%" stop-color="'.$accent_gradient_from.'" />
+				    <stop offset="0%" stop-color="'.esc_attr($accent_gradient_to).'" />
+				    <stop offset="100%" stop-color="'.esc_attr($accent_gradient_from).'" />
 				  </linearGradient>
 				</svg>';
 		} 
@@ -190,12 +194,12 @@ if( !empty($icon) ) {
 	else {
 		
 		
-		$icon_markup = '<i class="icon-default-style '.$icon.'" data-color="'.esc_attr(strtolower($icon_color)).'" style="font-size: '.esc_attr($icon_size).'px!important; line-height: '.esc_attr($icon_size).'px!important;"></i>';
+		$icon_markup = '<i class="icon-default-style '.esc_attr($icon).'" data-color="'.esc_attr(strtolower($icon_color)).'" style="font-size: '.esc_attr($icon_size).'px!important; line-height: '.esc_attr($icon_size).'px!important;"></i>';
 	}
 	
 }
 
 echo '<div class="nectar-flip-box" data-min-height="'.esc_attr($min_height).'" data-flip-direction="'.esc_attr($flip_direction).'" data-h_text_align="'.esc_attr($h_text_align).'" data-v_text_align="'.esc_attr($v_text_align).'">';
-echo '<div class="flip-box-front" '.$front_lazy_escaped.' data-bg-overlay="'.esc_attr($bg_color_overlay).'" data-text-color="'.esc_attr($text_color).'" style="'.$style.'"> <div class="inner">'.$icon_markup . do_shortcode($front_content).'</div> </div>';
-echo '<div class="flip-box-back" '.$back_lazy_escaped.' data-bg-overlay="'.esc_attr($bg_color_overlay_2).'" data-text-color="'.esc_attr($text_color_2).'" style="'.$style2.'"> <div class="inner">'.do_shortcode($content).'</div> </div>';
+echo '<div class="flip-box-front" '.$front_lazy_escaped.' data-bg-overlay="'.esc_attr($bg_color_overlay).'" data-text-color="'.esc_attr($text_color).'" style="'.$style.'"> <div class="inner">'.$icon_markup . do_shortcode(wp_kses_post($front_content)).'</div> </div>';
+echo '<div class="flip-box-back" '.$back_lazy_escaped.' data-bg-overlay="'.esc_attr($bg_color_overlay_2).'" data-text-color="'.esc_attr($text_color_2).'" style="'.$style2.'"> <div class="inner">'.do_shortcode(wp_kses_post($content)).'</div> </div>';
 echo '</div>';

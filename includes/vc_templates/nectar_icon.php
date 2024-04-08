@@ -12,6 +12,7 @@ extract(shortcode_atts(array(
 	'icon_linea' => '',
 	'icon_iconsmind' => '',
 	'icon_steadysets' => '',
+	'icon_nectarbrands' => '',
 	'icon_color' => 'accent-color',
 	'icon_color_type' => 'color_scheme',
 	'icon_color_custom' => '',
@@ -29,6 +30,7 @@ extract(shortcode_atts(array(
 	'margin_bottom' => '',
 	'margin_left' => '',
 	'zindex' => '',
+	'screen_reader_text' => '',
 	'pointer_events' => ''
 ), $atts));
 
@@ -40,6 +42,9 @@ switch($icon_family) {
 		break;
 	case 'steadysets':
 		$icon = $icon_steadysets;
+		break;
+	case 'nectarbrands':
+		$icon = $icon_nectarbrands;
 		break;
 	case 'linea':
 		$icon = $icon_linea;
@@ -96,10 +101,10 @@ else if( $icon_family === 'iconsmind' ) {
 	$icon_id = 'nectar-iconsmind-icon-'.uniqid();
 	$converted_icon_name = str_replace('iconsmind-', '', $icon);
   if( strlen($grad_dimensions) > 2 ) {
-    $icon_markup = '<span class="im-icon-wrap" data-color="'.strtolower($icon_color) .'"><span>';
+    $icon_markup = '<span class="im-icon-wrap" data-color="'.esc_attr(strtolower($icon_color)) .'"><span>';
   }
   else {
-    $icon_markup = '<span class="im-icon-wrap" data-color="'.strtolower($icon_color) .'" style="height: '. esc_attr($icon_size_val) .'px; width: '. esc_attr($icon_size_val) .'px;"><span>';
+    $icon_markup = '<span class="im-icon-wrap" data-color="'.esc_attr(strtolower($icon_color)) .'" style="height: '. esc_attr($icon_size_val) .'px; width: '. esc_attr($icon_size_val) .'px;"><span>';
   }
 	
   require_once( SALIENT_CORE_ROOT_DIR_PATH.'includes/icons/class-nectar-icon.php' );
@@ -114,7 +119,7 @@ else if( $icon_family === 'iconsmind' ) {
 	// Custom size.
 	$icon_markup = preg_replace(
    array('/width="\d+"/i', '/height="\d+"/i'),
-   array('width="'.$icon_size.'"', 'height="'.$icon_size.'"'),
+   array('width="'.esc_attr($icon_size).'"', 'height="'.esc_attr($icon_size).'"'),
    $icon_markup);
 	
 	// Handle gradients.
@@ -138,8 +143,8 @@ else if( $icon_family === 'iconsmind' ) {
 			
 		  $icon_markup .= '<svg style="height:0;width:0;position:absolute;" aria-hidden="true" focusable="false">
 			  <linearGradient id="'.$icon_id.'" x2="1" y2="1">
-			    <stop offset="0%" stop-color="'.$accent_gradient_from.'" />
-			    <stop offset="100%" stop-color="'.$accent_gradient_to.'" />
+			    <stop offset="0%" stop-color="'.esc_attr($accent_gradient_from).'" />
+			    <stop offset="100%" stop-color="'.esc_attr($accent_gradient_to).'" />
 			  </linearGradient>
 			</svg>';
 	} 
@@ -171,7 +176,7 @@ if( !empty($margin_top) ) {
 if( !empty($margin_right) ) {
 	$wrapping_styles .= 'margin-right: '.intval($margin_right).'px; ';
 }
-if( !empty($margin_bottom) ) {
+if( !empty($margin_bottom) || $margin_bottom === '0' ) {
 	$wrapping_styles .= 'margin-bottom: '.intval($margin_bottom).'px; ';
 }
 if( !empty($margin_left) ) {
@@ -184,8 +189,9 @@ if( !empty($zindex) ) {
 
 // Link.
 if( !empty($url) ) {
+	$sr_text  = (!empty($screen_reader_text)) ? '<span class="screen-reader-text">'.esc_html($screen_reader_text).'</span>' : '';
 	$target    = ($open_new_tab === 'true') ? 'target="_blank"' : null;
-	$icon_link = '<a href="'.esc_attr($url).'" '.$target.'></a>';
+	$icon_link = '<a href="'.esc_attr($url).'" '.$target.'>'.$sr_text.'</a>';
 } else {
 	$icon_link = null;
 }

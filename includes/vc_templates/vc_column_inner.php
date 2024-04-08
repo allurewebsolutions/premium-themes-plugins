@@ -16,6 +16,7 @@ extract(shortcode_atts(array(
   "centered_text" => 'false',
   'enable_animation' => '',
   'animation' => '',
+  'persist_animation_on_mobile' => '',
   'column_padding' => 'no-extra-padding',
   'column_padding_position'=> 'all',
   'column_padding_type' => 'default',
@@ -115,7 +116,7 @@ if( !empty($background_color) ) {
 $column_bg_overlay_wrap_attrs_escaped = '';
 if( 'true' === $mask_enable && 'custom' === $mask_shape ) {
 
-  $mask_image_src = $mask_custom_image;
+  $mask_image_src = apply_filters('nectar_mask_image_src', $mask_custom_image);
 
   if (preg_match('/^\d+$/', $mask_custom_image)) {
     apply_filters('wpml_object_id', $mask_image_src, 'attachment', TRUE);
@@ -420,6 +421,9 @@ if( !empty($color_overlay) ||
 	}
   else if( $enable_gradient === 'true' ) {
 
+      $color_overlay = esc_attr($color_overlay);
+      $color_overlay_2 = esc_attr($color_overlay_2);
+
       if($color_overlay !== 'transparent' && $color_overlay_2 === 'transparent') {
         $color_overlay_2 = 'rgba(255,255,255,0.001)';
       }
@@ -477,7 +481,7 @@ if( !empty($color_overlay) ||
   else {
 
       if( !empty($color_overlay) ) {
-        $column_overlay_layer_style .= 'background-color:' . $color_overlay . ';  opacity: '.esc_attr($overlay_strength).'; ';
+        $column_overlay_layer_style .= 'background-color:' . esc_attr($color_overlay) . ';  opacity: '.esc_attr($overlay_strength).'; ';
       }
 
   }
@@ -607,6 +611,21 @@ if( $active_animation_easing && !empty($animation_easing) && 'default' !== $anim
 
 if( in_array($animation_type, array('parallax','entrance_and_parallax')) ) {
   $column_inner_data_attrs .= 'data-scroll-animation="true" data-scroll-animation-movement="'.esc_attr($animation_movement_type).'" data-scroll-animation-mobile="'.esc_attr($persist_movement_on_mobile).'" data-scroll-animation-intensity="'.esc_attr(strtolower($column_parallax_intensity)).'" ';
+}
+// Scroll based animation.
+if( 'scroll_pos_advanced' === $animation_type ) {
+
+  $animation_atts = array_merge(
+    $atts, 
+    array(
+      'animation_inner_selector' => ''
+    )
+  );
+  $animations = new NectarAnimations($animation_atts);
+  $column_inner_data_attrs .= 'data-nectar-animate-settings="'.esc_attr($animations->json).'" data-advanced-animation="true" ';
+  if ( 'true' === $persist_animation_on_mobile) {
+    $column_inner_data_attrs .= 'data-persist-animation ';
+  }
 }
 
 $nectar_use_modern_grid = ( function_exists('nectar_use_flexbox_grid') && true === nectar_use_flexbox_grid() ) ? true : false;

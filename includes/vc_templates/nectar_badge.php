@@ -55,7 +55,7 @@ if( !empty($margin_left) ) {
 $el_atts = '';
 
 if( 'custom' === $bg_color_type ) {
-  $el_atts .= ' data-bg-color-custom="'.$bg_color_custom.'"';
+  $el_atts .= ' data-bg-color-custom="'.esc_attr($bg_color_custom).'"';
 }
 
 $el_style = '';
@@ -63,4 +63,4 @@ if(!empty($margins)) {
     $el_style = ' style="'.$margins.'"';
 }
 
-echo '<div class="'.nectar_clean_classnames(implode(' ',$classes)).'"'.$el_style . $el_atts.'><div class="'.nectar_clean_classnames(implode(' ',$inner_classes)).'">' . $text . '</div></div>';
+echo '<div class="'.nectar_clean_classnames(implode(' ',$classes)).'"'.$el_style . $el_atts.'><div class="'.nectar_clean_classnames(implode(' ',$inner_classes)).'">' . wp_kses_post($text) . '</div></div>';

@@ -172,6 +172,10 @@ echo '<div class="nectar-hor-list-item '.$hasbtn_class.'" data-hover-effect="'.e
 		$closing_tag = null;
 		
 		if( !empty($atts['col_'.$index_to_grab.'_text_element']) && $atts['col_'.$index_to_grab.'_text_element'] !== 'p' ) {
+			
+			if (!in_array($atts['col_'.$index_to_grab.'_text_element'], array('h1', 'h2', 'h3', 'h4', 'h5', 'h6','p','span'))) {
+				$atts['col_'.$index_to_grab.'_text_element'] = 'p';
+			}
 			$opening_tag = '<' . $atts['col_'.$index_to_grab.'_text_element'] . '>';
 			$closing_tag = '</' . $atts['col_'.$index_to_grab.'_text_element'] . '>';
 		}
@@ -183,11 +187,15 @@ $url_markup = '';
 
 if( !empty($url) ) {
 	
-	$target = null;
+	$target = '';
+	$aria_label = '';
 	if(!empty($open_new_tab) && $open_new_tab === 'true') {
-		$target = 'target="_blank"';
+		$target = ' target="_blank"';
 	}
-	$url_markup = '<a class="full-link" '.$target.' href="'.esc_url($url).'"></a>';
+	if(isset($atts['col_1_content']) && !empty($atts['col_1_content'])) { 
+		$aria_label = ' aria-label="'.esc_attr(wp_strip_all_tags($atts['col_1_content'])).'"';
+	}
+	$url_markup = '<a class="full-link"'.$target.$aria_label.' href="'.esc_url($url).'"> </a>';
 }
 
 echo wp_kses_post( $url_markup ).'</div>';

@@ -12,6 +12,7 @@ extract(shortcode_atts(array(
 	'icon_linea' => '', 
 	'icon_iconsmind' => '', 
 	'icon_steadysets' => '', 
+	'icon_nectarbrands' => '',
 	"header" => "", 
 	"text_full_html" => 'simple',
 	"text" => ""), $atts));
@@ -38,6 +39,9 @@ switch($icon_family) {
 		break;
 	case 'iconsmind':
 		$icon = $icon_iconsmind;
+		break;
+	case 'nectarbrands':
+		$icon = $icon_nectarbrands;
 		break;
 	default:
 		$icon = '';
@@ -95,8 +99,8 @@ if( !empty($icon) ) {
 				
 			  $icon_markup .= '<svg style="height:0;width:0;position:absolute;" aria-hidden="true" focusable="false">
 				  <linearGradient id="'.$icon_id.'" x2="1" y2="1">
-				    <stop offset="0%" stop-color="'.$accent_gradient_from.'" />
-				    <stop offset="100%" stop-color="'.$accent_gradient_to.'" />
+				    <stop offset="0%" stop-color="'.esc_attr($accent_gradient_from).'" />
+				    <stop offset="100%" stop-color="'.esc_attr($accent_gradient_to).'" />
 				  </linearGradient>
 				</svg>';
 		} 
@@ -106,7 +110,7 @@ if( !empty($icon) ) {
 	
 	else {
 		
-		$icon_markup = '<i class="icon-default-style '.$icon.'" data-color="'.$icon_color.'"></i>';
+		$icon_markup = '<i class="icon-default-style '.esc_attr($icon).'" data-color="'.esc_attr($icon_color).'"></i>';
 	}
 	
 	
