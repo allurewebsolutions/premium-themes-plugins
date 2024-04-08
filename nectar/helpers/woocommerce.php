@@ -103,10 +103,12 @@ if ( !function_exists( 'nectar_shop_wrapper_start_sidebar_left' ) ) {
 				do_action('nectar_shop_above_loop');
 				echo '<div class="row"><div id="sidebar" class="col span_3 col">';
 				do_action('nectar_shop_sidebar_top');
+				do_action('nectar_hook_sidebar_top');
 				echo '<div class="inner">';
 				if ( function_exists( 'dynamic_sidebar' ) ) {
 					dynamic_sidebar( 'woocommerce-sidebar' );
 				}
+				do_action('nectar_hook_sidebar_bottom');
 		echo '</div></div><div class="post-area col span_9 col_last">';
 	}
 }
@@ -775,8 +777,9 @@ if ( !function_exists( 'nectar_mobile_woocommerce_header_add_to_cart_fragment' )
 
 		ob_start();
 		$nav_cart_style = ( isset( $nectar_options['ajax-cart-style'] ) ) ? $nectar_options['ajax-cart-style'] : 'default';
+		$first_load_class = ( intval($woocommerce->cart->cart_contents_count) > 0 ) ? ' class="first-load"' : '';
 		?>
-		<a id="mobile-cart-link" data-cart-style="<?php echo esc_attr($nav_cart_style); ?>" href="<?php echo wc_get_cart_url(); ?>"><i class="icon-salient-cart"></i><div class="cart-wrap"><span><?php echo esc_html( $woocommerce->cart->cart_contents_count ); ?> </span></div></a>
+		<a id="mobile-cart-link" <?php echo ''.$first_load_class; ?> aria-label="<?php echo esc_attr__('Cart','salient'); ?>" data-cart-style="<?php echo esc_attr($nav_cart_style); ?>" href="<?php echo wc_get_cart_url(); ?>"><i class="icon-salient-cart"></i><div class="cart-wrap"><span><?php echo esc_html( $woocommerce->cart->cart_contents_count ); ?> </span></div></a>
 		<?php
 
 		$fragments['a#mobile-cart-link'] = ob_get_clean();
@@ -897,7 +900,7 @@ if ( ! function_exists( 'nectar_product_thumbnail_with_cart' ) ) {
 		global $nectar_quick_view_in_use;
 		?>
 	   <div class="product-wrap">
-			<a href="<?php the_permalink(); ?>"><?php
+			<a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr($product->get_name()); ?>"><?php
 
 							$product_second_image = null;
 							if ( $product_hover_alt_image == '1' ) {
@@ -1448,6 +1451,7 @@ if( !function_exists('nectar_check_product_lazy_loading') ) {
 		'1' === $nectar_options['product_lazy_load_images'] ) {
 
 			add_filter('wp_get_attachment_image_attributes','nectar_lazyload_woocommerce_imgs', 10, 5 );
+			add_filter( 'wp_lazy_loading_enabled', '__return_false' );
 
 		}
 

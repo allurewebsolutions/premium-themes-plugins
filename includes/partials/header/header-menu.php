@@ -103,7 +103,7 @@ if( $nectar_header_format === 'centered-menu-bottom-bar' &&
 						<?php } ?>
 						<?php if ( $nectar_header_options['side_widget_area'] === '1' || $nectar_header_options['side_widget_class'] === 'simple' ) { ?>
 							<div class="slide-out-widget-area-toggle mobile-icon <?php echo esc_attr( $nectar_header_options['side_widget_class'] ); ?>" data-custom-color="<?php echo esc_attr($nectar_header_options['ocm_menu_btn_color']); ?>" data-icon-animation="simple-transform">
-								<div> <a href="#sidewidgetarea" aria-label="<?php echo esc_attr__('Navigation Menu', 'salient'); ?>" aria-expanded="false" class="<?php echo 'closed' . esc_attr($menu_label_class); ?>">
+								<div> <a href="#sidewidgetarea" role="button" aria-label="<?php echo esc_attr__('Navigation Menu', 'salient'); ?>" aria-expanded="false" class="<?php echo 'closed' . esc_attr($menu_label_class); ?>">
 									<?php if( true === $menu_label ) {
 										echo '<i class="label">' . esc_html__('Menu','salient') .'</i>';
 									} else {
@@ -141,7 +141,7 @@ if( $nectar_header_format === 'centered-menu-bottom-bar' &&
 						$nav_cart_style = ( isset( $nectar_options['ajax-cart-style'] ) ) ? $nectar_options['ajax-cart-style'] : 'default';
 						?>
 
-						<a id="mobile-cart-link" data-cart-style="<?php echo esc_attr($nav_cart_style); ?>" href="<?php echo esc_url( wc_get_cart_url() ); ?>"><i class="icon-salient-cart"></i><div class="cart-wrap"><span><?php echo esc_html( $woocommerce->cart->cart_contents_count ); ?> </span></div></a>
+						<a id="mobile-cart-link" aria-label="<?php echo esc_attr__('Cart','salient'); ?>" data-cart-style="<?php echo esc_attr($nav_cart_style); ?>" href="<?php echo esc_url( wc_get_cart_url() ); ?>"><i class="icon-salient-cart"></i><div class="cart-wrap"><span><?php echo esc_html( $woocommerce->cart->cart_contents_count ); ?> </span></div></a>
 						<?php
 					}
 				}
@@ -150,7 +150,7 @@ if( $nectar_header_format === 'centered-menu-bottom-bar' &&
 				if ( $nectar_header_options['side_widget_area'] === '1' || $nectar_header_options['side_widget_class'] === 'simple' ) {
 					?>
 					<div class="slide-out-widget-area-toggle mobile-icon <?php echo esc_attr( $nectar_header_options['side_widget_class'] ); ?>" data-custom-color="<?php echo esc_attr($nectar_header_options['ocm_menu_btn_color']); ?>" data-icon-animation="simple-transform">
-						<div> <a href="#sidewidgetarea" aria-label="<?php echo esc_attr__('Navigation Menu', 'salient'); ?>" aria-expanded="false" class="<?php echo 'closed' . esc_attr($menu_label_class); ?>">
+						<div> <a href="#sidewidgetarea" role="button" aria-label="<?php echo esc_attr__('Navigation Menu', 'salient'); ?>" aria-expanded="false" class="<?php echo 'closed' . esc_attr($menu_label_class); ?>">
 							<?php if( true === $menu_label ) {
 								echo '<i class="label">' . esc_html__('Menu','salient') .'</i>';
 							}

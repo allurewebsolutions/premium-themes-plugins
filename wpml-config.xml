@@ -96,13 +96,13 @@
             <tag>nectar_btn</tag>
             <attributes>
                 <attribute>text</attribute>
-                <attribute>url</attribute>
+                <attribute type="link">url</attribute>
             </attributes>
       </shortcode>
       <shortcode>
             <tag>nectar_icon</tag>
              <attributes>
-                <attribute>url</attribute>
+                <attribute type="link">url</attribute>
             </attributes>
       </shortcode>
       <shortcode>
@@ -131,7 +131,7 @@
       <shortcode>
             <tag>nectar_responsive_text</tag>
             <attributes>
-                <attribute>link_href</attribute>
+                <attribute type="link">link_href</attribute>
             </attributes>
       </shortcode>
       <shortcode>
@@ -155,17 +155,31 @@
             </attributes>
       </shortcode>
       <shortcode>
+            <tag>nectar_badge</tag>
+            <attributes>
+                <attribute>text</attribute>
+            </attributes>
+      </shortcode>
+       <shortcode>
+            <tag>nectar_video_player_self_hosted</tag>
+            <attributes>
+                  <attribute>video_mp4</attribute>
+                  <attribute>video_image</attribute>
+            </attributes>
+      </shortcode>
+      <shortcode>
             <tag>nectar_cta</tag>
             <attributes>
                 <attribute>link_text</attribute>
                 <attribute>text</attribute>
-                <attribute>url</attribute>
+                <attribute type="link">url</attribute>
             </attributes>
       </shortcode>
       <shortcode>
             <tag>nectar_video_lightbox</tag>
             <attributes>
                 <attribute>link_text</attribute>
+                <attribute type="post-ids" sub-type="attachment">image_url</attribute>
             </attributes>
       </shortcode>
       <shortcode>
@@ -187,7 +201,7 @@
       <shortcode>
             <tag>fancy_box</tag>
             <attributes>
-                <attribute>link_url</attribute>
+                <attribute type="link">link_url</attribute>
                 <attribute>link_text</attribute>
                 <attribute type="area">hover_content</attribute>
             </attributes>
@@ -252,6 +266,8 @@
             <tag>client</tag>
             <attributes>
                 <attribute>name</attribute>
+                <attribute type="post-ids" sub-type="attachment">image</attribute>
+                <attribute type="link" encoding="vc_link">url</attribute>
             </attributes>
       </shortcode>
       <shortcode>
@@ -365,7 +381,10 @@
         <shortcode>
             <tag>vc_gallery</tag>
             <attributes>
-                <attribute>title</attribute>
+                  <attribute encoding="allow_html_tags">title</attribute>
+                  <attribute encoding="vc_safe">custom_links</attribute>
+                  <attribute type="media-ids">images</attribute>
+                  <attribute encoding="base64">items</attribute>
             </attributes>
         </shortcode>
         <shortcode>
@@ -378,6 +397,12 @@
             <tag>vc_video</tag>
             <attributes>
                 <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>nectar_global_section</tag>
+            <attributes>
+                <attribute>id</attribute>
             </attributes>
         </shortcode>
         <shortcode>

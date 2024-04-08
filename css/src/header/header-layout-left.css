@@ -37,7 +37,7 @@ Description: Header Layout set to "Left Header" in theme options
 
 
 
-@media only screen and (min-width:1001px) {
+@media only screen and (min-width:1000px) {
 
      #header-outer[data-format="left-header"] {
          width:275px;
@@ -301,11 +301,21 @@ Description: Header Layout set to "Left Header" in theme options
         height:100%
     }
      body[data-header-format="left-header"] #top .container .row,
-		 body[data-header-format="left-header"] #top .container{
+		 body[data-header-format="left-header"] #top .container,
+     body[data-header-format="left-header"] .nectar_hook_before_secondary_header .container {
         position:static
     }
-     body[data-header-format="left-header"] #top .container{
+     body[data-header-format="left-header"] #top .container,
+     body[data-header-format="left-header"] .nectar_hook_before_secondary_header .container {
         padding:0px 30px
+    }
+    body[data-header-format="left-header"] .nectar_hook_before_secondary_header {
+      overflow: hidden;
+    }
+    body[data-header-format="left-header"] .nectar_hook_before_secondary_header .full-width-content {
+      width: 100%!important;
+      left: 0!important;
+      margin: 0!important;
     }
      body[data-header-format="left-header"] #header-outer .nav-outer{
         display:table;
@@ -512,7 +522,7 @@ Description: Header Layout set to "Left Header" in theme options
     }
 }
 
- @media only screen and (min-width:1001px) and (max-width:1300px){
+ @media only screen and (min-width:1000px) and (max-width:1300px){
      body[data-header-format="left-header"] .post-area.span_9.col_last{
         padding-left:35px
     }
@@ -520,19 +530,19 @@ Description: Header Layout set to "Left Header" in theme options
         padding-right:35px
     }
 }
- @media only screen and (max-width:1450px) and (min-width:1001px){
+ @media only screen and (max-width:1450px) and (min-width:1000px){
      body[data-header-format="left-header"].single #page-header-bg .blog-title .meta-comment-count,
 		 body[data-header-format="left-header"].single #page-header-bg .blog-title #single-below-header .meta-comment-count{
          display:none
     }
 }
- @media only screen and (max-width:1150px) and (min-width:1001px){
+ @media only screen and (max-width:1150px) and (min-width:1000px){
     body[data-header-format="left-header"].single .section-title h1,
 		body[data-header-format="left-header"][data-ext-responsive="true"].single-post #page-header-bg[data-post-hs="default_minimal"] h1 {
          max-width:400px
     }
 }
- @media only screen and (max-width:1001px){
+ @media only screen and (max-width:1000px){
     body[data-header-format="left-header"] #header-outer #social-in-menu{
         display:none
     }
@@ -648,7 +658,7 @@ body[data-header-format="left-header"].admin-bar #search-outer #search #close {
     color:rgba(0,0,0,0.4);
     margin-top:15px
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 999px) {
   body[data-header-format="left-header"].material #search-outer #search .span_12 span {
     display: none;
   }
@@ -674,7 +684,7 @@ body[data-header-format="left-header"].material #search-outer #search #close a {
 	right: 54px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 999px) {
 	body[data-header-format="left-header"].admin-bar.material #search-outer #search #close,
 	body[data-header-format="left-header"].material #search-outer #search #close {
 			top: 12px;
@@ -803,6 +813,7 @@ body[data-header-format="left-header"][class*="page-template-template-no-header"
   [data-header-format="left-header"][data-aie="long-zoom-out"] .top-level.full-width-section .row-bg-wrap,
   [data-header-format="left-header"] .full-width-section.parallax_section .row-bg-wrap,
   [data-header-format="left-header"] .nectar-slider-wrap[data-full-width="true"],
+  body[data-header-format="left-header"] .post-area.full-width-content.standard-minimal,
   body[data-header-format="left-header"] .wpb_row.full-width-section .templatera_shortcode > .wpb_row.full-width-section > .row-bg-wrap,
 	.single-product[data-header-format="left-header"] .product[data-gallery-style="left_thumb_sticky"][data-gallery-variant="fullwidth"] .single-product-wrap {
     margin-left: calc(-50vw + 135px);

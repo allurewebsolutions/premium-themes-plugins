@@ -822,16 +822,22 @@ proto.create = function() {
 
 /* nectar addition from PR for accessibility */
 proto.showFocusables = function() {
-  this.element.querySelectorAll('a[href], button, input, textarea, select, details,[tabindex]').forEach(focusableEl=>{
-    focusableEl.removeAttribute("aria-hidden")
-    focusableEl.setAttribute("tabindex", "0");
-  });
+  var focusableEls = this.element.querySelectorAll('a[href], button, input, textarea, select, details,[tabindex]');
+  if( focusableEls.length > 0 ) {
+    Array.from(focusableEls).forEach( function(focusableEl) {
+      focusableEl.removeAttribute("aria-hidden")
+      focusableEl.setAttribute("tabindex", "0");
+    });
+  }
 };
 proto.hideFocusables = function() {
-  this.element.querySelectorAll('a[href], button, input, textarea, select, details,[tabindex]').forEach(focusableEl=>{
-    focusableEl.setAttribute("aria-hidden", "true");
-    focusableEl.setAttribute("tabindex", "-1");
-  });
+  var focusableEls = this.element.querySelectorAll('a[href], button, input, textarea, select, details,[tabindex]');
+  if( focusableEls.length > 0 ) {
+    Array.from(focusableEls).forEach( function(focusableEl) {
+      focusableEl.setAttribute("aria-hidden", "true");
+      focusableEl.setAttribute("tabindex", "-1");
+    });
+  }
 }
 /* nectar addition end */
 

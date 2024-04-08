@@ -222,3 +222,38 @@ add_filter( 'rank_math/sitemap/urlimages', 'salient_wpbakery_image_gallery_sitem
 add_filter( 'wpseo_sitemap_urlimages', 'salient_wpbakery_general_sitemap_images', 10, 2 );
 add_filter( 'wpseo_sitemap_urlimages', 'salient_wpbakery_query_sitemap_images', 10, 2 );
 add_filter( 'wpseo_sitemap_urlimages', 'salient_wpbakery_image_gallery_sitemap_images', 10, 2 );
+
+// Yoast Breadhcrums transparent header override.
+if( !function_exists('salient_is_yoast_breadcrumb_active') ) {
+  function salient_is_yoast_breadcrumb_active() {
+    if ( function_exists('yoast_breadcrumb') && class_exists('WPSEO_Options') ) {
+      
+    if ( !method_exists('WPSEO_Options', 'get') ) {
+      return false;
+    }
+
+    $breadcrumbs_enabled = WPSEO_Options::get( 'breadcrumbs-enable', false );
+      if ( $breadcrumbs_enabled && is_page() && !is_front_page() ) {
+        return true;
+      }
+    }
+    return false;
+  } 
+}
+
+if( !function_exists('salient_yoast_breadcrumbs_transparent_header_mod') ) {
+  function salient_yoast_breadcrumbs_transparent_header_mod($bool) {
+    global $post;
+    if ( salient_is_yoast_breadcrumb_active() ) {
+      
+        $force_effect = get_post_meta($post->ID, '_force_transparent_header', true);
+      
+        if ( !nectar_header_section_check($post->ID) && 'on' === $force_effect ) {
+          return false;
+        }
+    }
+    return $bool;
+  }
+}
+
+add_filter('nectar_activate_transparent_header', 'salient_yoast_breadcrumbs_transparent_header_mod', 11, 1);

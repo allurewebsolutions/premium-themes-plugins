@@ -4,7 +4,7 @@
  *
  * @package Salient WordPress Theme
  * @subpackage Partials
- * @version 13.0
+ * @version 15.5
  */
 
 // Exit if accessed directly
@@ -18,7 +18,12 @@ $nectar_options = get_nectar_theme_options();
 
 $bg                                = apply_filters('nectar_page_header_bg_val', get_post_meta( $post->ID, '_nectar_header_bg', true ));
 $bg_color                          = apply_filters('nectar_page_header_bg_color_val', get_post_meta( $post->ID, '_nectar_header_bg_color', true ));
-$single_post_header_inherit_fi     = ( ! empty( $nectar_options['blog_post_header_inherit_featured_image'] ) ) ? $nectar_options['blog_post_header_inherit_featured_image'] : '0';
+$blog_post_type_list = array('post');
+if( has_filter('nectar_metabox_post_types_post_header') ) {
+	$blog_post_type_list = apply_filters('nectar_metabox_post_types_post_header', $blog_post_type_list);
+}
+$is_blog_header_post_type      = ( isset($post->post_type) && in_array($post->post_type, $blog_post_type_list) && is_single()) ? true : false;
+$single_post_header_inherit_fi = ( ! empty( $nectar_options['blog_post_header_inherit_featured_image'] ) && $is_blog_header_post_type ) ? $nectar_options['blog_post_header_inherit_featured_image'] : '0';
 
 $theme_skin = NectarThemeManager::$skin;
 
@@ -35,9 +40,11 @@ if( $single_post_header_inherit_fi === '1' && isset( $post->ID ) && has_post_thu
 	$inherit_and_has_featured_img = true;
 }
 
+$hentry_class = apply_filters('nectar_post_header_hentry_class', ' hentry');
+
 if ( empty( $bg ) && empty( $bg_color ) && $inherit_and_has_featured_img !== true ) { ?>
   <div id="page-header-wrap" data-animate-in-effect="none" data-midnight="light" class="fullscreen-header">
-  <div class="default-blog-title fullscreen-header hentry" id="page-header-bg" data-midnight="light" data-alignment-v="middle" data-alignment="center" data-parallax="0" data-height="450" data-remove-post-date="<?php echo esc_attr( $remove_single_post_date ); ?>" data-remove-post-author="<?php echo esc_attr( $remove_single_post_author ); ?>" data-remove-post-comment-number="<?php echo esc_attr( $remove_single_post_comment_number ); ?>">
+  <div class="default-blog-title fullscreen-header<?php echo esc_attr($hentry_class); ?>" id="page-header-bg" data-midnight="light" data-alignment-v="middle" data-alignment="center" data-parallax="0" data-height="450" data-remove-post-date="<?php echo esc_attr( $remove_single_post_date ); ?>" data-remove-post-author="<?php echo esc_attr( $remove_single_post_author ); ?>" data-remove-post-comment-number="<?php echo esc_attr( $remove_single_post_comment_number ); ?>">
 		<div class="container">
 			<div class="row">
 				<div class="col span_6 section-title blog-title">

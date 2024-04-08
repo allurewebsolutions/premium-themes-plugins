@@ -29,7 +29,8 @@
     this.$fpAnimation             = $('#nectar_fullscreen_rows').attr('data-animation');
     this.$svgResizeTimeout        = null;
     this.$disableFPonMobile       = ($('#nectar_fullscreen_rows[data-mobile-disable]').length > 0) ? $('#nectar_fullscreen_rows').attr('data-mobile-disable') : 'off';
-    this.$onMobileBrowser         = navigator.userAgent.match(/(Android|iPod|iPhone|iPad|BlackBerry|IEMobile|Opera Mini)/);
+    this.onIOS                    = (navigator.userAgent.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2) ? true : false,
+    this.$onMobileBrowser         = (navigator.userAgent.match(/(Android|iPod|iPhone|iPad|BlackBerry|IEMobile|Opera Mini)/) || this.onIOS) ? true : false;
     this.activeIndex              = 0;
     this.prevIndex                = 0;
 
@@ -564,11 +565,13 @@
     // Split line
     $('.nectar-split-heading').removeClass('animated-in');
     $('.nectar-split-heading .heading-line > div').css({'transform':'translate(0,200%)'});
-    $('.nectar-split-heading[data-animation-type="line-reveal-by-space"] .inner').css({'transform':'translate(0,1.2em)'});
+    $('.nectar-split-heading[data-animation-type="line-reveal-by-space"]:not(.scroll-timeline) .inner').css({'transform':'translate(0,1.2em)'});
     $('.nectar-split-heading[data-animation-type="line-reveal-by-space"][data-text-effect="letter-reveal-top"] .inner').css({'transform':''});
     $('.nectar-split-heading[data-animation-type="line-reveal-by-space"][data-text-effect="letter-reveal-bottom"] .inner').css({'transform':''});
     $('.nectar-text-inline-images__marker').removeClass('animated-in');
     
+    $('.nectar-split-heading[data-text-effect="scroll-opacity-reveal"].scroll-timeline .inner').css({'opacity':'0.2'});
+
     // Rotating Text.
     $('.nectar-rotating-words-title.element_stagger_words').removeClass('animated-in');
     $('.nectar-rotating-words-title.element_stagger_words .text-wrap > span').css({'transform':'translate(0,1.2em)'});
@@ -754,6 +757,11 @@
               that.responsiveTooltips();
               $(window).trigger('nectar-waypoints-reinit');
               $(window).trigger('fp-section-init');
+
+              // Added for compatibility with elements inside of a scroll overflow section.
+              // Ensure that the scroll height is accurate for the inner content which might have been 
+              // Sized with JS e.g. lazy loaded items.
+              $(window).trigger('resize');
           }
           
           if($row_id !='footer-outer') {
