@@ -1835,6 +1835,12 @@
 					$disableHI = false;
 				}
 
+				if ( window.nectarOptions && window.nectarOptions.dropdown_hover_intent ) {
+					if ( window.nectarOptions.dropdown_hover_intent === 'add' ) {
+						$disableHI = false;
+					}
+				}
+
 				$(".sf-menu:not(.buttons)").superfish({
 					delay: 500,
 					speed: 'fast',
