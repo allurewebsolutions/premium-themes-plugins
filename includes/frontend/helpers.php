@@ -720,26 +720,27 @@ if ( ! function_exists( 'nectar_slider_display' ) ) {
 				$slide_description_bg      = get_post_meta( $post->ID, '_nectar_slider_caption_background', true );
 				$caption_bg                = ( $slide_description_bg == 'on' ) ? 'class="transparent-bg"' : '';
 				
-				$down_arrow      = get_post_meta( $post->ID, '_nectar_slider_down_arrow', true );
-				$poster          = get_post_meta( $post->ID, '_nectar_slider_preview_image', true );
-				$poster_markup   = ( ! empty( $poster ) ) ? 'poster="' . $poster . '"' : null;
-				$x_pos           = get_post_meta( $post->ID, '_nectar_slide_xpos_alignment', true );
-				$y_pos           = get_post_meta( $post->ID, '_nectar_slide_ypos_alignment', true );
-				$link_type       = get_post_meta( $post->ID, '_nectar_slider_link_type', true );
-				$full_slide_link = get_post_meta( $post->ID, '_nectar_slider_entire_link', true );
-				$button_1_text   = get_post_meta( $post->ID, '_nectar_slider_button', true );
-				$button_1_link   = get_post_meta( $post->ID, '_nectar_slider_button_url', true );
-				$button_1_style  = get_post_meta( $post->ID, '_nectar_slider_button_style', true );
-				$button_1_color  = get_post_meta( $post->ID, '_nectar_slider_button_color', true );
-				$button_2_text   = get_post_meta( $post->ID, '_nectar_slider_button_2', true );
-				$button_2_link   = get_post_meta( $post->ID, '_nectar_slider_button_url_2', true );
-				$button_2_style  = get_post_meta( $post->ID, '_nectar_slider_button_style_2', true );
-				$button_2_color  = get_post_meta( $post->ID, '_nectar_slider_button_color_2', true );
-				$video_mp4       = get_post_meta( $post->ID, '_nectar_media_upload_mp4', true );
-				$video_webm      = get_post_meta( $post->ID, '_nectar_media_upload_webm', true );
-				$video_ogv       = get_post_meta( $post->ID, '_nectar_media_upload_ogv', true );
-				$video_texture   = get_post_meta( $post->ID, '_nectar_slider_video_texture', true );
-				$muted           = 'on'; 
+				$down_arrow         = get_post_meta( $post->ID, '_nectar_slider_down_arrow', true );
+				$poster             = get_post_meta( $post->ID, '_nectar_slider_preview_image', true );
+				$poster_markup      = ( ! empty( $poster ) ) ? 'poster="' . $poster . '"' : null;
+				$x_pos              = get_post_meta( $post->ID, '_nectar_slide_xpos_alignment', true );
+				$y_pos              = get_post_meta( $post->ID, '_nectar_slide_ypos_alignment', true );
+				$link_type          = get_post_meta( $post->ID, '_nectar_slider_link_type', true );
+				$full_slide_link    = get_post_meta( $post->ID, '_nectar_slider_entire_link', true );
+				$slide_link_sr_text = get_post_meta( $post->ID, '_nectar_slider_link_sr_text', true );
+				$button_1_text      = get_post_meta( $post->ID, '_nectar_slider_button', true );
+				$button_1_link      = get_post_meta( $post->ID, '_nectar_slider_button_url', true );
+				$button_1_style     = get_post_meta( $post->ID, '_nectar_slider_button_style', true );
+				$button_1_color     = get_post_meta( $post->ID, '_nectar_slider_button_color', true );
+				$button_2_text      = get_post_meta( $post->ID, '_nectar_slider_button_2', true );
+				$button_2_link      = get_post_meta( $post->ID, '_nectar_slider_button_url_2', true );
+				$button_2_style     = get_post_meta( $post->ID, '_nectar_slider_button_style_2', true );
+				$button_2_color     = get_post_meta( $post->ID, '_nectar_slider_button_color_2', true );
+				$video_mp4          = get_post_meta( $post->ID, '_nectar_media_upload_mp4', true );
+				$video_webm         = get_post_meta( $post->ID, '_nectar_media_upload_webm', true );
+				$video_ogv          = get_post_meta( $post->ID, '_nectar_media_upload_ogv', true );
+				$video_texture      = get_post_meta( $post->ID, '_nectar_slider_video_texture', true );
+				$muted              = 'on'; 
 				
 				$desktop_content_width = get_post_meta( $post->ID, '_nectar_slider_slide_content_width_desktop', true );
 				$tablet_content_width  = get_post_meta( $post->ID, '_nectar_slider_slide_content_width_tablet', true );
@@ -756,14 +757,14 @@ if ( ! function_exists( 'nectar_slider_display' ) ) {
 				
 				if ( $background_type == 'image_bg' ) {
 					
-					if( function_exists('nectar_options_img') ) {
+					if( function_exists('nectar_options_img') && $slide_image ) {
 						$slide_image = nectar_options_img( $slide_image );
 					}
 					
 					if( 'lazy-load' === $config_arr['image_loading'] ) {
-						$bg_img_markup = 'data-nectar-img-src="'. nectar_ssl_check( $slide_image ).'"';
+						$bg_img_markup = 'data-nectar-img-src="'. esc_attr(nectar_ssl_check( $slide_image )).'"';
 					} else {
-						$bg_img_markup = 'style="background-image: url(' . nectar_ssl_check( $slide_image ) . ');"';
+						$bg_img_markup = 'style="background-image: url(' . esc_attr(nectar_ssl_check( $slide_image )) . ');"';
 					}
 
 				} else {
@@ -800,6 +801,15 @@ if ( ! function_exists( 'nectar_slider_display' ) ) {
 								else if( 'h3' === $config_arr['heading_tag'] ) {
 									$heading_tag = 'h3';
 								}
+								else if( 'h4' === $config_arr['heading_tag'] ) {
+									$heading_tag = 'h4';
+								}
+								else if( 'h5' === $config_arr['heading_tag'] ) {
+									$heading_tag = 'h5';
+								}
+								else if( 'div' === $config_arr['heading_tag'] ) {
+									$heading_tag = 'div';
+								}
 							}
 							
 							$slider .= '<'. esc_html($heading_tag) .' class="ns-heading-el">' . wp_kses_post($slide_title) . '</'.esc_html($heading_tag).'>'; }
@@ -812,6 +822,10 @@ if ( ! function_exists( 'nectar_slider_display' ) ) {
 									
 									if ( ! empty( $button_1_text ) ) {
 										
+										if (class_exists('Sitepress') && ! empty( $button_1_link ) ) {
+											$current_lang = apply_filters( 'wpml_current_language', NULL );
+											$button_1_link = apply_filters( 'wpml_permalink', $button_1_link, $current_lang, true );
+										}
 										$button_1_link = ! empty( $button_1_link ) ? $button_1_link : '#';
 										
 										// check button link to see if it's a video or googlemap
@@ -839,6 +853,11 @@ if ( ! function_exists( 'nectar_slider_display' ) ) {
 									
 									if ( ! empty( $button_2_text ) ) {
 										
+										if (class_exists('Sitepress') && ! empty( $button_2_link ) ) {
+											$current_lang = apply_filters( 'wpml_current_language', NULL );
+											$button_2_link = apply_filters( 'wpml_permalink', $button_2_link, $current_lang, true );
+										}
+
 										$button_2_link = ! empty( $button_2_link ) ? $button_2_link : '#';
 										
 										// check button link to see if it's a video or googlemap
@@ -892,7 +911,7 @@ if ( ! function_exists( 'nectar_slider_display' ) ) {
 							
 							if ( $background_type === 'video_bg' ) {
 								
-								if( function_exists('nectar_options_img') ) {
+								if( function_exists('nectar_options_img') && $poster ) {
 									$poster = nectar_options_img( $poster );
 								}
 
@@ -936,7 +955,14 @@ if ( ! function_exists( 'nectar_slider_display' ) ) {
 							}
 										
 							if ( $link_type === 'full_slide_link' && ! empty( $full_slide_link ) ) {
-								$slider .= '<a href="' . esc_url($full_slide_link) . '" class="entire-slide-link"> <span class="ie-fix"></span> </a>';
+								
+								$link_sr_attr = ( ! empty( $slide_title ) ) ? ' aria-label="' . esc_attr($slide_title) . '"' : '';
+
+								if ( ! empty( $slide_link_sr_text ) ) {
+									$link_sr_attr = ' aria-label="' . esc_attr($slide_link_sr_text) . '"';
+								}
+								
+								$slider .= '<a href="' . esc_url($full_slide_link) . '" class="entire-slide-link"'.$link_sr_attr.'> <span class="ie-fix"></span> </a>';
 							}
 							
 							$slider .= '</div> <!--/swiper-slide-->';
@@ -955,16 +981,16 @@ if ( ! function_exists( 'nectar_slider_display' ) ) {
 					$config_arr['slider_button_styling'] !== 'btn_with_preview' &&
 					$config_arr['overall_style'] !== 'directional' ) {
 						
-						$slider .= '<a href="#" class="slider-prev"><i class="icon-salient-left-arrow"></i> <div class="slide-count"> <span class="slide-current">1</span> <i class="icon-salient-right-line"></i> <span class="slide-total"></span> </div> </a>
-						<a href="#" class="slider-next"><i class="icon-salient-right-arrow"></i> <div class="slide-count"> <span class="slide-current">1</span> <i class="icon-salient-right-line"></i> <span class="slide-total"></span> </div> </a>';
+						$slider .= '<a href="#" aria-label="'.esc_attr__( 'Previous', 'salient-nectar-slider').'" class="slider-prev"><i class="icon-salient-left-arrow"></i> <div class="slide-count"> <span class="slide-current">1</span> <i class="icon-salient-right-line"></i> <span class="slide-total"></span> </div> </a>
+						<a href="#" aria-label="'.esc_attr__( 'Next', 'salient-nectar-slider').'" class="slider-next"><i class="icon-salient-right-arrow"></i> <div class="slide-count"> <span class="slide-current">1</span> <i class="icon-salient-right-line"></i> <span class="slide-total"></span> </div> </a>';
 					} 
 					elseif ( $config_arr['arrow_navigation'] === 'true' && 
 					$slide_count > 1 && 
 					$config_arr['slider_button_styling'] === 'btn_with_preview' || 
 					$config_arr['overall_style'] === 'directional' ) {
 						
-						$slider .= '<a href="#" class="slider-prev"><i class="fa fa-angle-left"></i> </a>
-						<a href="#" class="slider-next"><i class="fa fa-angle-right"></i> </a>';
+						$slider .= '<a href="#" aria-label="'.esc_attr__( 'Previous', 'salient-nectar-slider').'" class="slider-prev"><i class="fa fa-angle-left"></i> </a>
+						<a href="#" aria-label="'.esc_attr__( 'Next', 'salient-nectar-slider').'" class="slider-next"><i class="fa fa-angle-right"></i> </a>';
 					}
 					
 					if ( $config_arr['bullet_navigation'] === 'true' && $slide_count > 1 ) {
