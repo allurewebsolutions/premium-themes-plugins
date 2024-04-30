@@ -12,6 +12,7 @@ return array(
 	'base' => 'vc_pie',
 	'class' => '',
 	'icon' => 'icon-wpb-vc_pie',
+	'element_default_class' => 'wpb_content_element',
 	'category' => esc_html__( 'Content', 'js_composer' ),
 	'description' => esc_html__( 'Animated pie chart', 'js_composer' ),
 	'params' => array(
@@ -58,6 +59,18 @@ return array(
 			 "description" => __("Please select the color you wish for your pie chart to display in.", "js_composer")
 	   ),
 	   /* nectar addition end */ 
+
+	   /* nectar addition */ 
+	   // DELETE
+	//    'type' => 'dropdown',
+	//    'heading' => esc_html__( 'Color', 'js_composer' ),
+	//    'param_name' => 'color',
+	//    'value' => vc_get_shared( 'colors-dashed' ) + array( esc_html__( 'Custom', 'js_composer' ) => 'custom' ),
+	//    'description' => esc_html__( 'Select pie chart color.', 'js_composer' ),
+	//    'admin_label' => true,
+	//    'param_holder_class' => 'vc_colored-dropdown',
+	//    'std' => 'grey',
+	   /* nectar addition end */ 
 		array(
 			'type' => 'colorpicker',
 			'heading' => esc_html__( 'Custom color', 'js_composer' ),
@@ -86,6 +99,9 @@ return array(
 			'heading' => esc_html__( 'CSS box', 'js_composer' ),
 			'param_name' => 'css',
 			'group' => esc_html__( 'Design Options', 'js_composer' ),
+			'value' => array(
+				'margin-bottom' => '35px',
+			),
 		),
 	),
 );

@@ -63,6 +63,49 @@
   input.wp-picker-clear {
     width: auto;
   }
+
+  .vc_ui-button.vc_param-animation-style-trigger {
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    background-color: #EBEBEB;
+  }
+  // will be prefixed by autoprefixer package
+  input::placeholder {
+    color: #999;
+  }
+}
+
+.edit_form_line {
+  position: relative;
+}
+
+.wpb-edit-form-ai-icon {
+  position: absolute;
+  top: -25px;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #5E5E5E;
+  font-size: 19px;
+  cursor: pointer;
+  transition: 0.2s color ease-in-out;
+
+  &:hover {
+    color: #0772CE;
+  }
+
+  span {
+    margin-left: 4px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  &.wpb-edit-form-ai-icon--settings {
+    top: 0;
+  }
 }
 
 /* Select Image / Select Images (multiple)
@@ -275,4 +318,10 @@ option, select {
   .vc-link-nofollow {
     display: block;
   }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
 }

@@ -1,14 +1,126 @@
-07.04.2022 - ver 6.9.0
-   New: Filter to disable full width row JS
-   Update: Option to set custom color for the round chart element
-   Update: WPML compatibility improved with filters for images
-   Fix: Raw HTML element works properly for WPML Translation Editor
-   Fix: Auto-mapper deprecation notice works properly
-   Fix: Template preview works properly
-   Fix: Stretched row works properly in WordPress default themes
-   Fix: Post grid works properly
+*** WPBakery Page Builder changelog ***
 
-20.12.2021 - ver 6.8.0
+2024-04-10 - version 7.6
+  - New: Design Option displayed default values as placeholders for better UX
+  - New: Element edit happens automatically without saving and can be reverted with Undo
+  - Fix: WP admin notifications work properly and can be disabled
+  - Fix: Security improvements for the plugin
+  - Fix: Masonry media grid element works properly in Firefox
+
+2024-02-21 - version 7.5
+  - New: Editor scrolls to elements as they are added to the page
+  - Update: Links from the editor to resources are updated
+  - Fix: Masonry media grid works properly
+  - Fix: Editor controls are displayed properly for containers
+  - Fix: Nested shortcode element containers work properly
+  - Fix: Column controls work properly
+  - Fix: Prettyphoto works properly with modified grid templates
+  - Fix: Call to Action button positions text properly
+  - Fix: Hoverbox element works properly in Safari
+
+2024-01-17 - version 7.4
+  - New: An in-built SEO toolkit to analyze keywords
+  - New: An in-built SEO toolkit to control Google snippet display
+  - New: An in-built content analysis tools for higher quality content and SEO rankings
+  - New: An in-built tool to control social media snippet display
+  - Update: WPBakery AI option is available for the new SEO toolkit
+
+2023-12-06 - version 7.3
+  - New: Introduction popup added to inform about the new features of WPBakery
+  - Update: Structure and links updated in FAQ to reflect the changes in the knowledge base
+  - Update: License activation process improved after plugin installation and update
+
+2023-11-09 - version 7.2
+  - New: WPBakery AI assistant for text and code generation available in Beta
+  - New: WPBakery AI assistant support for 3rd party add-ons available in Beta
+  - Update: RTL controls added to Accordion elements
+  - Fix: "Load more" buttons work properly in the grid elements
+  - Fix: Initial tips and helpers are displayed properly
+  - Fix: Undo/Redot button states are displayed properly
+
+2023-09-26 - version 7.1
+  - New: Copy/Paste functionality introduced for rows and elements to copy page-wide, site-wide, and between different websites
+  - Update: Blank page selection updated for better user experience
+  - Update: External library loading is optimized for better performance
+  - Update: Editor has been updated for the branding color consistency
+  - Update: Window position after element adding has been improved
+  - Compatibility: Improved compatibility with WPML (Brazilian translation)
+  - Fix: Image filters work properly for uploaded images
+  - Fix: “Custom color” option for separators work properly
+  - Fix: Hidden fields are not displayed
+  - Fix: Background video works properly on different viewports
+  - Fix: The editor works properly with WooCommerce Shop Page
+  - Fix: “Unsaved changes” notification works properly
+  - Fix: Redirect from the Frontend editor to the Backend editor works properly
+  - Fix: Native WordPress “lazy load” functionality works properly for WPBakery layouts
+  - Fix: WPBakery page settings work properly
+  - Fix: Row stretching option works properly
+  - Fix: Editor acts properly if no content area has been defined in the layout
+
+2023-07-31 - version 7.0
+  - New: Blank page layout for landing pages or empty canvas
+  - New: Custom JavaScript option for the site and page scope
+  - New: Toggle container element
+  - New: Pricing table element
+  - New: Notification center for WPBakery in WP Admin
+  - Update: New WPBakery branding and UI/UX improvements
+  - Fix: Single image element works properly with dynamic content (ACF)
+  - Fix: Compatibility with PHP 8.1 and 8.2 improved
+  - Fix: Custom color attribute works properly in the Separator element
+
+
+2023-05-24 - version 6.13.0
+  - Fix: XSS vulnerability fix for elements
+  - Fix: XSS vulnerability fix for the user roles
+
+2023-04-18 - version 6.11.0
+  - New: API for wordpress.com created to support integration
+  - Update: Access to templates is in compliance with the licensing terms
+  - Fix: "Add to Cart" of WooCommerce accepts multiple products
+  - Fix: The editor works properly with Flex Slider
+  - Fix: Row and column edit options are displayed properly
+  - Fix: The Custom Heading element works properly
+  - Fix: Changing element output does not add an empty script tag
+  - Fix: WPBakery works properly with the Gutenberg content
+  - Fix: The Custom Heading element works properly
+  - Fix: Boxed and full-width layouts work properly with all major themes
+  - Fix: Drag and drop for rows works properly in the Frontend editor
+
+2022-10-13 - version 6.10.0
+  - New: Introduce local Google Fonts
+  - New: Compatibility for WooCommerce Tab Manager
+  - Update: Pie chart legend positions
+  - Update: Multiple translations improvements
+  - Fix: Rows full width logic
+  - Fix: Remove all notices in FE editor
+  - Fix: Controls sizing in FE editor
+  - Fix: Translate keys in WooCommerce Posts Grid
+  - Fix: Flexslider overflow in image gallery
+  - Fix: Round chard legend position, allow to specify position
+  - Fix: WooCommerce Shop page css
+  - Fix: Remove dead css prefixes
+  - Fix: Prevent issues with addPageCustomCss when passing a custom ID. Specifically the templatera shortcode passes a custom ID and so if the templatera shortcode is on the front page/homepage the template ID is not correctly passed
+  - Fix: Custom accent color not working with the Separator with Text element shadow style
+  - Fix: Youtube Video BG Auto Play Issues
+  - Fix: License check logic
+  - Fix: Edit form loading for async scripts
+  - Fix: Warning on the removed default template
+  - Fix: Automapper removing elements work properly
+  - Fix: get_the_excerpt filter arguments support WordPress 5.5
+  - Fix: Admin access in multisite works properly
+  - Fix: Edit-form initialization works properly
+
+2022-04-07 - version 6.9.0
+  - New: Filter to disable full width row JS
+  - Update: Option to set custom color for the round chart element
+  - Update: WPML compatibility improved with filters for images
+  - Fix: Raw HTML element works properly for WPML Translation Editor
+  - Fix: Auto-mapper deprecation notice works properly
+  - Fix: Template preview works properly
+  - Fix: Stretched row works properly in WordPress default themes
+  - Fix: Post grid works properly
+
+2021-12-20 - version 6.8.0
   - Update: Deprecated jQuery removed from the plugin
   - Fix: Button animation works properly on Safari
   - Fix: Image gallery works properly on WordPress 5.8
@@ -30,7 +142,7 @@
   - Fix: Editor loads properly for all user roles
   - Deprecated: Class WPBakeryVisualComposerAbstract will be removed in 6.9.0
 
-06.07.2021 - ver 6.7.0
+2021-07-06 - version 6.7.0
   - New: Custom breakpoint controls to adjust stacking behavior
   - New: Option to disable animations in Masonry grid added
   - New: Filter for wpb map element settings added
@@ -43,7 +155,7 @@
   - Fix: URLs updated to https
   - Fix: Case sensitive single image size updated
 
-22.02.2021 - ver 6.6.0
+2021-02-22 - version 6.6.0
   - New: prettyPhoto removed and Lightbox2 added to the plugin (prettyPhoto will stay for backward compatibility)
   - New: Call to Action element allows to align titles and select tags
   - New: FlexSlider updated to 2.7.2 version and RTL support improved in WooCommerce products
@@ -54,7 +166,7 @@
   - Fix: WPBakery button in the Gutenberg editor works properly
   - Fix: Request element parameters are passed properly in the edit form
 
-16.12.2020 - ver 6.5.0
+2020-12-16 - version 6.5.0
   - Update: Compatibility with WordPress 5.6
   - Update: Compatibility with PHP8
   - Fix: Template saving works properly
@@ -64,15 +176,15 @@
   - Fix: Edit with WPBakery in Gutenberg control appears correctly
   - Fix: Edit form loading spinner displayed correctly
 
-17.11.2020 - ver 6.4.2
+2020-11-17 - version 6.4.2
   - Fix: WooCommerce 4.7 compatibility issues resolved
 
-24.09.2020 - ver 6.4.1
+2020-09-24 - version 6.4.1
   - Fix: Role manager unfiltered html access improved
   - Fix: Role manager Frontend editor access improved
   - Update: German translation updated
 
-11.09.2020 - ver 6.4.0
+2020-09-11 - version 6.4.0
   - New: Rank Math SEO compatibility introduced
   - New: Option to exclude categories in the loop parameters
   - New: Option to ignore sticky posts in the loop parameters
@@ -84,7 +196,7 @@
   - Fix: Yoast SEO latest version is fully compatible with the editor
   - Fix: Autocomplete works properly
 
-21.08.2020 - ver 6.3.0
+2020-08-21 - version 6.3.0
   - Added: Role manager for unfiltered_html available
   - Update: Filter for screen sizes in the navigation bar
   - Update: Trigger event to prepare tab content
@@ -99,7 +211,7 @@
   - Fix: Class vc_tta-o-non-responsive on parent nodes
   - Fix: Undo/redo content disappearing with edit-only access
 
-20.04.2020 - ver 6.2.0
+2020-04-20 - version 6.2.0
   - Update: Performance improvements for the editor
   - Update: Filter for ajax grid rendering added
   - Update: Filters for post_custom_css and shortcodes_custom_css added
@@ -119,7 +231,7 @@
   - Fix: oEmbed works properly in text blocks
   - Fix: addShortcodesCustomCss works properly
 
-13.12.2019 - ver 6.1.0
+2019-12-13 - version 6.1.0
   - Added: Catalan, Ukrainian, Hungarian translations
   - Update: WordPress 5.3 Compatibility
   - Update: FontAwesome update to 5.10.2
@@ -132,11 +244,11 @@
   - Fix: HoverBox improvements
   - Remove: IE9 support
 
-17.07.2019 - ver 6.0.5
+2019-07-17 - version 6.0.5
   - Fix: LESS vendor folder available
   - Fix: All Media in Text Block works properly
 
-15.07.2019 - ver 6.0.4
+2019-07-15 - version 6.0.4
   - Fix: Element API works properly for 3rd party elements
   - Fix: Post grid filter displayed properly
   - Fix: Custom CSS editor does not remove "\"
@@ -150,7 +262,7 @@
   - Fix: Custom post types taxonomies work in Post Grid element
   - Fix: Revolution Slider output content properly
 
-31.05.2019 - ver 6.0.3
+2019-05-31 - version 6.0.3
   - Update: Init action priority is changed from 9 to 11
   - Update: Allow return in shortcode templates
   - Update: Coding standards improvements
@@ -161,13 +273,13 @@
   - Fix: Removed notice when shortcode template file missing
   - Fix: Map meta cap warning on custom post types
 
-17.05.2019 - ver 6.0.2
+2019-05-17 - version 6.0.2
   - Fix: Container elements controls in Backend Editor
 
-15.05.2019 - ver 6.0.1
+2019-05-15 - version 6.0.1
   - Fix: Tour element class error
 
-15.05.2019 - ver 6.0
+2019-05-15 - version 6.0
   - Update: Compliance with coding standards
   - Update: jQuery Waypoints update to the latest version
   - Update: Fallback for previews added
@@ -180,22 +292,22 @@
   - Fix: The Editor got broken after adding many images
   - Fix: The posts source got broken in Post Grid after importing data
 
-13.02.2019 - ver 5.7
+2019-02-13 - version 5.7
   - Update: Compatibility with PHP 7.3
   - Fix: WooCommerce corrected editable role
   - Fix: Page preview styles independent from view page
 
-27.11.2018 - ver 5.6
+2018-11-27 - version 5.6
   - Update: Compatibility with Wordpress 5.0
 
-11.10.2018 - ver 5.5.5
+2018-10-11 - version 5.5.5
   - Fix: SSL issues for fonts
   - Fix: Gutenberg improvements
 
-08.09.2018 - ver 5.5.4
+2018-09-08 - version 5.5.4
   - Fix: Link selector works properly in Backend editor
 
-07.09.2018 - ver 5.5.3
+2018-09-07 - version 5.5.3
   - Added: RTL control toggle added for columns
   - Fix: Accordion control styles display properly in Role Manager settings
   - Fix: Plugin update notice works properly
@@ -209,13 +321,13 @@
   - Fix: Empty space in class name removed for inner column
   - Fix: Post grid display proper number of posts specified
 
-27.06.2018 - ver 5.5.2
+2018-06-27 - version 5.5.2
    - Fix: "WPBMap Uncaught Exception" for modifyParam API method
 
-22.06.2018 - ver 5.5.1
+2018-06-22 - version 5.5.1
    - Fix: "WPBMap Uncaught Exception" for dropParam and addParam API methods
 
-15.06.2018 - ver 5.5
+2018-06-15 - version 5.5
    - Added: Undo/Redo operations available for the editor actions
    - Added: Gutenberg compatibility elements to insert Gutenberg blocks in the WPBakery layout
    - Added: 5 columns grid layout for rows
@@ -248,23 +360,23 @@
    - Fix: Custom OnClick action in buttons for Posts Grids
    - Fix: Shortcode attributes update by reference inside filter vc_shortcode_output
 
-08.03.2018 - ver 5.4.7
+2018-03-08 - version 5.4.7
    - Fix: Custom shortcode mapping
 
-07.03.2018 - ver 5.4.6
+2018-03-07 - version 5.4.6
    - Update: Compatibility with PHP 7.2 added
    - Update: Compatibility filters for WP Toolset added
    - Update: French translation updated
    - Update: Persian translation updated
 
-24.11.2017 - ver 5.4.5
+2017-11-24 - version 5.4.5
    - Fix: Firefox tinymce and vc_link issue
    - Fix: WooCommerce vendor categories list
 
-16.11.2017 - ver 5.4.4
+2017-11-16 - version 5.4.4
    - Fix: TinyMCE Saves linebreaks
 
-15.11.2017 - ver 5.4.3
+2017-11-15 - version 5.4.3
    - Added: Shortcode support in raw_html
    - Added: More filters for vc_btn shortcode
    - Update: Shortcode automapper admin content escaping
@@ -272,13 +384,13 @@
    - Compatibility: with WordPress 4.9
    - Compatibility: with WP Tool Set plugin
 
-13.10.2017 - ver 5.4.2
+2017-10-13 - version 5.4.2
    - Fix: Updater URL typo
 
-12.10.2017 - ver 5.4.1
+2017-10-12 - version 5.4.1
    - Fix: Plugin zip size
 
-12.10.2017 - ver 5.4
+2017-10-12 - version 5.4
    - Update: WPBakery Page Builder logo update
    - Update: Navigation bar color schema in Backend and Grid Builder
    - Update: TweetMe text update with WPBakery data
@@ -294,125 +406,125 @@
    - Fix: ZigZag separator display on Firefox
    - Fix: Element presets category merge
 
-15.09.2017 - ver 5.3
+2017-09-15 - version 5.3
    - Update: WordPress native color interface
    - Update: New interface icons
    - Update: New SVG element icons
    - Update: FontAwesome library is updated
    - Update: With new color scheme comes new name WPBakery Page Builder
 
-03.08.2017 - ver 5.2.1
-   Update: Function add_shortcode_param returned
-   Update: Function get_row_css_class returned
-   Update: Function wpb_map returned
-   Fix: std fixed for attribute types nested in a param group
-   Fix: vc_js error on frontend editor
-   Fix: Font dropdown in TinyMCE for WordPress 4.8.1
+2017-08-03 - version 5.2.1
+   - Update: Function add_shortcode_param returned
+   - Update: Function get_row_css_class returned
+   - Update: Function wpb_map returned
+   - Fix: std fixed for attribute types nested in a param group
+   - Fix: vc_js error on frontend editor
+   - Fix: Font dropdown in TinyMCE for WordPress 4.8.1
 
-29.06.2017 - ver 5.2.
-   Added: RTL support
-   Added: HoverBox content element
-   Added: ZigZag separator content element
-   Added: Parallax effect added to columns
-   Added: video background added to columns
-   Update: element presets work as My Elements in Add Element window
-   Update: drag and drop control in Role Manager
-   Update: deprecated functions removed
-   Update: Arabic translation
-   Update: Russian translation
-   Update: Spanish translation
-   Fix: TinyMCE performance in Backend editor
-   Fix: remove obsolete function designOptions
-   Fix: Layer Slider compatibility issues
-   Fix: templates user access
-   Fix: shortcode saving in fe adds 0=""
-   Fix: duplicate icons when adding custom icon font
-   Fix: subscriber see WPBakery Page Builder welcome page
-   Fix: WPML vendor issue
-   Fix: page returns 0 when clicking add to cart from grid template
-   Fix: shortcode regexp for dash in shortcode name
-   Fix: preg_replace result, replacement and extra space
-   Fix: filesystem error when saving design options (css) in settings
-   Fix: woocommerce product id in grid api
-   Fix: tabs/tours/accordions role access
+2017-06-29 - version 5.2.
+   - Added: RTL support
+   - Added: HoverBox content element
+   - Added: ZigZag separator content element
+   - Added: Parallax effect added to columns
+   - Added: video background added to columns
+   - Update: element presets work as My Elements in Add Element window
+   - Update: drag and drop control in Role Manager
+   - Update: deprecated functions removed
+   - Update: Arabic translation
+   - Update: Russian translation
+   - Update: Spanish translation
+   - Fix: TinyMCE performance in Backend editor
+   - Fix: remove obsolete function designOptions
+   - Fix: Layer Slider compatibility issues
+   - Fix: templates user access
+   - Fix: shortcode saving in fe adds 0=""
+   - Fix: duplicate icons when adding custom icon font
+   - Fix: subscriber see WPBakery Page Builder welcome page
+   - Fix: WPML vendor issue
+   - Fix: page returns 0 when clicking add to cart from grid template
+   - Fix: shortcode regexp for dash in shortcode name
+   - Fix: preg_replace result, replacement and extra space
+   - Fix: filesystem error when saving design options (css) in settings
+   - Fix: woocommerce product id in grid api
+   - Fix: tabs/tours/accordions role access
 
-11.04.2017 - ver 5.1.1.1.
-   Update: Performance improvements for elements
-   Fix: Element removing warnings
+2017-04-11 - version 5.1.1.1.
+   - Update: Performance improvements for elements
+   - Fix: Element removing warnings
 
-04.04.2017 - ver 5.1.1
-   Added: extra security check for grid ajax calls to harden security
+2017-04-04 - version 5.1.1
+   - Added: extra security check for grid ajax calls to harden security
 
-09.03.2017 - ver 5.1
-   Added: Element Id for all elements
-   Added: Image size control for Grid Builder media elements
-   Update: Grid Builder Backend editor style user interface
-   Update: List of available Google Fonts
-   Fix: getJSON backward compatibility for jQuery
-   Fix: vcIcon font family
-   Fix: postDeactivate redirect url
-   Fix: Extra isset check in case if vc_remove_param
-   Fix: Not all child categories are displayed in the drop-down
-   Fix: Autocomplete param sorting
-   Fix: Shortcode mapper and shortcodes with dashes
-   Fix: Can not read property of 'IndexOf'
-   Fix: Custom CSS textarea height
-   Fix: Missing scrollbar for view preset
-   Fix: Fix vc_gitem_template_attribute_post_image_url warning for array_merge
-   Fix: Box-shadow and borders for twenty-seventeen
-   Fix: Media query for added css files
-   Fix: Increase gap in edit form for google fonts
-   Fix: Hiding all "Tabs" in tab module still displays active item
-   Fix: php 7.1 compatibility issues
-   Fix: Section save as template option
+2017-03-09 - version 5.1
+   - Added: Element Id for all elements
+   - Added: Image size control for Grid Builder media elements
+   - Update: Grid Builder Backend editor style user interface
+   - Update: List of available Google Fonts
+   - Fix: getJSON backward compatibility for jQuery
+   - Fix: vcIcon font family
+   - Fix: postDeactivate redirect url
+   - Fix: Extra isset check in case if vc_remove_param
+   - Fix: Not all child categories are displayed in the drop-down
+   - Fix: Autocomplete param sorting
+   - Fix: Shortcode mapper and shortcodes with dashes
+   - Fix: Can not read property of 'IndexOf'
+   - Fix: Custom CSS textarea height
+   - Fix: Missing scrollbar for view preset
+   - Fix: Fix vc_gitem_template_attribute_post_image_url warning for array_merge
+   - Fix: Box-shadow and borders for twenty-seventeen
+   - Fix: Media query for added css files
+   - Fix: Increase gap in edit form for google fonts
+   - Fix: Hiding all "Tabs" in tab module still displays active item
+   - Fix: php 7.1 compatibility issues
+   - Fix: Section save as template option
 
-17.11.2016 - ver 5.0.1
-   Improved: Auto update process on hostings with wrong chmod on /tmp directory
-   Fixed: CSS Animation "none" works differently on save
-   Fixed: Prettyphoto jumps up on closing in firefox
-   Fixed: Section in template breaks
-   Fixed: Warning for array_merge in vc_gitem_template_attribute_post_image_url
+2016-11-17 - version 5.0.1
+   - Improved: Auto update process on hostings with wrong chmod on /tmp directory
+   - Fixed: CSS Animation "none" works differently on save
+   - Fixed: Prettyphoto jumps up on closing in firefox
+   - Fixed: Section in template breaks
+   - Fixed: Warning for array_merge in vc_gitem_template_attribute_post_image_url
 
-09.11.2016 - ver 5.0
-   Added: WPBakery Page Builder Template Library with downloadable templates
-   Added: Section element to combine rows
-   Added: Material icon set to icon libraries
-   Added: Animate CSS animations
-   Added: template saving for section and row
-   Update: all elements has CSS animation attribute
-   Update: UI of element preset saving
-   Update: editor controls with retina friendly icon set
-   Update: IE8-9 support files removed
-   Update: compatibility with Ninja Forms
-   Update: less.js version update for better performance
-   Update: activation/deactivation mechanism
-   Update: iconpicker performance
-   Fix: php notice for default post type
-   Fix: php notices for post save
-   Fix: autocomplete element removing indexes
-   Fix: warning foreach for acf grid shortcodes
-   Fix: activation state on multisite
-   Fix: custom heading google fonts loading
-   Deprecated: class license methods in favor of 4.8
-   Deprecated: droppable and draggable methods in javascript for rows
+2016-11-09 - version 5.0
+   - Added: WPBakery Page Builder Template Library with downloadable templates
+   - Added: Section element to combine rows
+   - Added: Material icon set to icon libraries
+   - Added: Animate CSS animations
+   - Added: template saving for section and row
+   - Update: all elements has CSS animation attribute
+   - Update: UI of element preset saving
+   - Update: editor controls with retina friendly icon set
+   - Update: IE8-9 support files removed
+   - Update: compatibility with Ninja Forms
+   - Update: less.js version update for better performance
+   - Update: activation/deactivation mechanism
+   - Update: iconpicker performance
+   - Fix: php notice for default post type
+   - Fix: php notices for post save
+   - Fix: autocomplete element removing indexes
+   - Fix: warning foreach for acf grid shortcodes
+   - Fix: activation state on multisite
+   - Fix: custom heading google fonts loading
+   - Deprecated: class license methods in favor of 4.8
+   - Deprecated: droppable and draggable methods in javascript for rows
 
-07.09.2016 - ver 4.12.1
-   Fixed: backend editor loading - getContent in case if #content doesn't exists
-   Fixed: Grid item background image URL quoting
-   Fixed: Entypo icons
-   Fixed: Templates preview element icons
-   Fixed: Remove extra next/prev buttons for prettyPhoto
-   Fixed: Lightbox in firefox
-   Fixed: Empty content welcome block for latest woocommerce
-   Fixed: Hook into the YoastSEO:ready event directly.
-   Fixed: Disable scrollTo when autoplay enabled
-   Fixed: PrettyPhoto is-single hover controls
-   Fixed: Grid Item ajax response rendering when no posts found
-   Updated: Make old names for deprecated elements
-   Updated: Old buttons and CTA removed from add element list
-   Updated: FontAwesome to 4.6.3
+2016-09-07 - version 4.12.1
+   - Fixed: backend editor loading - getContent in case if #content doesn't exists
+   - Fixed: Grid item background image URL quoting
+   - Fixed: Entypo icons
+   - Fixed: Templates preview element icons
+   - Fixed: Remove extra next/prev buttons for prettyPhoto
+   - Fixed: Lightbox in firefox
+   - Fixed: Empty content welcome block for latest woocommerce
+   - Fixed: Hook into the YoastSEO:ready event directly.
+   - Fixed: Disable scrollTo when autoplay enabled
+   - Fixed: PrettyPhoto is-single hover controls
+   - Fixed: Grid Item ajax response rendering when no posts found
+   - Updated: Make old names for deprecated elements
+   - Updated: Old buttons and CTA removed from add element list
+   - Updated: FontAwesome to 4.6.3
 
-08.06.2016 - ver 4.12
+2016-06-08 - version 4.12
    - Added: Set default templates for post types
    - Added: Option to disable/hide row
    - Added: ’nofollow’ attribute option for links
@@ -441,10 +553,10 @@
    - Fixed: Loop builder in grid
    - Fixed: Woo Commerce product settings
 
-15.04.2016 - ver 4.11.2.1
+2016-04-15 - version 4.11.2.1
    - # is properly escaped for updated jQuery
 
-07.04.2016 - ver 4.11.2
+2016-04-07 - version 4.11.2
    - Added: Compatibility with WP 4.5
    - Added: Filter for database query limits
    - Improved: Input Sanitization
@@ -458,11 +570,11 @@
    - Fixed: Advanced Custom Fields vendor initialization
    - Fixed: Post Grid filter taxonomy names collapsing
 
-16.03.2016 - ver 4.11.1
+2016-03-16 - version 4.11.1
    - Fixed: WPML + Image selection is working again
    - Fixed: vc_remove_param() + Custom WP Theme Front-end editor broke Text block
 
-10.03.2016 - ver 4.11
+2016-03-10 - version 4.11
    - Added: New predefined templates added
    - Added: Mono Social icons added to icon library list
    - Added: 'All' text in grid element filters can be modified in param window
@@ -484,7 +596,7 @@
    - Fixed: ACF foreach warning fixed
    - Fixed: Link stripping from images added from "Add Media"
 
-5.02.2016 - ver 4.10
+5.02.2016 - version 4.10
 	- Added: Compatibility with option to add ACF to page
 	- Added: Video width and alignment controls
 	- Added: Parallax speed parameter added
@@ -501,7 +613,7 @@
 	- Fixed: Iconpicker icons rendering on category change
 	- Fixed: ACF fields rendering in Grid Builder
 
-12.01.2016 - ver 4.9.2
+2016-01-12 - version 4.9.2
    - Fixed: "Editing an existing Post Grid, page IDs are displayed instead of titles."
    - Fixed: Extra CSS class name for single image in post grid
    - Fixed: Third elements not working in templates
@@ -512,7 +624,7 @@
    - Improved: Tab activation through menu (links on same page)
    - Improved: PHP7 compatibility
 
-23.12.2015 - ver 4.9.1
+2015-12-23 - version 4.9.1
    - Improved: VC save action is fired on wp save_post instead of edit_post
    - Improved: Some unneded files removed from package
    - Fixed: Element is calling save method only if changes were made
@@ -520,7 +632,7 @@
    - Fixed: image style in post grid is now applied correctly
    - Fixed: Equal height in Safari
 
-7.12.2015 - ver 4.9
+7.12.2015 - version 4.9
    - Improved: Now WPBakery Page Builder is faster at least for 30%
    - Added: Equal height columns
    - Added: Vertical alignment of element within a column
@@ -541,7 +653,7 @@
    - Fixed: Icon display for nested shortcodes
    - Other minor improvements and fixes
 
-6.11.2015 - ver 4.8.1
+6.11.2015 - version 4.8.1
    - Added: Support for Advanced TinyMCE
    - Improved: Envato API changed to new version 2.0
    - Improved: ABSPATH check added to all php files
@@ -561,7 +673,7 @@
    - Fixed: Text element with animation is properly displayed in TTA
    - Fixed: Grid Element display price prefix $ per WooCommerce Settings
 
-22.10.2015 - ver 4.8
+2015-10-22 - version 4.8
    - New: Advanced Role manager for WPBakery Page Builder. Now you can fine tune access to WPBakery Page Builder functionality based on user roles
    - New: New interface with template preview option in Default Templates and My Templates sections
    - New: No need for license activation on localhost
@@ -580,27 +692,27 @@
    - Fixed: Autocomplete of categories (woocommerce)
    - Fixed: Separator text moves to the next line when no space available
 
-2.10.2015 - ver 4.7.4
+2.10.2015 - version 4.7.4
    - Fixed: Bug in grid builder presets
    - Added extra ajax check
 
-29.09.2015 - ver 4.7.3
+2015-09-29 - version 4.7.3
    - Re: Backwards compatibility for images with custom link
    - Added border for single image with external source
    - Width of vc icon in "Add element" window fixed
    - Presets saving mechanism optimized
 
-22.09.2015 - ver 4.7.2
+2015-09-22 - version 4.7.2
    - "Undefined index" notice in tabs, tour, accordion removed (for cases when vc_remove_param() was called)
    - Bottom border in image gallery fixed
    - <br> now works in mobile view tabs
    - Backwards compatibility for images with custom link
    - Minor css improvements and fixes
 
-16.09.2015 - ver 4.7.1.1
+2015-09-16 - version 4.7.1.1
    - Fixed: CSS conflict with Ninja Forms
 
-15.09.2015 - ver 4.7.1
+2015-09-15 - version 4.7.1
    - Improved: Dependency are now called whe preset is selected for element
    - Improved: Old Tabs, Accordions and Tours removed from default templates
    - Fixed: Direct link to tabs (tour or accordion)
@@ -610,7 +722,7 @@
    - Fixed: Html tags entered in text block now are decoded and not converted to actual tags
    - Fixed: LESS regeneration after plugin version increment
 
-28.08.2015 - ver 4.7
+2015-08-28 - version 4.7
    - Compatibility with WP 4.3
    - New: Element Preset mechanism added (Save, Set as Default)
    - New: More predefined layouts added
@@ -631,13 +743,13 @@
    - Delay of CSS animations reduced
    - Minor bugfixes and improvements
 
-23.07.2015 - ver 4.6.2
+2015-07-23 - version 4.6.2
    - Custom CSS class added for Tour, Tabs, Accordions
    - Syntax in js file changed for better minifying support
    - ACF limit in grid removed
    - Single image target initialization in edit screen fixed
 
-11.07.2015 - ver 4.6.1
+2015-07-11 - version 4.6.1
    - Fixed: Cannot redeclare hex2rgb()
    - Icons per page set to 200 in message box element
    - Changed syntax in js_composer_front.js - now W3 Total Cache should not have problems with minifying
@@ -646,7 +758,7 @@
    - Fixed: Post image element in grid
    - Fixed: Pinterest button height
 
-02.07.2015 - ver 4.6
+2015-07-02 - version 4.6
    - New: Full screen row height
    - New: Chart elements (Pie, Doughnut, Line, Bar)
    - New: YouTube background for row
@@ -667,10 +779,10 @@
    - Fixed: Loading js files in vc-gallery.php
    - Fixed: Design options work when loaded from Templatera
 
-16.06.2015 - ver 4.5.3
+2015-06-16 - version 4.5.3
    - prettyPhoto updated to 3.1.6 - latest stable and secure version
 
-18.05.2015 - ver 4.5.2
+2015-05-18 - version 4.5.2
    - Performance: Removed call to get taxonomies from vc_map and now it is called via ajax only when it is needed
    - Fixed: slug changing when Yoast SEO plugin activated
    - Fixed: Unwanted gap in Grid when full width row is used
@@ -680,7 +792,7 @@
    - Fixed: Path for loading "imagesloaded.pkgd.min.js"
    - Resolved: Conflict with Owl Carousel
 
-30.04.2015 - ver 4.5.1
+2015-04-30 - version 4.5.1
    - Improvements with stretch row logic
    - Grid pagination isn't hiding "add to column" control in Fronend editor
    - Grid filter logic improved
@@ -688,7 +800,7 @@
    - Bug with wpLink fixed
    - WPBakery Page Builder settings link in multisite fixed
 
-27.04.2015 - ver 4.5
+2015-04-27 - version 4.5
    - New: Parallax option for row added
    - New: IDs for rows
    - New: Param type "Hidden" available in shortcode mapper. Now you can preset shortcodes value and it will be not editable in VC interface (hardcoded)
@@ -707,10 +819,10 @@
    - Various bug fixes and small improvements
    - All javascript and php files now share same coding standards (formatting)
 
-21.04.2015 - ver 4.4.4
+2015-04-21 - version 4.4.4
    - Compatibility with WordPress 4.2 added
 
-12.03.2015 - ver 4.4.3
+2015-03-12 - version 4.4.3
    - Color picker z-index increased
    - Proper image gallery re-initialization after dragging
    - Negative values can be saved in Design options now
@@ -730,7 +842,7 @@
    - vc_load_default_templates_action returned
    - Custom query works properly in grid builder now
 
-28.01.2015 - ver 4.4.2
+2015-01-28 - version 4.4.2
    - Extra CSS class can be used in grid elements now
    - Single image styles fixed
    - added action "vc_load_default_templates_action"
@@ -744,7 +856,7 @@
    - Compatibility with jwplayer improved
    - Compatibility with ACF improved
 
-19.01.2015 - ver 4.4.1
+2015-01-19 - version 4.4.1
    - Posts Grid (and other grids) are working on homepage
    - NextGen gallery working
    - Shareaholic plugin working
@@ -754,7 +866,7 @@
    - vc_is_inline() working as expexted again
 
 
-16.01.2015 - ver 4.4
+2015-01-16 - version 4.4
    - Bulgarian translation added. Thanks to: Valentin Val
    - New elements added: Grid, Masonry Grid, Media Grid, Media Masonry Grid
    - Grid Element builder added
@@ -789,7 +901,7 @@
    - Nested Shortcode "as_child" parameter when set to "except" fixed
    - ... and more
 
-10.09.2014 - ver 4.3.4
+2014-09-10 - version 4.3.4
    - WP 4.0 improvements
    - Cloning row with tabs fixed
    - Cloning single tab in frontend editor fixed
@@ -799,7 +911,7 @@
    - Using front-end editor turns off the comments fixed
    - Persian translation added. Thanks to: Ali Mohammadi | www.bestit.co
 
-19.08.2014 - ver 4.3.3
+2014-08-19 - version 4.3.3
    - Edit elements in Accordion fixed
    - Design Options: border params are not saved if you don't enter all 4 border widths
    - Inner row margins updated for better UI
@@ -809,15 +921,15 @@
    - pt_BR locale updated
    - de_DE locale file updated
 
-04.08.2014 - ver 4.3.2
+2014-08-04 - version 4.3.2
    - Force custom css regeneration upon plugin update. This will fix problem for users who used custom Design options and experienced "broken layout"
 
-31.07.2014 - ver 4.3.1
+2014-07-31 - version 4.3.1
    - Obsolete vc_spanX classes removed (caused problems for some users)
    - Fixed: "llegal offset type in ... shortcodes.php"
    - French translation updated
 
-29.07.2014 - ver 4.3
+2014-07-29 - version 4.3
    - UX improvements in Backend editor
    - New: Offset option is added for columns
    - New: Now you can add any number of columns inside row (it will be placed to the next line if there is not enough of space)
@@ -835,14 +947,14 @@
    - Other small fixes and improvements
 
 
-12.06.2014 - ver 4.2.3
+2014-06-12 - version 4.2.3
    - Isotope library updated
    - Flexslider next/prev arrows fixed (font added)
    - Single image now can accept relative urls
    - Improvements with third party plugins
 
 
-03.06.2014 - ver 4.2.2
+2014-06-03 - version 4.2.2
    - Tabs: Auto generated IDs are back
    - Localizations are loaded correctly now
    - Pie chart element js error fixed
@@ -856,10 +968,10 @@
    - std param in maps improved logic
    - Single image: reveal target if link is set
 
-27.05.2014 - ver 4.2.1
+2014-05-27 - version 4.2.1
    - vc_map() preloader fix. Thanks to Chris R for help in debugging
 
-21.05.2014 - ver 4.2
+2014-05-21 - version 4.2
    - Performance improvements
    - Code structure changed, now everything is organized in folders
    - Code revised and phpdoc comments added (soon generated documentation will be available)
@@ -869,10 +981,10 @@
    - New Tour slide now title changed from "Tab" to "Slide"
    - Small fixes and improvements
 
-12.05.2014 - ver 4.1.3.1
+2014-05-12 - version 4.1.3.1
    - Typo in js code fixed, which prevented rows from cloning in backend editor
 
-09.05.2014 - ver 4.1.3
+2014-05-09 - version 4.1.3
    - Checkbox dependencies works now
    - Dependencies logic is executed upon edit screen opening
    - Textarea HTML is added in th shortcode mapper for use with content attribute
@@ -882,7 +994,7 @@
    - Message box and Warning box correctly displayed in the backend editor
    - vc_add_param()/vc_remove_element() works again
 
-22.04.2014 - ver 4.1.2
+2014-04-22 - version 4.1.2
    WP 3.9 compatibilty update
    - php warning/notices in mapper.php
    - Read more text in post grid is now translable
@@ -892,7 +1004,7 @@
    - WP 3.9 select link in WYSIWYG editor works now
    - When default text is removed from wysiwyg editor it will not be back on next edit
 
-17.04.2014 - ver 4.1.1
+2014-04-17 - version 4.1.1
    - z-index value for add element modal box increased
    - Improved element stacking on mopbile devices
    - Links now work in WP Text element
@@ -900,7 +1012,7 @@
    - Removed console.log in js file
    - IE10 fix for TinyMCE
 
-16.04.2014 - ver 4.1
+2014-04-16 - version 4.1
    - New: Shortcode Mapper, map any third party shortcode to WPBakery Page Builder with an easy to use interface
    - New: Design options for Row, Columns, Text block, Single image and Video block elements. Add baackground color/image, paddings, border and margins. Tons of variations. You are a designer now!
    - New: Now you can group your params in tabs
@@ -909,7 +1021,7 @@
    - Color picker have alpha chanel now
    - .po/.mo files updated
 
-09.04.2014 - ver 4.0.5
+2014-04-09 - version 4.0.5
    - Compatibility with new TinyMCE version in WordPress 3.9 added
    - Logic behind license activation button changed. Clicking activate button will save all fields
    - Image carousel popup next/prev links show correct images
@@ -917,12 +1029,12 @@
    - "Show only WPBakery Page Builder" in "User groups access rules" fixed
    - Extra CSS class appended to the separator element
 
-27.03.2014 - ver 4.0.4
+2014-03-27 - version 4.0.4
    Bug fix round
    - Post grid categories: z-index fixed so autosuggestions now visible
    - Custom row layout input field in frontend mode works now
 
-20.03.2014 - ver 4.0.3
+2014-03-20 - version 4.0.3
    Bug fix round
    - Cloning elements in frontend is handled better
    - Enable/Disable Respinsivness in the backend from settings page
@@ -933,7 +1045,7 @@
    - WPBakery Page Builder suppor for child themes improved
    - Element dependencies tweaked to work with multiple values
 
-11.03.2014 - ver 4.0.2
+2014-03-11 - version 4.0.2
    - Google maps element updated to support new google maps version
    - Child theme support added
    - Disable responsivness is back
@@ -946,30 +1058,30 @@
    - "Close" modal button in backend position tweak added
    - Updated .po/.mo files
 
-03.03.2014 - ver 4.0.1
+2014-03-03 - version 4.0.1
    - Optimizations for WPEngine
    - Plugin search is back
    - User access rules logic improved (for publish/save posts in inline mode)
    - Nested shortcodes can now accept except param
 
-02.03.2014 - ver 4.0
+2014-03-02 - version 4.0
    - Major update. All new inline (front end) editing mode. Now you can see what you are doing, no more trials and errors
    - Based on Bootstrap 3
    - New content elements (even more to come...)
    - New styles for Separators, Single images
    - And much-much more! 3 months of hard development invested in this update
 
-08.01.2014 - ver. 3.7.4
+2014-01-08 - ver. 3.7.4
    - NL locale added
    - Custom layout fixed (all fractional sizes work now on front end)
    - 100 sliders limit value for Revolutions sliders increased
    - Color picker css improved for Win users
 
-13.12.2013 - ver. 3.7.3
+2013-12-13 - ver. 3.7.3
    - TinyMCE "Text" mode buttons size fixed
    - Small WordPress 3.8 adjustments
 
-08.12.2013 - ver 3.7.2
+2013-12-08 - version 3.7.2
    - "Add Element" window received a "facelift"
    - Alignment for Single Image fixed
    - Custom CSS: now is outputted only in single page view
@@ -978,10 +1090,10 @@
    - Raw js block: removed bottom margin
    - Posts grid column count fixed
 
-27.11.2013 - ver 3.7.1
+2013-11-27 - version 3.7.1
    - vc_remove_element() is back
 
-26.11.2013 - ver 3.7
+2013-11-26 - version 3.7
    - New: Posts Grid element with much more control and visual query builder
    - New: Custom teaser, control what content should be used in Posts grid and Carousel
    - New: Image carousel
@@ -998,43 +1110,43 @@
    - Third party shortcodes wraps in the text block when switching to WPBakery Page Builder mode
    - .po/.mo files updated
 
-07.10.2013 - ver 3.6.14.1
+2013-10-07 - version 3.6.14.1
    - Re: URL for single image improved
    - Dependency improvements
 
-07.10.2013 - ver 3.6.14
+2013-10-07 - version 3.6.14
    - IT locale added
    - Empty text block works correct now
    - Isotope css added for print page version
    - URL for single image improved
    - Site admins in Multisite have access to VC Settings now
 
-09.09.2013 - ver 3.6.13
+2013-09-09 - version 3.6.13
    - 7/12 + 5/12 layout now works on the front end
    - FR locale updated
    - Dependency setting now works for single image element
 
-23.08.2013 - ver 3.6.12
+2013-08-23 - version 3.6.12
    - fix for dissapearing paragraph and br tags
 
-15.08.2013 - ver 3.6.11
+2013-08-15 - version 3.6.11
    - Carousel is back
    - "isHidden" javascript error which was affecting some users fixed
    - WP Custom Menu logic improved
 
-09.08.2013 - ver 3.6.10
+2013-08-09 - version 3.6.10
    - New: Pie chart content element
    - Updated code to support new jQuery UI version (Accordion spacing, Tour next/prev links working again, Image grid in 2nd+ tab working again, Tour sorting/cloning fixed)
    - pt_BR locale updated
 
-05.08.2013 - ver 3.6.9
+2013-08-05 - version 3.6.9
    - New: Auto updater. Enter your API key/Purchase code/Envato username and plugin will be updated automaticaly
    - New: Add multiple categories to your content elements (when register new element with vc_map())
    - New: "If you close this window all shortcode settings will be lost. Close this window?" message now is showed only when there are unsaved changes
    - Javascript code tested with JShint
    - Better "bullet proof" logic for custom size images
 
-15.07.2013 - ver 3.6.8
+2013-07-15 - version 3.6.8
    - More row layouts added
    - Custom row layout option added, now you can enter exact size you want/need
    - Row layout switcher changed
@@ -1045,20 +1157,20 @@
    - Images from same galleries can be cycled in prettyPhoto lightbox
    - Colorpicker attribute now works for all user roles
 
-03.07.2013 - ver 3.6.7
+2013-07-03 - version 3.6.7
    - Navigation for Accordion added, now you can link to specific section directly
    - Inner API extended. More details https://kb.wpbakery.com/index.php?title=Inner_API
    - PHP code formatted for PHP Strict standards
    - default.po and .mo files updated
 
-25.06.2013 - ver 3.6.6
+2013-06-25 - version 3.6.6
    - New: Accordion now can be collapsed by default
    - Quotes in Accordion/Tour/Tabs now works
    - Category filter works now after wpb_remove() function call
    - Some users had "unexpected T_VAR in loop templates.html" error - fixed
    - "Show only WPBakery Page Builder" permission fixed
 
-17.06.2013 - ver 3.6.5
+2013-06-17 - version 3.6.5
    - New: Shortcode Template logic. More here: https://kb.wpbakery.com/index.php?title=Shortcode_Templates_(markup)
    - New: Link param type
    - New: Updates notifier now "hooks" into the WP Updates system
@@ -1075,30 +1187,30 @@
    - Text typos in Google maps and Progress bar fixed
    - Twitter widget removed. Due to the api change tweets can't be loaded "the old" way anymore. As workaround, login to your twitter account and create new widget (https://twitter.com/settings/widgets) then use raw HTML block to place generated code to your page
 
-07.06.2013 - ver 3.6.4.1
+2013-06-07 - version 3.6.4.1
    - update for the those who have javascript error "jQuery(...).waypoint is not a function"
 
-01.06.2013 - ver 3.6.4
+2013-06-01 - version 3.6.4
    - New feature: Added CSS animations for Single image, Message box, Text Block & Toggle. Which runs when element enters browsers viewport.
    - Progress bar animation now starts when it enters into the viewport. Added filter for class names.
 
-27.05.2013 - ver 3.6.3
+2013-05-27 - version 3.6.3
    - tinyMCE initialization improved
    - #tb_window z-index increased
 
-24.05.2013 - ver 3.6.2
+2013-05-24 - version 3.6.2
    - Safe switching added. If you had content before switching to WPBakery Page Builder mode, it will be wrapped in Text Block now
    - CSS conflict resulting in cutting "Add element" and element edit pages fixed
    - Some localization strings fixed
 
-21.05.2013 - ver 3.6.1
+2013-05-21 - version 3.6.1
    - custom.css and js_composer_front_custom.css storing location changed from plugin's folder to wp-content/uploads/js_composer/*
    - German translation updated. Thanks to Toni (kratos85)
    - French translation added. Thanks to sailor1978.
    - Spanish translation updated. Thanks to elpuntografico
    - Russian translation added.
 
-13.05.2013 - ver 3.6
+2013-05-13 - version 3.6
    - Fully rewritten backend. Now powered by backbone.js library - enourmous speed improvements
    - Elements drag and drop logic improved
    - New settings page. Now you can change default colors, CSS grid settings, Content elements bottom spacing. You should see it!
@@ -1116,15 +1228,15 @@
    - Overal files cleanup (plugin file size reduced)
    - And a lot more small thigs that will make your experience with WPBakery Page Builder better
 
-15.02.2013 - ver 3.5.3
+2013-02-15 - version 3.5.3
    - Image selection i18nLocale fixed
    - .po and .mo files updated
 
-07.02.2013 - ver 3.5.2
+2013-02-07 - version 3.5.2
    - Activation error fixed (cases when Contact form7 was installed)
    - User rights updated (Row in Row now works)
 
-25.01.2013 - ver 3.5.1
+2013-01-25 - version 3.5.1
    - WP native image selector added (for single image and galleries)
    - delete icon in tabs
    - add section for accordion fixed
@@ -1132,7 +1244,7 @@
    - IE images stretching removed
    - "convert to new version" added support for 3rd party shortcodes
 
-22.01.2013 - ver 3.5
+2013-01-22 - version 3.5
    - Major update, read more about update: http://bit.ly/vc_34_to_35
    - Fully rewriten backend UI, with better row->column logic
    - Overall speed improvements
@@ -1142,54 +1254,54 @@
    - .po & .mo files updated
    - And many, many more...
 
-18.12.2012 - ver 3.4.12
+2012-12-18 - version 3.4.12
    - Edit tab titles fixed
 
-13.12.2012 - ver 3.4.11
+2012-12-13 - version 3.4.11
    - var_dump() removed from shortcodes.php file
    - pressing cancel button works correctly now
    - depreceted function image_resize replaced with wp_get_image_editor()
    - .po and .mo files updated
 
-12.12.2012 - ver 3.4.10
+2012-12-12 - version 3.4.10
    - Accordion "freezing" fixed
    - WP 3.5 compatibility fixes added
 
-29.12.2012 - ver 3.4.9
+2012-12-29 - version 3.4.9
    - Introduced developers methods more info https://kb.wpbakery.com/
    - Exceprts now are working for posts/pages created with WPBakery Page Builder
    - Nivo slider updated (ver. 3.1)
    - Responsive css can be turned off from WPBakery Page Builder settings page
 
-15.11.2012 - ver 3.4.8
+2012-11-15 - version 3.4.8
    - fix for qTranslate (after recent update qTranslate was hiding WPBakery Page Builder button)
    - new colorpicker param type added
    - Template system updated
 
-09.11.2012 - ver 3.4.7
+2012-11-09 - version 3.4.7
    - Updates notifier added (beta)
    - Toggling between WPBakery Page Builder/Classic view now works as it should be (content is updating correctly)
 
-05.11.2012 - ver 3.4.6
+2012-11-05 - version 3.4.6
    - Raw HTML and Raw js content blocks updated
 
-31.10.2012 - ver 3.4.5
+2012-10-31 - version 3.4.5
    - Fixed shortcodes initialization ([vc_column_text width="1/1" el_position="first last"] ...)
 
-23.10.2012 - ver 3.4.4
+2012-10-23 - version 3.4.4
    - wamp environment fix
 
-16.10.2012 - ver 3.4.3
+2012-10-16 - version 3.4.3
    - fixed "Empty visual editor"
 
-11.10.2012 - ver 3.4.2
+2012-10-11 - version 3.4.2
    - fixed "Call to undefined function get_currentuserinfo()"
 
-09.10.2012 - ver 3.4.1
+2012-10-09 - version 3.4.1
    - Activation error fix
    - Few small addons
 
-05.10.2012 - ver 3.4
+2012-10-05 - version 3.4
    - New facelifted backend interface
    - New content block selection menu
    - Call to action block in IE fixed
@@ -1200,40 +1312,40 @@
    - Google maps positioning in 2nd, 3rd, ..., tab fixed
    - .po & .mo files updated
 
-21.09.2012 - ver 3.3.3
+2012-09-21 - version 3.3.3
    - image max-width set to 100%;
    - Fixed image uploading layout (now it uses full width)
    - locale string added in few __() and _e() functions
    - .wpb_flickr_widget & .wpb_twitter_widget bottom margin added in LESS
    - css background, changed to background-color where possible
 
-21.08.2012 - ver 3.3.2
+2012-08-21 - version 3.3.2
    - second attempt to fix "Featured image"
 
-21.08.20012 - ver 3.3.1
+2001-08-212 - version 3.3.1
    - add_them_support('post-thumbnails'); extends post thumbnails defined by theme
 
-16.08.2012 - ver 3.3
+2012-08-16 - version 3.3
    - This version main focus is on CSS files, they are improved. Content elements now share similar "default grey" style across all elements
    - Bootstrap now comes with LESS files
    - Bootstrap css rules stripped to prevent css conflicts with 3rd party themes/plugins
    - js_composer_front.css: re-done. Now compiles from LESS files.
 
-14.08.2012 - ver 3.2.4
+2012-08-14 - version 3.2.4
    - Video in tabs fixed
    - Container extra class name applied to inner text blocks bug fixed
 
-09.08.2012 - ver 3.2.3
+2012-08-09 - version 3.2.3
    - Settings page enhancments
 
-27.07.2012 - ver 3.2.2
+2012-07-27 - version 3.2.2
    - jQuery UI CSS facelifted, now should look great in every design.
    - LESS files for jQuery UI now available in assets/css/ui-custom-theme/less
 
-24.07.2012 - ver 3.2.1
+2012-07-24 - version 3.2.1
    - jQuery Tabs switching fixed
 
-23.07.2012 - ver 3.2.0
+2012-07-23 - version 3.2.0
    - Teaser grid: link target added
    - Image grid placed in tabs bug fixed
    - FlexSlider updated
@@ -1250,7 +1362,7 @@
    - Fixed problem with advanced custom fields
    - .po file updated
 
-04.06.2012 - ver 3.1.0
+2012-06-04 - version 3.1.0
    - Major release
    - Rewritten core. Now OOP driven
    - Updated documentation and Advanced documentation
@@ -1264,19 +1376,19 @@
    - Adding images in galleries is easier now (WP native way)
    - Bootstrap updated to 2.0.4
 
-10.05.2012 - ver 3.0.4
+2012-05-10 - version 3.0.4
    - HTML Comments removed from generated html code. Some themes wrapped them in paragraph tag :(
 
-27.04.2012 - ver 3.0.3
+2012-04-27 - version 3.0.3
    - Alert box icons on front end added
    - Image gallery. Now images can be shuffled/randomized
    - Tested with Advanced TinyMCE plugin. Works OK
    - Bootstrap updated to 2.0.3
 
-15.04.2012 - ver 3.0.2
+2012-04-15 - version 3.0.2
    - bootstrap.css cleaned, unused classes removed.
 
-14.04.2012 - ver 3.0.1
+2012-04-14 - version 3.0.1
    - Attached images field, now checks for deleted images and if ID doesn't exist - ID is removed.
    - Cloning tabs, accordion and tour fixed.
    - google+ added
@@ -1289,35 +1401,35 @@
    - .container class name comment out from bootstrap.css file. Because it isn't used withing the plugin, but conflicts with 3rd part themes
 
 
-11.04.2012 - ver 3.0 - Major release - Fully rewritten
+2012-04-11 - version 3.0 - Major release - Fully rewritten
    - New content blocks added (Accordion, Posts slider, Google maps, Video widget);
    - Old content blocks extended (FAQ Toggle: default state option added, Image gallery: ability to link each slide individually added, new layout (simple grid) added, now you can enter size for your image WP native way. thumbnail, media, large;
    - Tabs, Tours and Accordion content block are fully revamped: now they can accept other content elements inside them, as a result you can columns or image gallery right in tabs;
    - Teaser (posts) grid: new filtering and sorting options added;
 
-09.02.2012 - ver 2.3.3
+2012-02-09 - version 2.3.3
    - prettyPhoto updated and few js improvements.
 
-07.02.2012 - ver 2.3.2
+2012-02-07 - version 2.3.2
    - js and css files now included with version number.
 
-27.01.2012 - ver 2.3.1
+2012-01-27 - version 2.3.1
    - Added additional "if" check to prevent error message when image can't be found or resized
 
-20.12.2011
+2011-12-20 - version 2.3.0
    - "no link" in VC teaser grid
    - "Read more" button removed & image wrapped in span; WPBakery Page Builder now switching default WP content area to Visual mode automatically
 
-12.12.2011
+2011-12-12 - version 2.2.9
    - WP 3.3 compatibility;
    - .clear class renamed to .vc_clear;
    - Now tabs and tour slides have classname, as a result they can be targeted with css;
    - If WPBakery Page Builder settings are empty, then columns are percent based.
 
-22.09.2011
+2011-09-22 - version 2.2.8
    - New content block added - "Text separator".
 
-15.09.2011
+2011-09-15 - version 2.2.7
    - .wrapper class renamed to .wpb_wrapper;
    - CSS file cleaned and tweaked;
    - Posts grid -> Categories (narrowing by custom taxonomies) now works with custom post types and regular posts;
@@ -1325,29 +1437,29 @@
    - Fixed bug with image inserting into tabs;
    - Checked that js_composer works great with YOAST SEO, some user reported that they don't work together.
 
-01.08.2011
+2011-08-01 - version 2.2.6
    - CSS improvements.
 
-21.06.2011
+2011-06-21 - version 2.2.5
    - Nested tabs bug fixed. Thanks to Justin.
 
-15.06.2011
+2011-06-15 - version 2.2.4
    - Scheduled update. Overall improvements.
 
-13.06.2011
+2011-06-13 - version 2.2.3
    - Now you can generate grid for multiple templates. Eg: For full width page, page with sidebar and so on.
 
-08.06.2011
+2011-06-08 - version 2.2.2
    - New content block "Call to action box"
 
-07.06.2011
+2011-06-07 - version 2.2.1
    - Few tweaks to the backend design, posts grid now can show posts in Carousel
 
-04.06.2011
+2011-06-04 - version 2.2.0
    - Redesigned backend, new content module "Button"
 
-31.05.2011
+2011-05-31 - version 2.1.9
    - Fully rewritten engine, as a result you can add your own shortcodes. Note: ver 2.0 isn't compatible with 1.2 plugin version, please delete old plugin first.
 
-24.05.2011
+2011-05-24 - version 2.1.8
    - New content block "Widgetised Sidebar", few bugfixes.

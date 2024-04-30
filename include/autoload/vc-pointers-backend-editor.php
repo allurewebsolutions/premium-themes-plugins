@@ -44,6 +44,19 @@ function vc_backend_editor_register_pointer( $pointers ) {
 					),
 				),
 				array(
+					'target' => '#vc_ui-panel-post-custom-layout',
+					'options' => array(
+						'content' => sprintf( '<h3> %s </h3> <p> %s </p>', esc_html__( 'Layout selection', 'js_composer' ), esc_html__( 'Select the layout to be used for this post/page.', 'js_composer' ) ),
+						'position' => array(
+							'edge' => 'bottom',
+							'align' => 'center',
+						),
+						'buttonsEvent' => 'vcPointersEditorsTourEvents',
+					),
+					'showEvent' => 'backendEditor.show',
+					'closeEvent' => 'click .vc_post-custom-layout.control-btn',
+				),
+				array(
 					/*nectar addition*/
 					'target' => '.vc_templates-button.salient-studio-templates, #vc-templatera-editor-button',
 					/*nectar addition end*/
@@ -56,7 +69,6 @@ function vc_backend_editor_register_pointer( $pointers ) {
 						'buttonsEvent' => 'vcPointersEditorsTourEvents',
 					),
 					'closeEvent' => 'shortcodes:vc_row:add',
-					'showEvent' => 'backendEditor.show',
 				),
 				array(
 					'target' => '[data-vc-control="add"]:first',
@@ -74,7 +86,7 @@ function vc_backend_editor_register_pointer( $pointers ) {
 				array(
 					'target' => '.wpb_column_container:first .wpb_content_element:first .vc_controls-cc',
 					'options' => array(
-						'content' => sprintf( '<h3> %s </h3> <p> %s <br/><br/> %s</p>', esc_html__( 'Control Elements', 'js_composer' ), esc_html__( 'You can edit your element at any time and drag it around your layout.', 'js_composer' ), sprintf( esc_html__( 'P.S. Learn more at our %sKnowledge Base%s.', 'js_composer' ), '<a href="https://kb.wpbakery.com" target="_blank">', '</a>' ) ),
+						'content' => sprintf( '<h3> %s </h3> <p> %s <br/><br/> %s</p>', esc_html__( 'Control Elements', 'js_composer' ), esc_html__( 'You can edit your element at any time and drag it around your layout.', 'js_composer' ), sprintf( esc_html__( 'P.S. Learn more at our %1$sKnowledge Base%2$s.', 'js_composer' ), '<a href="https://kb.wpbakery.com" target="_blank">', '</a>' ) ),
 						'position' => array(
 							'edge' => 'left',
 							'align' => 'center',

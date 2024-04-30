@@ -184,6 +184,7 @@ if ( ! function_exists( 'vc_post_param' ) ) {
 			check_ajax_referer();
 		}
 
+        // phpcs:ignore
 		return isset( $_POST[ $param ] ) ? $_POST[ $param ] : $default;
 	}
 }
@@ -217,7 +218,7 @@ if ( ! function_exists( 'vc_request_param' ) ) {
 	 * @param $default
 	 *
 	 * @param bool $check
-	 * @return null|string - null for undefined param.
+	 * @return mixed - null for undefined param.
 	 * @since 4.4
 	 */
 	function vc_request_param( $param, $default = null, $check = false ) {
@@ -247,6 +248,26 @@ if ( ! function_exists( 'vc_is_page_editable' ) ) {
 	 */
 	function vc_is_page_editable() {
 		return 'page_editable' === vc_mode();
+	}
+}
+if ( ! function_exists( 'vc_is_gutenberg_editor' ) ) {
+	/**
+	 * Check if current screen is Gutenberg editor screen.
+	 *
+	 * @return bool
+	 * @since 7.0
+	 */
+	function vc_is_gutenberg_editor() {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return false;
+		}
+
+		$current_screen = get_current_screen();
+		if ( ! method_exists( $current_screen, 'is_block_editor' ) ) {
+			return false;
+		}
+
+		return get_current_screen()->is_block_editor();
 	}
 }
 if ( ! function_exists( 'vc_action' ) ) {

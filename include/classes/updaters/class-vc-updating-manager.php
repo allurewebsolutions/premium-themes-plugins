@@ -55,22 +55,24 @@ class Vc_Updating_Manager {
 		$t = explode( '/', $plugin_slug );
 		$this->slug = str_replace( '.php', '', $t[1] );
 
+		// nectar addition
 		// define the alternative API for updating checking
-		add_filter( 'pre_set_site_transient_update_plugins', array(
-			$this,
-			'check_update',
-		) );
+		// add_filter( 'pre_set_site_transient_update_plugins', array(
+		// 	$this,
+		// 	'check_update',
+		// ) );
 
-		// Define the alternative response for information checking
-		add_filter( 'plugins_api', array(
-			$this,
-			'check_info',
-		), 10, 3 );
+		// // Define the alternative response for information checking
+		// add_filter( 'plugins_api', array(
+		// 	$this,
+		// 	'check_info',
+		// ), 10, 3 );
 
-		add_action( 'in_plugin_update_message-' . vc_plugin_name(), array(
-			$this,
-			'addUpgradeMessageLink',
-		) );
+		// add_action( 'in_plugin_update_message-' . vc_plugin_name(), array(
+		// 	$this,
+		// 	'addUpgradeMessageLink',
+		// ) );
+		// nectar addition end
 	}
 
 	/**
@@ -201,7 +203,7 @@ class Vc_Updating_Manager {
 		if ( ! $is_activated ) {
 			$url = vc_updater()->getUpdaterUrl();
 
-			echo sprintf( ' ' . esc_html__( 'To receive automatic updates license activation is required. Please visit %ssettings%s to activate your WPBakery Page Builder.', 'js_composer' ), '<a href="' . esc_url( $url ) . '" target="_blank">', '</a>' ) . sprintf( ' <a href="https://go.wpbakery.com/faq-update-in-theme" target="_blank">%s</a>', esc_html__( 'Got WPBakery Page Builder in theme?', 'js_composer' ) );
+			echo sprintf( ' ' . esc_html__( 'To receive automatic updates license activation is required. Please visit %1$ssettings%2$s to activate your WPBakery Page Builder.', 'js_composer' ), '<a href="' . esc_url( $url ) . '" target="_blank">', '</a>' ) . sprintf( ' <a href="https://go.wpbakery.com/faq-update-in-theme" target="_blank">%s</a>', esc_html__( 'Got WPBakery Page Builder in theme?', 'js_composer' ) );
 		}
 	}
 }
